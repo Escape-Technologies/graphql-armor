@@ -49,7 +49,7 @@ const resolvers = {
 const app = express();
 const httpServer = http.createServer(app);
 
-const armor = new GQLArmor({});
+const armor = new GQLArmor();
 
 const server = armor.apolloServer({
   typeDefs,

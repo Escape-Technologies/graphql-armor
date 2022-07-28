@@ -6,35 +6,40 @@ import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
 import { PluginDefinition, ValidationRule } from './types';
-
-export type ArmorConfig = any;
+import { ConfigService } from './config';
 
 export class GQLArmor {
-  private readonly armorPlugins: ArmorPlugin[] = [];
+  private readonly plugins: ArmorPlugin[] = [];
 
   /*
    * Push each plugin to the armorPlugins array
    */
-  constructor(config: ArmorConfig) {
+  constructor(config?: ConfigService) {
+    config ??= new ConfigService();
+
     for (const plugin of Object.values(Plugins)) {
-      this.armorPlugins.push(new plugin(this, config));
+      const pluginName = plugin.name.toLocaleLowerCase();
+      const pluginConfig = config.getPluginConfig(pluginName);
+
+      if (pluginConfig.enabled)
+        this.plugins.push(new plugin(this, pluginConfig));
     }
   }
 
   /*
-   * Inject into the ApolloServer constructor
+   * Inject remediations into the ApolloServer constructor
    */
   public apolloServer<ContextFunctionParams = ExpressContext>(
-    config: Config<ContextFunctionParams>
+    apolloConfig: Config<ContextFunctionParams>
   ) {
-    config.plugins ??= [];
-    config.validationRules ??= [];
+    apolloConfig.plugins ??= [];
+    apolloConfig.validationRules ??= [];
 
     let apolloPlugins: PluginDefinition[] = [];
     let validationRules: ValidationRule[] = [];
 
-    for (const plugin of this.armorPlugins) {
-      config = plugin.apolloPatchConfig(config);
+    for (const plugin of this.plugins) {
+      apolloConfig = plugin.apolloPatchConfig(apolloConfig);
 
       apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
       validationRules = [...validationRules, ...plugin.getValidationRules()];
@@ -42,9 +47,12 @@ export class GQLArmor {
 
     // We prepend our plugins/rules
     // So that we can protect the following user-defined plugins from attacks
-    config.plugins = [...apolloPlugins, ...config.plugins!];
-    config.validationRules = [...validationRules, ...config.validationRules!];
+    apolloConfig.plugins = [...apolloPlugins, ...apolloConfig.plugins!];
+    apolloConfig.validationRules = [
+      ...validationRules,
+      ...apolloConfig.validationRules!,
+    ];
 
-    return new ApolloServer<ContextFunctionParams>(config);
+    return new ApolloServer<ContextFunctionParams>(apolloConfig);
   }
 }

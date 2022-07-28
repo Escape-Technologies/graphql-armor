@@ -1,12 +1,8 @@
-import {ArmorPlugin} from './ArmorPlugin';
-import {PluginDefinition} from './types';
+import { ArmorPlugin } from '../ArmorPlugin';
+import { PluginDefinition } from '../types';
 
-export class DisableIntrospectionPlugin extends ArmorPlugin {
-  apolloPatchConfig(config) {
-    return {...config, introspection: false};
-  }
-}
-
+// TODO : requestDidStart happens after parsing, right ...?
+// (this is an issue)
 export class CharacterLimitPlugin extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
     const characterLimitPlugin = {

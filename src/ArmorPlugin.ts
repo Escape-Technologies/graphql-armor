@@ -1,10 +1,11 @@
-import {PluginDefinition, ValidationRule} from './types';
-import {Armor} from './index';
+import { PluginDefinition } from './types';
+import { GQLArmor } from './index';
+import { ValidationRule } from 'graphql';
 
 export class ArmorPlugin {
-  private armor: Armor;
+  private armor: GQLArmor;
 
-  constructor(armor: Armor) {
+  constructor(armor: GQLArmor) {
     this.armor = armor;
   }
 
@@ -16,7 +17,7 @@ export class ArmorPlugin {
     return [];
   }
 
-  apolloPatchConfig(config) {
-    return config;
+  apolloPatchConfig(apolloConfig) {
+    return apolloConfig;
   }
 }

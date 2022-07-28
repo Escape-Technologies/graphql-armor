@@ -1,20 +1,20 @@
-import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 const express = require('express');
 const http = require('http');
-import {gql} from 'apollo-server';
-import {Armor} from '../src';
+import { gql } from 'apollo-server';
+import { GQLArmor } from '../src';
 
 const typeDefs = gql`
   type Book {
     title: String
     author: String
   }
-  
+
   type Nested {
-    child : Nested
-    text : String
-    }
-    
+    child: Nested
+    text: String
+  }
+
   type Query {
     books: [Book]
   }
@@ -23,7 +23,6 @@ const typeDefs = gql`
     addBook(title: String, author: String): Book
   }
 `;
-
 
 const books = [
   {
@@ -36,14 +35,13 @@ const books = [
   },
 ];
 
-
 const resolvers = {
   Query: {
     books: () => books,
   },
   Mutation: {
     addBook: (title: String, author: String) => {
-      return {title: 'title_test', author: 'author_test'};
+      return { title: 'title_test', author: 'author_test' };
     },
   },
 };
@@ -51,17 +49,14 @@ const resolvers = {
 const app = express();
 const httpServer = http.createServer(app);
 
-
-const armor = new Armor({
-
-});
+const armor = new GQLArmor({});
 
 const server = armor.apolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
   // eslint-disable-next-line new-cap
-  plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
 (async () => {
@@ -72,8 +67,7 @@ const server = armor.apolloServer({
   });
 
   await new Promise<void>((resolve) => {
-    const x = httpServer
-        .listen({port: 4000}, resolve);
+    const x = httpServer.listen({ port: 4000 }, resolve);
   });
 
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);

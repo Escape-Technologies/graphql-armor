@@ -4,34 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "build": "tsc -p tsconfig.json",
-      "watch": "tsc -p tsconfig.json -w",
-      "start": "NODE_PATH=dist node dist/index.js",
-      "test": "echo 'NotImplementedError'",
-      "lint": "npx eslint src/**/*.ts",
-      "lint-fix": "npx eslint --fix src/**/*.ts"
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
+    "start": "NODE_PATH=dist node dist/index.js",
+    "test": "echo 'NotImplementedError'",
+    "lint": "npx eslint src/**/*.ts",
+    "lint-fix": "npx eslint --fix src/**/*.ts",
+    "example": "nodemon examples/server.ts"
   },
   "repository": {
-      "type": "git",
-      "url": "git+ssh://git@github.com:Escape-Technologies/graphql-armor.git"
+    "type": "git",
+    "url": "git+ssh://git@github.com:Escape-Technologies/graphql-armor.git"
   },
   "author": "Escape Technologies SAS",
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
+    "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
+    "apollo-server": "^3.10.0",
+    "apollo-server-express": "^3.10.0",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security"
   },
   "devDependencies": {
-      "@escape.tech/mookme": "^2.1.1",
-      "@commitlint/cli": "^17.0.0",
-      "@commitlint/config-angular": "^17.0.0",
-      "@typescript-eslint/eslint-plugin": "^5.25.0",
-      "@typescript-eslint/parser": "^5.25.0",
-      "eslint": ">=8.15.0",
-      "eslint-config-google": "^0.14.0",
-      "ts-node": "^10.7.0",
-      "typescript": "^4.6.4"
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-angular": "^17.0.0",
+    "@escape.tech/mookme": "^2.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": ">=8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.6.4"
   }
 }

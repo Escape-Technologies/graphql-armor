@@ -3,7 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "baseUrl": "src",
-    "target": "es6",
+    "target": "es2022",
     "lib": [
       "es6",
       "dom"

@@ -16,6 +16,7 @@ module.exports = {
   ],
   "rules": {
       "object-curly-spacing": "off",
+      "max-len":"off"
   },
   "ignorePatterns": [
       "**/node_modules/**",

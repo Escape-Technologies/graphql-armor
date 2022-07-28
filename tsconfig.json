@@ -4,28 +4,16 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "target": "es2022",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "outDir": "./dist",
     "sourceMap": true,
-    "types": [
-      "node",
-    ],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
 }

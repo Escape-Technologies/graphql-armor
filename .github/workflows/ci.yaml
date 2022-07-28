@@ -24,4 +24,3 @@ jobs:
       - name: Run tests
         if: always()
         run: npm test
-  

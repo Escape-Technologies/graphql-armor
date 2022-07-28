@@ -8,9 +8,8 @@
     "watch": "tsc -p tsconfig.json -w",
     "start": "NODE_PATH=dist node dist/index.js",
     "test": "echo 'NotImplementedError'",
-    "lint": "npx eslint src/**/*.ts",
-    "lint-fix": "npx eslint --fix src/**/*.ts",
-    "example": "nodemon examples/server.ts"
+    "lint": "yarn prettier . -uw --single-quote",
+    "example": "nodemon --delay 500ms examples/server.ts"
   },
   "repository": {
     "type": "git",
@@ -26,14 +25,18 @@
     "apollo-server": "^3.10.0",
     "apollo-server-express": "^3.10.0",
     "express": "^4.18.1",
-    "http": "^0.0.1-security"
+    "graphql": "^16.5.0",
+    "graphql-validation-complexity": "^0.4.2",
+    "http": "^0.0.1-security",
+    "prettier": "^2.7.1",
+    "selectn": "^1.1.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-angular": "^17.0.0",
     "@escape.tech/mookme": "^2.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "eslint": ">=8.15.0",
     "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.19",

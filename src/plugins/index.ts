@@ -1,4 +1,5 @@
-import { CharacterLimitPlugin } from './CharacterLimit';
-import { IntrospectionPlugin } from './Introspection';
+import { CharacterLimit } from './CharacterLimit';
+import { Introspection } from './Introspection';
+import { CostAnalysis } from './CostAnalysis';
 
-export { CharacterLimitPlugin, IntrospectionPlugin };
+export { CharacterLimit, Introspection, CostAnalysis };

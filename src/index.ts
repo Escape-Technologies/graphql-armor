@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { Config } from 'apollo-server-core/src/types';
 import { ExpressContext } from 'apollo-server-express/src/ApolloServer';
 
-import { CharacterLimitPlugin, IntrospectionPlugin } from './plugins/';
+import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
 import { PluginDefinition, ValidationRule } from './types';
@@ -10,14 +10,20 @@ import { PluginDefinition, ValidationRule } from './types';
 export type ArmorConfig = any;
 
 export class GQLArmor {
-  private armorPlugins: ArmorPlugin[] = [];
+  private readonly armorPlugins: ArmorPlugin[] = [];
 
+  /*
+   * Push each plugin to the armorPlugins array
+   */
   constructor(config: ArmorConfig) {
-    // here we add new plugins (to be moved somewhere else)
-    this.armorPlugins.push(new IntrospectionPlugin(this));
-    this.armorPlugins.push(new CharacterLimitPlugin(this));
+    for (const plugin of Object.values(Plugins)) {
+      this.armorPlugins.push(new plugin(this, config));
+    }
   }
 
+  /*
+   * Inject into the ApolloServer constructor
+   */
   public apolloServer<ContextFunctionParams = ExpressContext>(
     config: Config<ContextFunctionParams>
   ) {

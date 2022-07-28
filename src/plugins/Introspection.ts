@@ -19,7 +19,7 @@ function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
   };
 }
 
-export class IntrospectionPlugin extends ArmorPlugin {
+export class Introspection extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
     return [secureIntrospectionPlugin];
   }

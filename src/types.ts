@@ -23,4 +23,4 @@ export type PluginConfig = {
   enabled?: boolean;
   options?: any;
 };
-export type ArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig;
+export type GQLArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig;

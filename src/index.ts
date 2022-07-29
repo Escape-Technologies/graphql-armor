@@ -4,7 +4,7 @@ import { Config } from 'apollo-server-core/src/types';
 import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
-import { PluginDefinition, ValidationRule, ArmorConfig, PluginUpdateEvent, PluginState } from './types';
+import { PluginDefinition, ValidationRule, GQLArmorConfig, PluginUpdateEvent, PluginState } from './types';
 import { ConfigService } from './config';
 
 export class GQLArmor {
@@ -15,7 +15,7 @@ export class GQLArmor {
   /*
    * Push each plugin to the plugins array
    */
-  constructor(config?: ArmorConfig, onPluginUpdate?: PluginUpdateEvent) {
+  constructor(config?: GQLArmorConfig, onPluginUpdate?: PluginUpdateEvent) {
     this._configService = new ConfigService(config);
     this._onPluginUpdate = onPluginUpdate;
 

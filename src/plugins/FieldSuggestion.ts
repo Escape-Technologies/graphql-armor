@@ -1,11 +1,5 @@
 import { ArmorPlugin } from '../ArmorPlugin';
-import {
-  ValidationRule,
-  GraphQLError,
-  ValidationContext,
-  ASTVisitor,
-  FieldNode,
-} from 'graphql';
+import { ValidationRule, GraphQLError, ValidationContext, ASTVisitor, FieldNode } from 'graphql';
 import { PluginConfig } from 'types';
 
 export type FieldSuggestionConfig = {

@@ -4,13 +4,7 @@ import { Config } from 'apollo-server-core/src/types';
 import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
-import {
-  PluginDefinition,
-  ValidationRule,
-  ArmorConfig,
-  PluginUpdateEvent,
-  PluginState,
-} from './types';
+import { PluginDefinition, ValidationRule, ArmorConfig, PluginUpdateEvent, PluginState } from './types';
 import { ConfigService } from './config';
 
 export class GQLArmor {
@@ -42,9 +36,7 @@ export class GQLArmor {
   /*
    * Inject remediations into the ApolloServer constructor
    */
-  public apolloServer<ContextFunctionParams>(
-    apolloConfig: Config<ContextFunctionParams>
-  ) {
+  public apolloServer<ContextFunctionParams>(apolloConfig: Config<ContextFunctionParams>) {
     apolloConfig.plugins ??= [];
     apolloConfig.validationRules ??= [];
 
@@ -65,10 +57,7 @@ export class GQLArmor {
     // We prepend our plugins/rules
     // So that we can protect the following user-defined plugins from attacks
     apolloConfig.plugins = [...apolloPlugins, ...apolloConfig.plugins!];
-    apolloConfig.validationRules = [
-      ...validationRules,
-      ...apolloConfig.validationRules!,
-    ];
+    apolloConfig.validationRules = [...validationRules, ...apolloConfig.validationRules!];
 
     return new ApolloServer<ContextFunctionParams>(apolloConfig);
   }

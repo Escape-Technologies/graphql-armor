@@ -62,7 +62,7 @@ const armor = new GQLArmor(
   },
   (status: string, plugin: any) => {
     console.log(status, plugin._namespace);
-  }
+  },
 );
 
 const server = armor.apolloServer({

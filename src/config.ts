@@ -11,10 +11,7 @@ const defaultConfig: ArmorConfig = {
   FieldSuggestion: DefaultFieldSuggestionConfig, // 0x8
 };
 
-function applyBitwisePermissions(
-  config: ArmorConfig,
-  permUID: number
-): ArmorConfig {
+function applyBitwisePermissions(config: ArmorConfig, permUID: number): ArmorConfig {
   let keyID = 0;
   for (const key in defaultConfig) {
     if (!config.hasOwnProperty(key)) {

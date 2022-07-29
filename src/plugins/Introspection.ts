@@ -8,24 +8,18 @@ export const DefaultIntrospectionConfig = {
   options: {
     headersWhitelist: {
       'x-allow-introspection': 'allow',
-      ...(process.env.ESCAPE_IDENTIFIER
-        ? { 'x-escape-identifier': process.env.ESCAPE_IDENTIFIER }
-        : {}),
+      ...(process.env.ESCAPE_IDENTIFIER ? { 'x-escape-identifier': process.env.ESCAPE_IDENTIFIER } : {}),
     },
   },
 };
 
-const plugin = ({
-  options: { headersWhitelist },
-}: PluginConfig): PluginDefinition => {
+const plugin = ({ options: { headersWhitelist } }: PluginConfig): PluginDefinition => {
   return {
     async requestDidStart({ request }) {
       if (request.query!.includes('__schema')) {
         const headers = request.http!.headers;
 
-        const whitelistedHeaders = headersWhitelist.filter((header) =>
-          headers.has(header)
-        );
+        const whitelistedHeaders = headersWhitelist.filter((header) => headers.has(header));
 
         if (whitelistedHeaders.length === 0) {
           throw new Error('Introspection is disabled');

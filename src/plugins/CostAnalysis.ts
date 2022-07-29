@@ -3,13 +3,7 @@ import { ValidationRule, PluginConfig } from '../types';
 
 import { ComplexityVisitor } from 'graphql-validation-complexity';
 
-import {
-  ASTVisitor,
-  GraphQLError,
-  TypeInfo,
-  visit,
-  visitWithTypeInfo,
-} from 'graphql';
+import { ASTVisitor, GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
 
 export type CostAnalysisConfig = {
   CostAnalysis?: { options: { maxCost: number } } & PluginConfig;

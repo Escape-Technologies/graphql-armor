@@ -15,10 +15,7 @@ export enum PluginState {
   REGISTERED = 'registered',
   UNREGISTERED = 'unregistered',
 }
-export type PluginUpdateEvent = (
-  status: PluginState,
-  plugin: PluginConfig
-) => void;
+export type PluginUpdateEvent = (status: PluginState, plugin: PluginConfig) => void;
 
 // Config
 export type PluginConfig = {
@@ -26,8 +23,4 @@ export type PluginConfig = {
   enabled?: boolean;
   options?: any;
 };
-export type ArmorConfig =
-  | IntrospectionConfig
-  | CharacterLimitConfig
-  | CostAnalysisConfig
-  | FieldSuggestionConfig;
+export type ArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig;

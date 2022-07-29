@@ -1,14 +1,17 @@
 {
-  "name": "graphql-armor",
-  "version": "0.0.1",
+  "name": "@escape.tech/graphql-armor",
+  "version": "0.0.1-alpha",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*.js"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "watch": "tsc -p tsconfig.json -w",
+    "build": "tsc",
+    "dev": "tsc -w",
     "start": "NODE_PATH=dist node dist/index.js",
     "test": "echo 'NotImplementedError'",
-    "lint": "yarn prettier . -uw --single-quote",
+    "lint": "prettier src/ -uw --single-quote",
     "example": "nodemon --delay 500ms examples/server.ts"
   },
   "repository": {

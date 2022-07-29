@@ -1,6 +1,5 @@
 import { ApolloServer } from 'apollo-server-express';
 import { Config } from 'apollo-server-core/src/types';
-import { ExpressContext } from 'apollo-server-express/src/ApolloServer';
 
 import * as Plugins from './plugins/';
 
@@ -43,7 +42,7 @@ export class GQLArmor {
   /*
    * Inject remediations into the ApolloServer constructor
    */
-  public apolloServer<ContextFunctionParams = ExpressContext>(
+  public apolloServer<ContextFunctionParams>(
     apolloConfig: Config<ContextFunctionParams>
   ) {
     apolloConfig.plugins ??= [];

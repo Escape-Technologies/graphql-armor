@@ -23,12 +23,10 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "apollo-server": "^3.10.0",
-    "apollo-server-express": "^3.10.0",
     "express": "^4.18.1",
     "graphql": "^16.5.0",
     "graphql-validation-complexity": "^0.4.2",
     "http": "^0.0.1-security",
-    "prettier": "^2.7.1",
     "selectn": "^1.1.2"
   },
   "devDependencies": {
@@ -39,8 +37,8 @@
     "@typescript-eslint/parser": "^5.31.0",
     "eslint": ">=8.15.0",
     "eslint-config-google": "^0.14.0",
+    "prettier": "^2.7.1",
     "nodemon": "^2.0.19",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.6.4"
+    "ts-node": "^10.9.1"
   }
 }

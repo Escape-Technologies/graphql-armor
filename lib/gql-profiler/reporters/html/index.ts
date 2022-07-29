@@ -1,21 +1,21 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import _ from 'lodash';
-import memoryReporter from '../memory';
+const _ = require ('lodash');
+import MemoryReporter from "../memory";
 
-export default (baseReporter = memoryReporter) => {
-    const reporter = new memoryReporter();
-    const template = fs.readFileSync(path.resolve(__dirname, './base.html'), { encoding: 'utf-8' });
-    const compiled = _.template(template);
+export default class HtmlReporter extends MemoryReporter {
+    private compiled: any;
 
-    return {
-        ...reporter,
-        getHtml() {
-            return compiled({
-                _,
-                events: reporter.getEvents(),
-                hierarchy: reporter.getHierarchy(),
-            });
-        },
+    constructor() {
+        super();
+        const template = fs.readFileSync(path.resolve(__dirname, './base.html'), {encoding: 'utf-8'});
+        this.compiled = _.template(template);
     };
-};
+
+    getHtml() {
+        return this.compiled({
+            _, events: this.getEvents(), hierarchy: this.getHierarchy(),
+        });
+    }
+
+}

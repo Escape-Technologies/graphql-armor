@@ -1,6 +1,7 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { print } from 'graphql/language/printer';
 import * as IntrospectionTypes from 'graphql/type/introspection';
+const fs = require('fs');
 
 /*
 Original code
@@ -10,7 +11,50 @@ by 4Catalyzer
  */
 
 // TODO ; that's dirty, put it somewhere else
-export const WEIGHTS:Record<string,number> =  {};
+class WeightsStore {
+    private store: Record<string, number> = {};
+    private mustSave = false;
+    private perfPath = "perf-store.json";
+
+    constructor() {
+        try {
+            this.store = JSON.parse(fs.readFileSync(this.perfPath));
+        }
+        catch(e)
+        {
+            console.log("WARNING: Could not load perf.json.");
+        }
+
+        // auto save
+        setInterval(() => {
+            this.save();
+        }, 1000);
+    }
+
+    public knows(key) {
+        return this.store[key] !== undefined;
+    }
+
+    public get(key) {
+        return this.store[key]
+    }
+
+    public add(key,dt) {
+        this.store[key]=dt;
+        this.mustSave = true;
+
+    }
+
+    private save() {
+        if (!this.mustSave) return;
+
+        console.log("SAVING");
+        fs.writeFileSync(this.perfPath, JSON.stringify(this.store,null, 4));
+
+        this.mustSave = false;
+    }
+}
+export const WEIGHTS = new WeightsStore();
 
 
 
@@ -89,7 +133,7 @@ export default class ComplexityVisitor {
     private SelectionSet: (selectionSet) => any;
     private path:string[] = [];
     private readonly ignoreIntrospection: boolean = true;
-    private isIntrospectionQuery: boolean = false; // this is not config ! leave it to false.
+    private isIntrospectionQuery = false; // this is not config ! leave it to false.
     constructor(
         context,
         {
@@ -151,23 +195,22 @@ export default class ComplexityVisitor {
         // If we decide to disable the cost of introspection queries
         // And we are entering or already inside an introspection request
         // Then the function should return here (cost += 0)
-        if(this.ignoreIntrospection && (obj.name.value === "__schema"||this.isIntrospectionQuery))
-        {
+        if (this.ignoreIntrospection && (obj.name.value === "__schema" || this.isIntrospectionQuery)) {
             this.isIntrospectionQuery = true;
             return;
         }
 
 
-        const pathString = this.path.join("/");
+        let pathString = this.path.join("/");
         let cost: number;
-        if(WEIGHTS[pathString]) {
-           cost = WEIGHTS[pathString];
-           console.log(pathString,cost);
-        }
-        else // unregistered cost
+        pathString = "Query/" + pathString; // TODO : non !
+        if (WEIGHTS.knows(pathString)) {
+            cost = WEIGHTS.get(pathString);
+            console.log(pathString, cost);
+        } else // unregistered cost
         {
             cost = this.costFactor * this.getFieldCost();
-            console.log(pathString,"default =",cost);
+            console.log(pathString, "default =", cost);
 
         }
 

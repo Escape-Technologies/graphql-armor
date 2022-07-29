@@ -1,26 +1,36 @@
-import {
-  ValidationContext,
-  FieldNode,
-  ASTVisitor,
-  GraphQLError,
-} from 'graphql';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule } from '../types';
+import { PluginConfig, PluginDefinition } from '../types';
 
-function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
+export type IntrospectionConfig = { Introspection?: PluginConfig };
+export const DefaultIntrospectionConfig = {
+  _namespace: 'Introspection',
+  enabled: false,
+  options: {
+    headersWhitelist: {
+      'x-allow-introspection': 'allow',
+      ...(process.env.ESCAPE_IDENTIFIER ? { 'x-escape-identifier': process.env.ESCAPE_IDENTIFIER } : {}),
+    },
+  },
+};
+
+const plugin = ({ options: { headersWhitelist } }: PluginConfig): PluginDefinition => {
   return {
-    Field(node: FieldNode) {
-      // ToDo: Whitelist headers pairs
-      const blacklist = ['__schema', '__type'];
-      if (blacklist.includes(node.name.value)) {
-        context.reportError(new GraphQLError('Introspection is disabled'));
+    async requestDidStart({ request }) {
+      if (request.query!.includes('__schema')) {
+        const headers = request.http!.headers;
+
+        const whitelistedHeaders = headersWhitelist.filter((header) => headers.has(header));
+
+        if (whitelistedHeaders.length === 0) {
+          throw new Error('Introspection is disabled');
+        }
       }
     },
   };
-}
+};
 
 export class Introspection extends ArmorPlugin {
-  getValidationRules(): ValidationRule[] {
-    return [secureIntrospectionPlugin];
+  getApolloPlugins(): PluginDefinition[] {
+    return [plugin(this.getConfig())];
   }
 }

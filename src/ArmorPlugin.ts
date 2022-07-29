@@ -16,11 +16,11 @@ export class ArmorPlugin {
   }
 
   getNamespace(): string {
-    const namespace = this.config.namespace;
-    if (!namespace) {
+    const _namespace = this.config._namespace;
+    if (!_namespace) {
       throw new Error(`Plugin is missing a namespace`);
     }
-    return namespace;
+    return _namespace;
   }
 
   getApolloPlugins(): PluginDefinition[] {

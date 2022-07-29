@@ -9,14 +9,14 @@ export type CostAnalysisConfig = {
   CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
 };
 export const DefaultCostAnalysisConfig = {
-  namespace: 'CostAnalysis',
+  _namespace: 'CostAnalysis',
   enabled: true,
   options: {
     maxCost: 1000,
   },
 };
 
-const __rule = (maxCost: number) => {
+const __rule = ({ options: { maxCost } }: PluginConfig) => {
   return function ComplexityLimit(context) {
     const visitor = new ComplexityVisitor(context, {});
     // @ts-ignore
@@ -44,6 +44,6 @@ const __rule = (maxCost: number) => {
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [__rule(this.getConfig().options.maxCost)];
+    return [__rule(this.getConfig())];
   }
 }

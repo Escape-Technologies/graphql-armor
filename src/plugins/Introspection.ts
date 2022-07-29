@@ -9,12 +9,12 @@ import { ValidationRule, PluginConfig } from '../types';
 
 export type IntrospectionConfig = { Introspection?: PluginConfig };
 export const DefaultIntrospectionConfig = {
-  namespace: 'Introspection',
+  _namespace: 'Introspection',
   enabled: false,
 };
 
 // ToDo: Whitelist headers pairs -> Maybe use a apollo plugin instead?
-function __plugin(context: ValidationContext): ASTVisitor {
+function __rule(context: ValidationContext): ASTVisitor {
   return {
     Field(node: FieldNode) {
       const blacklist = ['__schema', '__type'];
@@ -27,6 +27,6 @@ function __plugin(context: ValidationContext): ASTVisitor {
 
 export class Introspection extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [__plugin];
+    return [__rule];
   }
 }

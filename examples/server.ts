@@ -61,7 +61,7 @@ const armor = new GQLArmor(
     },
   },
   (status: string, plugin: any) => {
-    console.log(status, plugin.namespace);
+    console.log(status, plugin._namespace);
   }
 );
 

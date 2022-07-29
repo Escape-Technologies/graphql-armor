@@ -21,7 +21,7 @@ export type PluginUpdateEvent = (
 
 // Config
 export type PluginConfig = {
-  namespace?: string;
+  _namespace?: string;
   enabled?: boolean;
   options?: any;
 };

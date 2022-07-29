@@ -21,8 +21,8 @@ export class ConfigService {
         // clone the user-defined config
         const keyCpy = { ...config[key] };
         // delete the namespace if any
-        if (keyCpy.namespace) {
-          delete keyCpy.namespace;
+        if (keyCpy._namespace) {
+          delete keyCpy._namespace;
         }
         // merge the user-defined config with the default config
         pluginConfig = { ...pluginConfig, ...keyCpy };
@@ -31,8 +31,6 @@ export class ConfigService {
       // add the plugin config to the map
       this._plugins.set(key, pluginConfig);
     }
-
-    console.log(this._plugins);
   }
 
   public getPluginConfig(key: string): PluginConfig {

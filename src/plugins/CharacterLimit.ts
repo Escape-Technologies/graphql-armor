@@ -9,14 +9,14 @@ export type CharacterLimitConfig = {
   CharacterLimit?: { options: { maxLength: number } } & PluginConfig;
 };
 export const DefaultCharacterLimitConfig = {
-  namespace: 'CharacterLimit',
+  _namespace: 'CharacterLimit',
   enabled: true,
   options: {
     maxLength: 3000,
   },
 };
 
-const __plugin = (maxLength: number) => {
+const plugin = ({ options: { maxLength } }: PluginConfig) => {
   return {
     async requestDidStart(context: GraphQLRequestContext) {
       if (context.request.query!.length > maxLength) {
@@ -28,6 +28,6 @@ const __plugin = (maxLength: number) => {
 
 export class CharacterLimit extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
-    return [__plugin(this.getConfig().options.maxLength)];
+    return [plugin(this.getConfig())];
   }
 }

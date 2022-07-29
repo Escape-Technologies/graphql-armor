@@ -144,13 +144,13 @@ export GQLARMOR_PERMISSIONS=0  # Disable every remediations
 For example, if you want to toggle `ONLY` the `Character Limit` and `Cost Analysis` remediations, you can use the following environment variable:
 
 ```bash
-export GQLARMOR_PERMISSION=$(python -c "print(0x1 | 0x2)") # Toggle only:  Character Limit and Cost Analysis plugin
+export GQLARMOR_PERMISSIONS=$(python -c "print(0x1 | 0x2)") # Toggle only:  Character Limit and Cost Analysis plugin
 ```
 
 If you want to toggle `ONLY` the `Introspection` remediation, you can use the following environment variable:
 
 ```bash
-export GQLARMOR_PERMISSION=$(python -c "print(0x4)") # Toggle only: Introspection plugin
+export GQLARMOR_PERMISSIONS=$(python -c "print(0x4)") # Toggle only: Introspection plugin
 ```
 
 ## Events

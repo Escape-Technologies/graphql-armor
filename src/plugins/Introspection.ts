@@ -18,14 +18,12 @@ export const DefaultIntrospectionConfig = {
 const plugin = ({
   options: { headersWhitelist },
 }: PluginConfig): PluginDefinition => {
-  const whitelist = headersWhitelist.map((header) => header.toLowerCase());
-
   return {
     async requestDidStart({ request }) {
       if (request.query!.includes('__schema')) {
         const headers = request.http!.headers;
 
-        const whitelistedHeaders = whitelist.filter((header) =>
+        const whitelistedHeaders = headersWhitelist.filter((header) =>
           headers.has(header)
         );
 

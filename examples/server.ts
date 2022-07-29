@@ -49,7 +49,21 @@ const resolvers = {
 const app = express();
 const httpServer = http.createServer(app);
 
-const armor = new GQLArmor();
+const armor = new GQLArmor(
+  {
+    CharacterLimit: {
+      options: {
+        maxLength: 100,
+      },
+    },
+    Introspection: {
+      enabled: true,
+    },
+  },
+  (status: string, plugin: any) => {
+    console.log(status, plugin._namespace);
+  }
+);
 
 const server = armor.apolloServer({
   typeDefs,

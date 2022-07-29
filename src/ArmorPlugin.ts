@@ -1,7 +1,6 @@
-import { PluginDefinition } from './types';
+import { PluginDefinition, PluginConfig } from './types';
 import { GQLArmor } from './index';
 import { ValidationRule } from 'graphql';
-import { PluginConfig } from './config';
 
 export class ArmorPlugin {
   private readonly armor: GQLArmor;
@@ -12,8 +11,16 @@ export class ArmorPlugin {
     this.config = config;
   }
 
-  getNamespace() {
-    return this.config.namespace;
+  getConfig(): PluginConfig {
+    return this.config;
+  }
+
+  getNamespace(): string {
+    const _namespace = this.config._namespace;
+    if (!_namespace) {
+      throw new Error(`Plugin is missing a namespace`);
+    }
+    return _namespace;
   }
 
   getApolloPlugins(): PluginDefinition[] {

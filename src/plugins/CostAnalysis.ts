@@ -1,42 +1,49 @@
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule } from '../types';
+import { ValidationRule, PluginConfig } from '../types';
 
 import { ComplexityVisitor } from 'graphql-validation-complexity';
 
 import { GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
 
+export type CostAnalysisConfig = {
+  CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
+};
+export const DefaultCostAnalysisConfig = {
+  _namespace: 'CostAnalysis',
+  enabled: true,
+  options: {
+    maxCost: 1000,
+  },
+};
+
+const __rule = ({ options: { maxCost } }: PluginConfig) => {
+  return function ComplexityLimit(context) {
+    const visitor = new ComplexityVisitor(context, {});
+    // @ts-ignore
+    const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
+
+    return {
+      Document: {
+        enter(node) {
+          visit(node, visitWithTypeInfo(typeInfo, visitor));
+        },
+        leave(node) {
+          const cost = visitor.getCost();
+          if (cost > maxCost) {
+            context.reportError(
+              new GraphQLError('Query complexity limit exceeded', {
+                nodes: [node],
+              })
+            );
+          }
+        },
+      },
+    };
+  };
+};
+
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    const maxCost = 60000;
-    const options = {};
-
-    const complexityLimitRule: ValidationRule = function ComplexityLimit(
-      context
-    ) {
-      const visitor = new ComplexityVisitor(context, options);
-      // @ts-ignore
-      const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
-
-      return {
-        Document: {
-          enter(node) {
-            visit(node, visitWithTypeInfo(typeInfo, visitor));
-          },
-          leave(node) {
-            const cost = visitor.getCost();
-            console.log(`COST: ${cost}`);
-            if (cost > maxCost) {
-              context.reportError(
-                new GraphQLError('query exceeds complexity limit', {
-                  nodes: [node],
-                })
-              );
-            }
-          },
-        },
-      };
-    };
-
-    return [complexityLimitRule];
+    return [__rule(this.getConfig())];
   }
 }

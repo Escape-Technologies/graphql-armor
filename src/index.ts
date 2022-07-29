@@ -5,24 +5,37 @@ import { ExpressContext } from 'apollo-server-express/src/ApolloServer';
 import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
-import { PluginDefinition, ValidationRule } from './types';
-import { ArmorConfig, ConfigService } from './config';
+import {
+  PluginDefinition,
+  ValidationRule,
+  ArmorConfig,
+  PluginUpdateEvent,
+  PluginState,
+} from './types';
+import { ConfigService } from './config';
 
 export class GQLArmor {
   private readonly _plugins: ArmorPlugin[] = [];
   private readonly _configService: ConfigService;
+  private readonly _onPluginUpdate?: PluginUpdateEvent;
 
   /*
    * Push each plugin to the plugins array
    */
-  constructor(config?: ArmorConfig) {
+  constructor(config?: ArmorConfig, onPluginUpdate?: PluginUpdateEvent) {
     this._configService = new ConfigService(config);
+    this._onPluginUpdate = onPluginUpdate;
 
     for (const plugin of Object.values(Plugins)) {
       const pluginConfig = this._configService.getPluginConfig(plugin.name);
 
       if (pluginConfig.enabled) {
         this._plugins.push(new plugin(this, pluginConfig));
+
+        // Spread the plugin registration event
+        if (this._onPluginUpdate) {
+          this._onPluginUpdate(PluginState.REGISTERED, pluginConfig);
+        }
       }
     }
   }
@@ -45,7 +58,9 @@ export class GQLArmor {
       apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
       validationRules = [...validationRules, ...plugin.getValidationRules()];
 
-      console.log(`[GraphQLArmor] Enabled plugin for ${plugin.getNamespace()}`);
+      if (this._onPluginUpdate) {
+        this._onPluginUpdate(PluginState.ENABLED, plugin.getConfig());
+      }
     }
 
     // We prepend our plugins/rules

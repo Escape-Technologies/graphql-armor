@@ -5,12 +5,18 @@ import {
   GraphQLError,
 } from 'graphql';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule } from '../types';
+import { ValidationRule, PluginConfig } from '../types';
 
-function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
+export type IntrospectionConfig = { Introspection?: PluginConfig };
+export const DefaultIntrospectionConfig = {
+  _namespace: 'Introspection',
+  enabled: false,
+};
+
+// ToDo: Whitelist headers pairs -> Maybe use a apollo plugin instead?
+function __rule(context: ValidationContext): ASTVisitor {
   return {
     Field(node: FieldNode) {
-      // ToDo: Whitelist headers pairs
       const blacklist = ['__schema', '__type'];
       if (blacklist.includes(node.name.value)) {
         context.reportError(new GraphQLError('Introspection is disabled'));
@@ -21,6 +27,6 @@ function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
 
 export class Introspection extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [secureIntrospectionPlugin];
+    return [__rule];
   }
 }

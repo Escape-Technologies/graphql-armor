@@ -3,7 +3,13 @@ import { ValidationRule, PluginConfig } from '../types';
 
 import { ComplexityVisitor } from 'graphql-validation-complexity';
 
-import { GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
+import {
+  ASTVisitor,
+  GraphQLError,
+  TypeInfo,
+  visit,
+  visitWithTypeInfo,
+} from 'graphql';
 
 export type CostAnalysisConfig = {
   CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
@@ -17,10 +23,10 @@ export const DefaultCostAnalysisConfig = {
 };
 
 const rule = ({ options: { maxCost } }: PluginConfig): ValidationRule => {
-  return function ComplexityLimit(context) {
-    const visitor = new ComplexityVisitor(context, {});
+  return function ComplexityLimit(ctx): ASTVisitor {
+    const visitor = new ComplexityVisitor(ctx, {});
     // @ts-ignore
-    const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
+    const typeInfo = ctx._typeInfo || new TypeInfo(ctx.getSchema());
 
     return {
       Document: {
@@ -30,11 +36,9 @@ const rule = ({ options: { maxCost } }: PluginConfig): ValidationRule => {
         leave(node) {
           const cost = visitor.getCost();
           if (cost > maxCost) {
-            context.reportError(
-              new GraphQLError('Query complexity limit exceeded', {
-                nodes: [node],
-              })
-            );
+            throw new GraphQLError('Query complexity limit exceeded', {
+              nodes: [node],
+            });
           }
         },
       },

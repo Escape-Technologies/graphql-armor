@@ -1,11 +1,11 @@
-import { ArmorConfig, PluginConfig } from './types';
+import { GQLArmorConfig, PluginConfig } from './types';
 import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
 import { DefaultIntrospectionConfig } from './plugins/Introspection';
 import { DefaultFieldSuggestionConfig } from './plugins/FieldSuggestion';
 import {DefaultProfilerConfig} from "./plugins/Profiler";
 
-const defaultConfig: ArmorConfig = {
+const defaultConfig: GQLArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
   Introspection: DefaultIntrospectionConfig, // 0x4
@@ -13,7 +13,7 @@ const defaultConfig: ArmorConfig = {
   Profiler: DefaultProfilerConfig // 0x10
 };
 
-function applyBitwisePermissions(config: ArmorConfig, permUID: number): ArmorConfig {
+function applyBitwisePermissions(config: GQLArmorConfig, permUID: number): GQLArmorConfig {
   let keyID = 0;
   for (const key in defaultConfig) {
     if (!config.hasOwnProperty(key)) {
@@ -27,10 +27,10 @@ function applyBitwisePermissions(config: ArmorConfig, permUID: number): ArmorCon
 export class ConfigService {
   private readonly _plugins = new Map<string, PluginConfig>();
 
-  constructor(config?: ArmorConfig) {
+  constructor(config?: GQLArmorConfig) {
     config ??= {};
 
-    const permissions = parseInt(process.env.ARMOR_PERMISSIONS || '-1', 10);
+    const permissions = parseInt(process.env.GQLARMOR_PERMISSIONS || '-1', 10);
     if (permissions >= 0) {
       config = applyBitwisePermissions(config, permissions);
     }

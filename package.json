@@ -11,7 +11,7 @@
     "dev": "tsc -w",
     "start": "NODE_PATH=dist node dist/index.js",
     "test": "echo 'NotImplementedError'",
-    "lint": "prettier . -uw --single-quote",
+    "lint": "prettier src/ -uw --single-quote",
     "example": "ts-node examples/server.ts",
     "example-mon": "nodemon --delay 500ms examples/server.ts"
   },

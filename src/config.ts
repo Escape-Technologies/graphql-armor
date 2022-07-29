@@ -2,11 +2,13 @@ import { ArmorConfig, PluginConfig } from './types';
 import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
 import { DefaultIntrospectionConfig } from './plugins/Introspection';
+import { DefaultFieldSuggestionConfig } from './plugins/FieldSuggestion';
 
 const defaultConfig: ArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig,
   CostAnalysis: DefaultCostAnalysisConfig,
   Introspection: DefaultIntrospectionConfig,
+  FieldSuggestion: DefaultFieldSuggestionConfig,
 };
 
 export class ConfigService {

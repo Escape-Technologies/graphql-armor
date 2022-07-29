@@ -53,7 +53,7 @@ const armor = new GQLArmor(
   {
     CharacterLimit: {
       options: {
-        maxLength: 100,
+        maxLength: 10000,
       },
     },
     Introspection: {

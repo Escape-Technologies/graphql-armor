@@ -1,7 +1,6 @@
-import { PluginDefinition } from './types';
+import { PluginDefinition, PluginConfig } from './types';
 import { GQLArmor } from './index';
 import { ValidationRule } from 'graphql';
-import { PluginConfig } from './config';
 
 export class ArmorPlugin {
   private readonly armor: GQLArmor;

@@ -5,8 +5,8 @@ import { ExpressContext } from 'apollo-server-express/src/ApolloServer';
 import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
-import { PluginDefinition, ValidationRule } from './types';
-import { ArmorConfig, ConfigService } from './config';
+import { PluginDefinition, ValidationRule, ArmorConfig } from './types';
+import { ConfigService } from './config';
 
 export class GQLArmor {
   private readonly _plugins: ArmorPlugin[] = [];

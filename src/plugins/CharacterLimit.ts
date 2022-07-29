@@ -1,11 +1,22 @@
 import { GraphQLRequestContext } from 'apollo-server-types';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { PluginDefinition } from '../types';
+import { PluginDefinition, PluginConfig } from '../types';
 
 // TODO : requestDidStart happens after parsing, right ...?
 // (this is an issue)
 
-const characterLimitPlugin = {
+export type CharacterLimitConfig = {
+  CharacterLimit?: { options: { maxLength: number } } & PluginConfig;
+};
+export const DefaultCharacterLimitConfig = {
+  namespace: 'CharacterLimit',
+  enabled: true,
+  options: {
+    maxLength: 3000,
+  },
+};
+
+const __plugin = {
   async requestDidStart(context: GraphQLRequestContext) {
     if (context.request.query!.length > 3000) {
       throw new Error('Query too large.');
@@ -15,6 +26,6 @@ const characterLimitPlugin = {
 
 export class CharacterLimit extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
-    return [characterLimitPlugin];
+    return [__plugin];
   }
 }

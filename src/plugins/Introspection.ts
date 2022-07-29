@@ -5,9 +5,15 @@ import {
   GraphQLError,
 } from 'graphql';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule } from '../types';
+import { ValidationRule, PluginConfig } from '../types';
 
-function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
+export type IntrospectionConfig = { Introspection?: PluginConfig };
+export const DefaultIntrospectionConfig = {
+  namespace: 'Introspection',
+  enabled: false,
+};
+
+function __plugin(context: ValidationContext): ASTVisitor {
   return {
     Field(node: FieldNode) {
       // ToDo: Whitelist headers pairs
@@ -21,6 +27,6 @@ function secureIntrospectionPlugin(context: ValidationContext): ASTVisitor {
 
 export class Introspection extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [secureIntrospectionPlugin];
+    return [__plugin];
   }
 }

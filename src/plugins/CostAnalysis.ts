@@ -1,9 +1,20 @@
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule } from '../types';
+import { ValidationRule, PluginConfig } from '../types';
 
 import { ComplexityVisitor } from 'graphql-validation-complexity';
 
 import { GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
+
+export type CostAnalysisConfig = {
+  CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
+};
+export const DefaultCostAnalysisConfig = {
+  namespace: 'CostAnalysis',
+  enabled: true,
+  options: {
+    maxCost: 1000,
+  },
+};
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {

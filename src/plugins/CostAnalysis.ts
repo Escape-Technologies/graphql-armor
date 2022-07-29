@@ -16,7 +16,7 @@ export const DefaultCostAnalysisConfig = {
   },
 };
 
-const __rule = ({ options: { maxCost } }: PluginConfig) => {
+const rule = ({ options: { maxCost } }: PluginConfig): ValidationRule => {
   return function ComplexityLimit(context) {
     const visitor = new ComplexityVisitor(context, {});
     // @ts-ignore
@@ -44,6 +44,6 @@ const __rule = ({ options: { maxCost } }: PluginConfig) => {
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [__rule(this.getConfig())];
+    return [rule(this.getConfig())];
   }
 }

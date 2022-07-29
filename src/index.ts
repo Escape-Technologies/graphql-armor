@@ -6,23 +6,24 @@ import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
 import { PluginDefinition, ValidationRule } from './types';
-import { ConfigService } from './config';
+import { ArmorConfig, ConfigService } from './config';
 
 export class GQLArmor {
-  private readonly plugins: ArmorPlugin[] = [];
+  private readonly _plugins: ArmorPlugin[] = [];
+  private readonly _configService: ConfigService;
 
   /*
-   * Push each plugin to the armorPlugins array
+   * Push each plugin to the plugins array
    */
-  constructor(config?: ConfigService) {
-    config ??= new ConfigService();
+  constructor(config?: ArmorConfig) {
+    this._configService = new ConfigService(config);
 
     for (const plugin of Object.values(Plugins)) {
-      const pluginName = plugin.name.toLocaleLowerCase();
-      const pluginConfig = config.getPluginConfig(pluginName);
+      const pluginConfig = this._configService.getPluginConfig(plugin.name);
 
-      if (pluginConfig.enabled)
-        this.plugins.push(new plugin(this, pluginConfig));
+      if (pluginConfig.enabled) {
+        this._plugins.push(new plugin(this, pluginConfig));
+      }
     }
   }
 
@@ -38,11 +39,13 @@ export class GQLArmor {
     let apolloPlugins: PluginDefinition[] = [];
     let validationRules: ValidationRule[] = [];
 
-    for (const plugin of this.plugins) {
+    for (const plugin of this._plugins) {
       apolloConfig = plugin.apolloPatchConfig(apolloConfig);
 
       apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
       validationRules = [...validationRules, ...plugin.getValidationRules()];
+
+      console.log(`[GraphQLArmor] Enabled plugin for ${plugin.getNamespace()}`);
     }
 
     // We prepend our plugins/rules

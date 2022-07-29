@@ -12,6 +12,10 @@ export class ArmorPlugin {
     this.config = config;
   }
 
+  getNamespace() {
+    return this.config.namespace;
+  }
+
   getApolloPlugins(): PluginDefinition[] {
     return [];
   }

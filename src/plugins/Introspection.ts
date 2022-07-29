@@ -19,9 +19,16 @@ const plugin = ({ options: { headersWhitelist } }: PluginConfig): PluginDefiniti
       if (request.query!.includes('__schema')) {
         const headers = request.http!.headers;
 
-        const whitelistedHeaders = headersWhitelist.filter((header) => headers.has(header));
+        let containsWhitelistedHeader = false;
+        for (const key in headersWhitelist) {
+          if (headers.has(key)) {
+            if (headersWhitelist[key] === headers.get(key)) {
+              containsWhitelistedHeader = true;
+            }
+          }
+        }
 
-        if (whitelistedHeaders.length === 0) {
+        if (!containsWhitelistedHeader) {
           throw new Error('Introspection is disabled');
         }
       }

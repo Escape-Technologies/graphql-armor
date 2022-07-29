@@ -1,17 +1,18 @@
-# 🛡️ GraphQL-Armor 🛡️ 
+# 🛡️ GraphQL-Armor 🛡️
 
 [![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![CD](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
 
-GraphQL-Armor 🛡️ is a Highly configurable AIO remediations suite for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
+🛡️ GraphQL-Armor 🛡️ is a Dead-simple, yet highly customizable security middleware for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
 
 ## Supported remediations
 
-### Enabled by default
+### Remediations enabled by default
 
-- [x] [Character Limit](#character-limit)
-- [x] [Cost Analysis](#cost-analysis)
-- [x] [Introspection](#introspection)
-- [x] [Field Suggestion](#field-suggestion)
+- [Character Limit](#character-limit)
+- [Limit Query Cost](#cost-analysis)
+- [Disable Introspection](#introspection)
+- [Disable Field Suggestion](#field-suggestion)
+
 
 ## Installation
 
@@ -37,7 +38,6 @@ const server = armor.apolloServer({
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 ```
-
 
 ## Configuration
 

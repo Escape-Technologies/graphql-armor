@@ -4,7 +4,7 @@ import { FieldSuggestionConfig } from 'plugins/FieldSuggestion';
 import { CharacterLimitConfig } from './plugins/CharacterLimit';
 import { CostAnalysisConfig } from './plugins/CostAnalysis';
 import { IntrospectionConfig } from './plugins/Introspection';
-import {DefaultProfilerConfig, ProfilerConfig} from "./plugins/Profiler";
+import { DefaultProfilerConfig, ProfilerConfig } from './plugins/Profiler';
 
 export type PluginDefinition = ApolloServerPlugin | (() => ApolloServerPlugin); // apollo-server-core/src/types.ts
 export type ValidationRule = (context: ValidationContext) => ASTVisitor;
@@ -25,4 +25,9 @@ export type PluginConfig = {
   options?: any;
 };
 
-export type GQLArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig | ProfilerConfig;
+export type GQLArmorConfig =
+  | IntrospectionConfig
+  | CharacterLimitConfig
+  | CostAnalysisConfig
+  | FieldSuggestionConfig
+  | ProfilerConfig;

@@ -139,7 +139,7 @@ export GQLARMOR_PERMISSIONS=0  # Disable every remediations
 |Character Limit|  0x1|
 |  Cost Analysis|  0x2|
 |  Introspection|  0x4|
-|FieldSuggestion|  0x8|
+|Field Suggestion|  0x8|
 
 For example, if you want to toggle `ONLY` the `Character Limit` and `Cost Analysis` remediations, you can use the following environment variable:
 

@@ -4,7 +4,7 @@ import { PluginConfig, PluginDefinition } from '../types';
 export type IntrospectionConfig = { Introspection?: PluginConfig };
 export const DefaultIntrospectionConfig = {
   _namespace: 'Introspection',
-  enabled: false,
+  enabled: true,
   options: {
     headersWhitelist: {
       'x-allow-introspection': 'allow',

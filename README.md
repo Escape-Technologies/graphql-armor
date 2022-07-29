@@ -93,10 +93,12 @@ Goto [Events/onPluginUpdate](#onpluginupdate) for more information.
 
 `Introspection plugin` will prevent introspection queries from being executed.
 
+By default, introspection is still available for our [Live GraphQL Security Testing Platform](https://escape.tech) by providing a valid identifier.
+
 ```typescript
 {
     Introspection: {
-        enabled: false,
+        enabled: true,
         options: {
             headersWhitelist: {
                 'x-allow-introspection': 'allow',
@@ -142,13 +144,13 @@ export GQLARMOR_PERMISSIONS=0  # Disable every remediations
 For example, if you want to toggle `ONLY` the `Character Limit` and `Cost Analysis` remediations, you can use the following environment variable:
 
 ```bash
-export GQLARMOR_PERMISSION=$(python -c "print(0x1 | 0x2)") # Toggle only Character Limit and Cost Analysis
+export GQLARMOR_PERMISSION=$(python -c "print(0x1 | 0x2)") # Toggle only:  Character Limit and Cost Analysis plugin
 ```
 
-If you want to toggle `ONLY` the Introspection remediation, you can use the following environment variable:
+If you want to toggle `ONLY` the `Introspection` remediation, you can use the following environment variable:
 
 ```bash
-export GQLARMOR_PERMISSION=$(python -c "print(0x4)") # Toggle Introspection only
+export GQLARMOR_PERMISSION=$(python -c "print(0x4)") # Toggle only: Introspection plugin
 ```
 
 ## Events

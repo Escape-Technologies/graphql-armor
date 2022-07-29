@@ -1,5 +1,6 @@
 import { ApolloServerPlugin } from 'apollo-server-plugin-base';
 import { ASTVisitor, ValidationContext } from 'graphql';
+import { FieldSuggestionConfig } from 'plugins/FieldSuggestion';
 import { CharacterLimitConfig } from './plugins/CharacterLimit';
 import { CostAnalysisConfig } from './plugins/CostAnalysis';
 import { IntrospectionConfig } from './plugins/Introspection';
@@ -28,4 +29,5 @@ export type PluginConfig = {
 export type ArmorConfig =
   | IntrospectionConfig
   | CharacterLimitConfig
-  | CostAnalysisConfig;
+  | CostAnalysisConfig
+  | FieldSuggestionConfig;

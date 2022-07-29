@@ -16,16 +16,18 @@ export const DefaultCharacterLimitConfig = {
   },
 };
 
-const __plugin = {
-  async requestDidStart(context: GraphQLRequestContext) {
-    if (context.request.query!.length > 3000) {
-      throw new Error('Query too large.');
-    }
-  },
+const __plugin = (maxLength: number) => {
+  return {
+    async requestDidStart(context: GraphQLRequestContext) {
+      if (context.request.query!.length > maxLength) {
+        throw new Error('Query too large.');
+      }
+    },
+  };
 };
 
 export class CharacterLimit extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
-    return [__plugin];
+    return [__plugin(this.getConfig().options.maxLength)];
   }
 }

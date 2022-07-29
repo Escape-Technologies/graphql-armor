@@ -23,6 +23,7 @@ export type PluginUpdateEvent = (
 export type PluginConfig = {
   namespace?: string;
   enabled?: boolean;
+  options?: any;
 };
 export type ArmorConfig =
   | IntrospectionConfig

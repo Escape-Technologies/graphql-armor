@@ -13,10 +13,10 @@ export const DefaultIntrospectionConfig = {
   enabled: false,
 };
 
+// ToDo: Whitelist headers pairs -> Maybe use a apollo plugin instead?
 function __plugin(context: ValidationContext): ASTVisitor {
   return {
     Field(node: FieldNode) {
-      // ToDo: Whitelist headers pairs
       const blacklist = ['__schema', '__type'];
       if (blacklist.includes(node.name.value)) {
         context.reportError(new GraphQLError('Introspection is disabled'));

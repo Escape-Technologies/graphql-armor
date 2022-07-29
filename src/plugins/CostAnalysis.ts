@@ -1,42 +1,36 @@
-import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule, PluginConfig } from '../types';
-
-import { ComplexityVisitor } from 'graphql-validation-complexity';
-
-import { ASTVisitor, GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
+import {ArmorPlugin} from '../ArmorPlugin';
+import {ValidationRule, PluginConfig} from '../types';
+import {ASTVisitor, GraphQLError, TypeInfo, visit, visitWithTypeInfo} from 'graphql';
+import ComplexityVisitor from "../../lib/graphql-validation-complexity";
 
 export type CostAnalysisConfig = {
   CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
 };
 export const DefaultCostAnalysisConfig = {
-  _namespace: 'CostAnalysis',
-  enabled: true,
-  options: {
+  _namespace: 'CostAnalysis', enabled: true, options: {
     maxCost: 1000,
   },
 };
 
-const rule = ({ options: { maxCost } }: PluginConfig): ValidationRule => {
-  return function ComplexityLimit(ctx): ASTVisitor {
-    const visitor = new ComplexityVisitor(ctx, {});
-    // @ts-ignore
-    const typeInfo = ctx._typeInfo || new TypeInfo(ctx.getSchema());
+const rule = ({options: {maxCost}}: PluginConfig): ValidationRule => function ComplexityLimit(context) {
+  const visitor = new ComplexityVisitor(context, {});
+  // @ts-ignore
+  const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
 
-    return {
-      Document: {
-        enter(node) {
-          visit(node, visitWithTypeInfo(typeInfo, visitor));
-        },
-        leave(node) {
-          const cost = visitor.getCost();
-          if (cost > maxCost) {
-            throw new GraphQLError('Query complexity limit exceeded', {
-              nodes: [node],
-            });
-          }
-        },
+  return {
+    Document: {
+      enter(node) {
+        visit(node, visitWithTypeInfo(typeInfo, visitor as ASTVisitor));
+      }, leave(node) {
+        const cost = visitor.getCost();
+        console.log(`COST: ${cost}`)
+        if (cost > maxCost) {
+          context.reportError(new GraphQLError('query exceeds complexity limit', {
+            nodes: [node],
+          }));
+        }
       },
-    };
+    },
   };
 };
 

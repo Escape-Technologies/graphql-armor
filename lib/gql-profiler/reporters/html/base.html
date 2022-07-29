@@ -1,0 +1,176 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>GraphQL Profiler</title>
+    <meta name="description" content="Performance profiler for your GraphQL resolvers">
+    <meta name="author" content="marmelab">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous" />
+    <link
+        rel="stylesheet"
+        type="text/css" 
+        href="https://cdn.jsdelivr.net/gh/spiermar/d3-flame-graph@1.0.4/dist/d3.flameGraph.min.css" 
+        integrity="sha256-w762vSe6WGrkVZ7gEOpnn2Y+FSmAGlX77jYj7nhuCyY=" 
+        crossorigin="anonymous" 
+    />
+    <style>
+        body {
+            color: #777;
+        }
+
+        .empty {
+            text-align: center;
+        }
+
+        .content {
+            margin: 0 auto;
+            padding: 0 2em;
+            max-width: 800px;
+            margin-bottom: 50px;
+            line-height: 1.6em;
+        }
+
+        .header {
+            margin: 0;
+            color: #333;
+            text-align: center;
+            padding: 2.5em 2em 0;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 {
+            margin: 0.2em 0;
+            font-size: 3em;
+            font-weight: 300;
+        }
+        .header h2 {
+            font-weight: 300;
+            color: #ccc;
+            padding: 0;
+            margin-top: 0;
+        }
+
+        .content-subhead {
+            margin: 50px 0 20px 0;
+            font-weight: 300;
+            color: #888;
+        }
+    </style>
+
+    <script
+        type="text/javascript" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js" 
+        integrity="sha256-r7j1FXNTvPzHR41+V71Jvej6fIq4v4Kzu5ee7J/RitM=" 
+        crossorigin="anonymous"
+    ></script>
+    <script
+        type="text/javascript" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js" 
+        integrity="sha256-z0A2CQF8xxCKuOJsn4sJ5HBjxiHHRAfTX8hDF4RSN5s=" 
+        crossorigin="anonymous"
+    ></script>
+    <script
+        type="text/javascript" 
+        src="https://cdn.jsdelivr.net/gh/spiermar/d3-flame-graph@1.0.4/dist/d3.flameGraph.min.js" 
+        integrity="sha256-I1CkrWbmjv+GWjgbulJ4i0vbzdrDGfxqdye2qNlhG3Q=" 
+        crossorigin="anonymous"
+    ></script>
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+    <script>
+        window.GQL_PROFILER_EVENTS = <%= JSON.stringify(events) %>;
+        window.GQL_PROFILER_HIERARCHY = <%= JSON.stringify(hierarchy) %>;
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>GraphQL Profiler</h1>
+    </div>
+    <div class="content">
+        <% if (events.length > 0) { %>
+        <h2 class="content-subhead">Total Time By Resolvers</h2>
+        <div class="chart-container">
+            <div id="total-time-by-resolvers"></div>
+        </div>
+
+        <h2 class="content-subhead">Event History (100 firsts)</h2>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <table class="pure-table">
+                    <thead>
+                        <tr>
+                            <th>Resolver</th>
+                            <th>Duration (ms)</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% _.forEach(_.filter(events, (x, i) => i < 50), function (evt, i) { %>
+                            <tr <% if (i % 2 !== 0) { %>class="pure-table-odd"<% } %>>
+                                <td><%- evt.name %></td>
+                                <td><%- evt.duration %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+            <% if (events.length > 50) { %>
+            <div class="pure-u-1-2">
+                <table class="pure-table">
+                    <thead>
+                        <tr>
+                            <th>Resolver</th>
+                            <th>Duration (ms)</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% _.forEach(_.filter(events, (x, i) => i >= 50 && i < 100), function (evt, i) { %>
+                            <tr <% if (i % 2 !== 0) { %>class="pure-table-odd"<% } %>>
+                                <td><%- evt.name %></td>
+                                <td><%- evt.duration %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <% } %>
+        </div>
+        <% } else { %>
+            <div class="empty">
+                <h2>There is no data yet!</h2>
+                <iframe src="https://giphy.com/embed/3oEjHGrVGrqgFFknfO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                <p>GraphQL Profiler doesn't have enough data. Be sure to run at least a query to display the charts.</p>
+            </div>
+        <% } %>
+    </div>
+    <script>
+        const events = window.GQL_PROFILER_EVENTS;
+        const hierarchy = window.GQL_PROFILER_HIERARCHY;
+
+        if (events.length) {
+            const flameGraph = d3.flameGraph()
+                .width(800)
+                .cellHeight(24)
+                .transitionDuration(750)
+                .transitionEase(d3.easeCubic)
+                .sort(true);
+
+            const tip = d3.tip()
+                .direction('s')
+                .offset([8, 0])
+                .attr('class', 'd3-flame-graph-tip')
+                .html(d => d.data.name + ' (' + Math.round(d.data.value) + 'ms)');
+
+            flameGraph.tooltip(tip);
+
+            d3.select('#total-time-by-resolvers').datum(hierarchy).call(flameGraph);
+        }
+    </script>
+</body>
+</html>

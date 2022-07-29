@@ -4,3 +4,4 @@ coverage
 package-lock.json
 yarn.lock
 .env
+perf-store.json

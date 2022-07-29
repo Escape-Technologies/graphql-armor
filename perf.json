@@ -1,7 +1,0 @@
-{
-    "Query/nested": 1.7432000041007996,
-    "Query/nested/child": 53.32440000772476,
-    "Query/nested/child/child": 106.69810000061989,
-    "Query/nested/child/child/child": 154.18930000066757,
-    "Query/nested/child/child/child/child": 200.10810001194477
-}

@@ -4,6 +4,7 @@ import { FieldSuggestionConfig } from 'plugins/FieldSuggestion';
 import { CharacterLimitConfig } from './plugins/CharacterLimit';
 import { CostAnalysisConfig } from './plugins/CostAnalysis';
 import { IntrospectionConfig } from './plugins/Introspection';
+import {DefaultProfilerConfig, ProfilerConfig} from "./plugins/Profiler";
 
 export type PluginDefinition = ApolloServerPlugin | (() => ApolloServerPlugin); // apollo-server-core/src/types.ts
 export type ValidationRule = (context: ValidationContext) => ASTVisitor;
@@ -23,4 +24,4 @@ export type PluginConfig = {
   enabled?: boolean;
   options?: any;
 };
-export type ArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig;
+export type ArmorConfig = IntrospectionConfig | CharacterLimitConfig | CostAnalysisConfig | FieldSuggestionConfig | ProfilerConfig;

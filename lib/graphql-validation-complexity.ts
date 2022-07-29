@@ -1,6 +1,7 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { print } from 'graphql/language/printer';
 import * as IntrospectionTypes from 'graphql/type/introspection';
+import {WEIGHTS} from "../src/plugins/Profiler";
 const fs = require('fs');
 
 /*
@@ -10,51 +11,6 @@ https://github.com/4Catalyzer/graphql-validation-complexity
 by 4Catalyzer
  */
 
-// TODO ; that's dirty, put it somewhere else
-class WeightsStore {
-    private store: Record<string, number> = {};
-    private mustSave = false;
-    private perfPath = "perf-store.json";
-
-    constructor() {
-        try {
-            this.store = JSON.parse(fs.readFileSync(this.perfPath));
-        }
-        catch(e)
-        {
-            console.log("WARNING: Could not load perf.json.");
-        }
-
-        // auto save
-        setInterval(() => {
-            this.save();
-        }, 1000);
-    }
-
-    public knows(key) {
-        return this.store[key] !== undefined;
-    }
-
-    public get(key) {
-        return this.store[key]
-    }
-
-    public add(key,dt) {
-        this.store[key]=dt;
-        this.mustSave = true;
-
-    }
-
-    private save() {
-        if (!this.mustSave) return;
-
-        console.log("SAVING");
-        fs.writeFileSync(this.perfPath, JSON.stringify(this.store,null, 4));
-
-        this.mustSave = false;
-    }
-}
-export const WEIGHTS = new WeightsStore();
 
 
 

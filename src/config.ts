@@ -3,12 +3,14 @@ import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
 import { DefaultIntrospectionConfig } from './plugins/Introspection';
 import { DefaultFieldSuggestionConfig } from './plugins/FieldSuggestion';
+import {DefaultProfilerConfig} from "./plugins/Profiler";
 
 const defaultConfig: ArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
   Introspection: DefaultIntrospectionConfig, // 0x4
   FieldSuggestion: DefaultFieldSuggestionConfig, // 0x8
+  Profiler: DefaultProfilerConfig // 0x10
 };
 
 function applyBitwisePermissions(config: ArmorConfig, permUID: number): ArmorConfig {

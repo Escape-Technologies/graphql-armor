@@ -7,6 +7,19 @@ import { IntrospectionConfig } from './plugins/Introspection';
 export type PluginDefinition = ApolloServerPlugin | (() => ApolloServerPlugin); // apollo-server-core/src/types.ts
 export type ValidationRule = (context: ValidationContext) => ASTVisitor;
 
+// Plugin Event
+export enum PluginState {
+  ENABLED = 'enabled',
+  DISABLED = 'disabled',
+  REGISTERED = 'registered',
+  UNREGISTERED = 'unregistered',
+}
+export type PluginUpdateEvent = (
+  status: PluginState,
+  plugin: PluginConfig
+) => void;
+
+// Config
 export type PluginConfig = {
   namespace?: string;
   enabled?: boolean;

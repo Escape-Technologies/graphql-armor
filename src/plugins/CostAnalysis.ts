@@ -1,9 +1,9 @@
 import { ArmorPlugin } from '../ArmorPlugin';
 import { ValidationRule } from '../types';
 
-import { ComplexityVisitor } from 'graphql-validation-complexity';
 
-import { GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
+import {ASTVisitor, GraphQLError, TypeInfo, visit, visitWithTypeInfo} from 'graphql';
+import ComplexityVisitor from "../../lib/graphql-validation-complexity";
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
@@ -20,7 +20,7 @@ export class CostAnalysis extends ArmorPlugin {
       return {
         Document: {
           enter(node) {
-            visit(node, visitWithTypeInfo(typeInfo, visitor));
+            visit(node, visitWithTypeInfo(typeInfo, visitor as ASTVisitor));
           },
           leave(node) {
             const cost = visitor.getCost();

@@ -3,6 +3,10 @@ const express = require('express');
 const http = require('http');
 import { gql } from 'apollo-server';
 import { GQLArmor } from '../src';
+import MemoryReporter from "../lib/gql-profiler/reporters/memory";
+
+const {profileResolvers} = require("../lib/gql-profiler");
+const {htmlReporter} = require("../lib/gql-profiler/reporters");
 
 const typeDefs = gql`
   type Book {
@@ -40,7 +44,7 @@ const resolvers = {
     books: () => books,
   },
   Mutation: {
-    addBook: (title: String, author: String) => {
+    addBook: (title: string, author: string) => {
       return { title: 'title_test', author: 'author_test' };
     },
   },
@@ -51,9 +55,13 @@ const httpServer = http.createServer(app);
 
 const armor = new GQLArmor();
 
+
+
+const reporter =  new MemoryReporter();
+
 const server = armor.apolloServer({
   typeDefs,
-  resolvers,
+  resolvers:profileResolvers(resolvers, { reporter }) ,
   cache: 'bounded',
   // eslint-disable-next-line new-cap
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],

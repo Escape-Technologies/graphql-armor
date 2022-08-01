@@ -9,15 +9,13 @@ import { Injectable } from '@nestjs/common';
 export class BookResolver {
   constructor(private readonly booksService: BookService) {}
 
-  // @Query(() => [Book], { nullable: true })
-  // @Query('books')
   @Query(returns => [Book])
   public async books(): Promise<Book[]> {
     return this.booksService.findAll();
   }
 
-  // @Query(() => Book)
-  // public async book(@Args('id') id: string) {
-    // return this.booksService.findById(id);
-  // }
+  @Query(returns => Book)
+  public async book(@Args('id') id: string) {
+    return this.booksService.findById(id);
+  }
 }

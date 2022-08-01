@@ -1,6 +1,6 @@
 type Query {
     books: [Book]
-    # book: Book
+    book(id: ID!): Book
 }
 
 type Mutation {

@@ -1,0 +1,19 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+      "scripts",
+      "coverage",
+      ".vscode",
+      ".idea",
+      ".env-overrides",
+      "node_modules",
+      "dist",
+      "test",
+      "jest.config.js",
+      "**/*spec.ts",
+      "jest.*.js",
+      ".swcrc"
+    ]
+  }
+  
+  

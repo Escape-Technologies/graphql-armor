@@ -1,7 +1,8 @@
 import { ArmorPlugin } from '../ArmorPlugin';
-import { ValidationRule, PluginConfig } from '../types';
-import { GraphQLError } from 'graphql';
+import { PluginConfig } from '../types';
 import { ValidationContext } from 'graphql';
+
+import { GraphQLError } from 'graphql';
 import QueryComplexity, {
   ComplexityEstimator,
   ComplexityEstimatorArgs,
@@ -35,7 +36,7 @@ function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEs
 }
 
 export class CostAnalysis extends ArmorPlugin {
-  getValidationRules(): ValidationRule[] {
+  getValidationRules(): Array<(context: ValidationContext) => any> {
     const config: PluginConfig = this.getConfig() as PluginConfig;
 
     const rule = (context: ValidationContext): QueryComplexity => {
@@ -44,7 +45,7 @@ export class CostAnalysis extends ArmorPlugin {
         maximumComplexity: config.options.maxCost,
         variables: {},
         onComplete: (complexity: number) => {
-          console.log('Determined query complexity: ', complexity);
+          // console.log('Determined query complexity: ', complexity);
         },
         createError: (max: number, actual: number) => {
           return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);

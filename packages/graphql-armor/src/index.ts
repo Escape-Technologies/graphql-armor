@@ -1,10 +1,11 @@
 import { ApolloServer } from 'apollo-server-express';
-import { Config } from 'apollo-server-core/src/types';
+import { Config as ApolloConfig, PluginDefinition } from 'apollo-server-core/src/types';
+import { ValidationContext } from 'graphql';
 
 import * as Plugins from './plugins/';
 
 import { ArmorPlugin } from './ArmorPlugin';
-import { PluginDefinition, ValidationRule, GraphQLArmorConfig, PluginUpdateEvent, PluginState } from './types';
+import { GraphQLArmorConfig, PluginUpdateEvent, PluginState } from './types';
 import { ConfigService } from './config';
 
 /**
@@ -17,10 +18,10 @@ import { ConfigService } from './config';
  * @returns The configuration object with the remediation injected
  */
 function ArmorApolloConfig<T>(
-  apolloConfig: Config<T>,
+  apolloConfig: ApolloConfig<T>,
   armorConfig?: GraphQLArmorConfig,
   onPluginUpdate?: PluginUpdateEvent,
-): Config<T> {
+): ApolloConfig<T> {
   const service = new GraphQLArmor(armorConfig, onPluginUpdate);
   return service.getApolloConfig(apolloConfig);
 }
@@ -73,15 +74,15 @@ class GraphQLArmor {
     return apolloPlugins;
   }
 
-  public getApolloValidationRules(): ValidationRule[] {
-    let validationRules: ValidationRule[] = [];
+  public getApolloValidationRules(): Array<(context: ValidationContext) => any> {
+    let validationRules: Array<(context: ValidationContext) => any> = [];
     for (const plugin of this._plugins) {
       validationRules = [...validationRules, ...plugin.getValidationRules()];
     }
     return validationRules;
   }
 
-  public getApolloConfig<T>(apolloConfig: Config<T>): Config<T> {
+  public getApolloConfig<T>(apolloConfig: ApolloConfig<T>): ApolloConfig<T> {
     apolloConfig.plugins ??= [];
     apolloConfig.validationRules ??= [];
 
@@ -95,7 +96,7 @@ class GraphQLArmor {
     return apolloConfig;
   }
 
-  public patchApolloServer<T>(apolloConfig: Config<T>): ApolloServer<T> {
+  public patchApolloServer<T>(apolloConfig: ApolloConfig<T>): ApolloServer<T> {
     return new ApolloServer<T>(this.getApolloConfig(apolloConfig));
   }
 }

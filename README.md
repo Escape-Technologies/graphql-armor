@@ -8,12 +8,13 @@
 
 * [Supported Remediations](#supported-remediations)
 * [Installation](#installation)
-* [API](#api)
+* [Getting Started](#getting-started)
 * [Examples](#examples)
   * [Apollo Server](#apollo-server)
   * [NestJS](#nestjs)
   * [Others](#others)
 * [Configuration](#configuration)
+* [API](#api)
 * [Environment Variables](#environment-variables)
 * [Events](#events)
 
@@ -36,69 +37,20 @@ npm install @escape.tech/graphql-armor
 yarn add @escape.tech/graphql-armor
 ```
 
-## API
+## Getting Started
 
 ```typescript
 import { GraphQLArmor } from '@escape.tech/graphql-armor';
+const armor = new GraphQLArmor({
+    // Config opts
+});
 
-GraphQLArmor(
-    // Optional:
-    // If you want to use a custom configuration, you can pass it in here.
-    config?: GraphQLArmorConfig,
-
-    // Optional:
-    // If you want to catch the plugin updates, you can pass a callback.
-    onPluginUpdate?: PluginUpdateEvent,
-)
-
-GraphQLArmor.getApolloPlugins()
-=> PluginDefinition[]
-
-GraphQLArmor.getApolloValidationRules()
-=> ValidationRule[]
-
-GraphQLArmor.getApolloConfig<T>(
-    apolloConfig: Config<T>
-): Config<T>
-
-GraphQLArmor.patchApolloServer(
-    apolloConfig: Config<T>
-): ApolloServer<T>
-```
-
-```typescript
-import { ArmorApolloConfig, ArmorApolloConfigU } from '@escape.tech/graphql-armor';
-
-/**
- * Armored Config
- * @description
- * This will inject remediations into the config.
- * @param apolloConfig The ApolloConfig object
- * @param armorConfig  The GraphQLArmorConfig object
- * @param onPluginUpdate  The function to call when a plugin is updated
- * @returns The configuration object with the remediation injected
- */
-ArmorApolloConfig(
-    apolloConfig: Config<T>,
-    armorConfig?: GraphQLArmorConfig,
-)
-
-/**
- *  Armored Config Unsafe
- *  @description
- *  This is a wrapper around the `ArmorApolloConfig` function.
- *  It is used to create a config that is safe to use in a production environment.
- *  @param config We except an object with the same shape as the `ApolloConfig` object.
- *                ie: `validationRules`, `plugins`, ...properties
- *  @returns The remediated object after injection.
- **/
-ArmorApolloConfigU(
-    config: {
-        validationRules: ValidationRule[],
-        plugins: PluginDefinition[],
-        ...
-    },
-) -> config{...}
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [...armor.getApolloPlugins(), ...yourPlugins],
+  validationRules: [...armor.getApolloValidationRules(), ...yourValidationRules],
+});
 ```
 
 ## Examples
@@ -237,6 +189,71 @@ const config = ArmorApolloConfigU({
 ```
 
 ## Configuration
+
+## API
+
+```typescript
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
+
+GraphQLArmor(
+    // Optional:
+    // If you want to use a custom configuration, you can pass it in here.
+    config?: GraphQLArmorConfig,
+
+    // Optional:
+    // If you want to catch the plugin updates, you can pass a callback.
+    onPluginUpdate?: PluginUpdateEvent,
+)
+
+GraphQLArmor.getApolloPlugins()
+=> PluginDefinition[]
+
+GraphQLArmor.getApolloValidationRules()
+=> ValidationRule[]
+
+GraphQLArmor.getApolloConfig<T>(
+    apolloConfig: Config<T>
+): Config<T>
+
+GraphQLArmor.patchApolloServer(
+    apolloConfig: Config<T>
+): ApolloServer<T>
+```
+
+```typescript
+import { ArmorApolloConfig, ArmorApolloConfigU } from '@escape.tech/graphql-armor';
+
+/**
+ * Armored Config
+ * @description
+ * This will inject remediations into the config.
+ * @param apolloConfig The ApolloConfig object
+ * @param armorConfig  The GraphQLArmorConfig object
+ * @param onPluginUpdate  The function to call when a plugin is updated
+ * @returns The configuration object with the remediation injected
+ */
+ArmorApolloConfig(
+    apolloConfig: Config<T>,
+    armorConfig?: GraphQLArmorConfig,
+)
+
+/**
+ *  Armored Config Unsafe
+ *  @description
+ *  This is a wrapper around the `ArmorApolloConfig` function.
+ *  It is used to create a config that is safe to use in a production environment.
+ *  @param config We except an object with the same shape as the `ApolloConfig` object.
+ *                ie: `validationRules`, `plugins`, ...properties
+ *  @returns The remediated object after injection.
+ **/
+ArmorApolloConfigU(
+    config: {
+        validationRules: ValidationRule[],
+        plugins: PluginDefinition[],
+        ...
+    },
+) -> config{...}
+```
 
 ### Character Limit
 

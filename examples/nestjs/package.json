@@ -30,6 +30,8 @@
     "@nestjs/graphql": "^10.0.21",
     "apollo-server-express": "^3.10.0",
     "graphql": "^16.5.0",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.21",
     "ts-morph": "^15.1.0"
   },
   "devDependencies": {

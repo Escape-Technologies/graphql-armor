@@ -1,5 +1,6 @@
 import { ArmorPlugin } from '../ArmorPlugin';
-import { PluginConfig, PluginDefinition } from '../types';
+import { PluginConfig } from '../types';
+import { PluginDefinition } from 'apollo-server-core/src/types';
 
 export type BlockIntrospectionConfig = { BlockIntrospection?: PluginConfig };
 export const DefaultBlockIntrospectionConfig = {

@@ -1,6 +1,7 @@
 import { GraphQLRequestContext } from 'apollo-server-types';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { PluginDefinition, PluginConfig } from '../types';
+import { PluginConfig } from '../types';
+import { PluginDefinition } from 'apollo-server-core/src/types';
 
 // TODO : requestDidStart happens after parsing, right ...?
 // (this is an issue)

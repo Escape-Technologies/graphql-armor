@@ -1,6 +1,7 @@
-import { PluginDefinition, PluginConfig } from './types';
+import { PluginConfig } from './types';
 import { GraphQLArmor } from './index';
 import { ValidationRule } from 'graphql';
+import { PluginDefinition } from 'apollo-server-core/src/types';
 
 export class ArmorPlugin {
   private readonly armor: GraphQLArmor;

@@ -68,7 +68,7 @@ Goto [Events/onPluginUpdate](#onpluginupdate) for more information.
     CharacterLimit: {
         enabled: true,
         options: {
-            maxLength: 3000, // Default: 3000
+            maxLength: 15000, // Default: 15000
         },
     }
 }

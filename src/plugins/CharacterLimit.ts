@@ -12,7 +12,7 @@ export const DefaultCharacterLimitConfig = {
   _namespace: 'CharacterLimit',
   enabled: true,
   options: {
-    maxLength: 3000,
+    maxLength: 15000,
   },
 };
 

@@ -2,7 +2,7 @@
   "steps": [
     {
       "name": "prettier",
-      "command": "npm run lint"
+      "command": "yarn workspace @escape.tech/graphql-armor lint"
     }
   ]
 }

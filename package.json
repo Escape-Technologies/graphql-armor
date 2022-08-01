@@ -2,9 +2,10 @@
   "name": "@escape.tech/graphql-armor",
   "version": "0.0.1-alpha",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "files": [
-    "dist/**/*.js"
+    "/dist"
   ],
   "scripts": {
     "build": "tsc",

@@ -1,7 +1,7 @@
-import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
-import { print } from 'graphql/language/printer';
+import {GraphQLList, GraphQLNonNull, GraphQLObjectType, ValidationContext} from 'graphql';
+import {print} from 'graphql/language/printer';
 import * as IntrospectionTypes from 'graphql/type/introspection';
-import {WEIGHTS} from "../src/plugins/Profiler";
+
 const fs = require('fs');
 
 /*
@@ -12,8 +12,6 @@ by 4Catalyzer
  */
 
 
-
-
 // -- code vendored from: https://github.com/graphql/graphql-js/blob/15.x.x/src/validation/rules/OverlappingFieldsCanBeMerged.js#L636-L657
 function isSameArguments(arguments1, arguments2) {
     if (!arguments1 || !arguments2) return false;
@@ -22,7 +20,7 @@ function isSameArguments(arguments1, arguments2) {
     }
     return arguments1.every((argument1) => {
         const argument2 = arguments2.find(
-            ({ name }) => name.value === argument1.name.value,
+            ({name}) => name.value === argument1.name.value,
         );
 
         if (!argument2) {
@@ -32,6 +30,7 @@ function isSameArguments(arguments1, arguments2) {
         return print(argument1.value) === print(argument2.value);
     });
 }
+
 // ---
 
 function isSameInlineFragment(selection1, selection2) {
@@ -51,17 +50,17 @@ function isSameSelection(selection1, selection2) {
 }
 
 function uniqSelections(selections) {
-    const results:any[] = [];
+    const results: any[] = [];
     for (const selection of selections) {
         const other = results.find((s) => isSameSelection(selection, s));
         if (!other) {
             // clone nodes with selections to avoid mutating the original AST below
 
-            results.push(selection.selectionSet ? { ...selection } : selection);
+            results.push(selection.selectionSet ? {...selection} : selection);
             continue;
         }
 
-        const { selectionSet } = other;
+        const {selectionSet} = other;
         if (selectionSet) {
             // merge nested selections they will be deduped later on
             other.selectionSet = {
@@ -84,29 +83,22 @@ export default class ComplexityVisitor {
     private readonly introspectionListFactor: number;
     private costFactor: number;
     private cost: number;
-    private Field:any;
+    private Field: any;
     private FragmentDefinition: () => boolean;
     private SelectionSet: (selectionSet) => any;
-    private path:string[] = [];
+    private path: string[] = [];
     private readonly ignoreIntrospection: boolean = true;
     private isIntrospectionQuery = false; // this is not config ! leave it to false.
     constructor(
-        context,
-        {
-            scalarCost = 1,
-            objectCost = 0,
-            listFactor = 10,
-
-            // Special list factor to make schema queries not have huge costs.
-            introspectionListFactor = 2,
-        },
+        context: ValidationContext,
+        options: { scalarCost: number; objectCost: number; listFactor: number; introspectionListFactor: number; },
     ) {
         this.context = context;
 
-        this.scalarCost = scalarCost;
-        this.objectCost = objectCost;
-        this.listFactor = listFactor;
-        this.introspectionListFactor = introspectionListFactor;
+        this.scalarCost = options.scalarCost;
+        this.objectCost = options.objectCost;
+        this.listFactor = options.listFactor;
+        this.introspectionListFactor = options.introspectionListFactor;
 
         this.costFactor = 1;
         this.cost = 0;
@@ -143,9 +135,6 @@ export default class ComplexityVisitor {
 
     enterField(obj) {
         this.path.push(obj.name.value);
-        //console.log(`PATH: ${this.path.join('/')}`)
-        //console.log("enter",obj.name.value);
-
         this.costFactor *= this.getFieldCostFactor();
 
         // If we decide to disable the cost of introspection queries
@@ -156,33 +145,18 @@ export default class ComplexityVisitor {
             return;
         }
 
-
-        let pathString = this.path.join("/");
-        let cost: number;
-        pathString = "Query/" + pathString; // TODO : non !
-        if (WEIGHTS.knows(pathString)) {
-            cost = WEIGHTS.get(pathString);
-            console.log(pathString, cost);
-        } else // unregistered cost
-        {
-            cost = this.costFactor * this.getFieldCost();
-            console.log(pathString, "default =", cost);
-
-        }
-
-        this.cost += cost;
+        this.cost += this.costFactor * this.getFieldCost();
+        ;
     }
 
     leaveField(obj) {
-        //console.log("leave",obj.name.value);
 
-        if(this.path[this.path.length-1]!==obj.name.value)
+        if (this.path[this.path.length - 1] !== obj.name.value)
             throw Error("shouldnt happen"); // TODO : pas d'erreur + plus explicite?
 
         this.path.pop();
 
-        if(this.ignoreIntrospection && obj.name.value === "__schema")
-        {
+        if (this.ignoreIntrospection && obj.name.value === "__schema") {
             this.isIntrospectionQuery = false;
         }
 
@@ -218,7 +192,7 @@ export default class ComplexityVisitor {
         return 1;
     }
 
-    isIntrospectionList({ ofType }) {
+    isIntrospectionList({ofType}) {
         let type = ofType;
         if (type instanceof GraphQLNonNull) {
             type = type.ofType;
@@ -258,7 +232,7 @@ export default class ComplexityVisitor {
         }
 
         const directive = fieldDef.astNode.directives.find(
-            ({ name }) => name.value === directiveName,
+            ({name}) => name.value === directiveName,
         );
         if (!directive) {
             return null;

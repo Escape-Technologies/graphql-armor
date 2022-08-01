@@ -27,28 +27,28 @@ const typeDefs = gql`
 `;
 
 const books = [{
-  title: 'The Awakening', author: 'Kate Chopin',
+    title: 'The Awakening', author: 'Kate Chopin',
 }, {
-  title: 'City of Glass', author: 'Paul Auster',
+    title: 'City of Glass', author: 'Paul Auster',
 },];
 
 const nestedResolver = (i = 0) => {
-  return async () => {
-    await new Promise(resolve => setTimeout(resolve, 50*i));
-    return {
-      child: nestedResolver(i + 1), text: "text" + i
+    return async () => {
+        await new Promise(resolve => setTimeout(resolve, 50 * i));
+        return {
+            child: nestedResolver(i + 1), text: "text" + i
+        }
     }
-  }
 }
 
 const resolvers = {
-  Query: {
-    books: () => books, nested: nestedResolver(0)
-  }, Mutation: {
-    addBook: (title: string, author: string) => {
-      return {title: 'title_test', author: 'author_test'};
+    Query: {
+        books: () => books, nested: nestedResolver(0)
+    }, Mutation: {
+        addBook: (title: string, author: string) => {
+            return {title: 'title_test', author: 'author_test'};
+        },
     },
-  },
 };
 
 const app = express();
@@ -56,35 +56,39 @@ const app = express();
 const httpServer = http.createServer(app);
 
 const armor = new GQLArmor({
-  CharacterLimit: {
-    options: {
-      maxLength: 10000,
+    CharacterLimit: {
+        options: {
+            maxLength: 10000,
+        }
+    }, Introspection: {
+        enabled: false,
     },
-  }, Introspection: {
-    enabled: true,
-  },
+    Profiler:
+        {
+            enabled: true,
+        }
 }, (status: string, plugin: any) => {
-  console.log(status, plugin._namespace);
+    console.log(status, plugin._namespace);
 },);
 
 const server = armor.apolloServer({
-  typeDefs,
-  resolvers,
-  cache: 'bounded',
-  // eslint-disable-next-line new-cap
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    typeDefs,
+    resolvers,
+    cache: 'bounded',
+    // eslint-disable-next-line new-cap
+    plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
 });
 
 (async () => {
-  await server.start();
-  server.applyMiddleware({
-    app,
-    path: '/',
-  });
+    await server.start();
+    server.applyMiddleware({
+        app,
+        path: '/',
+    });
 
-  await new Promise<void>((resolve) => {
-    const x = httpServer.listen({ port: 4000 }, resolve);
-  });
+    await new Promise<void>((resolve) => {
+        const x = httpServer.listen({port: 4000}, resolve);
+    });
 
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 })();

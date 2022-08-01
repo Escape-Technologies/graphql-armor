@@ -3,6 +3,8 @@ import { ValidationRule, PluginConfig } from '../types';
 import { ASTVisitor, GraphQLError, TypeInfo, visit, visitWithTypeInfo } from 'graphql';
 import ComplexityVisitor from '../../lib/graphql-validation-complexity';
 
+import { createComplexityRule, simpleEstimator } from 'graphql-query-complexity';
+
 export type CostAnalysisConfig = {
   CostAnalysis?: { options: { maxCost: number } } & PluginConfig;
 };
@@ -20,34 +22,51 @@ export const DefaultCostAnalysisConfig = {
   },
 };
 
-const rule = ({ options }: PluginConfig): ValidationRule =>
-  function ComplexityLimit(context) {
-    const visitor = new ComplexityVisitor(context, options);
-    // @ts-ignore
-    const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
+const rule = createComplexityRule({
+  maximumComplexity: 10,
+  variables: {},
+  onComplete: (complexity: number) => {
+    //console.log('Determined query complexity: ', complexity)
+  },
 
-    return {
-      Document: {
-        enter(node) {
-          visit(node, visitWithTypeInfo(typeInfo, visitor as ASTVisitor));
-        },
-        leave(node) {
-          const cost = visitor.getCost();
-          console.log(`COST: ${cost}`);
-          if (cost > options.maxCost) {
-            context.reportError(
-              new GraphQLError('query exceeds complexity limit', {
-                nodes: [node],
-              }),
-            );
-          }
-        },
-      },
-    };
-  };
+  createError: (max: number, actual: number) => {
+    const rule = ({ options }: PluginConfig): ValidationRule =>
+      function ComplexityLimit(context) {
+        const visitor = new ComplexityVisitor(context, options);
+        // @ts-ignore
+        const typeInfo = context._typeInfo || new TypeInfo(context.getSchema());
+
+        return {
+          Document: {
+            enter(node) {
+              visit(node, visitWithTypeInfo(typeInfo, visitor as ASTVisitor));
+            },
+            leave(node) {
+              const cost = visitor.getCost();
+              console.log(`COST: ${cost}`);
+              if (cost > options.maxCost) {
+                context.reportError(
+                  new GraphQLError('query exceeds complexity limit', {
+                    nodes: [node],
+                  }),
+                );
+              }
+            },
+          },
+        };
+      };
+    return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+  },
+  estimators: [
+    simpleEstimator({
+      defaultComplexity: 1,
+    }),
+  ],
+});
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [rule(this.getConfig())];
+    //return [rule(this.getConfig())];
+    return [rule];
   }
 }

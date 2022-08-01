@@ -7,7 +7,39 @@ import { ArmorPlugin } from './ArmorPlugin';
 import { PluginDefinition, ValidationRule, GQLArmorConfig, PluginUpdateEvent, PluginState } from './types';
 import { ConfigService } from './config';
 
-export class GQLArmor {
+/**
+ * Armored Config
+ * @description
+ * This will inject remediations into the config.
+ * @param apolloConfig The ApolloConfig object
+ * @param armorConfig  The GQLArmorConfig object
+ * @param onPluginUpdate  The function to call when a plugin is updated
+ * @returns The configuration object with the remediation injected
+ */
+function ArmoredConfig<ContextFunctionParams>(
+  apolloConfig: Config<ContextFunctionParams>,
+  armorConfig?: GQLArmorConfig,
+  onPluginUpdate?: PluginUpdateEvent,
+): Config<ContextFunctionParams> {
+  const service = new GQLArmor(armorConfig, onPluginUpdate);
+  return service.getConfig(apolloConfig);
+}
+
+/**
+ *  Armored Config Unsafe
+ *  @description
+ *  This is a wrapper around the `ArmoredConfig` function.
+ *  It is used to create a config that is safe to use in a production environment.
+ *  @param config We except an object with the same shape as the `ApolloConfig` object.
+ *                ie: `validationRules`, `plugins`, ...properties
+ *  @returns The configuration object with the remediation injected.
+ **/
+function ArmoredConfigU(config: any): any {
+  const service = new GQLArmor();
+  return service.getConfig(config);
+}
+
+class GQLArmor {
   private readonly _plugins: ArmorPlugin[] = [];
   private readonly _configService: ConfigService;
   private readonly _onPluginUpdate?: PluginUpdateEvent;
@@ -33,32 +65,41 @@ export class GQLArmor {
     }
   }
 
-  /*
-   * Inject remediations into the ApolloServer constructor
-   */
-  public apolloServer<ContextFunctionParams>(apolloConfig: Config<ContextFunctionParams>) {
+  public getPlugins(): PluginDefinition[] {
+    let apolloPlugins: PluginDefinition[] = [];
+    for (const plugin of this._plugins) {
+      apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
+    }
+    return apolloPlugins;
+  }
+
+  public getValidationRules(): ValidationRule[] {
+    let validationRules: ValidationRule[] = [];
+    for (const plugin of this._plugins) {
+      validationRules = [...validationRules, ...plugin.getValidationRules()];
+    }
+    return validationRules;
+  }
+
+  public getConfig<ContextFunctionParams>(apolloConfig: Config<ContextFunctionParams>): Config<ContextFunctionParams> {
     apolloConfig.plugins ??= [];
     apolloConfig.validationRules ??= [];
 
-    let apolloPlugins: PluginDefinition[] = [];
-    let validationRules: ValidationRule[] = [];
-
     for (const plugin of this._plugins) {
       apolloConfig = plugin.apolloPatchConfig(apolloConfig);
-
-      apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
-      validationRules = [...validationRules, ...plugin.getValidationRules()];
-
-      if (this._onPluginUpdate) {
-        this._onPluginUpdate(PluginState.ENABLED, plugin.getConfig());
-      }
     }
 
-    // We prepend our plugins/rules
-    // So that we can protect the following user-defined plugins from attacks
-    apolloConfig.plugins = [...apolloPlugins, ...apolloConfig.plugins!];
-    apolloConfig.validationRules = [...validationRules, ...apolloConfig.validationRules!];
+    apolloConfig.plugins = [...this.getPlugins(), ...apolloConfig.plugins!];
+    apolloConfig.validationRules = [...this.getValidationRules(), ...apolloConfig.validationRules!];
 
-    return new ApolloServer<ContextFunctionParams>(apolloConfig);
+    return apolloConfig;
+  }
+
+  public apolloServer<ContextFunctionParams>(
+    apolloConfig: Config<ContextFunctionParams>,
+  ): ApolloServer<ContextFunctionParams> {
+    return new ApolloServer<ContextFunctionParams>(this.getConfig(apolloConfig));
   }
 }
+
+export { GQLArmor, ArmoredConfig, ArmoredConfigU };

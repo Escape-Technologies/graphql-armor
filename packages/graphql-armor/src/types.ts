@@ -1,6 +1,6 @@
 import { ApolloServerPlugin } from 'apollo-server-plugin-base';
 import { ASTVisitor, ValidationContext } from 'graphql';
-import { BlockFieldSuggestionConfig } from 'plugins/BlockFieldSuggestion';
+import { BlockFieldSuggestionConfig } from './plugins/BlockFieldSuggestion';
 import { CharacterLimitConfig } from './plugins/CharacterLimit';
 import { CostAnalysisConfig } from './plugins/CostAnalysis';
 import { BlockIntrospectionConfig } from './plugins/BlockIntrospection';

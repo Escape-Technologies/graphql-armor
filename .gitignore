@@ -5,3 +5,5 @@ package-lock.json
 yarn.lock
 .env
 perf-store.json
+*.tgz
+*.log

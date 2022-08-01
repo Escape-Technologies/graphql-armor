@@ -4,15 +4,27 @@
 
 🛡️ GraphQL-Armor 🛡️ is a Dead-simple, yet highly customizable security middleware for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
 
+## Contents
+
+* [Supported Remediations](#supported-remediations)
+* [Installation](#installation)
+* [API](#api)
+* [Examples](#examples)
+  * [Apollo Server](#apollo-server)
+  * [NestJS](#nestjs)
+  * [Others](#others)
+* [Configuration](#configuration)
+* [Environment Variables](#environment-variables)
+* [Events](#events)
+
 ## Supported remediations
 
 ### Remediations enabled by default
 
-- [Character Limit](#character-limit)
-- [Limit Query Cost](#cost-analysis)
-- [Disable Introspection](#block-introspection)
-- [Disable Field Suggestion](#field-suggestion)
-
+* [Character Limit](#character-limit)
+* [Limit Query Cost](#cost-analysis)
+* [Disable Introspection](#block-introspection)
+* [Disable Field Suggestion](#field-suggestion)
 
 ## Installation
 
@@ -24,13 +36,108 @@ npm install @escape.tech/graphql-armor
 yarn add @escape.tech/graphql-armor
 ```
 
-## Usage
+## API
+
+```typescript
+import { GQLArmor } from '@escape.tech/graphql-armor';
+
+GQLArmor(
+    // Optional:
+    // If you want to use a custom configuration, you can pass it in here.
+    config?: GQLArmorConfig,
+
+    // Optional:
+    // If you want to catch the plugin updates, you can pass a callback.
+    onPluginUpdate?: PluginUpdateEvent,
+)
+
+GQLArmor.getPlugins()
+=> PluginDefinition[]
+
+GQLArmor.getValidationRules()
+=> ValidationRule[]
+
+GQLArmor.getConfig<ContextFunctionParams>(
+    apolloConfig: Config<ContextFunctionParams>
+): Config<ContextFunctionParams>
+
+GQLArmor.apolloServer(
+    apolloConfig: Config<ContextFunctionParams>
+): ApolloServer<ContextFunctionParams>
+```
+
+```typescript
+import { ArmoredConfig, ArmoredConfigU } from '@escape.tech/graphql-armor';
+
+/**
+ * Armored Config
+ * @description
+ * This will inject remediations into the config.
+ * @param apolloConfig The ApolloConfig object
+ * @param armorConfig  The GQLArmorConfig object
+ * @param onPluginUpdate  The function to call when a plugin is updated
+ * @returns The configuration object with the remediation injected
+ */
+ArmoredConfig(
+    apolloConfig: Config<ContextFunctionParams>,
+    armorConfig?: GQLArmorConfig,
+)
+
+/**
+ *  Armored Config Unsafe
+ *  @description
+ *  This is a wrapper around the `ArmoredConfig` function.
+ *  It is used to create a config that is safe to use in a production environment.
+ *  @param config We except an object with the same shape as the `ApolloConfig` object.
+ *                ie: `validationRules`, `plugins`, ...properties
+ *  @returns The remediated object after injection.
+ **/
+ArmoredConfigU(
+    config: {
+        validationRules: ValidationRule[],
+        plugins: PluginDefinition[],
+        ...
+    },
+) -> config{...}
+```
+
+## Examples
+
+### Apollo Server
+
+#### Applying remediation from GraphQL-Armor
+
+```typescript
+import { GQLArmor } from '@escape.tech/graphql-armor';
+const armor = new GQLArmor({});
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [...armor.getPlugins(), ...yourPlugins],
+  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
+});
+```
+
+#### Patching the configuration through GraphQL-Armor
+
+```typescript
+import { ArmoredConfig } from '@escape.tech/graphql-armor';
+
+const server = new ApolloServer(ArmoredConfig({
+  typeDefs,
+  resolvers,
+  cache: 'bounded',
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+}))
+```
+
+#### Instanciating ApolloServer from GraphQL-Armor
 
 ```typescript
 import { GQLArmor } from '@escape.tech/graphql-armor';
 
 const armor = new GQLArmor({});
-
 const server = armor.apolloServer({
   typeDefs,
   resolvers,
@@ -39,23 +146,97 @@ const server = armor.apolloServer({
 });
 ```
 
-## Configuration
+### NestJS
 
-GQLArmor supports the following configuration options:
+#### Applying remediation from GraphQL-Armor
 
 ```typescript
-GQLArmor(
-    // Optional:
-    // If you want to use a custom configuration, you can pass it in here.
-    config?: GQLArmorConfig,
+import { GQLArmor } from '@escape.tech/graphql-armor';
 
-    // Optional:
-    // If you want to catch the plugin updates, you can pass a callback.
-    onPluginUpdate?: (plugin: PluginUpdateEvent) => void,
-)
+@Module({
+  imports: [
+    GraphQLModule.forRoot({
+      ...
+
+      // Prepend the remediations directly to the configuration properties
+      validationRules: [...armor.getValidationRules(), ...yourRules],
+      plugins: [...armor.getPlugins(), ...yourPlugins],
+    }),
+  ],
+})
 ```
 
-Goto [Events/onPluginUpdate](#onpluginupdate) for more information.
+#### Wrapping factory with GraphQL-Armor
+
+```typescript
+import { ArmoredConfig } from '@escape.tech/graphql-armor';
+
+@Module({
+  imports: [
+    GraphQLModule.forRoot({
+      ...
+
+      useFactory() => {
+        return ArmoredConfig({
+          // Prepend the remediations directly to the configuration properties
+          validationRules: [yourRules],
+          plugins: [yourPlugins],
+        });
+      }
+    }),
+  ],
+})
+```
+
+#### Patching factory with GraphQL-Armor
+
+```typescript
+import { GQLArmor } from '@escape.tech/graphql-armor';
+
+const armor = new GQLArmor({});
+
+@Module({
+  imports: [
+    GraphQLModule.forRoot({
+      ...
+
+      useFactory() => {
+        return {
+          // Prepend the remediations directly to the configuration properties
+          validationRules: [armor.getValidationRules(), yourRules],
+          plugins: [armor.getPlugins(), yourPlugins],
+        };
+      }
+    }),
+  ],
+})
+```
+
+### Others
+
+#### Inheritence from Apollo Config
+
+```typescript
+import { ArmoredConfig } from '@escape.tech/graphql-armor';
+
+const config = ArmoredConfig({
+  plugins: [...yourPlugins],
+  validationRules: [...yourRules]
+});
+```
+
+#### Others types
+
+```typescript
+import { ArmoredConfigU } from '@escape.tech/graphql-armor';
+
+const config = ArmoredConfigU({
+  plugins: [...yourPlugins],
+  validationRules: [...yourRules]
+});
+```
+
+## Configuration
 
 ### Character Limit
 

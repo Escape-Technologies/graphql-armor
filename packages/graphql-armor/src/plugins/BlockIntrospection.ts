@@ -4,7 +4,7 @@ import { PluginConfig, PluginDefinition } from '../types';
 export type BlockIntrospectionConfig = { BlockIntrospection?: PluginConfig };
 export const DefaultBlockIntrospectionConfig = {
   _namespace: 'BlockIntrospection',
-  enabled: true,
+  enabled: false,
   options: {
     headersWhitelist: {
       'x-allow-introspection': 'allow',

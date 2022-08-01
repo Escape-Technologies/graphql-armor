@@ -1,12 +1,12 @@
 import { PluginDefinition, PluginConfig } from './types';
-import { GQLArmor } from './index';
+import { GraphQLArmor } from './index';
 import { ValidationRule } from 'graphql';
 
 export class ArmorPlugin {
-  private readonly armor: GQLArmor;
+  private readonly armor: GraphQLArmor;
   private readonly config: PluginConfig;
 
-  constructor(armor: GQLArmor, config: PluginConfig) {
+  constructor(armor: GraphQLArmor, config: PluginConfig) {
     this.armor = armor;
     this.config = config;
   }

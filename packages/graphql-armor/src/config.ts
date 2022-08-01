@@ -1,17 +1,17 @@
-import { GQLArmorConfig, PluginConfig } from './types';
+import { GraphQLArmorConfig, PluginConfig } from './types';
 import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
 import { DefaultBlockIntrospectionConfig } from './plugins/BlockIntrospection';
 import { DefaultBlockFieldSuggestionConfig } from './plugins/BlockFieldSuggestion';
 
-const defaultConfig: GQLArmorConfig = {
+const defaultConfig: GraphQLArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
   BlockIntrospection: DefaultBlockIntrospectionConfig, // 0x4
   BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x8
 };
 
-function applyBitwisePermissions(config: GQLArmorConfig, permUID: number): GQLArmorConfig {
+function applyBitwisePermissions(config: GraphQLArmorConfig, permUID: number): GraphQLArmorConfig {
   let keyID = 0;
   for (const key in defaultConfig) {
     if (!config.hasOwnProperty(key)) {
@@ -25,7 +25,7 @@ function applyBitwisePermissions(config: GQLArmorConfig, permUID: number): GQLAr
 export class ConfigService {
   private readonly _plugins = new Map<string, PluginConfig>();
 
-  constructor(config?: GQLArmorConfig) {
+  constructor(config?: GraphQLArmorConfig) {
     config ??= {};
 
     const permissions = parseInt(process.env.GQLARMOR_PERMISSIONS || '-1', 10);

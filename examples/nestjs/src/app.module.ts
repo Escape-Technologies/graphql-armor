@@ -4,9 +4,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
-import { GQLArmor } from '@escape.tech/graphql-armor';
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
 
-const armor = new GQLArmor({});
+const armor = new GraphQLArmor({});
 
 @Module({
   imports: [
@@ -18,8 +18,8 @@ const armor = new GQLArmor({});
       autoSchemaFile: 'schema.gql',
 
       // Prepend the armored properties directly to the configuration
-      validationRules: armor.getValidationRules(),
-      plugins: armor.getPlugins()
+      validationRules: armor.getApolloValidationRules(),
+      plugins: armor.getApolloPlugins()
     }),
     BookModule,
   ],

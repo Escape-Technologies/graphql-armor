@@ -1,6 +1,6 @@
 import { ArmorPlugin } from '../ArmorPlugin';
 import { ValidationRule, GraphQLError, ValidationContext, ASTVisitor, FieldNode } from 'graphql';
-import { PluginConfig } from 'types';
+import { PluginConfig } from '../types';
 
 export type BlockFieldSuggestionConfig = {
   BlockFieldSuggestion?: {} & PluginConfig;

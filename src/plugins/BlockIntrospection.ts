@@ -1,9 +1,9 @@
 import { ArmorPlugin } from '../ArmorPlugin';
 import { PluginConfig, PluginDefinition } from '../types';
 
-export type IntrospectionConfig = { Introspection?: PluginConfig };
-export const DefaultIntrospectionConfig = {
-  _namespace: 'Introspection',
+export type BlockIntrospectionConfig = { BlockIntrospection?: PluginConfig };
+export const DefaultBlockIntrospectionConfig = {
+  _namespace: 'BlockIntrospection',
   enabled: true,
   options: {
     headersWhitelist: {
@@ -36,7 +36,7 @@ const plugin = ({ options: { headersWhitelist } }: PluginConfig): PluginDefiniti
   };
 };
 
-export class Introspection extends ArmorPlugin {
+export class BlockIntrospection extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
     return [plugin(this.getConfig())];
   }

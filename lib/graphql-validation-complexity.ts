@@ -80,6 +80,7 @@ export default class ComplexityVisitor {
     private readonly scalarCost: number;
     private readonly objectCost: number;
     private readonly listFactor: number;
+    private readonly depthFactor: number;
     private readonly introspectionListFactor: number;
     private costFactor: number;
     private cost: number;
@@ -91,13 +92,14 @@ export default class ComplexityVisitor {
     private isIntrospectionQuery = false; // this is not config ! leave it to false.
     constructor(
         context: ValidationContext,
-        options: { scalarCost: number; objectCost: number; listFactor: number; introspectionListFactor: number; },
+        options: { scalarCost: number; objectCost: number; listFactor: number; introspectionListFactor: number; depthFactor:number; },
     ) {
         this.context = context;
 
         this.scalarCost = options.scalarCost;
         this.objectCost = options.objectCost;
         this.listFactor = options.listFactor;
+        this.depthFactor = options.depthFactor;
         this.introspectionListFactor = options.introspectionListFactor;
 
         this.costFactor = 1;
@@ -109,6 +111,7 @@ export default class ComplexityVisitor {
         };
         this.FragmentDefinition = () => {
             // don't visit any further we will include these at the spread location
+            // (???)
             return false;
         };
 
@@ -146,13 +149,13 @@ export default class ComplexityVisitor {
         }
 
         this.cost += this.costFactor * this.getFieldCost();
-        ;
+
     }
 
     leaveField(obj) {
 
         if (this.path[this.path.length - 1] !== obj.name.value)
-            throw Error("shouldnt happen"); // TODO : pas d'erreur + plus explicite?
+            throw Error("error; shouldn't happen"); // TODO : pas d'erreur + plus explicite?
 
         this.path.pop();
 
@@ -173,8 +176,8 @@ export default class ComplexityVisitor {
         if (directiveCostFactor != null) {
             return directiveCostFactor;
         }
-
-        return this.getTypeCostFactor(this.context.getType());
+        const costFactor = this.getTypeCostFactor(this.context.getType());
+        return costFactor;
     }
 
     getTypeCostFactor(type) {
@@ -189,7 +192,7 @@ export default class ComplexityVisitor {
             return typeListFactor * this.getTypeCostFactor(type.ofType);
         }
 
-        return 1;
+        return this.depthFactor;
     }
 
     isIntrospectionList({ofType}) {

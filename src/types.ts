@@ -1,10 +1,9 @@
 import { ApolloServerPlugin } from 'apollo-server-plugin-base';
 import { ASTVisitor, ValidationContext } from 'graphql';
-import { FieldSuggestionConfig } from 'plugins/FieldSuggestion';
+import { BlockFieldSuggestionConfig } from 'plugins/BlockFieldSuggestion';
 import { CharacterLimitConfig } from './plugins/CharacterLimit';
 import { CostAnalysisConfig } from './plugins/CostAnalysis';
-import { IntrospectionConfig } from './plugins/Introspection';
-import { DefaultProfilerConfig, ProfilerConfig } from './plugins/Profiler';
+import { BlockIntrospectionConfig } from './plugins/BlockIntrospection';
 
 export type PluginDefinition = ApolloServerPlugin | (() => ApolloServerPlugin); // apollo-server-core/src/types.ts
 export type ValidationRule = (context: ValidationContext) => ASTVisitor;
@@ -26,8 +25,7 @@ export type PluginConfig = {
 };
 
 export type GQLArmorConfig =
-  | IntrospectionConfig
+  | BlockIntrospectionConfig
   | CharacterLimitConfig
   | CostAnalysisConfig
-  | FieldSuggestionConfig
-  | ProfilerConfig;
+  | BlockFieldSuggestionConfig;

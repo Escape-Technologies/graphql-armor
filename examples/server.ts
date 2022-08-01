@@ -60,13 +60,9 @@ const armor = new GQLArmor({
         options: {
             maxLength: 10000,
         }
-    }, Introspection: {
+    }, BlockIntrospection: {
         enabled: false,
-    },
-    Profiler:
-        {
-            enabled: true,
-        }
+    }
 }, (status: string, plugin: any) => {
     console.log(status, plugin._namespace);
 },);

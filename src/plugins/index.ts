@@ -1,6 +1,6 @@
 import { CharacterLimit } from './CharacterLimit';
-import { Introspection } from './Introspection';
+import { BlockIntrospection } from './BlockIntrospection';
 import { CostAnalysis } from './CostAnalysis';
-import { FieldSuggestion } from './FieldSuggestion';
+import { BlockFieldSuggestion } from './BlockFieldSuggestion';
 
-export { CharacterLimit, Introspection, CostAnalysis, FieldSuggestion };
+export { CharacterLimit, BlockIntrospection, CostAnalysis, BlockFieldSuggestion };

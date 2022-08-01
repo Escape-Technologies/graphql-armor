@@ -10,7 +10,7 @@
 
 - [Character Limit](#character-limit)
 - [Limit Query Cost](#cost-analysis)
-- [Disable Introspection](#introspection)
+- [Disable Introspection](#block-introspection)
 - [Disable Field Suggestion](#field-suggestion)
 
 
@@ -89,15 +89,15 @@ Goto [Events/onPluginUpdate](#onpluginupdate) for more information.
 }
 ```
 
-### Introspection
+### Block Introspection
 
-`Introspection plugin` will prevent introspection queries from being executed.
+`BlockIntrospection plugin` will prevent introspection queries from being executed.
 
 By default, introspection is still available for our [Live GraphQL Security Testing Platform](https://escape.tech) by providing a valid identifier.
 
 ```typescript
 {
-    Introspection: {
+    BlockIntrospection: {
         enabled: true,
         options: {
             headersWhitelist: {

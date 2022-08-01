@@ -1,16 +1,14 @@
 import { GQLArmorConfig, PluginConfig } from './types';
 import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
-import { DefaultIntrospectionConfig } from './plugins/Introspection';
-import { DefaultFieldSuggestionConfig } from './plugins/FieldSuggestion';
-import { DefaultProfilerConfig } from './plugins/Profiler';
+import { DefaultBlockIntrospectionConfig } from './plugins/BlockIntrospection';
+import { DefaultBlockFieldSuggestionConfig } from './plugins/BlockFieldSuggestion';
 
 const defaultConfig: GQLArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
-  Introspection: DefaultIntrospectionConfig, // 0x4
-  FieldSuggestion: DefaultFieldSuggestionConfig, // 0x8
-  Profiler: DefaultProfilerConfig, // 0x10
+  BlockIntrospection: DefaultBlockIntrospectionConfig, // 0x4
+  BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x8
 };
 
 function applyBitwisePermissions(config: GQLArmorConfig, permUID: number): GQLArmorConfig {

@@ -1,0 +1,13 @@
+type Query {
+    books: [Book]
+}
+
+type Mutation {
+    addBook(title: String, author: String): Book
+}
+
+type Book {
+    title: String
+    author: String
+    id: String
+}

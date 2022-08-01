@@ -3,7 +3,7 @@ import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
 const express = require('express');
 const http = require('http');
 import {gql} from 'apollo-server';
-import {GQLArmor} from '../src';
+import {GraphQLArmor} from '../src';
 
 const typeDefs = gql`
   type Book {
@@ -55,7 +55,7 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-const armor = new GQLArmor({
+const armor = new GraphQLArmor({
     CharacterLimit: {
         options: {
             maxLength: 10000,
@@ -67,7 +67,7 @@ const armor = new GQLArmor({
     console.log(status, plugin._namespace);
 },);
 
-const server = armor.apolloServer({
+const server = armor.patchApolloServer({
     typeDefs,
     resolvers,
     cache: 'bounded',

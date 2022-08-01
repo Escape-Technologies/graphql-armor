@@ -39,60 +39,60 @@ yarn add @escape.tech/graphql-armor
 ## API
 
 ```typescript
-import { GQLArmor } from '@escape.tech/graphql-armor';
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
 
-GQLArmor(
+GraphQLArmor(
     // Optional:
     // If you want to use a custom configuration, you can pass it in here.
-    config?: GQLArmorConfig,
+    config?: GraphQLArmorConfig,
 
     // Optional:
     // If you want to catch the plugin updates, you can pass a callback.
     onPluginUpdate?: PluginUpdateEvent,
 )
 
-GQLArmor.getPlugins()
+GraphQLArmor.getApolloPlugins()
 => PluginDefinition[]
 
-GQLArmor.getValidationRules()
+GraphQLArmor.getApolloValidationRules()
 => ValidationRule[]
 
-GQLArmor.getConfig<ContextFunctionParams>(
-    apolloConfig: Config<ContextFunctionParams>
-): Config<ContextFunctionParams>
+GraphQLArmor.getApolloConfig<T>(
+    apolloConfig: Config<T>
+): Config<T>
 
-GQLArmor.apolloServer(
-    apolloConfig: Config<ContextFunctionParams>
-): ApolloServer<ContextFunctionParams>
+GraphQLArmor.patchApolloServer(
+    apolloConfig: Config<T>
+): ApolloServer<T>
 ```
 
 ```typescript
-import { ArmoredConfig, ArmoredConfigU } from '@escape.tech/graphql-armor';
+import { ArmorApolloConfig, ArmorApolloConfigU } from '@escape.tech/graphql-armor';
 
 /**
  * Armored Config
  * @description
  * This will inject remediations into the config.
  * @param apolloConfig The ApolloConfig object
- * @param armorConfig  The GQLArmorConfig object
+ * @param armorConfig  The GraphQLArmorConfig object
  * @param onPluginUpdate  The function to call when a plugin is updated
  * @returns The configuration object with the remediation injected
  */
-ArmoredConfig(
-    apolloConfig: Config<ContextFunctionParams>,
-    armorConfig?: GQLArmorConfig,
+ArmorApolloConfig(
+    apolloConfig: Config<T>,
+    armorConfig?: GraphQLArmorConfig,
 )
 
 /**
  *  Armored Config Unsafe
  *  @description
- *  This is a wrapper around the `ArmoredConfig` function.
+ *  This is a wrapper around the `ArmorApolloConfig` function.
  *  It is used to create a config that is safe to use in a production environment.
  *  @param config We except an object with the same shape as the `ApolloConfig` object.
  *                ie: `validationRules`, `plugins`, ...properties
  *  @returns The remediated object after injection.
  **/
-ArmoredConfigU(
+ArmorApolloConfigU(
     config: {
         validationRules: ValidationRule[],
         plugins: PluginDefinition[],
@@ -108,23 +108,23 @@ ArmoredConfigU(
 #### Applying remediation from GraphQL-Armor
 
 ```typescript
-import { GQLArmor } from '@escape.tech/graphql-armor';
-const armor = new GQLArmor({});
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
+const armor = new GraphQLArmor({});
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [...armor.getPlugins(), ...yourPlugins],
-  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
+  plugins: [...armor.getApolloPlugins(), ...yourPlugins],
+  validationRules: [...armor.getApolloValidationRules(), ...yourValidationRules],
 });
 ```
 
 #### Patching the configuration through GraphQL-Armor
 
 ```typescript
-import { ArmoredConfig } from '@escape.tech/graphql-armor';
+import { ArmorApolloConfig } from '@escape.tech/graphql-armor';
 
-const server = new ApolloServer(ArmoredConfig({
+const server = new ApolloServer(ArmorApolloConfig({
   typeDefs,
   resolvers,
   cache: 'bounded',
@@ -135,10 +135,10 @@ const server = new ApolloServer(ArmoredConfig({
 #### Instanciating ApolloServer from GraphQL-Armor
 
 ```typescript
-import { GQLArmor } from '@escape.tech/graphql-armor';
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
 
-const armor = new GQLArmor({});
-const server = armor.apolloServer({
+const armor = new GraphQLArmor({});
+const server = armor.patchApolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
@@ -151,7 +151,7 @@ const server = armor.apolloServer({
 #### Applying remediation from GraphQL-Armor
 
 ```typescript
-import { GQLArmor } from '@escape.tech/graphql-armor';
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
 
 @Module({
   imports: [
@@ -159,8 +159,8 @@ import { GQLArmor } from '@escape.tech/graphql-armor';
       ...
 
       // Prepend the remediations directly to the configuration properties
-      validationRules: [...armor.getValidationRules(), ...yourRules],
-      plugins: [...armor.getPlugins(), ...yourPlugins],
+      validationRules: [...armor.getApolloValidationRules(), ...yourRules],
+      plugins: [...armor.getApolloPlugins(), ...yourPlugins],
     }),
   ],
 })
@@ -169,7 +169,7 @@ import { GQLArmor } from '@escape.tech/graphql-armor';
 #### Wrapping factory with GraphQL-Armor
 
 ```typescript
-import { ArmoredConfig } from '@escape.tech/graphql-armor';
+import { ArmorApolloConfig } from '@escape.tech/graphql-armor';
 
 @Module({
   imports: [
@@ -177,7 +177,7 @@ import { ArmoredConfig } from '@escape.tech/graphql-armor';
       ...
 
       useFactory() => {
-        return ArmoredConfig({
+        return ArmorApolloConfig({
           // Prepend the remediations directly to the configuration properties
           validationRules: [yourRules],
           plugins: [yourPlugins],
@@ -191,9 +191,9 @@ import { ArmoredConfig } from '@escape.tech/graphql-armor';
 #### Patching factory with GraphQL-Armor
 
 ```typescript
-import { GQLArmor } from '@escape.tech/graphql-armor';
+import { GraphQLArmor } from '@escape.tech/graphql-armor';
 
-const armor = new GQLArmor({});
+const armor = new GraphQLArmor({});
 
 @Module({
   imports: [
@@ -203,8 +203,8 @@ const armor = new GQLArmor({});
       useFactory() => {
         return {
           // Prepend the remediations directly to the configuration properties
-          validationRules: [armor.getValidationRules(), yourRules],
-          plugins: [armor.getPlugins(), yourPlugins],
+          validationRules: [armor.getApolloValidationRules(), yourRules],
+          plugins: [armor.getApolloPlugins(), yourPlugins],
         };
       }
     }),
@@ -217,9 +217,9 @@ const armor = new GQLArmor({});
 #### Inheritence from Apollo Config
 
 ```typescript
-import { ArmoredConfig } from '@escape.tech/graphql-armor';
+import { ArmorApolloConfig } from '@escape.tech/graphql-armor';
 
-const config = ArmoredConfig({
+const config = ArmorApolloConfig({
   plugins: [...yourPlugins],
   validationRules: [...yourRules]
 });
@@ -228,9 +228,9 @@ const config = ArmoredConfig({
 #### Others types
 
 ```typescript
-import { ArmoredConfigU } from '@escape.tech/graphql-armor';
+import { ArmorApolloConfigU } from '@escape.tech/graphql-armor';
 
-const config = ArmoredConfigU({
+const config = ArmorApolloConfigU({
   plugins: [...yourPlugins],
   validationRules: [...yourRules]
 });

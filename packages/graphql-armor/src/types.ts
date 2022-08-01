@@ -24,7 +24,7 @@ export type PluginConfig = {
   options?: any;
 };
 
-export type GQLArmorConfig =
+export type GraphQLArmorConfig =
   | BlockIntrospectionConfig
   | CharacterLimitConfig
   | CostAnalysisConfig

@@ -1,6 +1,9 @@
 {
     "files.exclude": {
         "node_modules/": true,
-        "yarn.lock": true
+        "yarn.lock": true,
+        ".idea": true,
+        ".yarn": true,
+        "dist/": true,
     }
 }

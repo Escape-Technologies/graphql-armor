@@ -279,7 +279,7 @@ By default, introspection is still available for our [Live GraphQL Security Test
 ```typescript
 {
     BlockIntrospection: {
-        enabled: true,
+        enabled: false,
         options: {
             headersWhitelist: {
                 'x-allow-introspection': 'allow',

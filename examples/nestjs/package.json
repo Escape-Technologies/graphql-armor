@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "@apollo/gateway": "^2.0.5",
+    "@escape.tech/graphql-armor": "workspace:^",
     "@nestjs/apollo": "^10.0.19",
     "@nestjs/common": "^9.0.7",
     "@nestjs/core": "^9.0.7",
@@ -40,6 +41,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-angular": "^17.0.0",
     "@escape.tech/mookme": "^2.1.1",
+    "@nestjs/cli": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "eslint": ">=8.15.0",

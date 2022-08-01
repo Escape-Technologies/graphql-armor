@@ -20,8 +20,6 @@
 
 ## Supported remediations
 
-### Remediations enabled by default
-
 * [Character Limit](#character-limit)
 * [Limit Query Cost](#cost-analysis)
 * [Disable Introspection](#block-introspection)

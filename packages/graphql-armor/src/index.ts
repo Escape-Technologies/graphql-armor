@@ -7,7 +7,17 @@ import { ArmorPlugin } from './ArmorPlugin';
 import { PluginDefinition, ValidationRule, GQLArmorConfig, PluginUpdateEvent, PluginState } from './types';
 import { ConfigService } from './config';
 
-export class GQLArmor {
+function ArmoredConfig<ContextFunctionParams>(
+  apolloConfig: Config<ContextFunctionParams>,
+  armorConfig?: GQLArmorConfig,
+  onPluginUpdate?: PluginUpdateEvent,
+) {
+  console.log('ArmorConfig', apolloConfig);
+  const service = new GQLArmor(armorConfig, onPluginUpdate);
+  return service.patchConfig(apolloConfig);
+}
+
+class GQLArmor {
   private readonly _plugins: ArmorPlugin[] = [];
   private readonly _configService: ConfigService;
   private readonly _onPluginUpdate?: PluginUpdateEvent;
@@ -36,7 +46,9 @@ export class GQLArmor {
   /*
    * Inject remediations into the ApolloServer constructor
    */
-  public apolloServer<ContextFunctionParams>(apolloConfig: Config<ContextFunctionParams>) {
+  public patchConfig<ContextFunctionParams>(
+    apolloConfig: Config<ContextFunctionParams>,
+  ): Config<ContextFunctionParams> {
     apolloConfig.plugins ??= [];
     apolloConfig.validationRules ??= [];
 
@@ -59,6 +71,15 @@ export class GQLArmor {
     apolloConfig.plugins = [...apolloPlugins, ...apolloConfig.plugins!];
     apolloConfig.validationRules = [...validationRules, ...apolloConfig.validationRules!];
 
-    return new ApolloServer<ContextFunctionParams>(apolloConfig);
+    return apolloConfig;
+  }
+
+  /*
+   * Instantiate a ApolloServer
+   */
+  public apolloServer<ContextFunctionParams>(apolloConfig: Config<ContextFunctionParams>) {
+    return new ApolloServer<ContextFunctionParams>(this.patchConfig(apolloConfig));
   }
 }
+
+export { GQLArmor, ArmoredConfig };

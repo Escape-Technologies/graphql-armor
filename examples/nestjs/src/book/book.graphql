@@ -1,5 +1,6 @@
 type Query {
     books: [Book]
+    # book: Book
 }
 
 type Mutation {

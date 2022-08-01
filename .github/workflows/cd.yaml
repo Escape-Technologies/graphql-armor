@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install .
-      - run: npm run build
-      - run: npm publish
+      - run: yarn workspaces focus @escape.tech/graphql-armor
+      - run: yarn workspace @escape.tech/graphql-armor build
+      - run: yarn workspace @escape.tech/graphql-armor publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

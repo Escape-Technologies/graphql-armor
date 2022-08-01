@@ -6,4 +6,8 @@ yarn.lock
 .env
 perf-store.json
 *.tgz
+*.gz
 *.log
+.yarn/cache
+.idea
+.yarn

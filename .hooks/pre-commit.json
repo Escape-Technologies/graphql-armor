@@ -1,8 +1,0 @@
-{
-  "steps": [
-    {
-      "name": "prettier",
-      "command": "npm run lint"
-    }
-  ]
-}

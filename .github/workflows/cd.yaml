@@ -22,10 +22,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}'
       - run: corepack enable
       - run: yarn workspaces focus @escape.tech/graphql-armor
       - run: yarn workspace @escape.tech/graphql-armor build
       - run: yarn npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

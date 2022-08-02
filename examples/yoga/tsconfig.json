@@ -13,7 +13,8 @@
         "emitDecoratorMetadata": true,
         "resolveJsonModule": true,
         "strictNullChecks": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "declaration": true
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src"],

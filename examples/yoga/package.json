@@ -1,5 +1,5 @@
 {
-  "name": "yoga",
+  "name": "@escape.tech/graphql-armor-yoga-example",
   "packageManager": "yarn@3.2.2",
   "main": "./src/main.ts",
   "scripts": {

@@ -1,7 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-express-apollo-example",
-  "version": "0.0.1-alpha",
-  "description": "",
+  "version": "0.0.1",
   "main": "index.ts",
   "scripts": {
     "build": "tsc",

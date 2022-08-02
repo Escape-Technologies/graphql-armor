@@ -1,7 +1,7 @@
-import { type GraphQLRequestContext } from 'apollo-server-types';
+import { GraphQLRequestContext } from 'apollo-server-types';
 import { ArmorPlugin } from '../ArmorPlugin';
-import { type PluginConfig } from '../types';
-import { type PluginDefinition as ApolloPlugin } from 'apollo-server-core/src/types';
+import { PluginConfig } from '../types';
+import { PluginDefinition } from 'apollo-server-core/src/types';
 import { EnvelopError, type Plugin as EnvelopPlugin } from '@envelop/core';
 
 export type CharacterLimitConfig = {
@@ -37,7 +37,7 @@ const envelop_plugin = ({ options: { maxLength } }: PluginConfig) => {
 };
 
 export class CharacterLimit extends ArmorPlugin {
-  getApolloPlugins(): ApolloPlugin[] {
+  getApolloPlugins(): PluginDefinition[] {
     return [apollo_plugin(this.getConfig())];
   }
 

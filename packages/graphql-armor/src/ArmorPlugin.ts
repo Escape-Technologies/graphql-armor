@@ -31,8 +31,4 @@ export class ArmorPlugin {
   getValidationRules(): ValidationRule[] {
     return [];
   }
-
-  apolloPatchConfig(apolloConfig) {
-    return apolloConfig;
-  }
 }

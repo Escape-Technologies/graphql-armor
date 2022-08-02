@@ -22,7 +22,7 @@ function ArmorApolloConfig<T>(
   onPluginUpdate?: PluginUpdateEvent,
 ): ApolloConfig<T> {
   const service = new ApolloArmor(armorConfig, onPluginUpdate);
-  return service.getApolloConfig(apolloConfig);
+  return service.getConfig(apolloConfig);
 }
 
 /**
@@ -36,7 +36,7 @@ function ArmorApolloConfig<T>(
  **/
 function ArmorApolloConfigU(config: any): any {
   const service = new ApolloArmor();
-  return service.getApolloConfig(config);
+  return service.getConfig(config);
 }
 
 class ApolloArmor {
@@ -81,13 +81,9 @@ class ApolloArmor {
     return validationRules;
   }
 
-  public getApolloConfig<T>(apolloConfig: ApolloConfig<T>): ApolloConfig<T> {
+  public getConfig<T>(apolloConfig: ApolloConfig<T>): ApolloConfig<T> {
     apolloConfig.plugins ??= [];
     apolloConfig.validationRules ??= [];
-
-    for (const plugin of this._plugins) {
-      apolloConfig = plugin.apolloPatchConfig(apolloConfig);
-    }
 
     apolloConfig.plugins = [...this.getPlugins(), ...apolloConfig.plugins!];
     apolloConfig.validationRules = [...this.getValidationRules(), ...apolloConfig.validationRules!];

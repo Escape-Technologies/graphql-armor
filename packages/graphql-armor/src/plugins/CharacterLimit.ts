@@ -3,9 +3,6 @@ import { ArmorPlugin } from '../ArmorPlugin';
 import { PluginConfig } from '../types';
 import { PluginDefinition } from 'apollo-server-core/src/types';
 
-// TODO : requestDidStart happens after parsing, right ...?
-// (this is an issue)
-
 export type CharacterLimitConfig = {
   CharacterLimit?: { options: { maxLength: number } } & PluginConfig;
 };

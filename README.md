@@ -195,7 +195,7 @@ GraphQLArmor.getApolloPlugins()
 GraphQLArmor.getApolloValidationRules()
 => ValidationRule[]
 
-GraphQLArmor.getApolloConfig<T>(
+GraphQLArmor.getConfig<T>(
     apolloConfig: Config<T>
 ): Config<T>
 ```

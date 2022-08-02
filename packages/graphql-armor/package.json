@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor",
-  "version": "0.0.1-gamma",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@types/node": "^18.6.3",
+    "@types/node": "^18.6.3"
+  },
+  "peerDependencies": {
     "apollo-server": "^3.10.0",
     "graphql": "^16.5.0"
   },

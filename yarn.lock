@@ -531,6 +531,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/core@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@envelop/core@npm:2.4.1"
+  dependencies:
+    "@envelop/types": 2.3.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 101435f8897d0d31648ccc5eccc7b4f7c2cbab0d6b476b6324b597745114d0b6aa0311a56d150a4203620a9004de3ab324f019f280244df0905d326e5580ccf1
+  languageName: node
+  linkType: hard
+
+"@envelop/types@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@envelop/types@npm:2.3.0"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: acce4743b7564875493078a2aa402cb3d252f93913a3d37cf03477e602f0e8afa2dbea2c740f6814a3fce8ef25c7da931525e9cdc59c032425cdb8f62f7dafa2
+  languageName: node
+  linkType: hard
+
 "@escape.tech/graphql-armor-express-apollo-example@workspace:examples/express-apollo":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-express-apollo-example@workspace:examples/express-apollo"
@@ -604,6 +624,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
+    "@envelop/core": ^2.4.1
     "@types/node": ^18.6.3
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0

@@ -144,8 +144,7 @@ export default class QueryComplexity {
   variableValues: Record<string, any>;
   private readonly logger: (message: string) => void;
 
-  constructor(context: ValidationContext, options: QueryComplexityOptions, logger:(message:string)=>void) {
-    this.logger = logger;
+  constructor(context: ValidationContext, options: QueryComplexityOptions, logger: (message: string) => void) {
     if (
       !(
         typeof options.maximumComplexity === 'number' &&
@@ -155,6 +154,7 @@ export default class QueryComplexity {
       throw new Error('Maximum query complexity must be a positive number');
     }
 
+    this.logger = logger;
     this.context = context;
     this.complexity = 0;
     this.options = options;

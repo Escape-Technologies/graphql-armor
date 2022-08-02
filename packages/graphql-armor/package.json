@@ -27,15 +27,12 @@
     "apollo-server": "^3.10.0",
     "apollo-server-core": "^3.10.0",
     "graphql": "^16.5.0",
-    "apollo-server-express": "^3.10.0",
     "apollo-server-types": "^3.6.2"
   },
   "peerDependencies": {
-    "@types/node": "^18.6.3",
     "apollo-server": "^3.10.0",
     "apollo-server-core": "^3.10.0",
     "graphql": "^16.5.0",
-    "apollo-server-express": "^3.10.0",
     "apollo-server-types": "^3.6.2"
   },
   "devDependencies": {

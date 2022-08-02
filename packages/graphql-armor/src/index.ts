@@ -1,4 +1,3 @@
-import { ApolloServer } from 'apollo-server-express';
 import { Config as ApolloConfig, PluginDefinition } from 'apollo-server-core/src/types';
 import { ValidationContext } from 'graphql';
 
@@ -94,10 +93,6 @@ class GraphQLArmor {
     apolloConfig.validationRules = [...this.getApolloValidationRules(), ...apolloConfig.validationRules!];
 
     return apolloConfig;
-  }
-
-  public patchApolloServer<T>(apolloConfig: ApolloConfig<T>): ApolloServer<T> {
-    return new ApolloServer<T>(this.getApolloConfig(apolloConfig));
   }
 }
 

@@ -82,20 +82,6 @@ const server = new ApolloServer(ArmorApolloConfig({
 }))
 ```
 
-#### Instanciating ApolloServer from GraphQL-Armor
-
-```typescript
-import { GraphQLArmor } from '@escape.tech/graphql-armor';
-
-const armor = new GraphQLArmor({});
-const server = armor.patchApolloServer({
-  typeDefs,
-  resolvers,
-  cache: 'bounded',
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-});
-```
-
 ### NestJS
 
 #### Applying remediation from GraphQL-Armor
@@ -212,10 +198,6 @@ GraphQLArmor.getApolloValidationRules()
 GraphQLArmor.getApolloConfig<T>(
     apolloConfig: Config<T>
 ): Config<T>
-
-GraphQLArmor.patchApolloServer(
-    apolloConfig: Config<T>
-): ApolloServer<T>
 ```
 
 ```typescript

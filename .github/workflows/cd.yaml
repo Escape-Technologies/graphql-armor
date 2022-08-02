@@ -13,6 +13,9 @@ jobs:
       - uses: softprops/action-gh-release@v1
 
   npm-release:
+    defaults:
+      run:
+        working-directory: ./packages/graphql-armor
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,15 +23,9 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
-          rm -rf .yarnrc.yml .yarn yarn.lock
-          corepack enable 
-      - run: |
-          yarn set version stable
-          yarn config set -H enableImmutableInstalls false
-          yarn install
-      - run: yarn workspace @escape.tech/graphql-armor install
+      - run: corepack enable
+      - run: yarn workspaces focus @escape.tech/graphql-armor
       - run: yarn workspace @escape.tech/graphql-armor build
-      - run: yarn workspace @escape.tech/graphql-armor publish
+      - run: yarn npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

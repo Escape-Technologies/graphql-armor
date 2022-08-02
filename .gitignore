@@ -1,13 +1,11 @@
+.env
+
 node_modules
 dist
 coverage
-package-lock.json
-yarn.lock
-.env
-perf-store.json
+
 *.tgz
 *.gz
 *.log
+
 .yarn/cache
-.idea
-.yarn

@@ -21,6 +21,8 @@ jobs:
         run: yarn workspaces focus @escape.tech/graphql-armor
       - name: Run lint
         run: yarn workspace @escape.tech/graphql-armor lint
+      - name: Run build
+        run: yarn workspace @escape.tech/graphql-armor build
       # - name: Run tests
       #   if: always()
       #   run: yarn workspace @escape.tech/graphql-armor test

@@ -21,7 +21,7 @@ function ArmorApolloConfig<T>(
   armorConfig?: GraphQLArmorConfig,
   onPluginUpdate?: PluginUpdateEvent,
 ): ApolloConfig<T> {
-  const service = new GraphQLArmor(armorConfig, onPluginUpdate);
+  const service = new ApolloArmor(armorConfig, onPluginUpdate);
   return service.getApolloConfig(apolloConfig);
 }
 
@@ -35,11 +35,11 @@ function ArmorApolloConfig<T>(
  *  @returns The configuration object with the remediation injected.
  **/
 function ArmorApolloConfigU(config: any): any {
-  const service = new GraphQLArmor();
+  const service = new ApolloArmor();
   return service.getApolloConfig(config);
 }
 
-class GraphQLArmor {
+class ApolloArmor {
   private readonly _plugins: ArmorPlugin[] = [];
   private readonly _configService: ConfigService;
   private readonly _onPluginUpdate?: PluginUpdateEvent;
@@ -65,7 +65,7 @@ class GraphQLArmor {
     }
   }
 
-  public getApolloPlugins(): PluginDefinition[] {
+  public getPlugins(): PluginDefinition[] {
     let apolloPlugins: PluginDefinition[] = [];
     for (const plugin of this._plugins) {
       apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
@@ -73,7 +73,7 @@ class GraphQLArmor {
     return apolloPlugins;
   }
 
-  public getApolloValidationRules(): Array<(context: ValidationContext) => any> {
+  public getValidationRules(): Array<(context: ValidationContext) => any> {
     let validationRules: Array<(context: ValidationContext) => any> = [];
     for (const plugin of this._plugins) {
       validationRules = [...validationRules, ...plugin.getValidationRules()];
@@ -89,11 +89,11 @@ class GraphQLArmor {
       apolloConfig = plugin.apolloPatchConfig(apolloConfig);
     }
 
-    apolloConfig.plugins = [...this.getApolloPlugins(), ...apolloConfig.plugins!];
-    apolloConfig.validationRules = [...this.getApolloValidationRules(), ...apolloConfig.validationRules!];
+    apolloConfig.plugins = [...this.getPlugins(), ...apolloConfig.plugins!];
+    apolloConfig.validationRules = [...this.getValidationRules(), ...apolloConfig.validationRules!];
 
     return apolloConfig;
   }
 }
 
-export { GraphQLArmor, ArmorApolloConfig, ArmorApolloConfigU };
+export { ApolloArmor, ArmorApolloConfig, ArmorApolloConfigU };

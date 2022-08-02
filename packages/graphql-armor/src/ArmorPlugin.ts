@@ -1,13 +1,13 @@
 import { PluginConfig } from './types';
-import { GraphQLArmor } from './index';
+import { ApolloArmor } from './index';
 import { ValidationRule } from 'graphql';
 import { PluginDefinition } from 'apollo-server-core/src/types';
 
 export class ArmorPlugin {
-  private readonly armor: GraphQLArmor;
+  private readonly armor: ApolloArmor;
   private readonly config: PluginConfig;
 
-  constructor(armor: GraphQLArmor, config: PluginConfig) {
+  constructor(armor: ApolloArmor, config: PluginConfig) {
     this.armor = armor;
     this.config = config;
   }

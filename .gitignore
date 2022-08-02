@@ -9,3 +9,4 @@ coverage
 *.log
 
 .yarn/cache
+.idea

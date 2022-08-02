@@ -17,10 +17,6 @@
     - [Cost Analysis](#cost-analysis)
     - [Block Introspection](#block-introspection)
     - [Field Suggestion](#field-suggestion)
-  - [Configuration](#configuration)
-  - [API](#api)
-  - [Environment Variables](#environment-variables)
-    - [Permissions](#permissions)
 
 ## Supported remediations
 
@@ -57,6 +53,10 @@ const server = new ApolloServer({
 
 ## Getting Started with Configuration
 
+GraphQL-Armor is fully configurable, scoped per plugin.
+
+View the [Per plugin remediation](#per-plugin-remediation) section for more information.
+
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
@@ -64,7 +64,7 @@ const armor = new ApolloArmor({
     CostAnalysis: {
         enabled: true,
         options: {
-            maxCost: 1000, // Default: 1000
+            maxCost: 1000,
         },
     }
 });
@@ -79,6 +79,8 @@ const server = new ApolloServer({
 
 ## Per plugin remediation
 
+This section describes how to configure each plugin individually.
+
 ### Character Limit
 
 `Character Limit plugin` will enforce a character limit on your GraphQL queries.
@@ -86,14 +88,16 @@ const server = new ApolloServer({
 (Note: The limit is not applied to whole HTTP body -, multipart form data / file upload will still works)
 
 ```typescript
-{
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor({
     CharacterLimit: {
         enabled: true,
         options: {
             maxLength: 15000, // Default: 15000
         },
     }
-}
+});
 ```
 
 ### Cost Analysis
@@ -101,14 +105,20 @@ const server = new ApolloServer({
 `Cost Analysis plugin` analyze incoming GraphQL queries and apply cost analysis algorithm to prevent resource overload.
 
 ```typescript
-{
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor({
     CostAnalysis: {
         enabled: true,
         options: {
-            maxCost: 1000, // Default: 1000
+            maxCost: 5000,          // Default: 5000
+            defaultComplexity: 1,   // Default: 1    | Complexity of GQL token
+            maxDepth: 6,            // Default: 6
+            maxAlias: 15,           // Default: 15
+            maxDirectives: 50,      // Default: 50
         },
     }
-}
+});
 ```
 
 ### Block Introspection
@@ -118,7 +128,9 @@ const server = new ApolloServer({
 By default, introspection is still available for our [Live GraphQL Security Testing Platform](https://escape.tech) by providing a valid identifier.
 
 ```typescript
-{
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor({
     BlockIntrospection: {
         enabled: false,
         options: {
@@ -128,7 +140,7 @@ By default, introspection is still available for our [Live GraphQL Security Test
             },
         },
     }
-}
+});
 ```
 
 ### Field Suggestion
@@ -136,99 +148,11 @@ By default, introspection is still available for our [Live GraphQL Security Test
 `Field Suggestion plugin` will prevent suggesting fields of unprecise GraphQL queries.
 
 ```typescript
-{
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor({
     FieldSuggestion: {
         enabled: true,
     }
-}
-```
-
-## Configuration
-
-## API
-
-```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-
-ApolloArmor(
-    // Optional:
-    // If you want to use a custom configuration, you can pass it in here.
-    config?: GraphQLArmorConfig,
-)
-
-ApolloArmor.getPlugins()
-=> PluginDefinition[]
-
-ApolloArmor.getValidationRules()
-=> ValidationRule[]
-
-ApolloArmor.getConfig<T>(
-    apolloConfig: Config<T>
-): Config<T>
-```
-
-```typescript
-import { ArmorApolloConfig, ArmorApolloConfigU } from '@escape.tech/graphql-armor';
-
-/**
- * Armored Config
- * @description
- * This will inject remediations into the config.
- * @param apolloConfig The ApolloConfig object
- * @param armorConfig  The GraphQLArmorConfig object
- * @returns The configuration object with the remediation injected
- */
-ArmorApolloConfig(
-    apolloConfig: Config<T>,
-    armorConfig?: GraphQLArmorConfig,
-)
-
-/**
- *  Armored Config Unsafe
- *  @description
- *  This is a wrapper around the `ArmorApolloConfig` function.
- *  It is used to create a config that is safe to use in a production environment.
- *  @param config We except an object with the same shape as the `ApolloConfig` object.
- *                ie: `validationRules`, `plugins`, ...properties
- *  @returns The remediated object after injection.
- **/
-ArmorApolloConfigU(
-    config: {
-        validationRules: ValidationRule[],
-        plugins: PluginDefinition[],
-        ...
-    },
-) -> config{...}
-```
-
-## Environment Variables
-
-### Permissions
-
-GraphQL-Armor support toggling remediations via environment variables.
-
-We use a bitwise operation to switch the remediation on and off, this way, you can toggle multiple remediations using one variable.
-
-```bash
-export GQLARMOR_PERMISSIONS=-1 # Do not infer configuration
-export GQLARMOR_PERMISSIONS=0  # Disable every remediations
-```
-
-|    Remediation|  Bit|
-|:-------------:|:---:|
-|Character Limit|  0x1|
-|  Cost Analysis|  0x2|
-|  Introspection|  0x4|
-|Field Suggestion|  0x8|
-
-For example, if you want to toggle `ONLY` the `Character Limit` and `Cost Analysis` remediations, you can use the following environment variable:
-
-```bash
-export GQLARMOR_PERMISSIONS=$(python -c "print(0x1 | 0x2)") # Toggle only:  Character Limit and Cost Analysis plugin
-```
-
-If you want to toggle `ONLY` the `Introspection` remediation, you can use the following environment variable:
-
-```bash
-export GQLARMOR_PERMISSIONS=$(python -c "print(0x4)") # Toggle only: Introspection plugin
+});
 ```

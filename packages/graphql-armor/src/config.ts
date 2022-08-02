@@ -9,27 +9,11 @@ const defaultConfig: GraphQLArmorConfig = {
   BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x4
 };
 
-function applyBitwisePermissions(config: GraphQLArmorConfig, permUID: number): GraphQLArmorConfig {
-  let keyID = 0;
-  for (const key in defaultConfig) {
-    if (!config.hasOwnProperty(key)) {
-      config[key] = { enabled: defaultConfig[key].enabled };
-    }
-    config[key].enabled = permUID & (1 << keyID++);
-  }
-  return config;
-}
-
 export class ConfigService {
   private readonly _plugins = new Map<string, PluginConfig>();
 
   constructor(config?: GraphQLArmorConfig) {
     config ??= {};
-
-    const permissions = parseInt(process.env.GQLARMOR_PERMISSIONS || '-1', 10);
-    if (permissions >= 0) {
-      config = applyBitwisePermissions(config, permissions);
-    }
 
     for (const key in defaultConfig) {
       let pluginConfig = defaultConfig[key];

@@ -5,15 +5,17 @@ import { PluginDefinition } from 'apollo-server-core/src/types';
 
 export class ArmorPlugin {
   private readonly _config: PluginConfig;
-  private readonly _logger: null | ((message: string) => void);
+  private readonly _logger?: (message: string) => void;
 
-  constructor(config: PluginConfig, logger: null | ((message: string) => void) = null) {
+  constructor(config: PluginConfig, logger?: (message: string) => void) {
     this._config = config;
     this._logger = logger;
   }
 
   log(message: string) {
-    if (this._logger) this._logger(message);
+    if (this._logger) {
+      this._logger(message);
+    }
   }
 
   getConfig(): PluginConfig {

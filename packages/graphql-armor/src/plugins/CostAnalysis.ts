@@ -11,9 +11,11 @@ import QueryComplexity, {
 export type CostAnalysisConfig = {
   CostAnalysis?: {
     options?: {
-      maxCost: number;
-      maxDepth: number;
-      maxAlias: number;
+      maxCost?: number;
+      defaultComplexity?: number;
+      maxDepth?: number;
+      maxAlias?: number;
+      maxDirectives?: number;
     };
   } & PluginConfig;
 };
@@ -53,8 +55,8 @@ export class CostAnalysis extends ArmorPlugin {
           onComplete: (_complexity: number) => {},
           createError: (max: number, actual: number) => {
             this.log(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
-            // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
             // we don't want people to know how complexity is computed
+            // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
             return new GraphQLError(`Query is too complex.`);
           },
           estimators: [
@@ -63,7 +65,7 @@ export class CostAnalysis extends ArmorPlugin {
             }),
           ],
         },
-        this.log,
+        (message) => this.log(message),
       );
     };
 

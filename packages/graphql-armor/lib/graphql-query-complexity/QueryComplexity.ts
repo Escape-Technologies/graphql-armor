@@ -142,6 +142,7 @@ export default class QueryComplexity {
   includeDirectiveDef: GraphQLDirective;
   skipDirectiveDef: GraphQLDirective;
   variableValues: Record<string, any>;
+
   private readonly logger: (message: string) => void;
 
   constructor(context: ValidationContext, options: QueryComplexityOptions, logger: (message: string) => void) {
@@ -155,6 +156,7 @@ export default class QueryComplexity {
     }
 
     this.logger = logger;
+
     this.context = context;
     this.complexity = 0;
     this.options = options;
@@ -221,7 +223,7 @@ export default class QueryComplexity {
           );
       }
     }
-    catch(e:any)
+    catch(e: any)
     {
       this.logger(e)
     }
@@ -368,7 +370,7 @@ export default class QueryComplexity {
                             this.variableValues || {}
                         );
                       } catch (e) {
-                        this.context.reportError(e);
+                        this.logger(e);
                         return complexities;
                       }
 
@@ -408,11 +410,9 @@ export default class QueryComplexity {
                         return false;
                       });
                       if (!validScore) {
-                        this.context.reportError(
-                            new GraphQLError(
-                                `No complexity could be calculated for field ${typeDef.name}.${field.name}. ` +
-                                'At least one complexity estimator has to return a complexity score.'
-                            )
+                        this.logger(
+                          `No complexity could be calculated for field ${typeDef.name}.${field.name}. ` +
+                          'At least one complexity estimator has to return a complexity score.'
                         );
                         return complexities;
                       }

@@ -9,8 +9,8 @@
       "request": "launch",
       "name": "Launch via Yarn",
       "runtimeExecutable": "yarn",
-      "cwd": "${workspaceFolder}",
-      "runtimeArgs": ["example"]
+      "cwd": "${fileDirname}",
+      "runtimeArgs": ["dev"]
     }
   ]
 }

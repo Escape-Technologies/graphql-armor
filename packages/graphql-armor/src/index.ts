@@ -11,14 +11,14 @@ class ApolloArmor {
   private readonly _plugins: ArmorPlugin[] = [];
   private readonly _configService: ConfigService;
 
-  constructor(config?: GraphQLArmorConfig) {
+  constructor(config?: GraphQLArmorConfig, logger?: (message: string) => void) {
     this._configService = new ConfigService(config);
 
     for (const plugin of Object.values(Plugins)) {
       const pluginConfig = this._configService.getPluginConfig(plugin.name);
 
       if (pluginConfig.enabled) {
-        this._plugins.push(new plugin(pluginConfig));
+        this._plugins.push(new plugin(pluginConfig, logger));
       }
     }
   }

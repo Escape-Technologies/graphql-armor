@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Dead-simple, yet highly customizable security middleware for Apollo GraphQL servers shield",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",

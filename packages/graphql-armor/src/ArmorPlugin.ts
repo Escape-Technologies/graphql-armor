@@ -22,7 +22,11 @@ export class ArmorPlugin {
     return this._config;
   }
 
-  getApolloPlugins(): PluginDefinition[] {
+  getApolloPlugins(): ApolloPlugin[] {
+    return [];
+  }
+
+  getEnvelopPlugins(): EnvelopPlugin[] {
     return [];
   }
 

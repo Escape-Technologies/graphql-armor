@@ -20,7 +20,14 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn workspaces focus @escape.tech/graphql-armor
+      - run: |
+          rm -rf .yarnrc.yml .yarn yarn.lock
+          corepack enable 
+      - run: |
+          yarn set version stable
+          yarn config set -H enableImmutableInstalls false
+          yarn install
+      - run: yarn workspace @escape.tech/graphql-armor install
       - run: yarn workspace @escape.tech/graphql-armor build
       - run: yarn workspace @escape.tech/graphql-armor publish
         env:

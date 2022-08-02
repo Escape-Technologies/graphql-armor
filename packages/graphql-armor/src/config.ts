@@ -6,7 +6,7 @@ import { DefaultBlockFieldSuggestionConfig } from './plugins/BlockFieldSuggestio
 const defaultConfig: GraphQLArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
-  BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x8
+  BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x4
 };
 
 function applyBitwisePermissions(config: GraphQLArmorConfig, permUID: number): GraphQLArmorConfig {

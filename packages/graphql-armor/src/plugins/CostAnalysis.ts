@@ -38,7 +38,7 @@ function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEs
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): Array<(context: ValidationContext) => any> {
-    const config: PluginConfig = this.config as PluginConfig;
+    const config: PluginConfig = this.getConfig() as PluginConfig;
 
     const rule = (context: ValidationContext): QueryComplexity => {
       return new QueryComplexity(context, {
@@ -48,9 +48,7 @@ export class CostAnalysis extends ArmorPlugin {
         maxDirectives: config.options.maxDirectives,
 
         variables: {},
-        onComplete: (complexity: number) => {
-          // console.log('Determined query complexity: ', complexity);
-        },
+        onComplete: (_complexity: number) => {},
         createError: (max: number, actual: number) => {
           return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
         },

@@ -141,7 +141,7 @@ export default class QueryComplexity {
   estimators: Array<ComplexityEstimator>;
   includeDirectiveDef: GraphQLDirective;
   skipDirectiveDef: GraphQLDirective;
-  variableValues: Record<string, any>;
+  // variableValues: Record<string, any>;
 
   constructor(context: ValidationContext, options: QueryComplexityOptions) {
     if (
@@ -162,7 +162,7 @@ export default class QueryComplexity {
     // @ts-ignore
     this.skipDirectiveDef = this.context.getSchema().getDirective('skip');
     this.estimators = options.estimators;
-    this.variableValues = {};
+    // this.variableValues = {};
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -309,7 +309,7 @@ export default class QueryComplexity {
                   const values = getDirectiveValues(
                     this.includeDirectiveDef,
                     childNode,
-                    this.variableValues || {}
+                    {} // this.variableValues || {}
                   );// @ts-ignore
                   if (typeof values.if === 'boolean') {// @ts-ignore
                     includeNode = values.if;
@@ -320,7 +320,7 @@ export default class QueryComplexity {
                   const values = getDirectiveValues(
                     this.skipDirectiveDef,
                     childNode,
-                    this.variableValues || {}
+                    {} // this.variableValues || {}
                   );// @ts-ignore
                   if (typeof values.if === 'boolean') {// @ts-ignore
                     skipNode = values.if;
@@ -344,17 +344,17 @@ export default class QueryComplexity {
                 const fieldType = getNamedType(field.type);
 
                 // Get arguments
-                let args: { [key: string]: any };
-                try {
-                  args = getArgumentValues(
-                    field,
-                    childNode,
-                    this.variableValues || {}
-                  );
-                } catch (e) {
-                  this.context.reportError(e);
-                  return complexities;
-                }
+                let args: { [key: string]: any } = {};
+                // try {
+                //   args = getArgumentValues(
+                //     field,
+                //     childNode,
+                //     this.variableValues || {}
+                //   );
+                // } catch (e) {
+                //   this.context.reportError(e);
+                //   return complexities;
+                // }
 
                 // Check if we have child complexity
                 let childComplexity = 0;

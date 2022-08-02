@@ -13,7 +13,7 @@ export type CostAnalysisConfig = {
     options: {
       maxCost: number;
       maxDepth: number;
-      maxFields: number;
+      maxAlias: number;
     };
   } & PluginConfig;
 };
@@ -24,7 +24,8 @@ export const DefaultCostAnalysisConfig = {
     maxCost: 5000,
     defaultComplexity: 1,
     maxDepth: 6,
-    maxFields: 75,
+    maxAlias: 15,
+    maxDirectives: 50,
   },
 };
 
@@ -43,6 +44,9 @@ export class CostAnalysis extends ArmorPlugin {
       return new QueryComplexity(context, {
         maxDepth: config.options.maxDepth,
         maximumComplexity: config.options.maxCost,
+        maxAlias: config.options.maxAlias,
+        maxDirectives: config.options.maxDirectives,
+
         variables: {},
         onComplete: (complexity: number) => {
           // console.log('Determined query complexity: ', complexity);

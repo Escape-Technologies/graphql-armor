@@ -83,6 +83,8 @@ export interface QueryComplexityOptions {
 
   // After this depth, +infinity is added to the cost
   maxDepth:number;
+  maxAlias:number;
+  maxDirectives: number;
 }
 
 function queryComplexityMessage(max: number, actual: number): string {
@@ -114,6 +116,8 @@ export function getComplexity(options: {
     maximumComplexity: Infinity,
     // Same
     maxDepth: Infinity,
+      maxDirectives: Infinity,
+      maxAlias: Infinity,
     estimators: options.estimators,
     variables: options.variables,
     operationName: options.operationName,
@@ -240,9 +244,9 @@ export default class QueryComplexity {
       | InlineFragmentNode
       | OperationDefinitionNode,
     typeDef: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType,
-    depth: number = 0
+    counters:{depth:number,alias:number,directives:number} = {depth:0,alias:0, directives:0}
   ): number {
-    if(depth > this.options.maxDepth)
+    if(counters.depth > this.options.maxDepth)
     {
       return +Infinity;
     }
@@ -274,6 +278,24 @@ export default class QueryComplexity {
             complexities: ComplexityMap,
             childNode: FieldNode | FragmentSpreadNode | InlineFragmentNode
           ): ComplexityMap => {
+
+            // @ts-ignore
+            if(childNode.alias != undefined)
+              counters.alias +=1
+
+            if(counters.alias > this.options.maxAlias)
+            {
+              throw new GraphQLError("Too many aliases.");
+            }
+
+            if(childNode.directives != undefined)
+            counters.directives += childNode.directives.length;
+
+            if(counters.directives > this.options.maxDirectives)
+            {
+              throw new GraphQLError("Too many directives.");
+            }
+
             // let nodeComplexity = 0;
             let innerComplexities = complexities;
 
@@ -337,7 +359,7 @@ export default class QueryComplexity {
                 // Check if we have child complexity
                 let childComplexity = 0;
                 if (isCompositeType(fieldType)) {
-                  childComplexity = this.nodeComplexity(childNode, fieldType,depth+1);
+                  childComplexity = this.nodeComplexity(childNode, fieldType, { ...counters, depth:counters.depth+1 });
                 }
 
                 // Run estimators one after another and return first valid complexity
@@ -393,7 +415,7 @@ export default class QueryComplexity {
                 const nodeComplexity = this.nodeComplexity(
                   fragment,
                   fragmentType,
-                  depth+1
+                  { ...counters, depth:counters.depth+1 }
                 );
                 if (isAbstractType(fragmentType)) {
                   // Add fragment complexity for all possible types
@@ -429,7 +451,7 @@ export default class QueryComplexity {
                 const nodeComplexity = this.nodeComplexity(
                   childNode,
                   inlineFragmentType,
-                  depth + 1
+                  { ...counters, depth:counters.depth+1 }
                 );
                 if (isAbstractType(inlineFragmentType)) {
                   // Add fragment complexity for all possible types

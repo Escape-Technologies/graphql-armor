@@ -10,6 +10,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
+    "nodemon": "nodemon src/server.ts",
     "lint": "prettier src/ -uw --single-quote"
   },
   "repository": {

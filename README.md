@@ -50,8 +50,8 @@ const armor = new ApolloArmor({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [...armor.getApolloPlugins(), ...yourPlugins],
-  validationRules: [...armor.getApolloValidationRules(), ...yourValidationRules],
+  plugins: [...armor.getPlugins(), ...yourPlugins],
+  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
 });
 ```
 
@@ -72,8 +72,8 @@ const armor = new ApolloArmor({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [...armor.getApolloPlugins(), ...yourPlugins],
-  validationRules: [...armor.getApolloValidationRules(), ...yourValidationRules],
+  plugins: [...armor.getPlugins(), ...yourPlugins],
+  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
 });
 ```
 

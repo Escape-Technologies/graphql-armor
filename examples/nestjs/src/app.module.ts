@@ -25,8 +25,8 @@ const armor = new ApolloArmor({
       autoSchemaFile: 'schema.gql',
 
       // Prepend the armored properties directly to the configuration
-      validationRules: armor.getApolloValidationRules(),
-      plugins: armor.getApolloPlugins()
+      validationRules: armor.getValidationRules(),
+      plugins: armor.getPlugins()
     }),
     BookModule,
   ],

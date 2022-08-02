@@ -50,7 +50,10 @@ export class CostAnalysis extends ArmorPlugin {
         variables: {},
         onComplete: (_complexity: number) => {},
         createError: (max: number, actual: number) => {
-          return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+          this.log(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+         // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+          // we don't want people to know how complexity is computed
+          return new GraphQLError(`Query is too complex.`);
         },
         estimators: [
           simpleEstimator({

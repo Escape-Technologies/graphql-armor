@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org/'
-      - run: corepack enable
+      - run: |
+          corepack enable
+          cp README.md packages/graphql-armor/README.md
       - run: yarn workspaces focus @escape.tech/graphql-armor
       - run: yarn workspace @escape.tech/graphql-armor build
       - run: |

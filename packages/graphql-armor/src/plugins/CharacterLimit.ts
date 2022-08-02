@@ -26,6 +26,6 @@ const plugin = ({ options: { maxLength } }: PluginConfig) => {
 
 export class CharacterLimit extends ArmorPlugin {
   getApolloPlugins(): PluginDefinition[] {
-    return [plugin(this.getConfig())];
+    return [plugin(this.config)];
   }
 }

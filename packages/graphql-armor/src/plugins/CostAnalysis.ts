@@ -38,7 +38,7 @@ function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEs
 
 export class CostAnalysis extends ArmorPlugin {
   getValidationRules(): Array<(context: ValidationContext) => any> {
-    const config: PluginConfig = this.getConfig() as PluginConfig;
+    const config: PluginConfig = this.config as PluginConfig;
 
     const rule = (context: ValidationContext): QueryComplexity => {
       return new QueryComplexity(context, {

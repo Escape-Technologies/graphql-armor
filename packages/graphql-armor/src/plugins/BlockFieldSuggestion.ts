@@ -31,6 +31,6 @@ const rule = ({}: PluginConfig): ValidationRule => {
 
 export class BlockFieldSuggestion extends ArmorPlugin {
   getValidationRules(): ValidationRule[] {
-    return [rule(this.getConfig())];
+    return [rule(this.config)];
   }
 }

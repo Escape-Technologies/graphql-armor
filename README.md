@@ -1,6 +1,6 @@
-# GraphQL-Armor 🛡️
+# GraphQL Armor 🛡️
 
-GraphQL-Armor is a Dead-simple, yet highly customizable security middleware for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
+GraphQL Armor is a Dead-simple, yet highly customizable security middleware for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
 
 ![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/banner.png)
 
@@ -8,7 +8,7 @@ GraphQL-Armor is a Dead-simple, yet highly customizable security middleware for 
 
 ## Contents
 
-- [GraphQL-Armor 🛡️](#graphql-armor-️)
+- [GraphQL Armor 🛡️](#graphql-armor-️)
   - [Contents](#contents)
   - [Supported remediations](#supported-remediations)
   - [Installation](#installation)

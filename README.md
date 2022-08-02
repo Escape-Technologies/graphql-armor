@@ -15,14 +15,12 @@
   - [Per plugin remediation](#per-plugin-remediation)
     - [Character Limit](#character-limit)
     - [Cost Analysis](#cost-analysis)
-    - [Block Introspection](#block-introspection)
     - [Field Suggestion](#field-suggestion)
 
 ## Supported remediations
 
 - [Character Limit](#character-limit)
 - [Limit Query Cost](#cost-analysis)
-- [Disable Introspection](#block-introspection)
 - [Disable Field Suggestion](#field-suggestion)
 
 ## Installation
@@ -116,28 +114,6 @@ const armor = new ApolloArmor({
             maxDepth: 6,            // Default: 6
             maxAlias: 15,           // Default: 15
             maxDirectives: 50,      // Default: 50
-        },
-    }
-});
-```
-
-### Block Introspection
-
-`BlockIntrospection plugin` will prevent introspection queries from being executed.
-
-By default, introspection is still available for our [Live GraphQL Security Testing Platform](https://escape.tech) by providing a valid identifier.
-
-```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-
-const armor = new ApolloArmor({
-    BlockIntrospection: {
-        enabled: false,
-        options: {
-            headersWhitelist: {
-                'x-allow-introspection': 'allow',
-                ...(process.env.ESCAPE_IDENTIFIER ? { 'x-escape-identifier': process.env.ESCAPE_IDENTIFIER } : {}),
-            },
         },
     }
 });

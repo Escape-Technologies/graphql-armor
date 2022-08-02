@@ -1,14 +1,12 @@
 import { GraphQLArmorConfig, PluginConfig } from './types';
 import { DefaultCharacterLimitConfig } from './plugins/CharacterLimit';
 import { DefaultCostAnalysisConfig } from './plugins/CostAnalysis';
-import { DefaultBlockIntrospectionConfig } from './plugins/BlockIntrospection';
 import { DefaultBlockFieldSuggestionConfig } from './plugins/BlockFieldSuggestion';
 
 const defaultConfig: GraphQLArmorConfig = {
   CharacterLimit: DefaultCharacterLimitConfig, // 0x1
   CostAnalysis: DefaultCostAnalysisConfig, // 0x2
-  BlockIntrospection: DefaultBlockIntrospectionConfig, // 0x4
-  BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x8
+  BlockFieldSuggestion: DefaultBlockFieldSuggestionConfig, // 0x4
 };
 
 function applyBitwisePermissions(config: GraphQLArmorConfig, permUID: number): GraphQLArmorConfig {

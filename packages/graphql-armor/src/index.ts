@@ -18,7 +18,7 @@ class ApolloArmor {
       const pluginConfig = this._configService.getPluginConfig(plugin.name);
 
       if (pluginConfig.enabled) {
-        this._plugins.push(new plugin(this, pluginConfig));
+        this._plugins.push(new plugin(pluginConfig));
       }
     }
   }

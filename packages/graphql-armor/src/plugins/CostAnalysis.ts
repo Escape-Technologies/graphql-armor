@@ -48,9 +48,7 @@ export class CostAnalysis extends ArmorPlugin {
         maxDirectives: config.options.maxDirectives,
 
         variables: {},
-        onComplete: (complexity: number) => {
-          // console.log('Determined query complexity: ', complexity);
-        },
+        onComplete: (_complexity: number) => {},
         createError: (max: number, actual: number) => {
           return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
         },

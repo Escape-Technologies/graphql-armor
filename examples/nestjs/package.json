@@ -1,7 +1,7 @@
 {
   "name": "@escape.tech/graphql-armor-nestjs-example",
-  "version": "0.0.1-alpha",
-  "description": "",
+  "version": "0.0.2",
+  "description": "NestJS example of GraphQL-Armor.",
   "main": "dist/index.js",
   "files": [
     "dist/**/*.js"
@@ -9,8 +9,6 @@
   "scripts": {
     "build": "nest build",
     "dev": "nest start -- --watch",
-    "start": "NODE_PATH=dist node dist/index.js",
-    "test": "echo 'NotImplementedError'",
     "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'"
   },
   "repository": {

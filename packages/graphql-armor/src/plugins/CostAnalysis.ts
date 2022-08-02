@@ -10,7 +10,7 @@ import QueryComplexity, {
 
 export type CostAnalysisConfig = {
   CostAnalysis?: {
-    options: {
+    options?: {
       maxCost: number;
       maxDepth: number;
       maxAlias: number;

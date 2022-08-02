@@ -3,7 +3,7 @@ const http = require('http');
 
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { gql } from 'apollo-server';
-import { GraphQLArmor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const typeDefs = gql`
   type Book {
@@ -63,7 +63,7 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-const armor = new GraphQLArmor(
+const armor = new ApolloArmor(
   {
     CharacterLimit: {
       options: {

@@ -1,12 +1,19 @@
-import { Module, Logger } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
-import { GraphQLArmor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-const armor = new GraphQLArmor({});
+const armor = new ApolloArmor({
+  CharacterLimit: {
+    enabled: true,
+    options: {
+      maxLength: 10000 
+    }
+  }
+});
 
 @Module({
   imports: [
@@ -18,8 +25,8 @@ const armor = new GraphQLArmor({});
       autoSchemaFile: 'schema.gql',
 
       // Prepend the armored properties directly to the configuration
-      validationRules: armor.getApolloValidationRules(),
-      plugins: armor.getApolloPlugins()
+      validationRules: armor.getValidationRules(),
+      plugins: armor.getPlugins()
     }),
     BookModule,
   ],

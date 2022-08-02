@@ -4,7 +4,7 @@ import { PluginConfig } from '../types';
 import { PluginDefinition } from 'apollo-server-core/src/types';
 
 export type CharacterLimitConfig = {
-  CharacterLimit?: { options: { maxLength: number } } & PluginConfig;
+  CharacterLimit?: { options?: { maxLength: number } } & PluginConfig;
 };
 export const DefaultCharacterLimitConfig = {
   _namespace: 'CharacterLimit',

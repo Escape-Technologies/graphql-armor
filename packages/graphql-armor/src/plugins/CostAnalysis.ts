@@ -41,23 +41,30 @@ export class CostAnalysis extends ArmorPlugin {
     const config: PluginConfig = this.getConfig() as PluginConfig;
 
     const rule = (context: ValidationContext): QueryComplexity => {
-      return new QueryComplexity(context, {
-        maxDepth: config.options.maxDepth,
-        maximumComplexity: config.options.maxCost,
-        maxAlias: config.options.maxAlias,
-        maxDirectives: config.options.maxDirectives,
+      return new QueryComplexity(
+        context,
+        {
+          maxDepth: config.options.maxDepth,
+          maximumComplexity: config.options.maxCost,
+          maxAlias: config.options.maxAlias,
+          maxDirectives: config.options.maxDirectives,
 
-        variables: {},
-        onComplete: (_complexity: number) => {},
-        createError: (max: number, actual: number) => {
-          return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+          variables: {},
+          onComplete: (_complexity: number) => {},
+          createError: (max: number, actual: number) => {
+            this.log(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+            // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+            // we don't want people to know how complexity is computed
+            return new GraphQLError(`Query is too complex.`);
+          },
+          estimators: [
+            simpleEstimator({
+              defaultComplexity: config.options.defaultComplexity,
+            }),
+          ],
         },
-        estimators: [
-          simpleEstimator({
-            defaultComplexity: config.options.defaultComplexity,
-          }),
-        ],
-      });
+        this.log,
+      );
     };
 
     return [rule];

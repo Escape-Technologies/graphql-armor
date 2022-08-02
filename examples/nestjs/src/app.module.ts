@@ -4,9 +4,16 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
-import { GraphQLArmor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-const armor = new GraphQLArmor({});
+const armor = new ApolloArmor({
+  CharacterLimit: {
+    enabled: false,
+    options: {
+      maxLength: 15000 
+    }
+  }
+});
 
 @Module({
   imports: [

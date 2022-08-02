@@ -8,9 +8,9 @@ import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
   CharacterLimit: {
-    enabled: false,
+    enabled: true,
     options: {
-      maxLength: 15000 
+      maxLength: 10000 
     }
   }
 });

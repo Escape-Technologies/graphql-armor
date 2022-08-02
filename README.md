@@ -24,10 +24,10 @@
 
 ## Supported remediations
 
-* [Character Limit](#character-limit)
-* [Limit Query Cost](#cost-analysis)
-* [Disable Introspection](#block-introspection)
-* [Disable Field Suggestion](#field-suggestion)
+- [Character Limit](#character-limit)
+- [Limit Query Cost](#cost-analysis)
+- [Disable Introspection](#block-introspection)
+- [Disable Field Suggestion](#field-suggestion)
 
 ## Installation
 

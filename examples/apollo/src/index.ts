@@ -4,6 +4,7 @@ const http = require('http');
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { gql } from 'apollo-server';
 import { ApolloArmor } from '@escape.tech/graphql-armor';
+import { ApolloServer } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Book {
@@ -65,27 +66,22 @@ const httpServer = http.createServer(app);
 
 const armor = new ApolloArmor(
   {
-    CharacterLimit: {
+    characterLimit: {
+      enabled: true,
       options: {
         maxLength: 10000,
       },
-    },
-    BlockIntrospection: {
-      enabled: false,
-    },
-  },
-  (status: string, plugin: any) => {
-    console.log(status, plugin._namespace);
+    }
   },
 );
 
-const server = armor.patchApolloServer({
+const server = new ApolloServer(armor.protect({
   typeDefs,
   resolvers,
   cache: 'bounded',
   // eslint-disable-next-line new-cap
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-});
+}));
 
 (async () => {
   await server.start();

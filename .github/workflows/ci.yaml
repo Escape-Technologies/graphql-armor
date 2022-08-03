@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: yarn workspaces focus @escape.tech/graphql-armor
+        run: yarn install
       - name: Run lint
-        run: yarn workspace @escape.tech/graphql-armor lint
+        run: yarn workspaces run lint
       - name: Run build
-        run: yarn workspace @escape.tech/graphql-armor build
-      # - name: Run tests
-      #   if: always()
-      #   run: yarn workspace @escape.tech/graphql-armor test
+        run: yarn workspaces run build
+      - name: Run tests
+        if: always()
+        run: yarn workspaces run test

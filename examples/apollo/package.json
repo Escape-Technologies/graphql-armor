@@ -1,8 +1,8 @@
 {
-  "name": "@escape.tech/graphql-armor-apollo-example",
+  "name": "@escape.tech/graphql-armor-example-apollo",
   "private": true,
   "version": "1.0.0",
-  "description": "Apollo example of GraphQL Armor",
+  "description": "GraphQL Armor example for Apollo.",
   "packageManager": "yarn@3.2.2",
   "main": "index.ts",
   "scripts": {

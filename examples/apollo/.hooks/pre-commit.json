@@ -2,15 +2,15 @@
   "steps": [
     {
       "name": "prettier",
-      "command": "yarn workspace @escape.tech/graphql-armor-apollo-example lint"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-apollo lint"
     },
     {
       "name": "build",
-      "command": "yarn workspace @escape.tech/graphql-armor-apollo-example build"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-apollo build"
     },
     {
       "name": "test",
-      "command": "yarn workspace @escape.tech/graphql-armor-apollo-example test"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-apollo test"
     }
   ]
 }

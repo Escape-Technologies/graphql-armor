@@ -2,15 +2,15 @@
   "steps": [
     {
       "name": "prettier",
-      "command": "yarn workspace @escape.tech/graphql-armor-yoga-example lint"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-yoga lint"
     },
     {
       "name": "build",
-      "command": "yarn workspace @escape.tech/graphql-armor-yoga-example build"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-yoga build"
     },
     {
       "name": "test",
-      "command": "yarn workspace @escape.tech/graphql-armor-yoga-example test"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-yoga test"
     }
   ]
 }

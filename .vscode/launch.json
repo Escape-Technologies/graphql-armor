@@ -20,7 +20,7 @@
         "runtimeExecutable": "yarn",
         "cwd": "${workspaceRoot}",
         "console": "integratedTerminal",
-        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-yoga-example", "dev"]
+        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-example-yoga", "dev"]
     },
     {
         "type": "node",
@@ -29,7 +29,7 @@
         "runtimeExecutable": "yarn",
         "cwd": "${workspaceRoot}",
         "console": "integratedTerminal",
-        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-apollo-example", "dev"]
+        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-example-apollo", "dev"]
     },
     {
         "type": "node",
@@ -38,7 +38,7 @@
         "runtimeExecutable": "yarn",
         "cwd": "${workspaceRoot}",
         "console": "integratedTerminal",
-        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-nestjs-example", "dev"]
+        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-example-nestjs", "dev"]
     },
   ]
 }

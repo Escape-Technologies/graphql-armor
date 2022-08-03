@@ -1,8 +1,8 @@
 {
-  "name": "@escape.tech/graphql-armor-yoga-example",
+  "name": "@escape.tech/graphql-armor-example-yoga",
   "private": true,
   "version": "1.0.0",
-  "description": "Yoga example of GraphQL Armor.",
+  "description": "GraphQL Armor example for yoga.",
   "packageManager": "yarn@3.2.2",
   "main": "./src/main.ts",
   "scripts": {

@@ -2,15 +2,15 @@
   "steps": [
     {
       "name": "prettier",
-      "command": "yarn workspace @escape.tech/graphql-armor-nestjs-example lint"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-nestjs lint"
     },
     {
       "name": "build",
-      "command": "yarn workspace @escape.tech/graphql-armor-nestjs-example build"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-nestjs build"
     },
     {
       "name": "test",
-      "command": "yarn workspace @escape.tech/graphql-armor-nestjs-example test"
+      "command": "yarn workspace @escape.tech/graphql-armor-example-nestjs test"
     }
   ]
 }

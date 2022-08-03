@@ -1,14 +1,29 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const typeDefinitions = /* GraphQL */ `
+  type Book {
+    title: String
+    author: String
+  }
+
   type Query {
-    hello: String!
+    books: [Book]
   }
 `
+const books = [
+  {
+    title: 'The Awakening',
+    author: 'Kate Chopin',
+  },
+  {
+    title: 'City of Glass',
+    author: 'Paul Auster',
+  },
+];
 
 const resolvers = {
   Query: {
-    hello: () => 'Hello World!',
+    books: () => books,
   },
 }
 

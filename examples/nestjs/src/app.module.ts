@@ -10,9 +10,9 @@ const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
     options: {
-      maxLength: 1
-    }
-  }
+      maxLength: 1,
+    },
+  },
 });
 
 @Module({
@@ -30,4 +30,4 @@ const armor = new ApolloArmor({
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

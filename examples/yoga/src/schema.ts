@@ -1,4 +1,4 @@
-import { makeExecutableSchema } from '@graphql-tools/schema'
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
 const typeDefinitions = /* GraphQL */ `
   type Book {
@@ -9,7 +9,7 @@ const typeDefinitions = /* GraphQL */ `
   type Query {
     books: [Book]
   }
-`
+`;
 const books = [
   {
     title: 'The Awakening',
@@ -25,9 +25,9 @@ const resolvers = {
   Query: {
     books: () => books,
   },
-}
+};
 
 export const schema = makeExecutableSchema({
   resolvers: [resolvers],
-  typeDefs: [typeDefinitions]
-}) 
+  typeDefs: [typeDefinitions],
+});

@@ -38,6 +38,7 @@ import {
   getNamedType,
   GraphQLError,
 } from 'graphql';
+import { UserInputError } from 'apollo-server';
 
 export type ComplexityEstimatorArgs = {
   type: GraphQLCompositeType;
@@ -146,15 +147,6 @@ export default class QueryComplexity {
   private readonly logger: (message: string) => void;
 
   constructor(context: ValidationContext, options: QueryComplexityOptions, logger: (message: string) => void) {
-    if (
-      !(
-        typeof options.maximumComplexity === 'number' &&
-        options.maximumComplexity > 0
-      )
-    ) {
-      throw new Error('Maximum query complexity must be a positive number');
-    }
-
     this.logger = logger;
 
     this.context = context;
@@ -227,7 +219,7 @@ export default class QueryComplexity {
           );
           break;
         default:
-          throw new Error(
+          throw new UserInputError(
               `Query complexity could not be calculated for operation of type ${operation.operation}`
           );
       }
@@ -316,14 +308,14 @@ export default class QueryComplexity {
                     counters.alias += 1
 
                   if (counters.alias > this.options.maxAlias) {
-                    throw new GraphQLError("Too many aliases.");
+                    throw new UserInputError("Too many aliases.");
                   }
 
                   if (childNode.directives != undefined)
                     counters.directives += childNode.directives.length;
 
                   if (counters.directives > this.options.maxDirectives) {
-                    throw new GraphQLError("Too many directives.");
+                    throw new UserInputError("Too many directives.");
                   }
 
                   // let nodeComplexity = 0;

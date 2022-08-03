@@ -4,6 +4,7 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
   get isEnabled(): boolean {
+    // default
     if (!this.config.blockFieldSuggestion) return true;
     return this.config.blockFieldSuggestion.enabled;
   }
@@ -13,7 +14,7 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
       plugins: [
         useMaskedErrors({
           handleValidationErrors: true,
-          formatError: (error: GraphQLError, _message, _isDev) => {
+          formatError: (error: GraphQLError) => {
             error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
             return error;
           },

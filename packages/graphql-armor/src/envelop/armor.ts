@@ -2,6 +2,7 @@ import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
 import type { Plugin } from '@envelop/core';
 import { EnvelopBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
+import { EnvelopCharacterLimitProtection } from './protections/character-limit';
 
 export class EnvelopArmor {
   private config: GraphQLArmorConfig;
@@ -11,7 +12,7 @@ export class EnvelopArmor {
   constructor(config: GraphQLArmorConfig = {}) {
     this.config = config;
 
-    this.protections = [new EnvelopBlockFieldSuggestionProtection(config)];
+    this.protections = [new EnvelopBlockFieldSuggestionProtection(config), new EnvelopCharacterLimitProtection(config)];
   }
 
   protect(): {

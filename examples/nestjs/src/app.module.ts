@@ -7,10 +7,10 @@ import { BookModule } from './book/book.module';
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-  CharacterLimit: {
+  characterLimit: {
     enabled: true,
     options: {
-      maxLength: 10000 
+      maxLength: 1
     }
   }
 });
@@ -18,19 +18,17 @@ const armor = new ApolloArmor({
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
-      context: ({ req }) => ({ req }),
       playground: true,
+      typePaths: ['./**/*.graphql'],
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-
-      // Prepend the armored properties directly to the configuration
-      validationRules: armor.getValidationRules(),
-      plugins: armor.getPlugins()
+      ...armor.protect({
+        context: ({ req }) => ({ req }),
+      })
     }),
     BookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

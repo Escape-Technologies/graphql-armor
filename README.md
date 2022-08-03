@@ -49,8 +49,18 @@ const armor = new ApolloArmor({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [...armor.getPlugins(), ...yourPlugins],
-  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
+  // This will add a `validationRules` and a `plugins` property to the configuration object
+  ...armor.protect()
+});
+
+// If you want to enhance an already existing plugins or validation rules list
+const enhancements = armor.protect()
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [...myPlugins, ...enhancements.plugins]
+  validationRules: [...myValidationRules, ...enhancements.validationRules]
 });
 ```
 
@@ -66,19 +76,12 @@ Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    CostAnalysis: {
+    costAnalysis: {
         enabled: true,
         options: {
             maxCost: 1000,
         },
     }
-});
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [...armor.getPlugins(), ...yourPlugins],
-  validationRules: [...armor.getValidationRules(), ...yourValidationRules],
 });
 ```
 
@@ -153,6 +156,4 @@ chmod +x ./install-dev.sh
 ./install-dev.sh
 ```
 
-We are using yarn as our package manager.
-
-You will be able to run command from the root using `yarn workspace @escape.tech/pkg cmd`.
+We are using yarn as our package manager. [We do use the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!

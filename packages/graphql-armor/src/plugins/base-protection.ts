@@ -6,6 +6,11 @@ export type ProtectionConfiguration<Options = never> = {
   options?: Options;
 };
 
+export type ApolloServerConfigurationEnhancement = {
+  plugins?: ApolloServerConfig['plugins'];
+  validationRules?: ApolloServerConfig['validationRules'];
+};
+
 export abstract class Protection {
   config: GraphQLArmorConfig;
 
@@ -13,23 +18,6 @@ export abstract class Protection {
     this.config = config;
   }
 
-  abstract protect(config: ApolloServerConfig): ApolloServerConfig;
+  abstract protect(): ApolloServerConfigurationEnhancement;
   abstract get isEnabled(): boolean;
-
-  applyValidationRules(
-    originalConfig: ApolloServerConfig,
-    validationRules: ApolloServerConfig['validationRules'] = [],
-  ): ApolloServerConfig {
-    return {
-      ...originalConfig,
-      validationRules: [...(originalConfig.validationRules || []), ...validationRules],
-    };
-  }
-
-  applyPlugins(originalConfig: ApolloServerConfig, plugins: ApolloServerConfig['plugins'] = []): ApolloServerConfig {
-    return {
-      ...originalConfig,
-      plugins: [...(originalConfig.plugins || []), ...plugins],
-    };
-  }
 }

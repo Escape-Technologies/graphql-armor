@@ -1,7 +1,7 @@
 import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
 import { ValidationContext } from 'graphql';
 
-import { Protection } from './base-protection';
+import { ApolloServerConfigurationEnhancement, Protection } from './base-protection';
 import { CostAnalysisOptions } from './protection-options';
 
 import QueryComplexity, {
@@ -64,7 +64,9 @@ export class CostAnalysisProtection extends Protection {
     };
   }
 
-  protect(apolloConfig: ApolloServerConfig): ApolloServerConfig {
-    return this.applyValidationRules(apolloConfig, [validationRule(this.options)]);
+  protect(): ApolloServerConfigurationEnhancement {
+    return {
+      validationRules: [validationRule(this.options)],
+    };
   }
 }

@@ -1,13 +1,12 @@
-import { Config as ApolloServerConfig, PluginDefinition } from 'apollo-server-core';
-import { Protection } from './base-protection';
+import { PluginDefinition } from 'apollo-server-core';
+import { ApolloServerConfigurationEnhancement, Protection } from './base-protection';
 
 const plugin: PluginDefinition = {
   async requestDidStart() {
     return {
       async didEncounterErrors(requestContext) {
         for (const error of requestContext.errors) {
-          if (error.message.toLowerCase().includes('did you mean'))
-            error.message = error.message.replace(/did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
+          error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
         }
       },
     };
@@ -21,7 +20,9 @@ export class BlockFieldSuggestionProtection extends Protection {
     return this.config.blockFieldSuggestion.enabled;
   }
 
-  protect(apolloConfig: ApolloServerConfig): ApolloServerConfig {
-    return this.applyPlugins(apolloConfig, [plugin]);
+  protect(): ApolloServerConfigurationEnhancement {
+    return {
+      plugins: [plugin],
+    };
   }
 }

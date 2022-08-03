@@ -20,14 +20,25 @@ class ApolloArmor {
     ];
   }
 
-  public protect(apolloConfig: ApolloServerConfig): ApolloServerConfig {
-    let finalApolloConfig = apolloConfig;
+  protect(): {
+    plugins: ApolloServerConfig['plugins'];
+    validationRules: ApolloServerConfig['validationRules'];
+  } {
+    let plugins: ApolloServerConfig['plugins'] = [];
+    let validationRules: ApolloServerConfig['validationRules'] = [];
 
     for (const protection of this.protections) {
-      if (protection.isEnabled) finalApolloConfig = protection.protect(finalApolloConfig);
+      if (protection.isEnabled) {
+        const { plugins: newPlugins, validationRules: newValidationRules } = protection.protect();
+        plugins = [...plugins, ...(newPlugins || [])];
+        validationRules = [...validationRules, ...(newValidationRules || [])];
+      }
     }
 
-    return finalApolloConfig;
+    return {
+      plugins,
+      validationRules,
+    };
   }
 }
 

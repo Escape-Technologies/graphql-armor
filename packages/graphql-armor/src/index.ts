@@ -23,6 +23,8 @@ class ApolloArmor {
   protect(): {
     plugins: ApolloServerConfig['plugins'];
     validationRules: ApolloServerConfig['validationRules'];
+    allowBatchedHttpRequests: false;
+    debug: false;
   } {
     let plugins: ApolloServerConfig['plugins'] = [];
     let validationRules: ApolloServerConfig['validationRules'] = [];
@@ -38,6 +40,8 @@ class ApolloArmor {
     return {
       plugins,
       validationRules,
+      allowBatchedHttpRequests: false,
+      debug: false,
     };
   }
 }

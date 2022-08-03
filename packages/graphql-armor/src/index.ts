@@ -1,52 +1,35 @@
-import { Config as ApolloConfig, PluginDefinition } from 'apollo-server-core/src/types';
-import { ValidationContext } from 'graphql';
-
-import * as Plugins from './plugins/';
-
-import { ArmorPlugin } from './ArmorPlugin';
-import { GraphQLArmorConfig } from './types';
-import { ConfigService } from './config';
+import { Config as ApolloServerConfig } from 'apollo-server-core';
+import { GraphQLArmorConfig } from 'config';
+import {
+  BlockFieldSuggestionProtection,
+  CharacterLimitProtection,
+  CostAnalysisProtection,
+  Protection,
+} from './plugins';
 
 class ApolloArmor {
-  private readonly _plugins: ArmorPlugin[] = [];
-  private readonly _configService: ConfigService;
+  private config: GraphQLArmorConfig;
 
-  constructor(config?: GraphQLArmorConfig, logger?: (message: string) => void) {
-    this._configService = new ConfigService(config);
+  private readonly protections: Protection[];
 
-    for (const plugin of Object.values(Plugins)) {
-      const pluginConfig = this._configService.getPluginConfig(plugin.name);
+  constructor(config: GraphQLArmorConfig = {}) {
+    this.config = config;
 
-      if (pluginConfig.enabled) {
-        this._plugins.push(new plugin(pluginConfig, logger));
-      }
-    }
+    this.protections = [
+      new BlockFieldSuggestionProtection(config),
+      new CharacterLimitProtection(config),
+      new CostAnalysisProtection(config),
+    ];
   }
 
-  public getPlugins(): PluginDefinition[] {
-    let apolloPlugins: PluginDefinition[] = [];
-    for (const plugin of this._plugins) {
-      apolloPlugins = [...apolloPlugins, ...plugin.getApolloPlugins()];
+  public protect(apolloConfig: ApolloServerConfig): ApolloServerConfig {
+    let finalApolloConfig = apolloConfig;
+
+    for (const protection of this.protections) {
+      if (protection.isEnabled) finalApolloConfig = protection.protect(finalApolloConfig);
     }
-    return apolloPlugins;
-  }
 
-  public getValidationRules(): Array<(context: ValidationContext) => any> {
-    let validationRules: Array<(context: ValidationContext) => any> = [];
-    for (const plugin of this._plugins) {
-      validationRules = [...validationRules, ...plugin.getValidationRules()];
-    }
-    return validationRules;
-  }
-
-  public getConfig<T>(apolloConfig: ApolloConfig<T>): ApolloConfig<T> {
-    apolloConfig.plugins ??= [];
-    apolloConfig.validationRules ??= [];
-
-    apolloConfig.plugins = [...this.getPlugins(), ...apolloConfig.plugins!];
-    apolloConfig.validationRules = [...this.getValidationRules(), ...apolloConfig.validationRules!];
-
-    return apolloConfig;
+    return finalApolloConfig;
   }
 }
 

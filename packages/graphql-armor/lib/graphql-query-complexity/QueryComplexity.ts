@@ -187,7 +187,6 @@ export default class QueryComplexity {
 
       // Get variable values from variables that are passed from options, merged
       // with default values defined in the operation
-      // @ts-ignore
       this.variableValues = getVariableValues(
           this.context.getSchema(),
           // We have to create a new array here because input argument is not readonly in graphql ~14.6.0
@@ -197,16 +196,14 @@ export default class QueryComplexity {
 
       switch (operation.operation) {
         case 'query':
-          // @ts-ignore
           this.complexity += this.nodeComplexity(
               operation,// @ts-ignore
               this.context.getSchema().getQueryType()
           );
           break;
         case 'mutation':
-          // @ts-ignore
           this.complexity += this.nodeComplexity(
-              operation,// @ts-ignore
+              operation,
               this.context.getSchema().getMutationType()
           );
           break;

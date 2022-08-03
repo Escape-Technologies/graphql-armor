@@ -25,7 +25,7 @@
     "@apollo/gateway": "^2.0.5",
     "@escape.tech/graphql-armor": "workspace:^",
     "@nestjs/apollo": "^10.0.19",
-    "@nestjs/common": "^9.0.7",
+    "@nestjs/common": "^9.0.8",
     "@nestjs/core": "^9.0.7",
     "@nestjs/graphql": "^10.0.21",
     "@nestjs/platform-express": "^9.0.8",

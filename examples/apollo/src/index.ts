@@ -75,12 +75,16 @@ const armor = new ApolloArmor(
   },
 );
 
+const enhancements = armor.protect()
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  ...armor.protect()
+  plugins: [
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+    ...enhancements.plugins || [],
+  ],
 });
 
 (async () => {

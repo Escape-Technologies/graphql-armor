@@ -13,7 +13,7 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
       plugins: [
         useMaskedErrors({
           handleValidationErrors: true,
-          formatError: (error: GraphQLError, message, isDev) => {
+          formatError: (error: GraphQLError, _message, _isDev) => {
             error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
             return error;
           },

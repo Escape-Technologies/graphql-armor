@@ -11,6 +11,12 @@ jobs:
       fail-fast: false
       matrix:
         node: [14, 16, 17, 18]
+        repo: [
+          "@escape.tech/graphql-armor",
+          "@escape.tech/graphql-armor-apollo-example",
+          "@escape.tech/graphql-armor-nestjs-example",
+          "@escape.tech/graphql-armor-yoga-example"
+        ]
     name: Node ${{ matrix.node }} CI
     steps:
       - uses: actions/checkout@v3
@@ -22,9 +28,9 @@ jobs:
       - name: Build Armor
         run: yarn workspace @escape.tech/graphql-armor build
       - name: Run lint
-        run: yarn workspaces foreach run lint
+        run: yarn workspace ${{ matrix.repo }} lint
       - name: Run build
-        run: yarn workspaces foreach run build
+        run: yarn workspace ${{ matrix.repo }} build
       - name: Run tests
         if: always()
-        run: yarn workspaces foreach run test
+        run: yarn workspace ${{ matrix.repo }} test

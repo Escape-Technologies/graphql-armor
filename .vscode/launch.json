@@ -7,10 +7,20 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via Yarn",
+      "name": "GraphQL Armor dev",
       "runtimeExecutable": "yarn",
-      "cwd": "${fileDirname}",
-      "runtimeArgs": ["dev"]
-    }
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "runtimeArgs": ["workspace", "@escape.tech/graphql-armor", "dev"]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Yoga example dev",
+        "runtimeExecutable": "yarn",
+        "cwd": "${workspaceRoot}",
+        "console": "integratedTerminal",
+        "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-yoga-example", "dev"]
+      },
   ]
 }

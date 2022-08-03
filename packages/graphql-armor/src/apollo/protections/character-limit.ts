@@ -1,7 +1,7 @@
 import { GraphQLRequestContext } from 'apollo-server-types';
-import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
-import { ApolloServerConfigurationEnhancement, Protection } from './base-protection';
-import { CharacterLimitOptions } from './protection-options';
+import { ApolloError } from 'apollo-server-core';
+import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
+import { CharacterLimitOptions } from '../../config';
 
 const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {
@@ -14,7 +14,7 @@ const plugin = ({ maxLength }: CharacterLimitOptions) => {
   };
 };
 
-export class CharacterLimitProtection extends Protection {
+export class ApolloCharacterLimitProtection extends ApolloProtection {
   get isEnabled(): boolean {
     // default
     if (!this.config.characterLimit) return true;

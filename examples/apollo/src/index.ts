@@ -75,13 +75,13 @@ const armor = new ApolloArmor(
   },
 );
 
-const server = new ApolloServer(armor.protect({
+const server = new ApolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
-  // eslint-disable-next-line new-cap
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-}));
+  ...armor.protect()
+});
 
 (async () => {
   await server.start();

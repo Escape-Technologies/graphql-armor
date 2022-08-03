@@ -1,5 +1,5 @@
 import { PluginDefinition } from 'apollo-server-core';
-import { ApolloServerConfigurationEnhancement, Protection } from './base-protection';
+import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 
 const plugin: PluginDefinition = {
   async requestDidStart() {
@@ -13,7 +13,7 @@ const plugin: PluginDefinition = {
   },
 };
 
-export class BlockFieldSuggestionProtection extends Protection {
+export class ApolloBlockFieldSuggestionProtection extends ApolloProtection {
   get isEnabled(): boolean {
     // default
     if (!this.config.blockFieldSuggestion) return true;

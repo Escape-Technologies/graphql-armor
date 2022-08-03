@@ -1,5 +1,8 @@
 {
   "name": "@escape.tech/graphql-armor-yoga-example",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "Yoga example of GraphQL Armor.",
   "packageManager": "yarn@3.2.2",
   "main": "./src/main.ts",
   "scripts": {
@@ -8,6 +11,16 @@
     "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'",
     "test": "echo \"Error: no test specified\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:Escape-Technologies/graphql-armor.git"
+  },
+  "author": "Escape Technologies SAS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
+  },
+  "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "devDependencies": {
     "@types/node": "^18.6.3",
     "prettier": "^2.7.1",

@@ -575,9 +575,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@escape.tech/graphql-armor-express-apollo-example@workspace:examples/apollo":
+"@escape.tech/graphql-armor-apollo-example@workspace:examples/apollo":
   version: 0.0.0-use.local
-  resolution: "@escape.tech/graphql-armor-express-apollo-example@workspace:examples/apollo"
+  resolution: "@escape.tech/graphql-armor-apollo-example@workspace:examples/apollo"
   dependencies:
     "@apollo/gateway": ^2.0.5
     "@escape.tech/graphql-armor": "workspace:^"

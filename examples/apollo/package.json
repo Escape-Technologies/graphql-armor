@@ -1,5 +1,5 @@
 {
-  "name": "@escape.tech/graphql-armor-express-apollo-example",
+  "name": "@escape.tech/graphql-armor-apollo-example",
   "version": "0.0.1-alpha",
   "description": "",
   "main": "index.ts",

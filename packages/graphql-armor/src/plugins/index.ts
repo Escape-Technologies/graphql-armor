@@ -6,6 +6,11 @@ import { CostAnalysisOptions } from './cost-analysis';
 
 export type ProtectionOptions = BlockFieldSuggestionOptions | CharacterLimitOptions | CostAnalysisOptions;
 
+export type ProtectionConfiguration<Options = never> = {
+  enabled: boolean;
+  options?: Options;
+};
+
 export abstract class Protection {
   config: GraphQLArmorConfig;
 
@@ -34,7 +39,6 @@ export abstract class Protection {
   }
 }
 
-export { ProtectionConfiguration } from './protection-options';
 export * from './character-limit';
 export * from './cost-analysis';
 export * from './block-field-suggestion';

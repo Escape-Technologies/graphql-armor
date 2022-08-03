@@ -7,7 +7,7 @@ export type CharacterLimitOptions = { maxLength: number };
 const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {
     async requestDidStart(context: GraphQLRequestContext) {
-      if(!context.request.query) return
+      if (!context.request.query) return;
       if (context.request.query.length > maxLength) {
         throw new ApolloError('Query too large.', 'BAD_USER_INPUT');
       }

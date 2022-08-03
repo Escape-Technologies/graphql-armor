@@ -161,8 +161,10 @@ export default class QueryComplexity {
     this.complexity = 0;
     this.options = options;
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     this.includeDirectiveDef = this.context.getSchema().getDirective('include');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     this.skipDirectiveDef = this.context.getSchema().getDirective('skip');
     this.estimators = options.estimators;
@@ -177,9 +179,12 @@ export default class QueryComplexity {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
 
     try {
-      // @ts-ignore
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
       if (
-          typeof this.options.operationName === 'string' &&// @ts-ignore
+          typeof this.options.operationName === 'string' &&
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
           this.options.operationName !== operation.name.value
       ) {
         return;
@@ -187,6 +192,8 @@ export default class QueryComplexity {
 
       // Get variable values from variables that are passed from options, merged
       // with default values defined in the operation
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       this.variableValues = getVariableValues(
           this.context.getSchema(),
           // We have to create a new array here because input argument is not readonly in graphql ~14.6.0
@@ -197,19 +204,24 @@ export default class QueryComplexity {
       switch (operation.operation) {
         case 'query':
           this.complexity += this.nodeComplexity(
-              operation,// @ts-ignore
+              operation,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               this.context.getSchema().getQueryType()
           );
           break;
         case 'mutation':
           this.complexity += this.nodeComplexity(
               operation,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               this.context.getSchema().getMutationType()
           );
           break;
         case 'subscription':
           this.complexity += this.nodeComplexity(
               operation,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               this.context.getSchema().getSubscriptionType()
           );
@@ -233,7 +245,9 @@ export default class QueryComplexity {
 
     try{
     if (
-      typeof this.options.operationName === 'string' &&// @ts-ignore
+      typeof this.options.operationName === 'string' &&
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
       this.options.operationName !== operation.name.value
     ) {
       return;
@@ -296,7 +310,8 @@ export default class QueryComplexity {
                     childNode: FieldNode | FragmentSpreadNode | InlineFragmentNode
                 ): ComplexityMap => {
 
-                  // @ts-ignore
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
                   if (childNode.alias != undefined)
                     counters.alias += 1
 
@@ -325,8 +340,12 @@ export default class QueryComplexity {
                             this.includeDirectiveDef,
                             childNode,
                             this.variableValues || {}
-                        );// @ts-ignore
-                        if (typeof values.if === 'boolean') {// @ts-ignore
+                        );
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+                        if (typeof values.if === 'boolean') {
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
                           includeNode = values.if;
                         }
                         break;
@@ -336,8 +355,12 @@ export default class QueryComplexity {
                             this.skipDirectiveDef,
                             childNode,
                             this.variableValues || {}
-                        );// @ts-ignore
-                        if (typeof values.if === 'boolean') {// @ts-ignore
+                        );
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+                        if (typeof values.if === 'boolean') {
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
                           skipNode = values.if;
                         }
                         break;
@@ -455,7 +478,9 @@ export default class QueryComplexity {
                     }
                     case Kind.INLINE_FRAGMENT: {
                       let inlineFragmentType: GraphQLNamedType = typeDef;
-                      if (childNode.typeCondition && childNode.typeCondition.name) {// @ts-ignore
+                      if (childNode.typeCondition && childNode.typeCondition.name) {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
                         inlineFragmentType = this.context
                             .getSchema()
                             .getType(childNode.typeCondition.name.value);

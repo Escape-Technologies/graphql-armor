@@ -1,5 +1,5 @@
 import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
-import { GraphQLError, ValidationContext } from 'graphql';
+import { ValidationContext } from 'graphql';
 
 import { Protection } from 'plugins';
 import QueryComplexity, {
@@ -22,33 +22,36 @@ function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEs
   };
 }
 
-const validationRule = (options: CostAnalysisOptions) =>  (context: ValidationContext): QueryComplexity => new QueryComplexity(
-  context,
-  {
-    maxDepth: options.maxDepth,
-    maximumComplexity: options.maxCost,
-    maxAlias: options.maxAlias,
-    maxDirectives: options.maxDirectives,
+const validationRule =
+  (options: CostAnalysisOptions) =>
+  (context: ValidationContext): QueryComplexity =>
+    new QueryComplexity(
+      context,
+      {
+        maxDepth: options.maxDepth,
+        maximumComplexity: options.maxCost,
+        maxAlias: options.maxAlias,
+        maxDirectives: options.maxDirectives,
 
-    variables: {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onComplete: () => {},
-    createError: () => {
-      // this.log(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
-      // we don't want people to know how complexity is computed
-      // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
-      return new ApolloError(`Query is too complex.`, 'BAD_USER_INPUT');
-    },
-    estimators: [
-      simpleEstimator({
-        defaultComplexity: options.defaultComplexity,
-      }),
-    ],
-  },
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  () => {},
-  // (message) => this.log(message),
-);
+        variables: {},
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onComplete: () => {},
+        createError: () => {
+          // this.log(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+          // we don't want people to know how complexity is computed
+          // return new GraphQLError(`Query is too complex: ${actual}. Maximum allowed complexity: ${max}`);
+          return new ApolloError(`Query is too complex.`, 'BAD_USER_INPUT');
+        },
+        estimators: [
+          simpleEstimator({
+            defaultComplexity: options.defaultComplexity,
+          }),
+        ],
+      },
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      () => {},
+      // (message) => this.log(message),
+    );
 
 export class CostAnalysisProtection extends Protection {
   get isEnabled(): boolean {

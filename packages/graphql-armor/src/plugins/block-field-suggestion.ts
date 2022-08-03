@@ -1,24 +1,17 @@
-import { Config as ApolloServerConfig } from 'apollo-server-core';
-import { GraphQLError, ValidationContext, ASTVisitor, FieldNode } from 'graphql';
+import { Config as ApolloServerConfig, PluginDefinition } from 'apollo-server-core';
 import { Protection } from 'plugins';
 
-const validationRule = (context: ValidationContext): ASTVisitor => {
-  return {
-    Field(node: FieldNode) {
-      const type = context.getParentType();
-      if (type) {
-        const fieldName = node.name.value;
-        const fieldDef = context.getFieldDef();
-        if (!fieldDef) {
-          context.reportError(
-            new GraphQLError(`Field not found ${fieldName}`, {
-              nodes: [node],
-            }),
-          );
+const plugin: PluginDefinition = {
+  async requestDidStart() {
+    return {
+      async didEncounterErrors(requestContext) {
+        for (const error of requestContext.errors) {
+          if (error.message.toLowerCase().includes('did you mean'))
+            error.message = error.message.replace(/did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
         }
-      }
-    },
-  };
+      },
+    };
+  },
 };
 
 export type BlockFieldSuggestionOptions = undefined;
@@ -30,6 +23,6 @@ export class BlockFieldSuggestionProtection extends Protection {
   }
 
   protect(apolloConfig: ApolloServerConfig): ApolloServerConfig {
-    return this.applyValidationRules(apolloConfig, [validationRule]);
+    return this.applyPlugins(apolloConfig, [plugin]);
   }
 }

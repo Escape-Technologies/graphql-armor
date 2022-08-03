@@ -3,6 +3,14 @@
     {
       "name": "prettier",
       "command": "yarn workspace @escape.tech/graphql-armor lint"
+    },
+    {
+      "name": "build",
+      "command": "yarn workspace @escape.tech/graphql-armor build"
+    },
+    {
+      "name": "test",
+      "command": "yarn workspace @escape.tech/graphql-armor test"
     }
   ]
 }

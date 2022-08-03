@@ -9,12 +9,12 @@ import { Injectable } from '@nestjs/common';
 export class BookResolver {
   constructor(private readonly booksService: BookService) {}
 
-  @Query(returns => [Book])
+  @Query((returns) => [Book])
   public async books(): Promise<Book[]> {
     return this.booksService.findAll();
   }
 
-  @Query(returns => Book)
+  @Query((returns) => Book)
   public async book(@Args('id') id: string) {
     return this.booksService.findById(id);
   }

@@ -64,23 +64,22 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-const armor = new ApolloArmor(
-  {
-    characterLimit: {
-      enabled: true,
-      options: {
-        maxLength: 10000,
-      },
-    }
+const armor = new ApolloArmor({
+  characterLimit: {
+    enabled: true,
+    options: {
+      maxLength: 10000,
+    },
   },
-);
+});
+
+const enhancements = armor.protect();
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  ...armor.protect()
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ...(enhancements.plugins || [])],
 });
 
 (async () => {

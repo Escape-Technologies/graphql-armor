@@ -10,9 +10,9 @@ const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
     options: {
-      maxLength: 1
-    }
-  }
+      maxLength: 1,
+    },
+  },
 });
 
 @Module({
@@ -22,13 +22,12 @@ const armor = new ApolloArmor({
       typePaths: ['./**/*.graphql'],
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      ...armor.protect({
-        context: ({ req }) => ({ req }),
-      })
+      ...armor.protect(),
+      context: ({ req }) => ({ req }),
     }),
     BookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

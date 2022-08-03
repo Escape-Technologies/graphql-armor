@@ -575,9 +575,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@escape.tech/graphql-armor-express-apollo-example@workspace:examples/apollo":
+"@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo":
   version: 0.0.0-use.local
-  resolution: "@escape.tech/graphql-armor-express-apollo-example@workspace:examples/apollo"
+  resolution: "@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo"
   dependencies:
     "@apollo/gateway": ^2.0.5
     "@escape.tech/graphql-armor": "workspace:^"
@@ -598,7 +598,54 @@ __metadata:
     source-map-support: ^0.5.21
     ts-morph: ^15.1.0
     ts-node: ^10.9.1
-    typescript: ^4.6.4
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
+"@escape.tech/graphql-armor-example-nestjs@workspace:examples/nestjs":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-example-nestjs@workspace:examples/nestjs"
+  dependencies:
+    "@apollo/gateway": ^2.0.5
+    "@escape.tech/graphql-armor": "workspace:^"
+    "@nestjs/apollo": ^10.0.19
+    "@nestjs/cli": ^9.0.0
+    "@nestjs/common": ^9.0.8
+    "@nestjs/core": ^9.0.8
+    "@nestjs/graphql": ^10.0.21
+    "@nestjs/platform-express": ^9.0.8
+    "@types/express": ^4
+    "@types/node": ^18.6.3
+    "@typescript-eslint/eslint-plugin": ^5.31.0
+    "@typescript-eslint/parser": ^5.31.0
+    apollo-server-express: ^3.10.0
+    eslint: ">=8.15.0"
+    eslint-config-google: ^0.14.0
+    express: ^4.18.1
+    graphql: ^16.5.0
+    nodemon: ^2.0.19
+    prettier: ^2.7.1
+    reflect-metadata: ^0.1.13
+    rxjs: ^7.5.6
+    source-map-support: ^0.5.21
+    ts-morph: ^15.1.0
+    ts-node: ^10.9.1
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
+"@escape.tech/graphql-armor-example-yoga@workspace:examples/yoga":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-example-yoga@workspace:examples/yoga"
+  dependencies:
+    "@graphql-tools/schema": ^8.5.1
+    "@graphql-yoga/node": ^2.13.5
+    "@types/node": ^18.6.3
+    graphql: ^16.5.0
+    prettier: ^2.7.1
+    ts-node: ^10.9.1
+    ts-node-dev: ^2.0.0
+    typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
@@ -609,52 +656,6 @@ __metadata:
     "@commitlint/cli": ^17.0.0
     "@commitlint/config-angular": ^17.0.0
     "@escape.tech/mookme": ^2.2.0-beta.2
-  languageName: unknown
-  linkType: soft
-
-"@escape.tech/graphql-armor-nestjs-example@workspace:examples/nestjs":
-  version: 0.0.0-use.local
-  resolution: "@escape.tech/graphql-armor-nestjs-example@workspace:examples/nestjs"
-  dependencies:
-    "@apollo/gateway": ^2.0.5
-    "@escape.tech/graphql-armor": "workspace:^"
-    "@nestjs/apollo": ^10.0.19
-    "@nestjs/cli": ^9.0.0
-    "@nestjs/common": ^9.0.7
-    "@nestjs/core": ^9.0.7
-    "@nestjs/graphql": ^10.0.21
-    "@nestjs/platform-express": ^9.0.7
-    "@types/express": ^4
-    "@types/node": ^18.6.3
-    "@typescript-eslint/eslint-plugin": ^5.31.0
-    "@typescript-eslint/parser": ^5.31.0
-    apollo-server-express: ^3.10.0
-    eslint: ">=8.15.0"
-    eslint-config-google: ^0.14.0
-    express: ^4.18.1
-    graphql: ^16.5.0
-    nodemon: ^2.0.19
-    prettier: ^2.7.1
-    reflect-metadata: ^0.1.13
-    rxjs: ^7.5.6
-    source-map-support: ^0.5.21
-    ts-morph: ^15.1.0
-    ts-node: ^10.9.1
-    typescript: ^4.6.4
-  languageName: unknown
-  linkType: soft
-
-"@escape.tech/graphql-armor-yoga-example@workspace:examples/yoga":
-  version: 0.0.0-use.local
-  resolution: "@escape.tech/graphql-armor-yoga-example@workspace:examples/yoga"
-  dependencies:
-    "@graphql-tools/schema": ^8.5.1
-    "@graphql-yoga/node": ^2.13.5
-    "@types/node": ^18.6.3
-    graphql: ^16.5.0
-    ts-node: ^10.9.1
-    ts-node-dev: ^2.0.0
-    typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
@@ -674,8 +675,9 @@ __metadata:
     graphql: ^16.5.0
     prettier: ^2.7.1
     ts-node: ^10.9.1
-    typescript: ^4.6.4
+    typescript: ^4.7.4
   peerDependencies:
+    "@envelop/core": ^2.4.1
     apollo-server: ^3.10.0
     apollo-server-core: ^3.10.0
     apollo-server-types: ^3.6.2
@@ -1031,9 +1033,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/common@npm:^9.0.7":
-  version: 9.0.7
-  resolution: "@nestjs/common@npm:9.0.7"
+"@nestjs/common@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@nestjs/common@npm:9.0.8"
   dependencies:
     iterare: 1.2.1
     tslib: 2.4.0
@@ -1051,13 +1053,13 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: d7207469b758d5a19277817c36b1b61d0feef25b6102e7fac181b941ee859c06a186f4156f4d2dba56e2261d51ccd1780fb52c6290712712bdad678735cf16fc
+  checksum: eeb5d0622cc7faed3cfea555a61c6b456cf927fa70e3cb0f4ff54b0616649b13d3e20a30ce13db510e9e54dcd79b4ed615b545da8e4b6bb1751c819f83e34934
   languageName: node
   linkType: hard
 
-"@nestjs/core@npm:^9.0.7":
-  version: 9.0.7
-  resolution: "@nestjs/core@npm:9.0.7"
+"@nestjs/core@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@nestjs/core@npm:9.0.8"
   dependencies:
     "@nuxtjs/opencollective": 0.3.2
     fast-safe-stringify: 2.1.1
@@ -1080,7 +1082,7 @@ __metadata:
       optional: true
     "@nestjs/websockets":
       optional: true
-  checksum: 5d91b7d6a028b626cccb1b0b3bc8038be31b34086f3c29e1f431fe67e6e92cdf764261ef5002a2337c51636a96cc0aceb636dcbe8321dd29b479a9f40e61bba5
+  checksum: b79d7d4c532942aeff3675820449466cdfd3cbecb0b11026b86cb5d44369a3ec90938913dff92b26338a8c95175371ffa8b4185657ca81d01cb4cdb3646fe8a3
   languageName: node
   linkType: hard
 
@@ -1135,9 +1137,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/platform-express@npm:^9.0.7":
-  version: 9.0.7
-  resolution: "@nestjs/platform-express@npm:9.0.7"
+"@nestjs/platform-express@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@nestjs/platform-express@npm:9.0.8"
   dependencies:
     body-parser: 1.20.0
     cors: 2.8.5
@@ -1147,7 +1149,7 @@ __metadata:
   peerDependencies:
     "@nestjs/common": ^9.0.0
     "@nestjs/core": ^9.0.0
-  checksum: 508d604dddcbe3ca6fede812183196c96525728f5fb283423e7d91b3e75fdd02209b6d20bdc1941044ce7a52d0aae3141809c35cd5f434f91cb5ed49b76308b3
+  checksum: edf78ad51e59cde1deceabc74f013600c17ab0e2208adf433631d34d139a7f8197e017fb462b3337273e705cede6291567e6cd798ceb49d0addb541de17a06b0
   languageName: node
   linkType: hard
 
@@ -3148,9 +3150,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.202":
-  version: 1.4.208
-  resolution: "electron-to-chromium@npm:1.4.208"
-  checksum: 522475d950f2bc2610c590112f4202fb776cf2af7f0e1af92f7960c05c8c83c36be8514ca7bfce99dcb3baead7369241389b4fd0a070aa7a3e948db5913d1f2e
+  version: 1.4.210
+  resolution: "electron-to-chromium@npm:1.4.210"
+  checksum: e9cb6cb7754b64f89bc1ae8a3b57b8b6ee7cf2317b4b104978ca4fde3d1d384a694919401d0583ec8f108790be1b576bc4663b1888e917bc577428d19d3dbafd
   languageName: node
   linkType: hard
 
@@ -4900,9 +4902,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^7.10.1, lru-cache@npm:^7.7.1":
-  version: 7.13.1
-  resolution: "lru-cache@npm:7.13.1"
-  checksum: f53c7dd098a7afd6342b23f7182629edff206c7665de79445a7f5455440e768a4d1c6ec52e1a16175580c71535c9437dfb6f6bc22ca1a0e4a7454a97cde87329
+  version: 7.13.2
+  resolution: "lru-cache@npm:7.13.2"
+  checksum: dfed24e52bae95edf490d0f28f4f14552319ac7e7dc37ae0b84a72e084949233821b33227271abe81d8361ac079810f9d171a706f316cfdeda135012e4311015
   languageName: node
   linkType: hard
 
@@ -6986,9 +6988,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^5.8.0":
-  version: 5.8.0
-  resolution: "undici@npm:5.8.0"
-  checksum: 7b486ad064da00628d3906e140b86223023cd3494c811da8d7aa1375c2392fe6a6ac421af236c056fd3d3136bba3a91b99e0505dde071dd946070946eb0718b8
+  version: 5.8.1
+  resolution: "undici@npm:5.8.1"
+  checksum: 0d5d8b9654f031a5490dcd89cd73db452ad51b06def08ce4ac07a1a46564cb6f039be4862bc013ec45b7ca465a468eb5c4caa761a26541958307f8d75878129a
   languageName: node
   linkType: hard
 

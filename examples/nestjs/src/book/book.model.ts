@@ -6,7 +6,7 @@ export class Book {
 
   @Field(() => String)
   title: String;
-  
+
   @Field(() => String)
   author: String;
 }

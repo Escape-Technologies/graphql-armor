@@ -60,6 +60,8 @@ GraphQL-Armor is fully configurable, scoped per plugin.
 
 View the [Per plugin remediation](#per-plugin-remediation) section for more information.
 
+Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation.
+
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 

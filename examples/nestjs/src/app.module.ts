@@ -22,9 +22,8 @@ const armor = new ApolloArmor({
       typePaths: ['./**/*.graphql'],
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      ...armor.protect({
-        context: ({ req }) => ({ req }),
-      })
+      ...armor.protect(),
+      context: ({ req }) => ({ req }),
     }),
     BookModule,
   ],

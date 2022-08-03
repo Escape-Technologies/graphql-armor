@@ -19,6 +19,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: yarn install
+      - name: Build Armor
+        run: yarn workspace @escape.tech/graphql-armor build
       - name: Run lint
         run: yarn workspaces foreach run lint
       - name: Run build

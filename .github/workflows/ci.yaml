@@ -17,7 +17,7 @@ jobs:
           "@escape.tech/graphql-armor-nestjs-example",
           "@escape.tech/graphql-armor-yoga-example"
         ]
-    name: ${{ matrix.workspace }} - Node ${{ matrix.node }} CI
+    name: ${{ matrix.workspace }} - Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

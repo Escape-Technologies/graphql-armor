@@ -19,7 +19,8 @@
     "build": "tsc",
     "dev": "tsc -w",
     "nodemon": "nodemon src/server.ts",
-    "lint": "prettier src/ -uw --single-quote"
+    "lint": "prettier src/ -uw --single-quote",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",

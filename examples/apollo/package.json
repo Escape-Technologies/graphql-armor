@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'"
+    "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",

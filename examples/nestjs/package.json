@@ -9,7 +9,8 @@
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
-    "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'"
+    "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",

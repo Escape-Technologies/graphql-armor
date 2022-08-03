@@ -4,7 +4,9 @@
   "main": "./src/main.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev src/main.ts"
+    "dev": "ts-node-dev src/main.ts",
+    "lint": "prettier src/ -uw --single-quote '!**/*.{graphql}'",
+    "test": "echo \"Error: no test specified\""
   },
   "devDependencies": {
     "@types/node": "^18.6.3",

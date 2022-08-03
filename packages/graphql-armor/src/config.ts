@@ -1,9 +1,5 @@
-import {
-  CharacterLimitOptions,
-  CostAnalysisOptions,
-  BlockFieldSuggestionOptions,
-  ProtectionConfiguration,
-} from './plugins';
+import { ProtectionConfiguration } from './plugins/base-protection';
+import { CharacterLimitOptions, CostAnalysisOptions, BlockFieldSuggestionOptions } from './plugins/protection-options';
 
 export type GraphQLArmorConfig = {
   characterLimit?: ProtectionConfiguration<CharacterLimitOptions>;

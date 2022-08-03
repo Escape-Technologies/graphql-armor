@@ -1,11 +1,9 @@
 import { Config as ApolloServerConfig } from 'apollo-server-core';
-import { GraphQLArmorConfig } from 'config';
-import {
-  BlockFieldSuggestionProtection,
-  CharacterLimitProtection,
-  CostAnalysisProtection,
-  Protection,
-} from './plugins';
+import { GraphQLArmorConfig } from './config';
+import { Protection } from './plugins/base-protection';
+import { BlockFieldSuggestionProtection } from './plugins/block-field-suggestion';
+import { CharacterLimitProtection } from './plugins/character-limit';
+import { CostAnalysisProtection } from './plugins/cost-analysis';
 
 class ApolloArmor {
   private config: GraphQLArmorConfig;

@@ -1,19 +1,13 @@
 import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
 import { ValidationContext } from 'graphql';
 
-import { Protection } from 'plugins';
+import { Protection } from './base-protection';
+import { CostAnalysisOptions } from './protection-options';
+
 import QueryComplexity, {
   ComplexityEstimator,
   ComplexityEstimatorArgs,
 } from '../../lib/graphql-query-complexity/QueryComplexity';
-
-export type CostAnalysisOptions = {
-  maxCost: number;
-  defaultComplexity: number;
-  maxDepth: number;
-  maxAlias: number;
-  maxDirectives: number;
-};
 
 function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEstimator {
   const defaultComplexity = options && typeof options.defaultComplexity === 'number' ? options.defaultComplexity : 1;

@@ -1,8 +1,7 @@
 import { GraphQLRequestContext } from 'apollo-server-types';
 import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
-import { Protection } from 'plugins';
-
-export type CharacterLimitOptions = { maxLength: number };
+import { Protection } from './base-protection';
+import { CharacterLimitOptions } from './protection-options';
 
 const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {

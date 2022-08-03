@@ -1,10 +1,5 @@
 import { Config as ApolloServerConfig } from 'apollo-server-core';
-import { GraphQLArmorConfig } from 'config';
-import { BlockFieldSuggestionOptions } from './block-field-suggestion';
-import { CharacterLimitOptions } from './character-limit';
-import { CostAnalysisOptions } from './cost-analysis';
-
-export type ProtectionOptions = BlockFieldSuggestionOptions | CharacterLimitOptions | CostAnalysisOptions;
+import { GraphQLArmorConfig } from '../config';
 
 export type ProtectionConfiguration<Options = never> = {
   enabled: boolean;
@@ -38,7 +33,3 @@ export abstract class Protection {
     };
   }
 }
-
-export * from './character-limit';
-export * from './cost-analysis';
-export * from './block-field-suggestion';

@@ -1,5 +1,5 @@
 import { Config as ApolloServerConfig, PluginDefinition } from 'apollo-server-core';
-import { Protection } from 'plugins';
+import { Protection } from './base-protection';
 
 const plugin: PluginDefinition = {
   async requestDidStart() {
@@ -14,7 +14,6 @@ const plugin: PluginDefinition = {
   },
 };
 
-export type BlockFieldSuggestionOptions = undefined;
 export class BlockFieldSuggestionProtection extends Protection {
   get isEnabled(): boolean {
     // default

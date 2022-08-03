@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-yoga-example",
-  "private": "true",
+  "private": true,
   "version": "1.0.0",
   "description": "Yoga example of GraphQL Armor.",
   "packageManager": "yarn@3.2.2",

@@ -89,6 +89,42 @@ const armor = new ApolloArmor({
 
 This section describes how to configure each plugin individually.
 
+### Stacktraces
+
+Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
+
+In order to re-instaure Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  debug: true // Ignore Armor's recommandations
+});
+```
+
+### Batched queries
+
+Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
+
+In order to re-instaure Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  allowBatchedHttpRequests: true // Ignore Armor's recommandations
+});
+```
+
 ### Character Limit
 
 `Character Limit plugin` will enforce a character limit on your GraphQL queries.

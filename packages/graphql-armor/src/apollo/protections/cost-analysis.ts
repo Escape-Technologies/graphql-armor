@@ -1,13 +1,13 @@
-import { ApolloError, Config as ApolloServerConfig } from 'apollo-server-core';
+import { ApolloError } from 'apollo-server-core';
 import { ValidationContext } from 'graphql';
 
-import { ApolloServerConfigurationEnhancement, Protection } from './base-protection';
-import { CostAnalysisOptions } from './protection-options';
+import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 
 import QueryComplexity, {
   ComplexityEstimator,
   ComplexityEstimatorArgs,
-} from '../../lib/graphql-query-complexity/QueryComplexity';
+} from '../../../lib/graphql-query-complexity/QueryComplexity';
+import { CostAnalysisOptions } from '../../config';
 
 function simpleEstimator(options?: { defaultComplexity?: number }): ComplexityEstimator {
   const defaultComplexity = options && typeof options.defaultComplexity === 'number' ? options.defaultComplexity : 1;
@@ -47,7 +47,7 @@ const validationRule =
       // (message) => this.log(message),
     );
 
-export class CostAnalysisProtection extends Protection {
+export class ApolloCostAnalysisProtection extends ApolloProtection {
   get isEnabled(): boolean {
     // default
     if (!this.config.costAnalysis) return true;

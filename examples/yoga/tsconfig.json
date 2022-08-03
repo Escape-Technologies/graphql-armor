@@ -2,19 +2,13 @@
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
-        "baseUrl": "src",
         "target": "ES2018",
-        "lib": ["es6", "dom"],
+        "lib": ["ES6"],
         "outDir": "./dist",
         "sourceMap": true,
-        "types": ["node"],
-        "typeRoots": ["node_modules/@types"],
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "resolveJsonModule": true,
-        "strictNullChecks": true,
-        "allowSyntheticDefaultImports": true,
-        "declaration": true
+        "strict": true,
+        "declaration": true,
+        "skipLibCheck": true
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src"],

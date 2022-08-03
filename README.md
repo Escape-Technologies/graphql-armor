@@ -20,6 +20,7 @@ GraphQL Armor is a Dead-simple, yet highly customizable security middleware for 
     - [Character Limit](#character-limit)
     - [Cost Analysis](#cost-analysis)
     - [Field Suggestion](#field-suggestion)
+  - [Contributing](#contributing)
 
 ## Supported remediations
 
@@ -93,7 +94,7 @@ This section describes how to configure each plugin individually.
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    CharacterLimit: {
+    characterLimit: {
         enabled: true,
         options: {
             maxLength: 15000, // Default: 15000
@@ -110,7 +111,7 @@ const armor = new ApolloArmor({
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    CostAnalysis: {
+    costAnalysis: {
         enabled: true,
         options: {
             maxCost: 5000,          // Default: 5000
@@ -131,8 +132,25 @@ const armor = new ApolloArmor({
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    FieldSuggestion: {
+    fieldSuggestion: {
         enabled: true,
     }
 });
 ```
+
+## Contributing
+
+Ensure you have read the [Contributing Guide](https://github.com/Escape-Technologies/graphql-armor/blob/main/CONTRIBUTING.md) before contributing.
+
+To setup your project, make sure you run `install-dev.sh` script.
+
+```bash
+git clone git@github.com:Escape-Technologies/graphql-armor.git
+cd graphql-armor
+chmod +x ./install-dev.sh
+./install-dev.sh
+```
+
+We are using yarn as our package manager.
+
+You will be able to run command from the root using `yarn workspace @escape.tech/pkg cmd`.

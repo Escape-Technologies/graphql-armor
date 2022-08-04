@@ -5,13 +5,13 @@ on:
     types: [opened, reopened]
 
 jobs:
-  CI:
+  examples:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         node: [14, 16, 17, 18]
-    name: ${{ matrix.workspace }} - Node ${{ matrix.node }}
+    name: Examples Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -28,3 +28,21 @@ jobs:
       - name: Tests workspaces
         if: always()
         run: yarn workspaces foreach -ptv run test
+  pkg-focus:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [14, 16, 17, 18]
+    name: Pkg Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: |
+          corepack enable
+          cp README.md packages/graphql-armor/README.md
+      - run: yarn workspaces focus @escape.tech/graphql-armor
+      - run: yarn workspace @escape.tech/graphql-armor build

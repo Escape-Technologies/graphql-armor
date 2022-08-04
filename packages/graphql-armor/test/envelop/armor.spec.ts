@@ -17,6 +17,6 @@ describe('envelopArmor', () => {
   });
 
   it('should have property that equals', () => {
-    expect(enhancements.plugins.length).toEqual(2);
+    expect(enhancements.plugins.length).toEqual(5);
   });
 });

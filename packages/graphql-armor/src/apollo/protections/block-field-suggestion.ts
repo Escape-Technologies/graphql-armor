@@ -1,11 +1,12 @@
 import type { PluginDefinition } from 'apollo-server-core';
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
+import { GraphQLError } from 'graphql';
 
 const plugin: PluginDefinition = {
   async requestDidStart() {
     return {
-      async didEncounterErrors(requestContext) {
-        for (const error of requestContext.errors) {
+      async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
+        for (const error of errors) {
           error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
         }
       },

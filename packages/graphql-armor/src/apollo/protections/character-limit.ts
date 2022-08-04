@@ -1,14 +1,16 @@
 import type { GraphQLRequestContext } from 'apollo-server-types';
-import { ApolloError } from 'apollo-server-core';
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 import { CharacterLimitOptions } from '../../config';
+import { GraphQLError } from 'graphql';
 
 const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {
     async requestDidStart(context: GraphQLRequestContext) {
       if (!context.request.query) return;
       if (context.request.query.length > maxLength) {
-        throw new ApolloError('Query too large.', 'BAD_USER_INPUT');
+        throw new GraphQLError('Query is too large', {
+          extensions: { code: 'BAD_USER_INPUT' },
+        });
       }
     },
   };

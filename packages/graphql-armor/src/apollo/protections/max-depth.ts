@@ -1,6 +1,6 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxDepthOptions } from '../../config';
-import { ApolloError } from 'apollo-server-core';
+import { GraphQLError } from 'graphql';
 import { maxDepthRule } from '../../validationRules/max-depth';
 
 export class ApolloMaxDepthProtection extends ApolloProtection {
@@ -20,7 +20,9 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
     return {
       validationRules: [
         maxDepthRule(this.options, (message: string) => {
-          throw new ApolloError(message, 'BAD_USER_INPUT');
+          throw new GraphQLError(message, {
+            extensions: { code: 'BAD_USER_INPUT' },
+          });
         }),
       ],
     };

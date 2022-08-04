@@ -1,5 +1,8 @@
-import { ApolloError} from 'apollo-server-core';
-import { ValidationContext } from 'graphql';
+import {ApolloError} from 'apollo-server-core';
+import {ValidationContext} from 'graphql';
+import {ApolloProtection, ApolloServerConfigurationEnhancement} from './base-protection';
+import {CostAnalysisOptions} from "../../config";
+import CostAnalysisVisitor from "../../validationRules/cost-analysis";
 
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 
@@ -7,7 +10,7 @@ import QueryComplexity2 from "../../lib/graphql-query-complexity/QueryComplexity
 
 const validationRule =
     (options: CostAnalysisOptions) =>
-        (context: ValidationContext) =>   new QueryComplexity2(
+        (context: ValidationContext) =>   new CostAnalysisVisitor(
             context,
             options,
             (message:string) => {  throw new ApolloError(message,"BAD_USER_INPUT");  }

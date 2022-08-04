@@ -6,9 +6,7 @@ const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {
     onParse({ context }) {
       if (context.query.length > maxLength) {
-        return function onParseEnd({ replaceParseResult }) {
-          replaceParseResult(new GraphQLError(`Query too large.`));
-        };
+        context.reportError(new GraphQLError(`Query too large.`));
       }
     },
   };

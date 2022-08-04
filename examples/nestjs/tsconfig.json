@@ -10,7 +10,8 @@
         "declaration": true,
         "skipLibCheck": true,
         "experimentalDecorators": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "emitDecoratorMetadata": true
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src"],

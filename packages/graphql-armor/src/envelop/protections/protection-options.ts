@@ -13,4 +13,4 @@ export type CostAnalysisOptions = {
   depthCostFactor: number;
 };
 
-export type ProtectionOptions = BlockFieldSuggestionOptions | CharacterLimitOptions | CostAnalysisOptions;
+export type ProtectionOptions = BlockFieldSuggestionOptions | CharacterLimitOptions; //| CostAnalysisOptions;

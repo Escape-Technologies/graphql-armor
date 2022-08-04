@@ -4,6 +4,10 @@
         "type": "git",
         "url": "git+ssh://git@github.com:Escape-Technologies/graphql-armor.git"
     },
+    "scripts": {
+        "lint": "prettier --check '**/*.{ts,js}' '!**/dist'",
+        "prettier": "prettier --write '**/*.{ts,js}' '!**/dist'"
+    },
     "author": "Escape Technologies SAS",
     "private": true,
     "license": "MIT",
@@ -14,7 +18,12 @@
     "devDependencies": {
         "@commitlint/cli": "^17.0.0",
         "@commitlint/config-angular": "^17.0.0",
-        "@escape.tech/mookme": "^2.2.0-beta.2"
+        "@escape.tech/mookme": "^2.2.0-beta.2",
+        "@typescript-eslint/eslint-plugin": "^5.31.0",
+        "@typescript-eslint/parser": "^5.31.0",
+        "eslint": "^8.21.0",
+        "eslint-config-google": "^0.14.0",
+        "prettier": "^2.7.1"
     },
     "workspaces": [
         "examples/*",

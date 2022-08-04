@@ -1,6 +1,6 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxDepthOptions } from '../../config';
-import { ApolloError } from 'apollo-server';
+import { ApolloError } from 'apollo-server-core';
 import { maxDepthRule } from '../../validationRules/max-depth';
 
 export class ApolloMaxDepthProtection extends ApolloProtection {

@@ -1,7 +1,7 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxAliasesOptions } from '../../config';
 import { maxAliasesRule } from '../../validationRules/max-aliases';
-import { ApolloError } from 'apollo-server';
+import { ApolloError } from 'apollo-server-core';
 
 export class ApolloMaxAliasesProtection extends ApolloProtection {
   get isEnabled(): boolean {

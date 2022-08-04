@@ -7,9 +7,11 @@ import { costAnalysisRule } from '../../validationRules/cost-analysis';
 const plugin = (options: CostAnalysisOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-     addValidationRule(costAnalysisRule(options,(msg:string)=>{
-      throw new GraphQLError(msg);
-     }))
+      addValidationRule(
+        costAnalysisRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
     },
   };
 };

@@ -21,9 +21,11 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
 
   protect(): ApolloServerConfigurationEnhancement {
     return {
-      validationRules: [costAnalysisRule(this.options,(message: string) => {
-        throw new ApolloError(message, 'BAD_USER_INPUT');
-      })],
+      validationRules: [
+        costAnalysisRule(this.options, (message: string) => {
+          throw new ApolloError(message, 'BAD_USER_INPUT');
+        }),
+      ],
     };
   }
 }

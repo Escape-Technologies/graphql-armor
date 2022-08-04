@@ -1,4 +1,4 @@
-import { CostAnalysisOptions } from "../../config";
+import { CostAnalysisOptions } from '../../config';
 
 export type BlockFieldSuggestionOptions = undefined;
 

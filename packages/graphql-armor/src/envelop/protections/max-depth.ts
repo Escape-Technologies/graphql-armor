@@ -7,9 +7,11 @@ import { maxDepthRule } from '../../validationRules/max-depth';
 const plugin = (options: MaxDepthOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-     addValidationRule(maxDepthRule(options,(msg:string)=>{
-      throw new GraphQLError(msg);
-     }))
+      addValidationRule(
+        maxDepthRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
     },
   };
 };

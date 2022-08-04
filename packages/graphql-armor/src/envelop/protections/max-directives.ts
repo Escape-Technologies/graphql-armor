@@ -7,9 +7,11 @@ import { maxDirectivesRule } from '../../validationRules/max-directives';
 const plugin = (options: MaxDirectivesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-     addValidationRule(maxDirectivesRule(options,(msg:string)=>{
-      throw new GraphQLError(msg);
-     }))
+      addValidationRule(
+        maxDirectivesRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
     },
   };
 };

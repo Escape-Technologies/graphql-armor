@@ -10,8 +10,9 @@ import {
 } from 'graphql';
 import { CostAnalysisOptions } from '../config';
 
-export const costAnalysisRule = (options: CostAnalysisOptions, errorHandler:(msg:string)=>void) => (context: ValidationContext) =>
-  new CostAnalysisVisitor(context, options, errorHandler);
+export const costAnalysisRule =
+  (options: CostAnalysisOptions, errorHandler: (msg: string) => void) => (context: ValidationContext) =>
+    new CostAnalysisVisitor(context, options, errorHandler);
 
 class CostAnalysisVisitor {
   public readonly OperationDefinition: Record<string, any>;

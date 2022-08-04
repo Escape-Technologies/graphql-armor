@@ -20,8 +20,8 @@ export class EnvelopArmor {
       new EnvelopCharacterLimitProtection(config),
       new EnvelopMaxDepthProtection(config),
       new EnvelopMaxAliasesProtection(config),
-      new EnvelopMaxDirectivesProtection(config)
-      ];
+      new EnvelopMaxDirectivesProtection(config),
+    ];
   }
 
   protect(): {

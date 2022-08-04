@@ -7,9 +7,11 @@ import { maxAliasesRule } from '../../validationRules/max-aliases';
 const plugin = (options: MaxAliasesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-     addValidationRule(maxAliasesRule(options,(msg:string)=>{
-      throw new GraphQLError(msg);
-     }))
+      addValidationRule(
+        maxAliasesRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
     },
   };
 };

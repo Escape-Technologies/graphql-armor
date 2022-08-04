@@ -1,7 +1,7 @@
-import { ApolloError } from 'apollo-server-core';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { CostAnalysisOptions } from '../../config';
 import { costAnalysisRule } from '../../validationRules/cost-analysis';
+import { GraphQLError } from 'graphql';
 
 export class ApolloCostAnalysisProtection extends ApolloProtection {
   get isEnabled(): boolean {
@@ -16,6 +16,7 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
       objectCost: this.config.costAnalysis?.options?.objectCost || 2,
       scalarCost: this.config.costAnalysis?.options?.scalarCost || 1,
       depthCostFactor: this.config.costAnalysis?.options?.depthCostFactor || 1.5,
+      ignoreIntrospection: this.config.costAnalysis?.options?.ignoreIntrospection ?? true,
     };
   }
 
@@ -23,7 +24,9 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
     return {
       validationRules: [
         costAnalysisRule(this.options, (message: string) => {
-          throw new ApolloError(message, 'BAD_USER_INPUT');
+          throw new GraphQLError(message, {
+            extensions: { code: 'BAD_USER_INPUT' },
+          });
         }),
       ],
     };

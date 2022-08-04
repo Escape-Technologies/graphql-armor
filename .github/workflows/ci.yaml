@@ -5,7 +5,7 @@ on:
     types: [opened, reopened]
 
 jobs:
-  examples:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -26,8 +26,13 @@ jobs:
       - name: Build workspaces
         run: yarn workspaces foreach -ptv run build
       - name: Tests workspaces
-        if: always()
-        run: yarn workspaces foreach -ptv run test
+        run: yarn test:ci
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        if: matrix.node == '16'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   pkg-focus:
     runs-on: ubuntu-latest
     strategy:

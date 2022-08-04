@@ -1,6 +1,6 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxDirectivesOptions } from '../../config';
-import { ApolloError } from 'apollo-server-core';
+import { GraphQLError } from 'graphql';
 import { maxDirectivesRule } from '../../validationRules/max-directives';
 
 export class ApolloMaxDirectivesProtection extends ApolloProtection {
@@ -20,7 +20,9 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
     return {
       validationRules: [
         maxDirectivesRule(this.options, (message: string) => {
-          throw new ApolloError(message, 'BAD_USER_INPUT');
+          throw new GraphQLError(message, {
+            extensions: { code: 'BAD_USER_INPUT' },
+          });
         }),
       ],
     };

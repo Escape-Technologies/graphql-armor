@@ -12,6 +12,7 @@ export type CostAnalysisOptions = {
   objectCost: number;
   scalarCost: number;
   depthCostFactor: number;
+  ignoreIntrospection: boolean;
 };
 
 export type ProtectionOptions =

@@ -1,4 +1,4 @@
-import { PluginDefinition } from 'apollo-server-core';
+import type { PluginDefinition } from 'apollo-server-core';
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 
 const plugin: PluginDefinition = {

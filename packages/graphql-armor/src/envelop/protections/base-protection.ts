@@ -1,4 +1,4 @@
-import { Plugin } from '@envelop/core';
+import type { Plugin as EnvelopPlugin } from '@envelop/core';
 import { GraphQLArmorConfig } from '../../config';
 
 export type ProtectionConfiguration<Options = never> = {
@@ -7,7 +7,7 @@ export type ProtectionConfiguration<Options = never> = {
 };
 
 export type EnvelopConfigurationEnhancement = {
-  plugins: Plugin[];
+  plugins: EnvelopPlugin[];
 };
 
 export abstract class EnvelopProtection {

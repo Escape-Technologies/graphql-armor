@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-server-core';
-import { ValidationContext } from 'graphql';
+import type { ValidationContext } from 'graphql';
 
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 

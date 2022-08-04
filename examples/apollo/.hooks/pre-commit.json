@@ -1,10 +1,6 @@
 {
   "steps": [
     {
-      "name": "prettier",
-      "command": "yarn workspace @escape.tech/graphql-armor-example-apollo lint"
-    },
-    {
       "name": "build",
       "command": "yarn workspace @escape.tech/graphql-armor-example-apollo build"
     },

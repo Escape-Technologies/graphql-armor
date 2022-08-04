@@ -1,4 +1,4 @@
-import { GraphQLRequestContext } from 'apollo-server-types';
+import type { GraphQLRequestContext } from 'apollo-server-types';
 import { ApolloError } from 'apollo-server-core';
 import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 import { CharacterLimitOptions } from '../../config';

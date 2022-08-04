@@ -1,0 +1,8 @@
+{
+  "steps": [
+    {
+      "name": "lint",
+      "command": "yarn lint"
+    }
+  ]
+}

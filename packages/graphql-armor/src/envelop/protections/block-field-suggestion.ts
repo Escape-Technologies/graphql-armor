@@ -14,9 +14,14 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
       plugins: [
         useMaskedErrors({
           handleValidationErrors: true,
-          formatError: (error: GraphQLError) => {
-            error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
-            return error;
+          formatError: (error: GraphQLError | unknown): GraphQLError => {
+            if (error instanceof GraphQLError) {
+              error.message = error.message.replace(
+                /Did you mean ".+"/g,
+                '[Suggestion message hidden by GraphQLArmor]',
+              );
+            }
+            return error as GraphQLError;
           },
         }),
       ],

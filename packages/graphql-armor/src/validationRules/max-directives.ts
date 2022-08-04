@@ -12,9 +12,9 @@ class MaxDirectivesVisitor {
 
   private readonly context: ValidationContext;
   private readonly options: MaxDirectivesOptions;
-  private readonly onError: (string) => any;
+  private readonly onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxDirectivesOptions, onError: (string) => any) {
+  constructor(context: ValidationContext, options: MaxDirectivesOptions, onError: (msg: string) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;
@@ -35,7 +35,6 @@ class MaxDirectivesVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode,
   ): number {
     let directives = 0;
-    // @ts-ignore
     if (node.directives) {
       directives += node.directives.length;
     }
@@ -49,5 +48,6 @@ class MaxDirectivesVisitor {
   }
 }
 
-export const maxDirectivesRule = (options: MaxDepthOptions, onError: (string) => any) => (context: ValidationContext) =>
-  new MaxDirectivesVisitor(context, options, onError);
+export const maxDirectivesRule =
+  (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+    new MaxDirectivesVisitor(context, options, onError);

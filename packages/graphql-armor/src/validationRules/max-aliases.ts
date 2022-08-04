@@ -12,9 +12,9 @@ class MaxAliasesVisitor {
 
   private readonly context: ValidationContext;
   private readonly options: MaxAliasesOptions;
-  private onError: (string) => any;
+  private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxAliasesOptions, onError: (string) => any) {
+  constructor(context: ValidationContext, options: MaxAliasesOptions, onError: (msg: string) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;
@@ -49,5 +49,6 @@ class MaxAliasesVisitor {
   }
 }
 
-export const maxAliasesRule = (options: MaxAliasesOptions, onError: (string) => any) => (context: ValidationContext) =>
-  new MaxAliasesVisitor(context, options, onError);
+export const maxAliasesRule =
+  (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+    new MaxAliasesVisitor(context, options, onError);

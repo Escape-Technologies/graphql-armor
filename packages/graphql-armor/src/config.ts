@@ -18,10 +18,9 @@ export type CharacterLimitOptions = { maxLength: number };
 
 export type CostAnalysisOptions = {
   maxCost: number;
-  defaultComplexity: number;
-  maxDepth: number;
-  maxAlias: number;
-  maxDirectives: number;
+  objectCost: number;
+  scalarCost: number;
+  depthCostFactor: number;
 };
 
 export type ProtectionOptions =
@@ -36,4 +35,7 @@ export type GraphQLArmorConfig = {
   characterLimit?: ProtectionConfiguration<CharacterLimitOptions>;
   costAnalysis?: ProtectionConfiguration<CostAnalysisOptions>;
   blockFieldSuggestion?: ProtectionConfiguration<BlockFieldSuggestionOptions>;
+  maxAliases?: ProtectionConfiguration<MaxAliasesOptions>;
+  maxDepth?: ProtectionConfiguration<MaxDepthOptions>;
+  maxDirectives?: ProtectionConfiguration<MaxDirectivesOptions>;
 };

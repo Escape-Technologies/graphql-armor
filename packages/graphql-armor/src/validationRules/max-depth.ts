@@ -12,9 +12,9 @@ class MaxDepthVisitor {
 
   private readonly context: ValidationContext;
   private readonly options: MaxDepthOptions;
-  private onError: (string) => any;
+  private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxDepthOptions, onError: (string) => any) {
+  constructor(context: ValidationContext, options: MaxDepthOptions, onError: (msg: string) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;
@@ -47,5 +47,5 @@ class MaxDepthVisitor {
   }
 }
 
-export const maxDepthRule = (options: MaxDepthOptions, onError: (string) => any) => (context: ValidationContext) =>
+export const maxDepthRule = (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
   new MaxDepthVisitor(context, options, onError);

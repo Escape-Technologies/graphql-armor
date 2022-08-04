@@ -26,7 +26,7 @@ export default class CostAnalysisVisitor {
   private readonly options: CostAnalysisOptions;
   private readonly onError: any;
 
-  constructor(context: ValidationContext, options: CostAnalysisOptions, onError: (string) => any) {
+  constructor(context: ValidationContext, options: CostAnalysisOptions, onError: (string: any) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;

@@ -1,7 +1,7 @@
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 import { MaxAliasesOptions } from '../../config';
 import { GraphQLError } from 'graphql';
-import { Plugin } from '@envelop/core';
+import type { Plugin } from '@envelop/core';
 import { maxAliasesRule } from '../../validationRules/max-aliases';
 
 const plugin = (options: MaxAliasesOptions): Plugin => {

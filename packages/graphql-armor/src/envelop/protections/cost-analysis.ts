@@ -1,9 +1,20 @@
-import { ApolloError } from 'apollo-server-core';
-import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 import { CostAnalysisOptions } from '../../config';
+import { GraphQLError } from 'graphql';
+import { Plugin } from '@envelop/core';
 import { costAnalysisRule } from '../../validationRules/cost-analysis';
 
-export class ApolloCostAnalysisProtection extends ApolloProtection {
+const plugin = (options: CostAnalysisOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+     addValidationRule(costAnalysisRule(options,(msg:string)=>{
+      throw new GraphQLError(msg);
+     }))
+    },
+  };
+};
+
+export class EnvelopCostAnalysisProtection extends EnvelopProtection {
   get isEnabled(): boolean {
     // default
     if (!this.config.costAnalysis) return true;
@@ -19,11 +30,9 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
     };
   }
 
-  protect(): ApolloServerConfigurationEnhancement {
+  protect(): EnvelopConfigurationEnhancement {
     return {
-      validationRules: [costAnalysisRule(this.options,(message: string) => {
-        throw new ApolloError(message, 'BAD_USER_INPUT');
-      })],
+      plugins: [plugin(this.options)],
     };
   }
 }

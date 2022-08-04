@@ -10,7 +10,7 @@ const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
     options: {
-      maxLength: 1,
+      maxLength: 100,
     },
   },
 });

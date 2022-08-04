@@ -42,7 +42,6 @@ export class ApolloArmor {
         validationRules = [...validationRules, ...(newValidationRules || [])];
       }
     }
-
     return {
       plugins,
       validationRules,

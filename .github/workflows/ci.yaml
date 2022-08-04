@@ -21,12 +21,10 @@ jobs:
         run: | 
           corepack enable
           yarn install
-      - name: Build Armor
-        run: yarn workspace @escape.tech/graphql-armor build
-      - name: Run lint
-        run: yarn workspaces foreach run lint
-      - name: Run build
-        run: yarn workspaces foreach run build
-      - name: Run tests
+      - name: Lint workspaces
+        run: yarn lint
+      - name: Build workspaces
+        run: yarn workspaces foreach -ptv run build
+      - name: Tests workspaces
         if: always()
-        run: yarn workspaces foreach run test
+        run: yarn workspaces foreach -ptv run test

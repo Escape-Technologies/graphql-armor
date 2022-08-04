@@ -1,12 +1,3 @@
-/*
-Greatly inspired from
-https://github.com/slicknode/graphql-query-complexity
-2022/08/01 (yyyy/mm/dd)
-under MIT License
-
-(but fully rewritten)
-*/
-
 import {
   FieldNode,
   FragmentDefinitionNode,

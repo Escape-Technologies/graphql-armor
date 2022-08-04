@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@envelop/core": "^2.4.1",
     "apollo-server-core": "^3.10.0",
     "graphql": "^16.5.0"
   },
@@ -45,6 +44,7 @@
     "graphql": "^16.5.0"
   },
   "devDependencies": {
+    "@envelop/core": "^2.4.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }

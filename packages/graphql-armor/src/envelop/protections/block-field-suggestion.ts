@@ -1,5 +1,5 @@
 import { useMaskedErrors } from '@envelop/core';
-import type { GraphQLError } from 'graphql';
+import { GraphQLError } from 'graphql';
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
@@ -14,9 +14,14 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
       plugins: [
         useMaskedErrors({
           handleValidationErrors: true,
-          formatError: (error: GraphQLError) => {
-            error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
-            return error;
+          formatError: (error: GraphQLError | unknown): GraphQLError => {
+            if (error instanceof GraphQLError) {
+              error.message = error.message.replace(
+                /Did you mean ".+"/g,
+                '[Suggestion message hidden by GraphQLArmor]',
+              );
+            }
+            return error as GraphQLError;
           },
         }),
       ],

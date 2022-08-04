@@ -1,10 +1,11 @@
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 import { CharacterLimitOptions } from '../../config';
 import { GraphQLError } from 'graphql';
+import { Plugin } from '@envelop/core';
 
-const plugin = ({ maxLength }: CharacterLimitOptions) => {
+const plugin = ({ maxLength }: CharacterLimitOptions): Plugin => {
   return {
-    onParse({ context }) {
+    onParse({ context }: any) {
       if (context.query.length > maxLength) {
         context.reportError(new GraphQLError(`Query too large.`));
       }

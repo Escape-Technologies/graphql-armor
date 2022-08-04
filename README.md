@@ -93,7 +93,7 @@ This section describes how to configure each plugin individually.
 
 Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
 
-In order to re-instaure Apollo's default parameter, you can use the following code:
+For rolling back to Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -111,7 +111,7 @@ const server = new ApolloServer({
 
 Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
 
-In order to re-instaure Apollo's default parameter, you can use the following code:
+For rolling back to Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -127,9 +127,9 @@ const server = new ApolloServer({
 
 ### Character Limit
 
-`Character Limit plugin` will enforce a character limit on your GraphQL queries.
+The `Character Limit plugin` will enforce a character limit on your GraphQL queries.
 
-(Note: The limit is not applied to whole HTTP body -, multipart form data / file upload will still works)
+(Note: The limit is not applied to the whole HTTP body -, multipart form data/file upload will still works)
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -146,7 +146,7 @@ const armor = new ApolloArmor({
 
 ### Cost Analysis
 
-`Cost Analysis plugin` analyze incoming GraphQL queries and apply cost analysis algorithm to prevent resource overload.
+The `Cost Analysis plugin` analyzes incoming GraphQL queries and apply cost analysis algorithm to prevent resource overload.
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -167,13 +167,13 @@ const armor = new ApolloArmor({
 
 ### Field Suggestion
 
-`Field Suggestion plugin` will prevent suggesting fields of unprecise GraphQL queries.
+The `Field Suggestion plugin` will prevent suggesting fields of unprecise GraphQL queries.
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    fieldSuggestion: {
+    blockFieldSuggestion: {
         enabled: true,
     }
 });
@@ -183,7 +183,7 @@ const armor = new ApolloArmor({
 
 Ensure you have read the [Contributing Guide](https://github.com/Escape-Technologies/graphql-armor/blob/main/CONTRIBUTING.md) before contributing.
 
-To setup your project, make sure you run `install-dev.sh` script.
+To setup your project, make sure you run the `install-dev.sh` script.
 
 ```bash
 git clone git@github.com:Escape-Technologies/graphql-armor.git

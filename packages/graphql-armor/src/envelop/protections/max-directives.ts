@@ -1,7 +1,7 @@
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 import { MaxDirectivesOptions } from '../../config';
 import { GraphQLError } from 'graphql';
-import { Plugin } from '@envelop/core';
+import type { Plugin } from '@envelop/core';
 import { maxDirectivesRule } from '../../validationRules/max-directives';
 
 const plugin = (options: MaxDirectivesOptions): Plugin => {

@@ -1,6 +1,6 @@
-import { useMaskedErrors } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
+import { hookErrors } from '../../internals/hookError';
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
   get isEnabled(): boolean {
@@ -12,9 +12,8 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
   protect(): EnvelopConfigurationEnhancement {
     return {
       plugins: [
-        useMaskedErrors({
-          handleValidationErrors: true,
-          formatError: (error: GraphQLError | unknown): GraphQLError => {
+        hookErrors({
+          formatter: (error: GraphQLError): GraphQLError => {
             if (error instanceof GraphQLError) {
               error.message = error.message.replace(
                 /Did you mean ".+"/g,

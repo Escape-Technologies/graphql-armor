@@ -23,7 +23,7 @@ const armor = new ApolloArmor({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
       ...armor.protect(),
-      context: ({ req }) => ({ req }),
+      context: ({ req }: any) => ({ req }),
     }),
     BookModule,
   ],

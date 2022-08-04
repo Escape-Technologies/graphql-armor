@@ -109,6 +109,7 @@ export function getComplexity(options: {
       variables: options.variables,
       operationName: options.operationName,
     },
+    // @ts-ignore
     this.log,
   );
 
@@ -338,6 +339,7 @@ export default class QueryComplexity {
                 try {
                   args = getArgumentValues(field, childNode, this.variableValues || {});
                 } catch (e) {
+                  // @ts-ignore
                   this.logger(e);
                   return complexities;
                 }

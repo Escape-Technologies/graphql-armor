@@ -1,22 +1,17 @@
 {
     "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "baseUrl": "src",
-      "target": "ES2018",
-      "lib": ["es6", "dom"],
-      "outDir": "./dist",
-      "sourceMap": true,
-      "types": ["node"],
-      "typeRoots": ["node_modules/@types"],
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "resolveJsonModule": true,
-      "strictNullChecks": true,
-      "allowSyntheticDefaultImports": true,
-      "skipLibCheck": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "ES2018",
+        "lib": ["ES6"],
+        "outDir": "./dist",
+        "sourceMap": true,
+        "strict": true,
+        "declaration": true,
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false
     },
     "exclude": ["node_modules", "dist"],
     "include": ["src"],
-  }
-  
+}

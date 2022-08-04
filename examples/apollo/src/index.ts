@@ -79,7 +79,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   cache: 'bounded',
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ...(enhancements.plugins || [])],
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ...enhancements.plugins],
+  validationRules: [...enhancements.validationRules],
 });
 
 (async () => {

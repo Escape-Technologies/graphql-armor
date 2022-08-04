@@ -16,6 +16,7 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
       objectCost: this.config.costAnalysis?.options?.objectCost || 2,
       scalarCost: this.config.costAnalysis?.options?.scalarCost || 1,
       depthCostFactor: this.config.costAnalysis?.options?.depthCostFactor || 1.5,
+      ignoreIntrospection: this.config.costAnalysis?.options?.ignoreIntrospection ?? true,
     };
   }
 

@@ -1,7 +1,7 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxAliasesOptions } from '../../config';
 import { maxAliasesRule } from '../../validationRules/max-aliases';
-import { ApolloError } from 'apollo-server-core';
+import { GraphQLError } from 'graphql';
 
 export class ApolloMaxAliasesProtection extends ApolloProtection {
   get isEnabled(): boolean {
@@ -20,7 +20,9 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
     return {
       validationRules: [
         maxAliasesRule(this.options, (message: string) => {
-          throw new ApolloError(message, 'BAD_USER_INPUT');
+          throw new GraphQLError(message, {
+            extensions: { code: 'BAD_USER_INPUT' },
+          });
         }),
       ],
     };

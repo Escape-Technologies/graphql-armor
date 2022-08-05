@@ -129,14 +129,11 @@ import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
     costAnalysis: {
-      options: {
-          maxCost: 1000,
-      },
+        maxCost: 1000,
     },
     characterLimit: {
-      options: {
-          maxLength: 15000,
-      },
+        maxLength: 15000,
+    }
   }
 });
 ```
@@ -209,10 +206,8 @@ Configuration
 ```typescript
 {
   characterLimit: {
-      enabled: true,
-      options: {
-          maxLength: 15000,
-      },
+    enabled: true,
+    maxLength: 15000,
   }
 }
 ```
@@ -230,14 +225,12 @@ Configuration
 ```typescript
 {
   costAnalysis: {
-      enabled: true,
-      options: {
-          maxCost: 5000, // maximum cost of a request before it is rejected
-          objectCost: 2, // cost of retrieving an object
-          scalarCost: 1, // cost of retrieving a scalar
-          depthCostFactor: 1.5, // multiplicative cost of depth
-          ignoreIntrospection: true, // by default, introspection queries are ignored.
-      },
+    enabled: true,
+    maxCost: 5000, // maximum cost of a request before it is rejected
+    objectCost: 2, // cost of retrieving an object
+    scalarCost: 1, // cost of retrieving a scalar
+    depthCostFactor: 1.5, // multiplicative cost of depth
+    ignoreIntrospection: true, // by default, introspection queries are ignored.
   }
 }
 ```
@@ -255,7 +248,7 @@ Example of such a suggestion :
 ```typescript
 {
   blockFieldSuggestion: {
-      enabled: true,
+    enabled: true,
   }
 }
 ```
@@ -269,10 +262,8 @@ Put a limit on the number of aliases.
 ```typescript
 {
   maxAliases: {
-      enabled: true,
-      options: {
-          n: 15,
-      },
+    enabled: true,
+    n: 15,
   }
 }
 ```
@@ -286,10 +277,8 @@ Put a limit on the number of directives.
 ```typescript
 {
   maxDirectives: {
-      enabled: true,
-      options: {
-          n: 50,
-      },
+    enabled: true,
+    n: 50,
   }
 }
 ```
@@ -303,10 +292,8 @@ Put a depth limit to the request.
 ```typescript
 {
   maxDepth: {
-      enabled: true,
-      options: {
-          n: 6,
-      },
+    enabled: true,
+    n: 6,
   }
 }
 ```

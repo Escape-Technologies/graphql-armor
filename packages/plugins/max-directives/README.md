@@ -30,7 +30,7 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     maxDirectivesPlugin({
-        n: 10, // Number of directives allowed | Default: 50
+        n: 50, // Number of directives allowed | Default: 50
     }),
   ]
 })

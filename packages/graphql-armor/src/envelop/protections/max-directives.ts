@@ -2,7 +2,7 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 import { MaxDirectivesOptions } from '../../config';
 import { GraphQLError } from 'graphql';
 import type { Plugin } from '@envelop/core';
-import { maxDirectivesRule } from '../../validationRules/max-directives';
+import { maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
 
 const plugin = (options: MaxDirectivesOptions): Plugin => {
   return {

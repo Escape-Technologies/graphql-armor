@@ -4,6 +4,6 @@
         "yarn.lock": true,
         ".idea": true,
         ".yarn": true,
-        "dist/": true,
+        "**/dist/": true,
     }
 }

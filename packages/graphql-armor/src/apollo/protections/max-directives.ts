@@ -1,7 +1,7 @@
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 import { MaxDirectivesOptions } from '../../config';
 import { GraphQLError } from 'graphql';
-import { maxDirectivesRule } from '../../validationRules/max-directives';
+import { maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
 
 export class ApolloMaxDirectivesProtection extends ApolloProtection {
   get isEnabled(): boolean {

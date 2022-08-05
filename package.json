@@ -35,7 +35,8 @@
     },
     "workspaces": [
         "examples/*",
-        "packages/*"
+        "packages/*",
+        "packages/plugins/*"
     ],
     "volta": {
         "node": "16.14.2",

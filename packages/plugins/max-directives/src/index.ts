@@ -6,8 +6,8 @@ import {
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { MaxDepthOptions, MaxDirectivesOptions } from '../config';
 
+type MaxDirectivesOptions = { n: number };
 class MaxDirectivesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -48,6 +48,8 @@ class MaxDirectivesVisitor {
   }
 }
 
-export const maxDirectivesRule =
-  (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+const maxDirectivesRule =
+  (options: MaxDirectivesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
     new MaxDirectivesVisitor(context, options, onError);
+
+export { maxDirectivesRule, MaxDirectivesOptions };

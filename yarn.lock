@@ -1958,6 +1958,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@escape.tech/graphql-armor-max-directives@workspace:^, @escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
+  dependencies:
+    graphql: ^16.5.0
+  languageName: unknown
+  linkType: soft
+
 "@escape.tech/graphql-armor-monorepo@workspace:.":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-monorepo@workspace:."
@@ -1984,6 +1992,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
     "@envelop/core": ^2.4.1
+    "@escape.tech/graphql-armor-max-directives": "workspace:^"
     apollo-server: ^3.10.0
     apollo-server-core: ^3.10.0
     apollo-server-types: ^3.6.2

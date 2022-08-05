@@ -11,7 +11,7 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 ## Contents
 
 - [Supported GraphQL Engines](#suppoorted-graphql-engines)
-- [Getting Started](#getting-started) 
+- [Getting Started](#getting-started)
   - [Apollo Server](#apollo-server)
   - [GraphQL Yoga](#graphql-yoga)
   - [Envelop](#envelop)
@@ -70,8 +70,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...protection,
-  plugins: [...enhancements.plugins, myPlugin1, myPlugin2 ]
-  validationRules: [, ...enhancements.validationRules, myRule1, myRule2 ]
+  plugins: [...protection.plugins, myPlugin1, myPlugin2 ]
+  validationRules: [, ...protection.validationRules, myRule1, myRule2 ]
 });
 ```
 
@@ -81,11 +81,12 @@ const server = new ApolloServer({
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
 
 const armor = new EnvelopArmor();
+const protection = armor.protect()
 
 async function main() {
   const server = createServer({
     schema,
-    plugins: [...armor.protect().plugins],
+    plugins: [...protection.plugins],
   });
   await server.start();
 }
@@ -99,9 +100,10 @@ main();
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
 
 const armor = new EnvelopArmor();
+const protection = armor.protect()
 
 const getEnveloped = envelop({
-  plugins: [otherPlugins, ...armor.protect().plugins],
+  plugins: [otherPlugins, ...protection.plugins],
 });
 ```
 
@@ -116,9 +118,9 @@ import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
     costAnalysis: {
-        options: {
-            maxCost: 1000,
-        },
+      options: {
+          maxCost: 1000,
+      },
     },
     characterLimit: {
       options: {

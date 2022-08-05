@@ -11,7 +11,7 @@ export class EnvelopCharacterLimitProtection extends EnvelopProtection {
 
   get options(): CharacterLimitOptions {
     return {
-      maxLength: this.config.characterLimit?.options?.maxLength || 15000,
+      maxLength: this.config.characterLimit?.maxLength || 15000,
     };
   }
 

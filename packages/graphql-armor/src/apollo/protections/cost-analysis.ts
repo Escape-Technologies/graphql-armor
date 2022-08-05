@@ -13,11 +13,11 @@ export class ApolloCostAnalysisProtection extends ApolloProtection {
 
   get options(): CostAnalysisOptions {
     return {
-      maxCost: this.config.costAnalysis?.options?.maxCost || 5000,
-      objectCost: this.config.costAnalysis?.options?.objectCost || 2,
-      scalarCost: this.config.costAnalysis?.options?.scalarCost || 1,
-      depthCostFactor: this.config.costAnalysis?.options?.depthCostFactor || 1.5,
-      ignoreIntrospection: this.config.costAnalysis?.options?.ignoreIntrospection ?? true,
+      maxCost: this.config.costAnalysis?.maxCost || 5000,
+      objectCost: this.config.costAnalysis?.objectCost || 2,
+      scalarCost: this.config.costAnalysis?.scalarCost || 1,
+      depthCostFactor: this.config.costAnalysis?.depthCostFactor || 1.5,
+      ignoreIntrospection: this.config.costAnalysis?.ignoreIntrospection ?? true,
     };
   }
 

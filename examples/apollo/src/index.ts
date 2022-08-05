@@ -67,9 +67,7 @@ const httpServer = http.createServer(app);
 const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
-    options: {
-      maxLength: 10000,
-    },
+    maxLength: 10000,
   },
 });
 

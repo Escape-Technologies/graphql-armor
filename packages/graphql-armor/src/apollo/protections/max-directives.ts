@@ -12,7 +12,7 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
 
   get options(): MaxDirectivesOptions {
     return {
-      n: this.config.maxDirectives?.options?.n || 50,
+      n: this.config.maxDirectives?.n || 50,
     };
   }
 

@@ -26,7 +26,7 @@ export class ApolloCharacterLimitProtection extends ApolloProtection {
 
   get options(): CharacterLimitOptions {
     return {
-      maxLength: this.config.characterLimit?.options?.maxLength || 15000,
+      maxLength: this.config.characterLimit?.maxLength || 15000,
     };
   }
 

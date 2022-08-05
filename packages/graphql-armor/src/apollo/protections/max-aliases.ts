@@ -12,7 +12,6 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
 
   get options(): MaxAliasesOptions {
     return {
-  
       n: this.config.maxAliases?.n || 15,
     };
   }

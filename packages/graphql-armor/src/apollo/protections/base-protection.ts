@@ -2,7 +2,6 @@ import type { Config as ApolloServerConfig } from 'apollo-server-core';
 
 import { GraphQLArmorConfig } from '../../config';
 
-
 export type ApolloServerConfigurationEnhancement = {
   plugins?: ApolloServerConfig['plugins'];
   validationRules?: ApolloServerConfig['validationRules'];

@@ -17,11 +17,10 @@ export type CostAnalysisOptions = {
 };
 
 export type GraphQLArmorConfig = {
-  blockFieldSuggestion?: ProtectionConfiguration&BlockFieldSuggestionsOptions;
-  characterLimit?: ProtectionConfiguration&CharacterLimitOptions;
-  costAnalysis?: ProtectionConfiguration&CostAnalysisOptions;
-  maxAliases?: ProtectionConfiguration&MaxAliasesOptions;
-  maxDepth?: ProtectionConfiguration&MaxDepthOptions;
-  maxDirectives?: ProtectionConfiguration&MaxDirectivesOptions;
-
+  blockFieldSuggestion?: ProtectionConfiguration & BlockFieldSuggestionsOptions;
+  characterLimit?: ProtectionConfiguration & CharacterLimitOptions;
+  costAnalysis?: ProtectionConfiguration & CostAnalysisOptions;
+  maxAliases?: ProtectionConfiguration & MaxAliasesOptions;
+  maxDepth?: ProtectionConfiguration & MaxDepthOptions;
+  maxDirectives?: ProtectionConfiguration & MaxDirectivesOptions;
 };

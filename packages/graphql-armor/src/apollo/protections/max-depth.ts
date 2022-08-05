@@ -12,7 +12,7 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
 
   get options(): MaxDepthOptions {
     return {
-      n: this.config.maxDepth?.options?.n || 6,
+      n: this.config.maxDepth?.n || 6,
     };
   }
 

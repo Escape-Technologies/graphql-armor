@@ -10,9 +10,7 @@ import { BookModule } from './book/book.module';
 const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
-    options: {
-      maxLength: 100,
-    },
+    maxLength: 100,
   },
 });
 

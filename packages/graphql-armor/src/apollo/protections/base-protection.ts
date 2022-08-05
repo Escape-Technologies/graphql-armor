@@ -1,4 +1,5 @@
 import type { Config as ApolloServerConfig } from 'apollo-server-core';
+
 import { GraphQLArmorConfig } from '../../config';
 
 export type ProtectionConfiguration<Options = never> = {

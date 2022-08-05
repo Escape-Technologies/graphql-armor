@@ -1,13 +1,15 @@
+import type { Plugin } from '@envelop/core';
 import {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
+  GraphQLError,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { MaxAliasesOptions } from '../config';
 
+type MaxAliasesOptions = { n: number };
 class MaxAliasesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -48,6 +50,19 @@ class MaxAliasesVisitor {
   }
 }
 
-export const maxAliasesRule =
-  (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
-    new MaxAliasesVisitor(context, options, onError);
+const maxAliasesRule = (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+  new MaxAliasesVisitor(context, options, onError);
+
+const maxAliasesPlugin = (options: MaxAliasesOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(
+        maxAliasesRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
+    },
+  };
+};
+
+export { maxAliasesRule, maxAliasesPlugin, MaxAliasesOptions };

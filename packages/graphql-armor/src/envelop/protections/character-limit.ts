@@ -1,7 +1,8 @@
-import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-import { CharacterLimitOptions } from '../../config';
-import { GraphQLError } from 'graphql';
 import type { Plugin } from '@envelop/core';
+import { GraphQLError } from 'graphql';
+
+import { CharacterLimitOptions } from '../../config';
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 const plugin = ({ maxLength }: CharacterLimitOptions): Plugin => {
   return {

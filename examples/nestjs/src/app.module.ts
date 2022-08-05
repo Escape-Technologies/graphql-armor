@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 import { ApolloDriver } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
-import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
   characterLimit: {

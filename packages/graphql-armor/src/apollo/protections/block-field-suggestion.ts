@@ -1,6 +1,7 @@
 import type { PluginDefinition } from 'apollo-server-core';
-import { ApolloServerConfigurationEnhancement, ApolloProtection } from './base-protection';
 import { GraphQLError } from 'graphql';
+
+import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 const plugin: PluginDefinition = {
   async requestDidStart() {

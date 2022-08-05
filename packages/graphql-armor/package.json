@@ -17,8 +17,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w",
-    "test": "echo \"Error: no test specified\""
+    "dev": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,10 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
+    "@escape.tech/graphql-armor-block-field-suggestions": "workspace:^",
+    "@escape.tech/graphql-armor-max-aliases": "workspace:^",
+    "@escape.tech/graphql-armor-max-depth": "workspace:^",
+    "@escape.tech/graphql-armor-max-directives": "workspace:^",
     "graphql": "^16.5.0"
   },
   "peerDependencies": {

@@ -1,7 +1,7 @@
-import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
-import { MaxDepthOptions } from '../../config';
+import { MaxDepthOptions, maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
 import { GraphQLError } from 'graphql';
-import { maxDepthRule } from '../../validationRules/max-depth';
+
+import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxDepthProtection extends ApolloProtection {
   get isEnabled(): boolean {

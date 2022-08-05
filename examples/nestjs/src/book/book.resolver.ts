@@ -1,8 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 
-import { BookService } from './book.service';
 import { Book } from './book.model';
-import { Injectable } from '@nestjs/common';
+import { BookService } from './book.service';
 
 @Injectable()
 @Resolver('Book')

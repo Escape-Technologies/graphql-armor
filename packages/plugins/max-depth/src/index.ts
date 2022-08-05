@@ -1,13 +1,15 @@
+import type { Plugin } from '@envelop/core';
 import {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
+  GraphQLError,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { MaxDepthOptions } from '../config';
 
+type MaxDepthOptions = { n: number };
 class MaxDepthVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -46,5 +48,19 @@ class MaxDepthVisitor {
   }
 }
 
-export const maxDepthRule = (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+const maxDepthRule = (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
   new MaxDepthVisitor(context, options, onError);
+
+const maxDepthPlugin = (options: MaxDepthOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(
+        maxDepthRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
+    },
+  };
+};
+
+export { maxDepthRule, MaxDepthOptions, maxDepthPlugin };

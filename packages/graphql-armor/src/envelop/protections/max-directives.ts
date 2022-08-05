@@ -1,4 +1,8 @@
-import { MaxDirectivesOptions, maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives';
+import {
+  MaxDirectivesOptions,
+  maxDirectivesOptionsDefaults,
+  maxDirectivesPlugin,
+} from '@escape.tech/graphql-armor-max-directives';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
@@ -11,7 +15,8 @@ export class EnvelopMaxDirectivesProtection extends EnvelopProtection {
 
   get options(): MaxDirectivesOptions {
     return {
-      n: this.config.maxDirectives?.n || 50,
+      ...maxDirectivesOptionsDefaults,
+      ...this.config.maxDirectives,
     };
   }
 

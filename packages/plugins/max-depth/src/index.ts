@@ -63,4 +63,6 @@ const maxDepthPlugin = (options: MaxDepthOptions): Plugin => {
   };
 };
 
+export const maxDepthOptionsDefaults: MaxDepthOptions = { n: 6 };
+
 export { maxDepthRule, MaxDepthOptions, maxDepthPlugin };

@@ -1,7 +1,7 @@
 import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
-import { CostAnalysisOptions } from '../../config';
+import { CostAnalysisOptions, costAnalysisOptionsDefaults } from '../../config';
 import { costAnalysisRule } from '../../internals/cost-analysis';
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
@@ -26,11 +26,8 @@ export class EnvelopCostAnalysisProtection extends EnvelopProtection {
 
   get options(): CostAnalysisOptions {
     return {
-      maxCost: this.config.costAnalysis?.maxCost || 5000,
-      objectCost: this.config.costAnalysis?.objectCost || 2,
-      scalarCost: this.config.costAnalysis?.scalarCost || 1,
-      depthCostFactor: this.config.costAnalysis?.depthCostFactor || 1.5,
-      ignoreIntrospection: this.config.costAnalysis?.ignoreIntrospection ?? true,
+      ...costAnalysisOptionsDefaults,
+      ...this.config.costAnalysis,
     };
   }
 

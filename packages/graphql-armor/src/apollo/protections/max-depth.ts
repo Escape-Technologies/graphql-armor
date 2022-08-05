@@ -1,4 +1,4 @@
-import { MaxDepthOptions, maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
+import { MaxDepthOptions, maxDepthOptionsDefaults, maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
 import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
@@ -12,7 +12,8 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
 
   get options(): MaxDepthOptions {
     return {
-      n: this.config.maxDepth?.n || 6,
+      ...maxDepthOptionsDefaults,
+      ...this.config,
     };
   }
 

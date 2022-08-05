@@ -1,4 +1,4 @@
-import { CharacterLimitOptions } from '@escape.tech/graphql-armor-character-limit';
+import { CharacterLimitOptions, characterLimitOptionsDefaults } from '@escape.tech/graphql-armor-character-limit';
 import type { GraphQLRequestContext } from 'apollo-server-types';
 import { GraphQLError } from 'graphql';
 
@@ -26,7 +26,8 @@ export class ApolloCharacterLimitProtection extends ApolloProtection {
 
   get options(): CharacterLimitOptions {
     return {
-      maxLength: this.config.characterLimit?.maxLength || 15000,
+      ...characterLimitOptionsDefaults,
+      ...this.config.characterLimit,
     };
   }
 

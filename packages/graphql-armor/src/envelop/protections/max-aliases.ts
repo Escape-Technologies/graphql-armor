@@ -1,4 +1,4 @@
-import { MaxAliasesOptions, maxAliasesPlugin } from '@escape.tech/graphql-armor-max-aliases';
+import { MaxAliasesOptions, maxAliasesOptionsDefaults, maxAliasesPlugin } from '@escape.tech/graphql-armor-max-aliases';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
@@ -11,7 +11,8 @@ export class EnvelopMaxAliasesProtection extends EnvelopProtection {
 
   get options(): MaxAliasesOptions {
     return {
-      n: this.config.maxAliases?.n || 15,
+      ...maxAliasesOptionsDefaults,
+      ...this.config.maxAliases,
     };
   }
 

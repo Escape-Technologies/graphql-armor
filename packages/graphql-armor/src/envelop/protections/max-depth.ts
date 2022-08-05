@@ -1,4 +1,4 @@
-import { MaxDepthOptions, maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth';
+import { MaxDepthOptions, maxDepthOptionsDefaults, maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
@@ -11,7 +11,8 @@ export class EnvelopMaxDepthProtection extends EnvelopProtection {
 
   get options(): MaxDepthOptions {
     return {
-      n: this.config.maxDepth?.n || 6,
+      ...maxDepthOptionsDefaults,
+      ...this.config,
     };
   }
 

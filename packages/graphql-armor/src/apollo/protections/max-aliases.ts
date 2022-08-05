@@ -1,4 +1,4 @@
-import { MaxAliasesOptions, maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
+import { MaxAliasesOptions, maxAliasesOptionsDefaults, maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
 import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
@@ -12,7 +12,8 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
 
   get options(): MaxAliasesOptions {
     return {
-      n: this.config.maxAliases?.n || 15,
+      ...maxAliasesOptionsDefaults,
+      ...this.config.maxAliases,
     };
   }
 

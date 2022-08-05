@@ -66,4 +66,6 @@ const maxDirectivesPlugin = (options: MaxDirectivesOptions): Plugin => {
   };
 };
 
+export const maxDirectivesOptionsDefaults: MaxDirectivesOptions = { n: 50 };
+
 export { maxDirectivesRule, MaxDirectivesOptions, maxDirectivesPlugin };

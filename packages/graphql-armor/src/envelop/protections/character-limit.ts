@@ -1,4 +1,8 @@
-import { CharacterLimitOptions, characterLimitPlugin } from '@escape.tech/graphql-armor-character-limit';
+import {
+  CharacterLimitOptions,
+  characterLimitOptionsDefaults,
+  characterLimitPlugin,
+} from '@escape.tech/graphql-armor-character-limit';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
@@ -11,7 +15,8 @@ export class EnvelopCharacterLimitProtection extends EnvelopProtection {
 
   get options(): CharacterLimitOptions {
     return {
-      maxLength: this.config.characterLimit?.maxLength || 15000,
+      ...characterLimitOptionsDefaults,
+      ...this.config.characterLimit,
     };
   }
 

@@ -65,4 +65,6 @@ const maxAliasesPlugin = (options: MaxAliasesOptions): Plugin => {
   };
 };
 
+export const maxAliasesOptionsDefaults: MaxAliasesOptions = { n: 15 };
+
 export { maxAliasesRule, maxAliasesPlugin, MaxAliasesOptions };

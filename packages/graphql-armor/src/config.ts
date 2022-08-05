@@ -16,6 +16,14 @@ export type CostAnalysisOptions = {
   ignoreIntrospection: boolean;
 };
 
+export const costAnalysisOptionsDefaults: CostAnalysisOptions = {
+  maxCost: 5000,
+  objectCost: 2,
+  scalarCost: 1,
+  depthCostFactor: 1.5,
+  ignoreIntrospection: true,
+};
+
 export type GraphQLArmorConfig = {
   blockFieldSuggestion?: ProtectionConfiguration & BlockFieldSuggestionsOptions;
   characterLimit?: ProtectionConfiguration & CharacterLimitOptions;

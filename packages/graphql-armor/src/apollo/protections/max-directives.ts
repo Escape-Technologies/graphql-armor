@@ -1,4 +1,8 @@
-import { MaxDirectivesOptions, maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
+import {
+  MaxDirectivesOptions,
+  maxDirectivesOptionsDefaults,
+  maxDirectivesRule,
+} from '@escape.tech/graphql-armor-max-directives';
 import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
@@ -12,7 +16,8 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
 
   get options(): MaxDirectivesOptions {
     return {
-      n: this.config.maxDirectives?.n || 50,
+      ...maxDirectivesOptionsDefaults,
+      ...this.config.maxDirectives,
     };
   }
 

@@ -1,18 +1,6 @@
-import type { Plugin } from '@envelop/core';
-import { GraphQLError } from 'graphql';
+import { CharacterLimitOptions, characterLimitPlugin } from '@escape.tech/graphql-armor-character-limit';
 
-import { CharacterLimitOptions } from '../../config';
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-
-const plugin = ({ maxLength }: CharacterLimitOptions): Plugin => {
-  return {
-    onParse({ context }: any) {
-      if (context.query.length > maxLength) {
-        new GraphQLError(`Query too large.`);
-      }
-    },
-  };
-};
 
 export class EnvelopCharacterLimitProtection extends EnvelopProtection {
   get isEnabled(): boolean {
@@ -29,7 +17,7 @@ export class EnvelopCharacterLimitProtection extends EnvelopProtection {
 
   protect(): EnvelopConfigurationEnhancement {
     return {
-      plugins: [plugin(this.options)],
+      plugins: [characterLimitPlugin(this.options)],
     };
   }
 }

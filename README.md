@@ -6,26 +6,37 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 
 ![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/banner.png)
 
-[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![CD](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
+[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![release](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
 
 ## Contents
 
-- [Supported GraphQL Engines](#suppoorted-graphql-engines)
+- [Contents](#contents)
+- [Supported GraphQL Engines](#supported-graphql-engines)
 - [Getting Started](#getting-started)
   - [Apollo Server](#apollo-server)
   - [GraphQL Yoga](#graphql-yoga)
   - [Envelop](#envelop)
-- [Getting Started with Configuration](#getting-started-with-configuration)
+- [Getting Started with configuration](#getting-started-with-configuration)
 - [Per plugin configuration](#per-plugin-configuration)
+  - [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
+  - [Batched queries (Apollo Only)](#batched-queries-apollo-only)
+  - [Character Limit](#character-limit)
+  - [Cost Analysis](#cost-analysis)
+  - [Field Suggestion](#field-suggestion)
+  - [Aliases Limit](#aliases-limit)
+  - [Directives Limit](#directives-limit)
+  - [Depth Limit](#depth-limit)
 - [Contributing](#contributing)
 
 ## Supported GraphQL Engines
 
 We support the following engines :
+
 - [Apollo Server](https://www.apollographql.com/)
 - [GraphQL Yoga](https://www.graphql-yoga.com/)
 
 We additionnaly support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
+
 - GraphQL-Helix
 - Node.js HTTP
 - GraphQL-WS
@@ -135,14 +146,15 @@ const armor = new ApolloArmor({
 The provided values are the default values.
 
 This section describes how to configure each plugin individually.
-  - [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
-  - [Batched queries (Apollo Only)](#batched-queries-apollo-only)
-  - [Character Limit](#character-limit)
-  - [Cost Analysis](#cost-analysis)
-  - [Field Suggestion](#field-suggestion)
-  - [Aliases Limit](#aliases-limit)
-  - [Directives Limit](#directives-limit)
-  - [Depth Limit](#depth-limit)
+
+- [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
+- [Batched queries (Apollo Only)](#batched-queries-apollo-only)
+- [Character Limit](#character-limit)
+- [Cost Analysis](#cost-analysis)
+- [Field Suggestion](#field-suggestion)
+- [Aliases Limit](#aliases-limit)
+- [Directives Limit](#directives-limit)
+- [Depth Limit](#depth-limit)
 
 ### Stacktraces (Apollo Only)
 
@@ -193,6 +205,7 @@ It enforces a character limit on your GraphQL queries.
 The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
 Configuration
+
 ```typescript
 {
   characterLimit: {
@@ -213,6 +226,7 @@ It analyzes incoming GraphQL queries and applies a cost analysis algorithm to pr
 The cost computation is quite simple (and naive) at the moment but there are plans to make it evolve toward a extensive plugin with many features.
 
 Configuration
+
 ```typescript
 {
   costAnalysis: {
@@ -238,7 +252,6 @@ Example of such a suggestion :
 
 `Cannot query field "sta" on type "Media". Did you mean "stats", "staff", or "status"?`
 
-Configuration
 ```typescript
 {
   blockFieldSuggestion: {
@@ -246,13 +259,13 @@ Configuration
   }
 }
 ```
+
 ### Aliases Limit
 
 This plugin is enabled by default.
 
 Put a limit on the number of aliases.
 
-Configuration
 ```typescript
 {
   maxAliases: {
@@ -297,7 +310,6 @@ Put a depth limit to the request.
   }
 }
 ```
-
 
 ## Contributing
 

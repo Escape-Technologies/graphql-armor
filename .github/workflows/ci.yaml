@@ -32,23 +32,3 @@ jobs:
         if: matrix.node == '16'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  pkg-focus:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [14, 16, 17, 18]
-    name: Pkg Node ${{ matrix.node }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        run: |
-          corepack enable
-          yarn install
-          cp README.md packages/graphql-armor/README.md
-      - run: yarn workspaces foreach -ptv run build
-      - run: yarn workspace @escape.tech/graphql-armor build

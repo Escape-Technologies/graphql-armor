@@ -23,21 +23,16 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "npm"
-    directory: "/packages/docs"
+    directory: "/packages/*"
     schedule:
       interval: "monthly"
 
   - package-ecosystem: "npm"
-    directory: "/examples/apollo"
+    directory: "/examples/*"
     schedule:
       interval: "monthly"
 
   - package-ecosystem: "npm"
-    directory: "/examples/nestjs"
-    schedule:
-      interval: "monthly"
-
-  - package-ecosystem: "npm"
-    directory: "/examples/yoga"
+    directory: "/packages/plugins/*"
     schedule:
       interval: "monthly"

@@ -8,7 +8,8 @@
         "lint": "prettier --check '**/*.{ts,js}'",
         "prettier": "prettier --write '**/*.{ts,js}'",
         "test": "jest",
-        "test:ci": "jest --coverage"
+        "test:ci": "jest --coverage",
+        "build": "yarn workspaces foreach -ptv run build"
     },
     "author": "Escape Technologies SAS",
     "private": true,

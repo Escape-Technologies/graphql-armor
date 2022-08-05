@@ -22,7 +22,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - run: |
           corepack enable
-          yarn
+          yarn install
           cp README.md packages/graphql-armor/README.md
       - run: yarn workspaces foreach -ptv run build
       - run: yarn workspace @escape.tech/graphql-armor build

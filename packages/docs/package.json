@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "@escape.tech/graphql-armor-docs",
   "packageManager": "yarn@3.2.2",
   "private": true
 }

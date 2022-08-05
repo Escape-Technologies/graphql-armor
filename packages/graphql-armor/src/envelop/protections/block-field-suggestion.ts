@@ -1,6 +1,5 @@
-import { GraphQLError } from 'graphql';
+import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
 
-import { hookErrors } from '../../internals/hookError';
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
@@ -12,19 +11,7 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
 
   protect(): EnvelopConfigurationEnhancement {
     return {
-      plugins: [
-        hookErrors({
-          formatter: (error: GraphQLError): GraphQLError => {
-            if (error instanceof GraphQLError) {
-              error.message = error.message.replace(
-                /Did you mean ".+"/g,
-                '[Suggestion message hidden by GraphQLArmor]',
-              );
-            }
-            return error as GraphQLError;
-          },
-        }),
-      ],
+      plugins: [blockFieldSuggestionsPlugin()],
     };
   }
 }

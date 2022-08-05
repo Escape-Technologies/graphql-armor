@@ -135,8 +135,8 @@ const armor = new ApolloArmor({
 The provided values are the default values.
 
 This section describes how to configure each plugin individually.
-  - [Stacktraces](#stacktraces)
-  - [Batched queries](#batched-queries)
+  - [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
+  - [Batched queries (Apollo Only)](#batched-queries-apollo-only)
   - [Character Limit](#character-limit)
   - [Cost Analysis](#cost-analysis)
   - [Field Suggestion](#field-suggestion)
@@ -144,7 +144,7 @@ This section describes how to configure each plugin individually.
   - [Directives Limit](#directives-limit)
   - [Depth Limit](#depth-limit)
 
-### Stacktraces
+### Stacktraces (Apollo Only)
 
 This plugin is for Apollo Server only, and is enabled by default.
 
@@ -164,7 +164,7 @@ const server = new ApolloServer({
 });
 ```
 
-### Batched queries
+### Batched queries (Apollo Only)
 
 This plugin is for Apollo Server only, and is enabled by default.
 

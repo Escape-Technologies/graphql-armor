@@ -1,6 +1,7 @@
 import {
   FieldNode,
   FragmentDefinitionNode,
+  FragmentSpreadNode,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
@@ -32,15 +33,14 @@ class MaxDirectivesVisitor {
   }
 
   private countDirectives(
-    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode,
+    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   ): number {
     let directives = 0;
     if (node.directives) {
       directives += node.directives.length;
     }
-    if (node.selectionSet) {
+    if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
-        // @ts-ignore
         directives += this.countDirectives(child);
       }
     }

@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 16
 
+      - name: Share readme
+        run: cp README.md packages/graphql-armor/README.md
+
       - name: Install Dependencies
         run: yarn
 

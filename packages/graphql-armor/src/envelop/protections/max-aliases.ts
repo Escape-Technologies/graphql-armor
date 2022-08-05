@@ -11,7 +11,7 @@ export class EnvelopMaxAliasesProtection extends EnvelopProtection {
 
   get options(): MaxAliasesOptions {
     return {
-      n: this.config.maxAliases?.options?.n || 15,
+      n: this.config.maxAliases?.n || 15,
     };
   }
 

@@ -2,10 +2,6 @@ import type { Config as ApolloServerConfig } from 'apollo-server-core';
 
 import { GraphQLArmorConfig } from '../../config';
 
-export type ProtectionConfiguration<Options = never> = {
-  enabled: boolean;
-  options?: Options;
-};
 
 export type ApolloServerConfigurationEnhancement = {
   plugins?: ApolloServerConfig['plugins'];

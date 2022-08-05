@@ -1,4 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
+
 import { ApolloArmor, EnvelopArmor } from '../src/index';
 
 describe('global', () => {

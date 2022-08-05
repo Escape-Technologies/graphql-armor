@@ -11,6 +11,7 @@ import {
   SelectionSetNode,
   ValidationContext,
 } from 'graphql';
+
 import { CostAnalysisOptions } from '../config';
 
 export const costAnalysisRule =

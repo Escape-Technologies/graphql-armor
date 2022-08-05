@@ -1,5 +1,5 @@
-import { GraphQLError } from 'graphql';
 import type { Plugin as EnvelopPlugin } from '@envelop/core';
+import { GraphQLError } from 'graphql';
 
 export type HookErrorOpts = {
   formatter: (error: GraphQLError) => GraphQLError;

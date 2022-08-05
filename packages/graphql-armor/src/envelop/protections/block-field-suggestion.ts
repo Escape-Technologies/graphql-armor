@@ -1,6 +1,7 @@
 import { GraphQLError } from 'graphql';
-import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
+
 import { hookErrors } from '../../internals/hookError';
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
   get isEnabled(): boolean {

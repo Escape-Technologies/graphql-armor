@@ -1,4 +1,5 @@
 import type { Config as ApolloServerConfig, PluginDefinition, ValidationRule } from 'apollo-server-core';
+
 import { GraphQLArmorConfig } from '../config';
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';

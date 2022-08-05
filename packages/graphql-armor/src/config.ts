@@ -1,12 +1,13 @@
+import { MaxAliasOptions } from '@escape.tech/graphql-armor-max-aliases';
+import { MaxDepthOptions } from '@escape.tech/graphql-armor-max-depth';
+import { MaxDirectivesOptions } from '@escape.tech/graphql-armor-max-directives';
+
 import { ProtectionConfiguration } from './apollo/protections/base-protection';
 
 export type BlockFieldSuggestionOptions = undefined;
 
 export type CharacterLimitOptions = { maxLength: number };
 
-export type MaxDirectivesOptions = { n: number };
-export type MaxDepthOptions = { n: number };
-export type MaxAliasesOptions = { n: number };
 export type CostAnalysisOptions = {
   maxCost: number;
   objectCost: number;

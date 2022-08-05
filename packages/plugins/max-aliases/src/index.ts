@@ -6,16 +6,16 @@ import {
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { MaxDepthOptions } from '../config';
 
-class MaxDepthVisitor {
+type MaxAliasesOptions = { n: number };
+class MaxAliasesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: MaxDepthOptions;
+  private readonly options: MaxAliasesOptions;
   private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxDepthOptions, onError: (msg: string) => any) {
+  constructor(context: ValidationContext, options: MaxAliasesOptions, onError: (msg: string) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;
@@ -26,25 +26,29 @@ class MaxDepthVisitor {
   }
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
-    const depth = this.countDepth(operation);
-    if (depth > this.options.n) {
-      this.onError('Request too deep.');
+    const aliases = this.countAliases(operation);
+    if (aliases > this.options.n) {
+      this.onError('Too many aliases.');
     }
   }
 
-  private countDepth(
+  private countAliases(
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
-    depth: number = 0,
   ): number {
-    let newDepth = depth;
+    let aliases = 0;
+    if ('alias' in node && node.alias) {
+      aliases++;
+    }
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
-        newDepth = Math.max(newDepth, this.countDepth(child, depth + 1));
+        aliases += this.countAliases(child);
       }
     }
-    return newDepth;
+    return aliases;
   }
 }
 
-export const maxDepthRule = (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
-  new MaxDepthVisitor(context, options, onError);
+const maxAliasesRule = (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
+  new MaxAliasesVisitor(context, options, onError);
+
+export { maxAliasesRule, MaxAliasesOptions };

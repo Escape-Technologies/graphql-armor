@@ -1,7 +1,8 @@
-import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
+import { GraphQLError } from 'graphql';
+
 import { CostAnalysisOptions } from '../../config';
 import { costAnalysisRule } from '../../validationRules/cost-analysis';
-import { GraphQLError } from 'graphql';
+import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloCostAnalysisProtection extends ApolloProtection {
   get isEnabled(): boolean {

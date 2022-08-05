@@ -1,8 +1,9 @@
-import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-import { CostAnalysisOptions } from '../../config';
-import { GraphQLError } from 'graphql';
 import type { Plugin } from '@envelop/core';
+import { GraphQLError } from 'graphql';
+
+import { CostAnalysisOptions } from '../../config';
 import { costAnalysisRule } from '../../validationRules/cost-analysis';
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 const plugin = (options: CostAnalysisOptions): Plugin => {
   return {

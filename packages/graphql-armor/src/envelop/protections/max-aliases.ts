@@ -1,8 +1,8 @@
-import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-import { MaxAliasesOptions } from '../../config';
-import { GraphQLError } from 'graphql';
 import type { Plugin } from '@envelop/core';
-import { maxAliasesRule } from '../../validationRules/max-aliases';
+import { MaxAliasesOptions, maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
+import { GraphQLError } from 'graphql';
+
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 const plugin = (options: MaxAliasesOptions): Plugin => {
   return {

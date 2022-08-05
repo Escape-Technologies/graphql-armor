@@ -1,10 +1,10 @@
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+import { gql } from 'apollo-server';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
+import { ApolloServer } from 'apollo-server-express';
+
 const express = require('express');
 const http = require('http');
-
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import { gql } from 'apollo-server';
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-import { ApolloServer } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Book {

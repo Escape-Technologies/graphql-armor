@@ -1,11 +1,12 @@
+import type { Plugin } from '@envelop/core';
+
 import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
-import type { Plugin } from '@envelop/core';
 import { EnvelopBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { EnvelopCharacterLimitProtection } from './protections/character-limit';
 import { EnvelopMaxAliasesProtection } from './protections/max-aliases';
-import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
 import { EnvelopMaxDepthProtection } from './protections/max-depth';
+import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
 
 export class EnvelopArmor {
   private config: GraphQLArmorConfig;

@@ -1,8 +1,8 @@
-import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-import { MaxDepthOptions } from '../../config';
-import { GraphQLError } from 'graphql';
 import type { Plugin } from '@envelop/core';
-import { maxDepthRule } from '../../validationRules/max-depth';
+import { MaxDepthOptions, maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
+import { GraphQLError } from 'graphql';
+
+import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
 const plugin = (options: MaxDepthOptions): Plugin => {
   return {

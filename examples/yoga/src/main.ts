@@ -1,6 +1,7 @@
-import { createServer } from '@graphql-yoga/node';
-import { schema } from './schema';
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
+import { createServer } from '@graphql-yoga/node';
+
+import { schema } from './schema';
 
 const armor = new EnvelopArmor();
 const enhancements = armor.protect();

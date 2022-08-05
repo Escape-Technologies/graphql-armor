@@ -1,5 +1,6 @@
+import { describe, expect, it } from '@jest/globals';
+
 import { EnvelopArmor } from '../../src/envelop/armor';
-import { describe, it, expect } from '@jest/globals';
 
 describe('envelopArmor', () => {
   const envelop = new EnvelopArmor();

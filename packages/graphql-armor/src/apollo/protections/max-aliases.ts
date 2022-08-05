@@ -1,7 +1,7 @@
-import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
-import { MaxAliasesOptions } from '../../config';
-import { maxAliasesRule } from '../../validationRules/max-aliases';
+import { MaxAliasesOptions, maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
 import { GraphQLError } from 'graphql';
+
+import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxAliasesProtection extends ApolloProtection {
   get isEnabled(): boolean {

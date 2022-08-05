@@ -2,7 +2,7 @@
 
 *This project is young so there might be bugs but we are very reactive so feel free to open issues.*
 
-GraphQL Armor is a Dead-simple, yet highly customizable security middleware for [Apollo GraphQL](https://github.com/apollographql/apollo-server) servers.
+GraphQL Armor is a dead-simple yet highly customizable security middleware for various GraphQL server engines.
 
 ![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/banner.png)
 
@@ -10,36 +10,42 @@ GraphQL Armor is a Dead-simple, yet highly customizable security middleware for 
 
 ## Contents
 
-- [GraphQL Armor 🛡️](#graphql-armor-️)
-  - [Contents](#contents)
-  - [Supported remediations](#supported-remediations)
-  - [Installation](#installation)
-  - [Getting Started](#getting-started)
-  - [Getting Started with Configuration](#getting-started-with-configuration)
-  - [Per plugin remediation](#per-plugin-remediation)
-    - [Character Limit](#character-limit)
-    - [Cost Analysis](#cost-analysis)
-    - [Field Suggestion](#field-suggestion)
-  - [Contributing](#contributing)
+- [Contents](#contents)
+- [Supported remediations](#supported-remediations)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Getting Started with Configuration](#getting-started-with-configuration)
+- [Per plugin configuration](#per-plugin-configuration)
+- [Contributing](#contributing)
 
-## Supported remediations
+## Supported GraphQL Engines
 
-- [Character Limit](#character-limit)
-- [Limit Query Cost](#cost-analysis)
-- [Disable Field Suggestion](#field-suggestion)
+We support the following engines :
+- [Apollo Server](https://www.apollographql.com/)
+- [GraphQL Yoga](https://www.graphql-yoga.com/)
 
-## Installation
+We additionnaly support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
+- GraphQL-Helix
+- Node.js HTTP
+- GraphQL-WS
+- GraphQL-SSE
+- Azure Functions
+- Cloudflare Workers
+- Google Cloud Functions
+- Lambda AWS
+- type-graphql
+- nexus
+- express-graphql
 
-```bash
-# npm
-npm install @escape.tech/graphql-armor
-
-# yarn
-yarn add @escape.tech/graphql-armor
-```
+See [here](https://www.envelop.dev/docs/integrations) for more information about Envelop compatibility.
 
 ## Getting Started
 
+Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation examples. (such as NestJS with Apollo Server)
+
+### Apollo Server
+
+TODO : update
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 const armor = new ApolloArmor({
@@ -64,13 +70,25 @@ const server = new ApolloServer({
 });
 ```
 
-## Getting Started with Configuration
+### GraphQL Yoga
 
-GraphQL-Armor is fully configurable, scoped per plugin.
 
-View the [Per plugin remediation](#per-plugin-remediation) section for more information.
+TODO : update
+```typescript
+```
 
-Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation.
+### Envelop
+
+
+TODO : update
+```typescript
+```
+
+## Getting Started with configuration
+
+GraphQL Armor is fully configurable in a per-plugin fashion.
+
+View the [Per plugin configuration](#per-plugin-configure) section for more information about how to configure each plugin separately.
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -85,11 +103,23 @@ const armor = new ApolloArmor({
 });
 ```
 
-## Per plugin remediation
+## Per plugin configuration
+
+The provided values correspond to default value.
 
 This section describes how to configure each plugin individually.
+  - [Stacktraces](#stacktraces)
+  - [Batched queries](#batched-queries)
+  - [Character Limit](#character-limit)
+  - [Cost Analysis](#cost-analysis)
+  - [Field Suggestion](#field-suggestion)
+  - [Aliases Limit](#aliases-limit)
+  - [Directives Limit](#directives-limit)
+  - [Depth Limit](#depth-limit)
 
 ### Stacktraces
+
+This plugin is enabled by default.
 
 Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
 
@@ -109,6 +139,8 @@ const server = new ApolloServer({
 
 ### Batched queries
 
+This plugin is enabled by default.
+
 Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
 
 For rolling back to Apollo's default parameter, you can use the following code:
@@ -126,6 +158,8 @@ const server = new ApolloServer({
 ```
 
 ### Character Limit
+
+This plugin is enabled by default.
 
 The `Character Limit plugin` will enforce a character limit on your GraphQL queries.
 
@@ -145,6 +179,8 @@ const armor = new ApolloArmor({
 ```
 
 ### Cost Analysis
+
+This plugin is enabled by default.
 
 The `Cost Analysis plugin` analyzes incoming GraphQL queries and apply cost analysis algorithm to prevent resource overload.
 
@@ -167,6 +203,8 @@ const armor = new ApolloArmor({
 
 ### Field Suggestion
 
+This plugin is enabled by default.
+
 The `Field Suggestion plugin` will prevent suggesting fields of unprecise GraphQL queries.
 
 ```typescript
@@ -178,6 +216,19 @@ const armor = new ApolloArmor({
     }
 });
 ```
+### Aliases Limit
+
+This plugin is enabled by default.
+
+### Directives Limit
+
+This plugin is enabled by default.
+
+
+### Depth Limit
+
+This plugin is enabled by default.
+
 
 ## Contributing
 

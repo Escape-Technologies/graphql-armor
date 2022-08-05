@@ -23,7 +23,7 @@ jobs:
       - run: |
           corepack enable
           cp README.md packages/graphql-armor/README.md
-      - run: yarn workspaces focus @escape.tech/graphql-armor
+      - run: yarn workspaces foreach -ptv run build
       - run: yarn workspace @escape.tech/graphql-armor build
       - run: |
           cd packages/graphql-armor

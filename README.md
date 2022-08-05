@@ -167,7 +167,7 @@ const server = new ApolloServer({
 
 This plugin is enabled by default.
 
-The `Character Limit plugin` will enforce a character limit on your GraphQL queries.
+It enforces a character limit on your GraphQL queries.
 
 The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
@@ -187,7 +187,7 @@ Configuration
 
 This plugin is enabled by default.
 
-The `Cost Analysis plugin` analyzes incoming GraphQL queries and applies a cost analysis algorithm to prevent resource overload by blocking too expensive requests (DoS attack attempts).
+It analyzes incoming GraphQL queries and applies a cost analysis algorithm to prevent resource overload by blocking too expensive requests (DoS attack attempts).
 
 Configuration
 ```typescript

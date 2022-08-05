@@ -2150,7 +2150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:^2.4.0, @envelop/core@npm:^2.4.1":
+"@envelop/core@npm:^2.4.0":
   version: 2.4.1
   resolution: "@envelop/core@npm:2.4.1"
   dependencies:
@@ -2158,6 +2158,17 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 101435f8897d0d31648ccc5eccc7b4f7c2cbab0d6b476b6324b597745114d0b6aa0311a56d150a4203620a9004de3ab324f019f280244df0905d326e5580ccf1
+  languageName: node
+  linkType: hard
+
+"@envelop/core@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "@envelop/core@npm:2.4.2"
+  dependencies:
+    "@envelop/types": 2.3.1
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: c4491acf6bee574ed535e9cd2fca757d5051bc7165abbdc2650d0d99f38dcb1521f923bdab30f75f5021b6beecfcb9d17fb30f92f697ed3330822c1cb987ece0
   languageName: node
   linkType: hard
 
@@ -2182,6 +2193,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/types@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@envelop/types@npm:2.3.1"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 945a5e5a37d7ddce78b3f5ee9b5a51009ef3ecbda12341245c0558e46fc13aff548ad7d54deb0cad91487a874f1456ffd4786c928b45425ec153159ac6045d54
+  languageName: node
+  linkType: hard
+
 "@envelop/validation-cache@npm:^4.4.0":
   version: 4.5.1
   resolution: "@envelop/validation-cache@npm:4.5.1"
@@ -2198,12 +2218,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2211,12 +2231,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2300,12 +2320,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2313,12 +2333,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2326,12 +2346,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2363,7 +2383,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@escape.tech/graphql-armor-block-field-suggestions": "workspace:^"
     "@escape.tech/graphql-armor-character-limit": "workspace:^"
     "@escape.tech/graphql-armor-max-aliases": "workspace:^"
@@ -2376,7 +2396,7 @@ __metadata:
     ts-node: ^10.9.1
     typescript: ^4.7.4
   peerDependencies:
-    "@envelop/core": ^2.4.1
+    "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
     apollo-server: ^3.10.0
     apollo-server-core: ^3.10.0

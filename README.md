@@ -96,7 +96,13 @@ main();
 ### Envelop
 
 ```typescript
-(TODO)
+import { EnvelopArmor } from '@escape.tech/graphql-armor';
+
+const armor = new EnvelopArmor();
+
+const getEnveloped = envelop({
+  plugins: [otherPlugins, ...armor.protect().plugins],
+});
 ```
 
 ## Getting Started with configuration

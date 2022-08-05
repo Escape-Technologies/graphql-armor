@@ -1,20 +1,6 @@
-import type { Plugin } from '@envelop/core';
-import { MaxDepthOptions, maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
-import { GraphQLError } from 'graphql';
+import { MaxDepthOptions, maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-
-const plugin = (options: MaxDepthOptions): Plugin => {
-  return {
-    onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        maxDepthRule(options, (msg: string) => {
-          throw new GraphQLError(msg);
-        }),
-      );
-    },
-  };
-};
 
 export class EnvelopMaxDepthProtection extends EnvelopProtection {
   get isEnabled(): boolean {
@@ -31,7 +17,7 @@ export class EnvelopMaxDepthProtection extends EnvelopProtection {
 
   protect(): EnvelopConfigurationEnhancement {
     return {
-      plugins: [plugin(this.options)],
+      plugins: [maxDepthPlugin(this.options)],
     };
   }
 }

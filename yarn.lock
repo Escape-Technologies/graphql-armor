@@ -2275,6 +2275,10 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
     graphql: ^16.5.0
+  peerDependencies:
+    "@envelop/core": ^2.4.1
+    "@types/node": ^18.6.3
+    graphql: ^16.5.0
   languageName: unknown
   linkType: soft
 
@@ -2283,6 +2287,10 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
     graphql: ^16.5.0
+  peerDependencies:
+    "@envelop/core": ^2.4.1
+    "@types/node": ^18.6.3
+    graphql: ^16.5.0
   languageName: unknown
   linkType: soft
 
@@ -2290,6 +2298,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
+    graphql: ^16.5.0
+  peerDependencies:
+    "@envelop/core": ^2.4.1
+    "@types/node": ^18.6.3
     graphql: ^16.5.0
   languageName: unknown
   linkType: soft

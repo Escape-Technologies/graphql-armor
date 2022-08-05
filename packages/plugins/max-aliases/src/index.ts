@@ -1,7 +1,9 @@
+import type { Plugin } from '@envelop/core';
 import {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
+  GraphQLError,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
@@ -51,4 +53,16 @@ class MaxAliasesVisitor {
 const maxAliasesRule = (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
   new MaxAliasesVisitor(context, options, onError);
 
-export { maxAliasesRule, MaxAliasesOptions };
+const maxAliasesPlugin = (options: MaxAliasesOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(
+        maxAliasesRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
+    },
+  };
+};
+
+export { maxAliasesRule, maxAliasesPlugin, MaxAliasesOptions };

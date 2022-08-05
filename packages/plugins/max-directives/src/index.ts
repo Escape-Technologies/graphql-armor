@@ -1,7 +1,9 @@
+import type { Plugin } from '@envelop/core';
 import {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
+  GraphQLError,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
@@ -52,4 +54,16 @@ const maxDirectivesRule =
   (options: MaxDirectivesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
     new MaxDirectivesVisitor(context, options, onError);
 
-export { maxDirectivesRule, MaxDirectivesOptions };
+const maxDirectivesPlugin = (options: MaxDirectivesOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(
+        maxDirectivesRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
+    },
+  };
+};
+
+export { maxDirectivesRule, MaxDirectivesOptions, maxDirectivesPlugin };

@@ -1,20 +1,6 @@
-import type { Plugin } from '@envelop/core';
-import { MaxDirectivesOptions, maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
-import { GraphQLError } from 'graphql';
+import { MaxDirectivesOptions, maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
-
-const plugin = (options: MaxDirectivesOptions): Plugin => {
-  return {
-    onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        maxDirectivesRule(options, (msg: string) => {
-          throw new GraphQLError(msg);
-        }),
-      );
-    },
-  };
-};
 
 export class EnvelopMaxDirectivesProtection extends EnvelopProtection {
   get isEnabled(): boolean {
@@ -31,7 +17,7 @@ export class EnvelopMaxDirectivesProtection extends EnvelopProtection {
 
   protect(): EnvelopConfigurationEnhancement {
     return {
-      plugins: [plugin(this.options)],
+      plugins: [maxDirectivesPlugin(this.options)],
     };
   }
 }

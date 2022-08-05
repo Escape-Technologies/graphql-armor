@@ -1,7 +1,5 @@
 # GraphQL Armor 🛡️
 
-*This project is young so there might be bugs but we are very reactive so feel free to open issues.*
-
 GraphQL Armor is a dead-simple yet highly customizable security middleware for various GraphQL server engines.
 
 ![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/banner.png)
@@ -311,3 +309,5 @@ bash ./install-dev.sh
 ```
 
 We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
+
+*This project is young so there might be bugs but we are very reactive so feel free to open issues.*

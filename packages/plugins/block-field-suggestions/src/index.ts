@@ -1,6 +1,7 @@
 import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
+type BlockFieldSuggestionsOptions = undefined;
 const formatter = (error: GraphQLError): GraphQLError => {
   if (error instanceof GraphQLError) {
     error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
@@ -20,4 +21,4 @@ const blockFieldSuggestionsPlugin = (): Plugin => {
   };
 };
 
-export { blockFieldSuggestionsPlugin };
+export { blockFieldSuggestionsPlugin, BlockFieldSuggestionsOptions };

@@ -2198,11 +2198,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    graphql: ^16.5.0
-  peerDependencies:
     "@envelop/core": ^2.4.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
+    typescript: ^4.7.4
+  peerDependencies:
+    "@envelop/core": ^2.4.1
+  languageName: unknown
+  linkType: soft
+
+"@escape.tech/graphql-armor-character-limit@workspace:^, @escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
+  dependencies:
+    "@envelop/core": ^2.4.1
+    "@types/node": ^18.6.3
+    graphql: ^16.5.0
+    typescript: ^4.7.4
+  peerDependencies:
+    "@envelop/core": ^2.4.1
   languageName: unknown
   linkType: soft
 
@@ -2286,11 +2300,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    graphql: ^16.5.0
-  peerDependencies:
     "@envelop/core": ^2.4.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
+    typescript: ^4.7.4
+  peerDependencies:
+    "@envelop/core": ^2.4.1
   languageName: unknown
   linkType: soft
 
@@ -2298,11 +2313,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    graphql: ^16.5.0
-  peerDependencies:
     "@envelop/core": ^2.4.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
+    typescript: ^4.7.4
+  peerDependencies:
+    "@envelop/core": ^2.4.1
   languageName: unknown
   linkType: soft
 
@@ -2310,11 +2326,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    graphql: ^16.5.0
-  peerDependencies:
     "@envelop/core": ^2.4.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
+    typescript: ^4.7.4
+  peerDependencies:
+    "@envelop/core": ^2.4.1
   languageName: unknown
   linkType: soft
 
@@ -2348,6 +2365,7 @@ __metadata:
   dependencies:
     "@envelop/core": ^2.4.1
     "@escape.tech/graphql-armor-block-field-suggestions": "workspace:^"
+    "@escape.tech/graphql-armor-character-limit": "workspace:^"
     "@escape.tech/graphql-armor-max-aliases": "workspace:^"
     "@escape.tech/graphql-armor-max-depth": "workspace:^"
     "@escape.tech/graphql-armor-max-directives": "workspace:^"

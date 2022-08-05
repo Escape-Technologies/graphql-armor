@@ -32,6 +32,7 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "@escape.tech/graphql-armor-block-field-suggestions": "workspace:^",
+    "@escape.tech/graphql-armor-character-limit": "workspace:^",
     "@escape.tech/graphql-armor-max-aliases": "workspace:^",
     "@escape.tech/graphql-armor-max-depth": "workspace:^",
     "@escape.tech/graphql-armor-max-directives": "workspace:^",

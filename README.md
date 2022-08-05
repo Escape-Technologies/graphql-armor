@@ -8,12 +8,13 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 
 [![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![CD](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/cd.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
 
-## Contents
+## Content
 
-- [Contents](#contents)
-- [Supported remediations](#supported-remediations)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
+- [Supported GraphQL Engines](#suppoorted-graphql-engines)
+- [Getting Started](#getting-started) 
+  - [Apollo Server](#apollo-server)
+  - [GraphQL Yoga](#graphql-yoga)
+  - [Envelop](#envelop)
 - [Getting Started with Configuration](#getting-started-with-configuration)
 - [Per plugin configuration](#per-plugin-configuration)
 - [Contributing](#contributing)

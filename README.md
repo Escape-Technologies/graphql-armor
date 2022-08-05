@@ -77,7 +77,19 @@ const server = new ApolloServer({
 ### GraphQL Yoga
 
 ```typescript
-(TODO)
+import { EnvelopArmor } from '@escape.tech/graphql-armor';
+
+const armor = new EnvelopArmor();
+
+async function main() {
+  const server = createServer({
+    schema,
+    plugins: [...armor.protect().plugins],
+  });
+  await server.start();
+}
+
+main();
 ```
 
 ### Envelop
@@ -189,17 +201,18 @@ This plugin is enabled by default.
 
 It analyzes incoming GraphQL queries and applies a cost analysis algorithm to prevent resource overload by blocking too expensive requests (DoS attack attempts).
 
+The cost computation is quite simple (and naive) at the moment but there are plans to make it evolve toward a extensive plugin with many features.
+
 Configuration
 ```typescript
 {
   costAnalysis: {
       enabled: true,
       options: {
-          maxCost: 5000,       
-          maxCost: number,
-          objectCost: number,
-          scalarCost: number,
-          depthCostFactor: number, // multiplicative cost of depth
+          maxCost: 5000, // maximum cost of a request before it is rejected
+          objectCost: 2, // cost of retrieving an object
+          scalarCost: 1, // cost of retrieving a scalar
+          depthCostFactor: 1.5, // multiplicative cost of depth
           ignoreIntrospection: true, // by default, introspection queries are ignored.
       },
   }
@@ -228,6 +241,8 @@ Configuration
 
 This plugin is enabled by default.
 
+Put a limit on the number of aliases.
+
 Configuration
 ```typescript
 {
@@ -244,6 +259,8 @@ Configuration
 
 This plugin is enabled by default.
 
+Put a limit on the number of directives.
+
 ```typescript
 {
   maxDirectives: {
@@ -258,6 +275,8 @@ This plugin is enabled by default.
 ### Depth Limit
 
 This plugin is enabled by default.
+
+Put a depth limit to the request.
 
 ```typescript
 {

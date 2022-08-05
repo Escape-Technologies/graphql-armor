@@ -9,7 +9,8 @@
         "prettier": "prettier --write '**/*.{ts,js}'",
         "test": "jest",
         "test:ci": "jest --coverage",
-        "build": "yarn workspaces foreach -ptv run build"
+        "build": "yarn workspaces foreach -ptv run build",
+        "release": "changeset publish"
     },
     "author": "Escape Technologies SAS",
     "private": true,

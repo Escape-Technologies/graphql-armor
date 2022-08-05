@@ -1,6 +1,7 @@
 import {
   FieldNode,
   FragmentDefinitionNode,
+  FragmentSpreadNode,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
@@ -32,14 +33,12 @@ class MaxDepthVisitor {
   }
 
   private countDepth(
-    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode,
+    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth: number = 0,
   ): number {
-    // @ts-ignore
     let newDepth = depth;
-    if (node.selectionSet) {
+    if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
-        // @ts-ignore
         newDepth = Math.max(newDepth, this.countDepth(child, depth + 1));
       }
     }

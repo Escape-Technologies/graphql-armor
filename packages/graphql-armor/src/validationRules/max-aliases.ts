@@ -1,6 +1,7 @@
 import {
   FieldNode,
   FragmentDefinitionNode,
+  FragmentSpreadNode,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
@@ -32,16 +33,14 @@ class MaxAliasesVisitor {
   }
 
   private countAliases(
-    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode,
+    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   ): number {
     let aliases = 0;
-    // @ts-ignore
-    if (node.alias) {
+    if ('alias' in node && node.alias) {
       aliases++;
     }
-    if (node.selectionSet) {
+    if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
-        // @ts-ignore
         aliases += this.countAliases(child);
       }
     }

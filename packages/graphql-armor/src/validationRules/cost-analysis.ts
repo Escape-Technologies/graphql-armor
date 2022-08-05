@@ -45,28 +45,22 @@ class CostAnalysisVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth: number = 0,
   ): number {
-    // @ts-ignore
-    if (this.options.ignoreIntrospection && node.name && node.name.value === '__schema') {
+    if (this.options.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
       return 0;
     }
 
-    // @ts-ignore
-    const typeDefs: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType = this.context
-      .getSchema()
-      .getQueryType();
+    // const typeDefs: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType = this.context
+    // .getSchema()
+    // .getQueryType();
     let cost = this.options.scalarCost;
-    // @ts-ignore
-    if (node.selectionSet) {
+    if ('selectionSet' in node && node.selectionSet) {
       cost = this.options.objectCost;
-      //@ts-ignore
       for (let child of node.selectionSet.selections) {
-        //@ts-ignore
         cost += this.options.depthCostFactor * this.computeComplexity(child, depth + 1);
       }
     }
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
-      //@ts-ignore
       const fragment = this.context.getFragment(node.name.value) as FragmentDefinitionNode;
       cost += this.options.depthCostFactor * this.computeComplexity(fragment, depth + 1);
     }

@@ -45,67 +45,73 @@ Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql
 
 ### Apollo Server
 
-TODO : update
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
-const armor = new ApolloArmor({
-    // Config opts
-});
+
+const armor = new ApolloArmor();
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // This will add a `validationRules` and a `plugins` property to the configuration object
   ...armor.protect()
 });
+```
 
-// If you want to enhance an already existing plugins or validation rules list
-const enhancements = armor.protect()
+If you already have some plugins or validation rules, proceed this way:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const protection = armor.protect()
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [...myPlugins, ...enhancements.plugins]
-  validationRules: [...myValidationRules, ...enhancements.validationRules]
+  ...protection,
+  plugins: [...enhancements.plugins, myPlugin1, myPlugin2 ]
+  validationRules: [, ...enhancements.validationRules, myRule1, myRule2 ]
 });
 ```
 
 ### GraphQL Yoga
 
-
-TODO : update
 ```typescript
+(TODO)
 ```
 
 ### Envelop
 
-
-TODO : update
 ```typescript
+(TODO)
 ```
 
 ## Getting Started with configuration
 
 GraphQL Armor is fully configurable in a per-plugin fashion.
 
-View the [Per plugin configuration](#per-plugin-configure) section for more information about how to configure each plugin separately.
+View the [per plugin configuration section](#per-plugin-configure) for more information about how to configure each plugin separately.
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
     costAnalysis: {
-        enabled: true,
         options: {
             maxCost: 1000,
         },
-    }
+    },
+    characterLimit: {
+      options: {
+          maxLength: 15000,
+      },
+  }
 });
 ```
 
 ## Per plugin configuration
 
-The provided values correspond to default value.
+The provided values are the default values.
 
 This section describes how to configure each plugin individually.
   - [Stacktraces](#stacktraces)
@@ -119,9 +125,9 @@ This section describes how to configure each plugin individually.
 
 ### Stacktraces
 
-This plugin is enabled by default.
+This plugin is for Apollo Server only, and is enabled by default.
 
-Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
+Stacktraces are managed by the Apollo configuration parameter `debug` which may have `true` as a default value in some setups. GraphQL Armor changes this default value to `false`.
 
 For rolling back to Apollo's default parameter, you can use the following code:
 
@@ -133,15 +139,15 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  debug: true // Ignore Armor's recommandations
+  debug: true // Ignore Armor's recommandation
 });
 ```
 
 ### Batched queries
 
-This plugin is enabled by default.
+This plugin is for Apollo Server only, and is enabled by default.
 
-Stacktraces are managed by the configuration parameter `debug` defaulting to `true` in Apollo. GraphQLArmor changes this default value to `false`.
+Batched queries are enabled by default, which makes DoS attacks easier by stacking expensive requests. We make them disabled by default.
 
 For rolling back to Apollo's default parameter, you can use the following code:
 
@@ -163,71 +169,106 @@ This plugin is enabled by default.
 
 The `Character Limit plugin` will enforce a character limit on your GraphQL queries.
 
-(Note: The limit is not applied to the whole HTTP body -, multipart form data/file upload will still works)
+The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
+Configuration
 ```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-
-const armor = new ApolloArmor({
-    characterLimit: {
-        enabled: true,
-        options: {
-            maxLength: 15000, // Default: 15000
-        },
-    }
-});
+{
+  characterLimit: {
+      enabled: true,
+      options: {
+          maxLength: 15000,
+      },
+  }
+}
 ```
 
 ### Cost Analysis
 
 This plugin is enabled by default.
 
-The `Cost Analysis plugin` analyzes incoming GraphQL queries and apply cost analysis algorithm to prevent resource overload.
+The `Cost Analysis plugin` analyzes incoming GraphQL queries and applies a cost analysis algorithm to prevent resource overload by blocking too expensive requests (DoS attack attempts).
 
+Configuration
 ```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-
-const armor = new ApolloArmor({
-    costAnalysis: {
-        enabled: true,
-        options: {
-            maxCost: 5000,          // Default: 5000
-            defaultComplexity: 1,   // Default: 1    | Complexity of GQL token
-            maxDepth: 6,            // Default: 6
-            maxAlias: 15,           // Default: 15
-            maxDirectives: 50,      // Default: 50
-        },
-    }
-});
+{
+  costAnalysis: {
+      enabled: true,
+      options: {
+          maxCost: 5000,       
+          maxCost: number,
+          objectCost: number,
+          scalarCost: number,
+          depthCostFactor: number, // multiplicative cost of depth
+          ignoreIntrospection: true, // by default, introspection queries are ignored.
+      },
+  }
+}
 ```
 
 ### Field Suggestion
 
 This plugin is enabled by default.
 
-The `Field Suggestion plugin` will prevent suggesting fields of unprecise GraphQL queries.
+It will prevent suggesting fields in case of an erroneous request. Suggestions can lead to the leak of your schema even with disabled introspection, which can be very detrimental in case of a private API. One could use [GraphDNA](https://github.com/Escape-Technologies/graphdna) to recover an API schema even with disabled introspection, as long as field suggestions are enabled.
 
+Example of such a suggestion : 
+
+`Cannot query field "sta" on type "Media". Did you mean "stats", "staff", or "status"?`
+
+Configuration
 ```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
-
-const armor = new ApolloArmor({
-    blockFieldSuggestion: {
-        enabled: true,
-    }
-});
+{
+  blockFieldSuggestion: {
+      enabled: true,
+  }
+}
 ```
 ### Aliases Limit
 
 This plugin is enabled by default.
 
+Configuration
+```typescript
+{
+  maxAliases: {
+      enabled: true,
+      options: {
+          n: 15,
+      },
+  }
+}
+```
+
 ### Directives Limit
 
 This plugin is enabled by default.
 
+```typescript
+{
+  maxDirectives: {
+      enabled: true,
+      options: {
+          n: 50,
+      },
+  }
+}
+```
 
 ### Depth Limit
 
 This plugin is enabled by default.
+
+```typescript
+{
+  maxDepth: {
+      enabled: true,
+      options: {
+          n: 6,
+      },
+  }
+}
+```
 
 
 ## Contributing
@@ -239,8 +280,7 @@ To setup your project, make sure you run the `install-dev.sh` script.
 ```bash
 git clone git@github.com:Escape-Technologies/graphql-armor.git
 cd graphql-armor
-chmod +x ./install-dev.sh
-./install-dev.sh
+bash ./install-dev.sh
 ```
 
-We are using yarn as our package manager. [We do use the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
+We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!

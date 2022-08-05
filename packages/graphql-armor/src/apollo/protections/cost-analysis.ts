@@ -1,7 +1,7 @@
 import { GraphQLError } from 'graphql';
 
 import { CostAnalysisOptions } from '../../config';
-import { costAnalysisRule } from '../../validationRules/cost-analysis';
+import { costAnalysisRule } from '../../internals/cost-analysis';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloCostAnalysisProtection extends ApolloProtection {

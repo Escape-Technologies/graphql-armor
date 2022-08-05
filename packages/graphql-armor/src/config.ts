@@ -1,4 +1,4 @@
-import { MaxAliasOptions } from '@escape.tech/graphql-armor-max-aliases';
+import { MaxAliasesOptions } from '@escape.tech/graphql-armor-max-aliases';
 import { MaxDepthOptions } from '@escape.tech/graphql-armor-max-depth';
 import { MaxDirectivesOptions } from '@escape.tech/graphql-armor-max-directives';
 

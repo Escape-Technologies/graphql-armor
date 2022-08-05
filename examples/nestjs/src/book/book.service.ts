@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { Book } from './book.model';
 
 const books = [

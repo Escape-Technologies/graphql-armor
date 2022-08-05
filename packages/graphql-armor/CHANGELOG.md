@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.0.1
+
+### Patch Changes
+
+- 2609ed4: Readme
+
 ## 1.0.0
 
 ### Major Changes

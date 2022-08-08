@@ -1,8 +1,8 @@
-import { ApolloServer } from 'apollo-server';
 import { envelop, useSchema, useTiming } from '@envelop/core';
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 const books = [
   {
@@ -14,7 +14,6 @@ const books = [
     author: 'Paul Auster',
   },
 ];
-
 
 const schema = makeExecutableSchema({
   typeDefs: /* GraphQL */ `
@@ -35,7 +34,6 @@ const schema = makeExecutableSchema({
     },
   },
 });
-
 
 const armor = new EnvelopArmor();
 const enhancements = armor.protect();
@@ -69,14 +67,14 @@ const getEnveloped = envelop({
       },
       onSchemaChange: () => {
         console.log('on schema change');
-      }
+      },
     },
   ],
 });
 
 const server = new ApolloServer({
   schema,
-  executor: async requestContext => {
+  executor: async (requestContext) => {
     const { schema, execute, contextFactory } = getEnveloped({ req: requestContext.request.http });
 
     return execute({

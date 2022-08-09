@@ -5,12 +5,8 @@
       "command": "yarn lint"
     },
     {
-      "name": "build",
-      "command": "yarn build"
-    },
-    {
-      "name": "test",
-      "command": "yarn test"
+      "name": "build and test yarn",
+      "command": "yarn build && yarn test"
     }
   ]
 }

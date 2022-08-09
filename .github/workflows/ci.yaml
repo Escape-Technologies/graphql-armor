@@ -28,7 +28,7 @@ jobs:
         run: yarn lint
 
       - name: Build workspaces
-        run: yarn workspaces foreach -ptv run build
+        run: yarn build
 
       - name: Tests workspaces
         run: yarn test:ci

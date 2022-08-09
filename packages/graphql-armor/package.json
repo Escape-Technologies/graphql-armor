@@ -10,8 +10,8 @@
     "middleware"
   ],
   "packageManager": "yarn@3.2.2",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/escape.tech-graphql-armor.cjs.js",
+  "module": "dist/escape.tech-graphql-armor.esm.js",
   "files": [
     "dist"
   ],

@@ -4,7 +4,6 @@
         "moduleResolution": "node",
         "target": "ES2018",
         "lib": ["ES6"],
-        "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
         "declaration": true,

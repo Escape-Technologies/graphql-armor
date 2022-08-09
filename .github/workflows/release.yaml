@@ -24,7 +24,9 @@ jobs:
         run: cp README.md packages/graphql-armor/README.md
 
       - name: Install Dependencies
-        run: yarn
+        run: |
+          yarn
+          yarn build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

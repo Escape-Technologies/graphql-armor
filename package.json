@@ -5,11 +5,13 @@
         "url": "git+ssh://git@github.com:Escape-Technologies/graphql-armor.git"
     },
     "scripts": {
+        "build": "preconstruct build",
+        "build:yarn": "yarn workspaces foreach -ptv run build",
+        "watch": "preconstruct watch",
         "lint": "prettier --check '**/*.{ts,js}'",
         "prettier": "prettier --write '**/*.{ts,js}'",
         "test": "jest",
         "test:ci": "jest --coverage",
-        "build": "yarn workspaces foreach -ptv run build",
         "release": "changeset publish"
     },
     "author": "Escape Technologies SAS",
@@ -29,6 +31,7 @@
         "@commitlint/cli": "^17.0.0",
         "@commitlint/config-angular": "^17.0.0",
         "@escape.tech/mookme": "^2.2.0-beta.2",
+        "@preconstruct/cli": "^2.2.1",
         "@trivago/prettier-plugin-sort-imports": "^3.3.0",
         "@types/babel__core": "^7",
         "@types/babel__preset-env": "^7",
@@ -50,5 +53,11 @@
         "node": "16.14.2",
         "yarn": "1.22.18"
     },
-    "packageManager": "yarn@3.2.2"
+    "packageManager": "yarn@3.2.2",
+    "preconstruct": {
+        "packages": [
+            "packages/graphql-armor",
+            "packages/plugins/*"
+        ]
+    }
 }

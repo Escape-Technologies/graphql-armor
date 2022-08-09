@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@escape.tech/graphql-armor-block-field-suggestions": "workspace:^",
-    "@escape.tech/graphql-armor-character-limit": "workspace:^",
-    "@escape.tech/graphql-armor-max-aliases": "workspace:^",
-    "@escape.tech/graphql-armor-max-depth": "workspace:^",
-    "@escape.tech/graphql-armor-max-directives": "workspace:^",
+    "@escape.tech/graphql-armor-block-field-suggestions": "1.1.0",
+    "@escape.tech/graphql-armor-character-limit": "1.1.0",
+    "@escape.tech/graphql-armor-max-aliases": "1.1.0",
+    "@escape.tech/graphql-armor-max-depth": "1.1.0",
+    "@escape.tech/graphql-armor-max-directives": "1.1.0",
     "graphql": "^16.5.0"
   },
   "peerDependencies": {

@@ -1,5 +1,17 @@
 # @escape.tech/graphql-armor
 
+## 1.0.5
+
+### Patch Changes
+
+- 16b79bb: refactor: introduce preconstruct
+- Updated dependencies [16b79bb]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.1.1
+  - @escape.tech/graphql-armor-character-limit@1.1.1
+  - @escape.tech/graphql-armor-max-aliases@1.1.1
+  - @escape.tech/graphql-armor-max-depth@1.1.1
+  - @escape.tech/graphql-armor-max-directives@1.1.1
+
 ## 1.0.4
 
 ### Patch Changes

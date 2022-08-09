@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.1.1
+
+### Patch Changes
+
+- 16b79bb: refactor: introduce preconstruct
+
 ## 1.1.0
 
 ### Minor Changes

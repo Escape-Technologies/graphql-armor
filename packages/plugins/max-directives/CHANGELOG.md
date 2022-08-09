@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 1.1.2
+
+### Patch Changes
+
+- d435354: fix: minimize files in tarball
+
 ## 1.1.1
 
 ### Patch Changes

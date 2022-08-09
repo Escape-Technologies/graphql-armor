@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Dead-simple, yet highly customizable security middleware for Apollo GraphQL servers shield",
   "keywords": [
     "apollo",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@escape.tech/graphql-armor-block-field-suggestions": "~1.1.0",
-    "@escape.tech/graphql-armor-character-limit": "~1.1.0",
-    "@escape.tech/graphql-armor-max-aliases": "~1.1.0",
-    "@escape.tech/graphql-armor-max-depth": "~1.1.0",
-    "@escape.tech/graphql-armor-max-directives": "~1.1.0",
+    "@escape.tech/graphql-armor-block-field-suggestions": "~1.1.1",
+    "@escape.tech/graphql-armor-character-limit": "~1.1.1",
+    "@escape.tech/graphql-armor-max-aliases": "~1.1.1",
+    "@escape.tech/graphql-armor-max-depth": "~1.1.1",
+    "@escape.tech/graphql-armor-max-directives": "~1.1.1",
     "graphql": "^16.5.0"
   },
   "peerDependencies": {

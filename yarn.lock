@@ -341,7 +341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.18.10":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -2214,7 +2214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@escape.tech/graphql-armor-block-field-suggestions@1.1.0, @escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions":
+"@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions, @escape.tech/graphql-armor-block-field-suggestions@~1.1.0":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
@@ -2227,7 +2227,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-character-limit@1.1.0, @escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit":
+"@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit, @escape.tech/graphql-armor-character-limit@~1.1.0":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
@@ -2251,7 +2251,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo"
   dependencies:
     "@apollo/gateway": ^2.0.5
-    "@escape.tech/graphql-armor": "workspace:^"
+    "@escape.tech/graphql-armor": "*"
     "@types/express": ^4
     "@types/node": ^18.6.3
     apollo-server: ^3.10.0
@@ -2274,7 +2274,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-example-nestjs@workspace:examples/nestjs"
   dependencies:
     "@apollo/gateway": ^2.0.5
-    "@escape.tech/graphql-armor": "workspace:^"
+    "@escape.tech/graphql-armor": "*"
     "@nestjs/apollo": ^10.0.19
     "@nestjs/cli": ^9.0.0
     "@nestjs/common": ^9.0.8
@@ -2305,7 +2305,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-example-yoga@workspace:examples/yoga"
   dependencies:
-    "@escape.tech/graphql-armor": "workspace:^"
+    "@escape.tech/graphql-armor": "*"
     "@graphql-tools/schema": ^8.5.1
     "@graphql-yoga/node": ^2.13.6
     "@types/node": ^18.6.3
@@ -2316,7 +2316,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-aliases@1.1.0, @escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases":
+"@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases, @escape.tech/graphql-armor-max-aliases@~1.1.0":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
@@ -2329,7 +2329,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-depth@1.1.0, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
+"@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth, @escape.tech/graphql-armor-max-depth@~1.1.0":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
@@ -2342,7 +2342,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-directives@1.1.0, @escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives":
+"@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives, @escape.tech/graphql-armor-max-directives@~1.1.0":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
@@ -2359,6 +2359,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-monorepo@workspace:."
   dependencies:
+    "@babel/core": ^7.18.10
     "@babel/plugin-proposal-class-properties": ^7.18.6
     "@babel/plugin-proposal-decorators": ^7.18.10
     "@babel/preset-env": ^7.18.10
@@ -2368,7 +2369,9 @@ __metadata:
     "@commitlint/config-angular": ^17.0.0
     "@escape.tech/mookme": ^2.2.0-beta.2
     "@trivago/prettier-plugin-sort-imports": ^3.3.0
+    "@types/babel__core": ^7
     "@types/babel__preset-env": ^7
+    "@types/node": ^18.6.5
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0
     eslint: ^8.21.0
@@ -2379,16 +2382,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor@workspace:^, @escape.tech/graphql-armor@workspace:packages/graphql-armor":
+"@escape.tech/graphql-armor@*, @escape.tech/graphql-armor@workspace:packages/graphql-armor":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
     "@envelop/core": ^2.4.2
-    "@escape.tech/graphql-armor-block-field-suggestions": 1.1.0
-    "@escape.tech/graphql-armor-character-limit": 1.1.0
-    "@escape.tech/graphql-armor-max-aliases": 1.1.0
-    "@escape.tech/graphql-armor-max-depth": 1.1.0
-    "@escape.tech/graphql-armor-max-directives": 1.1.0
+    "@escape.tech/graphql-armor-block-field-suggestions": ~1.1.0
+    "@escape.tech/graphql-armor-character-limit": ~1.1.0
+    "@escape.tech/graphql-armor-max-aliases": ~1.1.0
+    "@escape.tech/graphql-armor-max-depth": ~1.1.0
+    "@escape.tech/graphql-armor-max-directives": ~1.1.0
     apollo-server: ^3.10.0
     apollo-server-core: ^3.10.0
     apollo-server-types: ^3.6.2
@@ -3460,7 +3463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7.1.14":
+"@types/babel__core@npm:^7, @types/babel__core@npm:^7.1.14":
   version: 7.1.19
   resolution: "@types/babel__core@npm:7.1.19"
   dependencies:
@@ -3708,6 +3711,13 @@ __metadata:
   version: 12.20.55
   resolution: "@types/node@npm:12.20.55"
   checksum: e4f86785f4092706e0d3b0edff8dca5a13b45627e4b36700acd8dfe6ad53db71928c8dee914d4276c7fd3b6ccd829aa919811c9eb708a2c8e4c6eb3701178c37
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.6.5":
+  version: 18.6.5
+  resolution: "@types/node@npm:18.6.5"
+  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
   languageName: node
   linkType: hard
 

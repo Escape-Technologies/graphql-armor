@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.0.4
+
+### Patch Changes
+
+- 0ae4e5c: fix: release CI
+
 ## 1.0.2
 
 ### Patch Changes

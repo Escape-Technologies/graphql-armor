@@ -58,6 +58,7 @@
         "packages": [
             "packages/graphql-armor",
             "packages/plugins/*"
-        ]
+        ],
+        "distFilenameStrategy": "unscoped-package-name"
     }
 }

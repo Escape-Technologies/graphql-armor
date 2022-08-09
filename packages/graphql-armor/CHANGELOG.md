@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.0.2
+
+### Patch Changes
+
+- 6b50a48: Fix resolution
+
 ## 1.0.1
 
 ### Patch Changes

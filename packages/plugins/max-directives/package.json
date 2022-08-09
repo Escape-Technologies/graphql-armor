@@ -5,6 +5,9 @@
   "packageManager": "yarn@3.2.2",
   "main": "dist/graphql-armor-max-directives.cjs.js",
   "module": "dist/graphql-armor-max-directives.esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"

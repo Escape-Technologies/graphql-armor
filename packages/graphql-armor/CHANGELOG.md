@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.0.6
+
+### Patch Changes
+
+- 9f93a22: refactor: cost limit invidual distribution
+
 ## 1.0.5
 
 ### Patch Changes

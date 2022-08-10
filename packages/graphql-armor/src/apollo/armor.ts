@@ -4,7 +4,7 @@ import { GraphQLArmorConfig } from '../config';
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { ApolloCharacterLimitProtection } from './protections/character-limit';
-import { ApolloCostAnalysisProtection } from './protections/cost-analysis';
+import { ApolloCostLimitProtection } from './protections/cost-limit';
 import { ApolloMaxAliasesProtection } from './protections/max-aliases';
 import { ApolloMaxDepthProtection } from './protections/max-depth';
 import { ApolloMaxDirectivesProtection } from './protections/max-directives';
@@ -20,7 +20,7 @@ export class ApolloArmor {
     this.protections = [
       new ApolloBlockFieldSuggestionProtection(config),
       new ApolloCharacterLimitProtection(config),
-      new ApolloCostAnalysisProtection(config),
+      new ApolloCostLimitProtection(config),
       new ApolloMaxAliasesProtection(config),
       new ApolloMaxDirectivesProtection(config),
       new ApolloMaxDepthProtection(config),

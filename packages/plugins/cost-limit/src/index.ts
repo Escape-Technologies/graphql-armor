@@ -1,31 +1,31 @@
+import type { Plugin } from '@envelop/core';
 import {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
-  GraphQLInterfaceType,
-  GraphQLObjectType,
-  GraphQLUnionType,
+  GraphQLError,
   InlineFragmentNode,
   Kind,
   OperationDefinitionNode,
-  SelectionSetNode,
   ValidationContext,
 } from 'graphql';
 
-import { CostAnalysisOptions } from '../config';
+type CostLimitOptions = {
+  maxCost: number;
+  objectCost: number;
+  scalarCost: number;
+  depthCostFactor: number;
+  ignoreIntrospection: boolean;
+};
 
-export const costAnalysisRule =
-  (options: CostAnalysisOptions, errorHandler: (msg: string) => void) => (context: ValidationContext) =>
-    new CostAnalysisVisitor(context, options, errorHandler);
-
-class CostAnalysisVisitor {
+class CostLimitVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: CostAnalysisOptions;
+  private readonly options: CostLimitOptions;
   private readonly onError: any;
 
-  constructor(context: ValidationContext, options: CostAnalysisOptions, onError: (string: any) => any) {
+  constructor(context: ValidationContext, options: CostLimitOptions, onError: (string: any) => any) {
     this.context = context;
     this.options = options;
     this.onError = onError;
@@ -38,7 +38,7 @@ class CostAnalysisVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
     if (complexity > this.options.maxCost) {
-      this.onError('Query is too complex.'); // TODO : des détails ?
+      this.onError('Query is too complex.');
     }
   }
 
@@ -69,3 +69,21 @@ class CostAnalysisVisitor {
     return cost;
   }
 }
+
+const costLimitRule =
+  (options: CostLimitOptions, errorHandler: (msg: string) => void) => (context: ValidationContext) =>
+    new CostLimitVisitor(context, options, errorHandler);
+
+const costLimitPlugin = (options: CostLimitOptions): Plugin => {
+  return {
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(
+        costLimitRule(options, (msg: string) => {
+          throw new GraphQLError(msg);
+        }),
+      );
+    },
+  };
+};
+
+export { costLimitRule, CostLimitOptions, costLimitPlugin };

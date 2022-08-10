@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.0.7
+
+### Patch Changes
+
+- a224157: fix: missing readme
+
 ## 1.0.6
 
 ### Patch Changes

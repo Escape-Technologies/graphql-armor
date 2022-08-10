@@ -18,12 +18,12 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 - [Per plugin configuration](#per-plugin-configuration)
   - [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
   - [Batched queries (Apollo Only)](#batched-queries-apollo-only)
-  - [Character Limit](#character-limit)
-  - [Cost Analysis](#cost-analysis)
-  - [Field Suggestion](#field-suggestion)
   - [Aliases Limit](#aliases-limit)
-  - [Directives Limit](#directives-limit)
+  - [Character Limit](#character-limit)
+  - [Cost Limit](#cost-limit)
   - [Depth Limit](#depth-limit)
+  - [Directives Limit](#directives-limit)
+  - [Field Suggestion](#field-suggestion)
 - [Contributing](#contributing)
 
 ## Supported GraphQL Engines
@@ -126,7 +126,7 @@ View the [per plugin configuration section](#per-plugin-configure) for more info
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
 const armor = new ApolloArmor({
-    costAnalysis: {
+    costLimit: {
         maxCost: 1000,
     },
     characterLimit: {
@@ -144,12 +144,12 @@ This section describes how to configure each plugin individually.
 
 - [Stacktraces (Apollo Only)](#stacktraces-apollo-only)
 - [Batched queries (Apollo Only)](#batched-queries-apollo-only)
-- [Character Limit](#character-limit)
-- [Cost Analysis](#cost-analysis)
-- [Field Suggestion](#field-suggestion)
 - [Aliases Limit](#aliases-limit)
-- [Directives Limit](#directives-limit)
+- [Character Limit](#character-limit)
+- [Cost Limit](#cost-limit)
 - [Depth Limit](#depth-limit)
+- [Directives Limit](#directives-limit)
+- [Field Suggestion](#field-suggestion)
 
 ### Stacktraces (Apollo Only)
 
@@ -210,7 +210,7 @@ Configuration
 }
 ```
 
-### Cost Analysis
+### Cost Limit
 
 This plugin is enabled by default.
 
@@ -222,7 +222,7 @@ Configuration
 
 ```typescript
 {
-  costAnalysis: {
+  costLimit: {
     enabled: true,
     maxCost: 5000, // maximum cost of a request before it is rejected
     objectCost: 2, // cost of retrieving an object

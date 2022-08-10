@@ -4,6 +4,7 @@ import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
 import { EnvelopBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { EnvelopCharacterLimitProtection } from './protections/character-limit';
+import { EnvelopCostLimitProtection } from './protections/cost-limit';
 import { EnvelopMaxAliasesProtection } from './protections/max-aliases';
 import { EnvelopMaxDepthProtection } from './protections/max-depth';
 import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
@@ -22,6 +23,7 @@ export class EnvelopArmor {
       new EnvelopMaxDepthProtection(config),
       new EnvelopMaxAliasesProtection(config),
       new EnvelopMaxDirectivesProtection(config),
+      new EnvelopCostLimitProtection(config),
     ];
   }
 

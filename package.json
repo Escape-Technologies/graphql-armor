@@ -60,5 +60,11 @@
             "packages/plugins/*"
         ],
         "distFilenameStrategy": "unscoped-package-name"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "packages/plugins/*/src/*.ts",
+            "packages/graphql-armor/src/**/*.ts"
+        ]
     }
 }

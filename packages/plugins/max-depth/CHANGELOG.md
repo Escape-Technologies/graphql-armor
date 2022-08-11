@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.2.0
+
+### Minor Changes
+
+- f86b7a0: fragment support & safety
+
 ## 1.1.2
 
 ### Patch Changes

@@ -42,15 +42,16 @@ describe('global', () => {
     expect(maxDepthPlugin).toBeDefined();
   });
 
+  const query = `query {
+    books {
+      author
+      title
+    }
+  }`;
+
   it('should works by default', async () => {
     const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
-    query {
-      books {
-        author
-        title
-      }
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
@@ -60,14 +61,28 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([maxDepthPlugin({ n: 1 })], schema);
+    const testkit = createTestkit([maxDepthPlugin({ n: 2 - 1 })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Request is too deep.']);
+  });
+
+  it('should reject fragment', async () => {
+    const testkit = createTestkit([maxDepthPlugin({ n: 5 - 1 })], schema);
     const result = await testkit.execute(`
     query {
+      ...BookFragment
+    }
+
+    fragment BookFragment on Query {
       books {
-        author
         title
+        author
       }
-    }`);
+    }
+    `);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();

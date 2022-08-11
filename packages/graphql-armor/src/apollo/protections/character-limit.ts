@@ -9,7 +9,7 @@ const plugin = ({ maxLength }: CharacterLimitOptions) => {
     async requestDidStart(context: GraphQLRequestContext) {
       if (!context.request.query) return;
       if (context.request.query.length > maxLength) {
-        throw new GraphQLError('Query is too large', {
+        throw new GraphQLError('Query is too large.', {
           extensions: { code: 'BAD_USER_INPUT' },
         });
       }

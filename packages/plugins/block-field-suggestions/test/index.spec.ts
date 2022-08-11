@@ -41,24 +41,6 @@ describe('global', () => {
     expect(blockFieldSuggestionsPlugin).toBeDefined();
   });
 
-  /** This is a deprecation guard in case it is removed from GraphQL-JS */
-  it('should suggest field by default', async () => {
-    const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
-    query {
-      books {
-        titlee
-        author
-      }
-    }`);
-
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      'Cannot query field "titlee" on type "Book". Did you mean "title"?',
-    ]);
-  });
-
   it('should works on a valid query', async () => {
     const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
     const result = await testkit.execute(`
@@ -76,15 +58,28 @@ describe('global', () => {
     });
   });
 
+  const query = `query {
+    books {
+      titlee
+      author
+    }
+  }`;
+
+  /** This is a deprecation guard in case it is removed from GraphQL-JS */
+  it('should suggest field by default', async () => {
+    const testkit = createTestkit([], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Cannot query field "titlee" on type "Book". Did you mean "title"?',
+    ]);
+  });
+
   it('should disable field suggestions', async () => {
     const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
-    const result = await testkit.execute(`
-    query {
-      books {
-        titlee
-        author
-      }
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();

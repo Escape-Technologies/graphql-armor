@@ -41,12 +41,13 @@ describe('global', () => {
     expect(maxDirectivesPlugin).toBeDefined();
   });
 
+  const query = `query {
+    __typename @a @a @a @a
+  }`;
+
   it('should works by default', async () => {
     const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
-    query {
-      __typename @a @a @a @a
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
@@ -55,10 +56,7 @@ describe('global', () => {
 
   it('should reject query', async () => {
     const testkit = createTestkit([maxDirectivesPlugin({ n: 3 })], schema);
-    const result = await testkit.execute(`
-    query {
-      __typename @a @a @a @a
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();

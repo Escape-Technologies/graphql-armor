@@ -42,15 +42,16 @@ describe('global', () => {
     expect(characterLimitPlugin).toBeDefined();
   });
 
+  const query = `query {
+    books {
+      title
+      author
+    }
+  }`;
+
   it('should works by default', async () => {
     const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
-    query {
-      books {
-        title
-        author
-      }
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
@@ -61,13 +62,7 @@ describe('global', () => {
 
   // it('should reject query', async () => {
   //   const testkit = createTestkit([characterLimitPlugin({ maxLength: 43 })], schema);
-  //   const result = await testkit.execute(`
-  //   query {
-  //     books {
-  //       title
-  //       author
-  //     }
-  //   }`);
+  //   const result = await testkit.execute(query);
 
   //   assertSingleExecutionValue(result);
   //   expect(result.errors).toBeDefined();

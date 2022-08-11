@@ -43,19 +43,20 @@ describe('global', () => {
     expect(maxAliasesPlugin).toBeDefined();
   });
 
+  const query = `query {
+    firstBook: getBook(title: "null") {
+      author
+      title
+    }
+    secondBook: getBook(title: "null") {
+      author
+      title
+    }
+  }`;
+
   it('should works by default', async () => {
     const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
-    query {
-      firstBook: getBook(title: "null") {
-        author
-        title
-      }
-      secondBook: getBook(title: "null") {
-        author
-        title
-      }
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
@@ -67,17 +68,7 @@ describe('global', () => {
 
   it('should reject query', async () => {
     const testkit = createTestkit([maxAliasesPlugin({ n: 1 })], schema);
-    const result = await testkit.execute(`
-    query {
-      firstBook: getBook(title: "null") {
-        author
-        title
-      }
-      secondBook: getBook(title: "null") {
-        author
-        title
-      }
-    }`);
+    const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();

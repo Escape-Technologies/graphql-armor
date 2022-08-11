@@ -30,7 +30,7 @@ class MaxDepthVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
     if (depth > this.options.n) {
-      this.onError('Request too deep.');
+      this.onError('Request too is deep.');
     }
   }
 
@@ -38,13 +38,12 @@ class MaxDepthVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth: number = 0,
   ): number {
-    let newDepth = depth;
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
-        newDepth = Math.max(newDepth, this.countDepth(child, depth + 1));
+        depth = Math.max(depth, this.countDepth(child, depth + 1));
       }
     }
-    return newDepth;
+    return depth;
   }
 }
 

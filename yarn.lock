@@ -2184,6 +2184,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/testing@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "@envelop/testing@npm:4.4.2"
+  dependencies:
+    "@graphql-tools/utils": ^8.8.0
+  peerDependencies:
+    "@envelop/core": ^2.4.2
+    "@envelop/types": ^2.3.1
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: c999541e169908ecc433d8468bf6d8f513c50e79268ee973935bcbf991a3a91fd8589bcd196bf9d034c350fa83e94269aad8e88e315036912d5e57eb4fb794ad
+  languageName: node
+  linkType: hard
+
 "@envelop/types@npm:2.3.0":
   version: 2.3.0
   resolution: "@envelop/types@npm:2.3.0"
@@ -2219,6 +2232,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4

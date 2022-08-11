@@ -1,9 +1,10 @@
+import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 
 import { blockFieldSuggestionsPlugin } from '../src/index';
 
-const typeDefinitions = /* GraphQL */ `
+const typeDefinitions = `
   type Book {
     title: String
     author: String
@@ -40,5 +41,55 @@ describe('global', () => {
     expect(blockFieldSuggestionsPlugin).toBeDefined();
   });
 
-  it('should disable field suggestion', () => {});
+  /** This is a deprecation guard in case it is removed from GraphQL-JS */
+  it('should suggest field by default', async () => {
+    const testkit = createTestkit([], schema);
+    const result = await testkit.execute(`
+    query {
+      books {
+        titlee
+        author
+      }
+    }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Cannot query field "titlee" on type "Book". Did you mean "title"?',
+    ]);
+  });
+
+  it('should works on a valid query', async () => {
+    const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
+    const result = await testkit.execute(`
+    query {
+      books {
+        title
+        author
+      }
+    }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      books: books,
+    });
+  });
+
+  it('should disable field suggestions', async () => {
+    const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
+    const result = await testkit.execute(`
+    query {
+      books {
+        titlee
+        author
+      }
+    }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Cannot query field "titlee" on type "Book". [Suggestion message hidden by GraphQLArmor]?',
+    ]);
+  });
 });

@@ -40,5 +40,14 @@
         "console": "integratedTerminal",
         "runtimeArgs": ["workspace", "@escape.tech/graphql-armor-example-nestjs", "dev"]
     },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Tests",
+        "runtimeExecutable": "yarn",
+        "cwd": "${workspaceRoot}",
+        "console": "integratedTerminal",
+        "runtimeArgs": ["test"]
+    }
   ]
 }

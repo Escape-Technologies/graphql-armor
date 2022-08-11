@@ -30,7 +30,7 @@ class MaxDepthVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
     if (depth > this.options.n) {
-      this.onError('Request too is deep.');
+      this.onError('Request is too deep.');
     }
   }
 

@@ -2206,7 +2206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:2.3.1":
+"@envelop/types@npm:2.3.1, @envelop/types@npm:^2.3.1":
   version: 2.3.1
   resolution: "@envelop/types@npm:2.3.1"
   peerDependencies:
@@ -2233,6 +2233,7 @@ __metadata:
   dependencies:
     "@envelop/core": ^2.4.2
     "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2246,6 +2247,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2259,6 +2262,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2349,6 +2354,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2362,6 +2369,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2375,6 +2384,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4

@@ -5,6 +5,7 @@ import {
   FragmentSpreadNode,
   GraphQLError,
   InlineFragmentNode,
+  Kind,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
@@ -41,6 +42,12 @@ class MaxDepthVisitor {
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
         depth = Math.max(depth, this.countDepth(child, depth + 1));
+      }
+    }
+    if (node.kind == Kind.FRAGMENT_SPREAD) {
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        depth = Math.max(depth, this.countDepth(fragment, depth + 1));
       }
     }
     return depth;

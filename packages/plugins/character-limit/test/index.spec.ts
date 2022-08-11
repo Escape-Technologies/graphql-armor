@@ -1,4 +1,4 @@
-import { useExtendContext } from '@envelop/core';
+import { Plugin } from '@envelop/core';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
@@ -32,10 +32,20 @@ const resolvers = {
   },
 };
 
-export const schema = makeExecutableSchema({
+const schema = makeExecutableSchema({
   resolvers: [resolvers],
   typeDefs: [typeDefinitions],
 });
+
+const mockedParsePlugin = (): Plugin => {
+  return {
+    onParse({ params, extendContext }) {
+      extendContext({
+        query: params.source,
+      });
+    },
+  };
+};
 
 describe('global', () => {
   it('should be defined', () => {
@@ -60,12 +70,12 @@ describe('global', () => {
     });
   });
 
-  // it('should reject query', async () => {
-  //   const testkit = createTestkit([characterLimitPlugin({ maxLength: 43 })], schema);
-  //   const result = await testkit.execute(query);
+  it('should reject query', async () => {
+    const testkit = createTestkit([mockedParsePlugin(), characterLimitPlugin({ maxLength: 54 - 1 })], schema);
+    const result = await testkit.execute(query);
 
-  //   assertSingleExecutionValue(result);
-  //   expect(result.errors).toBeDefined();
-  //   expect(result.errors?.map((error) => error.message)).toEqual(['Source is too large.']);
-  // });
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too large.']);
+  });
 });

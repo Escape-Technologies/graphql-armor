@@ -2184,6 +2184,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/testing@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "@envelop/testing@npm:4.4.2"
+  dependencies:
+    "@graphql-tools/utils": ^8.8.0
+  peerDependencies:
+    "@envelop/core": ^2.4.2
+    "@envelop/types": ^2.3.1
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: c999541e169908ecc433d8468bf6d8f513c50e79268ee973935bcbf991a3a91fd8589bcd196bf9d034c350fa83e94269aad8e88e315036912d5e57eb4fb794ad
+  languageName: node
+  linkType: hard
+
 "@envelop/types@npm:2.3.0":
   version: 2.3.0
   resolution: "@envelop/types@npm:2.3.0"
@@ -2193,7 +2206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:2.3.1":
+"@envelop/types@npm:2.3.1, @envelop/types@npm:^2.3.1":
   version: 2.3.1
   resolution: "@envelop/types@npm:2.3.1"
   peerDependencies:
@@ -2219,6 +2232,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2232,6 +2247,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2245,6 +2262,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2294,6 +2313,7 @@ __metadata:
     "@nestjs/core": ^9.0.8
     "@nestjs/graphql": ^10.0.21
     "@nestjs/platform-express": ^9.0.8
+    "@nestjs/testing": ^9.0.8
     "@types/express": ^4
     "@types/node": ^18.6.3
     "@typescript-eslint/eslint-plugin": ^5.31.0
@@ -2334,6 +2354,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2347,6 +2369,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -2360,6 +2384,8 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
     "@envelop/core": ^2.4.2
+    "@envelop/testing": ^4.4.2
+    "@envelop/types": ^2.3.1
     "@types/node": ^18.6.3
     graphql: ^16.5.0
     typescript: ^4.7.4
@@ -3190,6 +3216,25 @@ __metadata:
   peerDependencies:
     typescript: ^4.3.5
   checksum: c4a382a0b498f4a90e4d79c6a4bb479ad9bd38fc37d1f2bd65bb6034833f87604d04dad35991ec029a63e7bba50701dd71f68be90d49d8454c320260b15354b2
+  languageName: node
+  linkType: hard
+
+"@nestjs/testing@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@nestjs/testing@npm:9.0.8"
+  dependencies:
+    tslib: 2.4.0
+  peerDependencies:
+    "@nestjs/common": ^9.0.0
+    "@nestjs/core": ^9.0.0
+    "@nestjs/microservices": ^9.0.0
+    "@nestjs/platform-express": ^9.0.0
+  peerDependenciesMeta:
+    "@nestjs/microservices":
+      optional: true
+    "@nestjs/platform-express":
+      optional: true
+  checksum: 5f3351fb31a18e0bcc69be23786318fe6c0ec96bc54d249dfe3b95c4bf97738eb45598a77a35cc5833ef4c423416cea4969cb3ada95ec8da5620587f21fc55d1
   languageName: node
   linkType: hard
 

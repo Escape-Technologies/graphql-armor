@@ -62,8 +62,10 @@ class CostLimitVisitor {
     }
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
-      const fragment = this.context.getFragment(node.name.value) as FragmentDefinitionNode;
-      cost += this.options.depthCostFactor * this.computeComplexity(fragment, depth + 1);
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        cost += this.options.depthCostFactor * this.computeComplexity(fragment, depth + 1);
+      }
     }
 
     return cost;

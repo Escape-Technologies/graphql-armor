@@ -29,3 +29,11 @@ const getEnveloped = envelop({
   ]
 })
 ```
+
+## Design considerations
+
+This plugin relies on a parser plugin to works and access query from the context.
+
+This should be supported by the engine you use.
+
+If you experience any issues, please open an issue.

@@ -1,17 +1,7 @@
-import { EnvelopArmor } from '@escape.tech/graphql-armor';
-import { createServer } from '@graphql-yoga/node';
+import { initServer } from './server';
 
-import { schema } from './schema';
+const server = initServer();
 
-const armor = new EnvelopArmor();
-const enhancements = armor.protect();
-
-async function main() {
-  const server = createServer({
-    schema,
-    plugins: [...enhancements.plugins],
-  });
+(async () => {
   await server.start();
-}
-
-main();
+})();

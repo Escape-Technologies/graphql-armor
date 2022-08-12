@@ -204,7 +204,7 @@ Configuration
 ```typescript
 {
   characterLimit: {
-    enabled: true,
+    // enabled: true,
     maxLength: 15000,
   }
 }
@@ -223,7 +223,7 @@ Configuration
 ```typescript
 {
   costLimit: {
-    enabled: true,
+    // enabled: true,
     maxCost: 5000, // maximum cost of a request before it is rejected
     objectCost: 2, // cost of retrieving an object
     scalarCost: 1, // cost of retrieving a scalar
@@ -239,14 +239,14 @@ This plugin is enabled by default.
 
 It will prevent suggesting fields in case of an erroneous request. Suggestions can lead to the leak of your schema even with disabled introspection, which can be very detrimental in case of a private API. One could use [GraphDNA](https://github.com/Escape-Technologies/graphdna) to recover an API schema even with disabled introspection, as long as field suggestions are enabled.
 
-Example of such a suggestion : 
+Example of such a suggestion:
 
 `Cannot query field "sta" on type "Media". Did you mean "stats", "staff", or "status"?`
 
 ```typescript
 {
   blockFieldSuggestion: {
-    enabled: true,
+    // enabled: true,
   }
 }
 ```
@@ -260,7 +260,7 @@ Put a limit on the number of aliases.
 ```typescript
 {
   maxAliases: {
-    enabled: true,
+    // enabled: true,
     n: 15,
   }
 }
@@ -275,7 +275,7 @@ Put a limit on the number of directives.
 ```typescript
 {
   maxDirectives: {
-    enabled: true,
+    // enabled: true,
     n: 50,
   }
 }
@@ -290,7 +290,7 @@ Put a depth limit to the request.
 ```typescript
 {
   maxDepth: {
-    enabled: true,
+    // enabled: true,
     n: 6,
   }
 }

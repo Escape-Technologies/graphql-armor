@@ -4,9 +4,10 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 
 export class EnvelopMaxAliasesProtection extends EnvelopProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.maxAliases) return true;
-    return this.config.maxAliases.enabled;
+    if (!this.config.maxAliases) {
+      return this.enabledByDefault;
+    }
+    return this.config.maxAliases.enabled ?? this.enabledByDefault;
   }
 
   get options(): MaxAliasesOptions {

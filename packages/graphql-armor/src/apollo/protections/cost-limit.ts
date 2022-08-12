@@ -5,9 +5,10 @@ import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-p
 
 export class ApolloCostLimitProtection extends ApolloProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.costLimit) return true;
-    return this.config.costLimit.enabled;
+    if (!this.config.costLimit) {
+      return this.enabledByDefault;
+    }
+    return this.config.costLimit.enabled ?? this.enabledByDefault;
   }
 
   get options(): CostLimitOptions {

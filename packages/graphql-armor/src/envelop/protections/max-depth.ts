@@ -4,9 +4,10 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 
 export class EnvelopMaxDepthProtection extends EnvelopProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.maxDepth) return true;
-    return this.config.maxDepth.enabled;
+    if (!this.config.maxDepth) {
+      return this.enabledByDefault;
+    }
+    return this.config.maxDepth.enabled ?? this.enabledByDefault;
   }
 
   get options(): MaxDepthOptions {

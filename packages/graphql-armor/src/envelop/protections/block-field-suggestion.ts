@@ -4,9 +4,10 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 
 export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.blockFieldSuggestion) return true;
-    return this.config.blockFieldSuggestion.enabled;
+    if (!this.config.blockFieldSuggestion) {
+      return this.enabledByDefault;
+    }
+    return this.config.blockFieldSuggestion.enabled ?? this.enabledByDefault;
   }
 
   protect(): EnvelopConfigurationEnhancement {

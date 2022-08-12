@@ -8,6 +8,7 @@ export type EnvelopConfigurationEnhancement = {
 
 export abstract class EnvelopProtection {
   config: GraphQLArmorConfig;
+  enabledByDefault: boolean = true;
 
   constructor(config: GraphQLArmorConfig) {
     this.config = config;

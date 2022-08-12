@@ -4,9 +4,10 @@ import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-prote
 
 export class EnvelopCostLimitProtection extends EnvelopProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.costLimit) return true;
-    return this.config.costLimit.enabled;
+    if (!this.config.costLimit) {
+      return this.enabledByDefault;
+    }
+    return this.config.costLimit.enabled ?? this.enabledByDefault;
   }
 
   get options(): CostLimitOptions {

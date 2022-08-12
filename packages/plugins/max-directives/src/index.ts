@@ -5,6 +5,7 @@ import {
   FragmentSpreadNode,
   GraphQLError,
   InlineFragmentNode,
+  Kind,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
@@ -44,6 +45,12 @@ class MaxDirectivesVisitor {
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
         directives += this.countDirectives(child);
+      }
+    }
+    if (node.kind == Kind.FRAGMENT_SPREAD) {
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        directives += this.countDirectives(fragment);
       }
     }
     return directives;

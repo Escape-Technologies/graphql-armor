@@ -64,7 +64,8 @@
     "jest": {
         "collectCoverageFrom": [
             "packages/plugins/*/src/*.ts",
-            "packages/graphql-armor/src/**/*.ts"
+            "packages/graphql-armor/src/**/*.ts",
+            "!packages/graphql-armor/src/apollo/protections/*.ts"
         ]
     }
 }

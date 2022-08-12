@@ -38,7 +38,7 @@ class CostLimitVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
     if (complexity > this.options.maxCost) {
-      this.onError('Query is too complex.');
+      this.onError(`Query is too expensive.`);
     }
   }
 

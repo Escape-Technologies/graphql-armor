@@ -62,4 +62,20 @@ describe('global', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual(['Too many directives.']);
   });
+
+  it('should works on fragment', async () => {
+    const testkit = createTestkit([maxDirectivesPlugin({ n: 3 })], schema);
+    const result = await testkit.execute(`query {
+        ...DirectivesFragment
+      }
+
+      fragment DirectivesFragment on Query {
+        __typename @a @a @a @a
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Too many directives.']);
+  });
 });

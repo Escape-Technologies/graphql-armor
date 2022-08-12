@@ -3,15 +3,17 @@ import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
+const patch = {
+  async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
+    for (const error of errors) {
+      error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
+    }
+  },
+};
+
 const plugin: PluginDefinition = {
   async requestDidStart() {
-    return {
-      async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
-        for (const error of errors) {
-          error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
-        }
-      },
-    };
+    return patch;
   },
 };
 

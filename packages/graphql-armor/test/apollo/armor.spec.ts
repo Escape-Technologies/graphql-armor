@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, expect, it } from '@jest/globals';
 
 import { ApolloArmor } from '../../src/apollo/armor';
@@ -25,5 +26,31 @@ describe('apolloArmor', () => {
     expect(enhancements.validationRules.length).toEqual(4);
     expect(enhancements.allowBatchedHttpRequests).toEqual(false);
     expect(enhancements.debug).toEqual(false);
+  });
+
+  it('should not include disabled plugins', () => {
+    const apolloDisabled = new ApolloArmor({
+      blockFieldSuggestion: {
+        enabled: false,
+      },
+      characterLimit: {
+        enabled: false,
+      },
+      costLimit: {
+        enabled: false,
+      },
+      maxAliases: {
+        enabled: false,
+      },
+      maxDepth: {
+        enabled: false,
+      },
+      maxDirectives: {
+        enabled: false,
+      },
+    });
+
+    const enhancementsDisabled = apolloDisabled.protect();
+    expect(enhancementsDisabled.plugins.length).toEqual(0);
   });
 });

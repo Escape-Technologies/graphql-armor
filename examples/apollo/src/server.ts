@@ -1,32 +1,41 @@
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 import { gql } from 'apollo-server';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Book {
-    id: String
     title: String
-    author: String
+    author: Author
+  }
+
+  type Author {
+    name: String
+    books: [Book]
   }
 
   type Query {
     books: [Book]
-  }
-
-  type Mutation {
-    addBook(title: String, author: String): Book
+    authors: [Author]
+    throw: String
   }
 `;
 
+const authors = [
+  {
+    name: 'Kate Chopin',
+    books: ['The Awakening'],
+  },
+  {
+    name: 'Paul Auster',
+    books: ['City of Glass'],
+  },
+];
 const books = [
   {
-    id: '1',
     title: 'The Awakening',
     author: 'Kate Chopin',
   },
   {
-    id: '2',
     title: 'City of Glass',
     author: 'Paul Auster',
   },
@@ -35,6 +44,10 @@ const books = [
 const resolvers = {
   Query: {
     books: () => books,
+    authors: () => authors,
+    throw: () => {
+      throw new Error('oops');
+    },
   },
 };
 
@@ -43,14 +56,30 @@ const armor = new ApolloArmor({
     enabled: true,
     maxLength: 1000,
   },
+  costLimit: {
+    enabled: true,
+    maxCost: 100,
+    objectCost: 1,
+    scalarCost: 1,
+    depthCostFactor: 2,
+    ignoreIntrospection: true,
+  },
+  maxAliases: {
+    enabled: true,
+    n: 1,
+  },
+  maxDirectives: {
+    enabled: true,
+    n: 10,
+  },
+  maxDepth: {
+    enabled: true,
+    n: 4,
+  },
 });
-
-const enhancements = armor.protect();
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  cache: 'bounded',
-  plugins: [...enhancements.plugins],
-  validationRules: [...enhancements.validationRules],
+  ...armor.protect(),
 });

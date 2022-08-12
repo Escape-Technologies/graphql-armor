@@ -148,7 +148,7 @@ describe('global', () => {
     }
   }`;
 
-  it('should works by default', async () => {
+  it('should works for default query', async () => {
     const testkit = createTestkit([], schema);
     const result = await testkit.execute(query);
 
@@ -157,7 +157,7 @@ describe('global', () => {
     expect(result.data).toEqual({ books: books });
   });
 
-  it('should reject query', async () => {
+  it('should limit cost', async () => {
     const testkit = createTestkit(
       [
         costLimitPlugin({
@@ -174,7 +174,7 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too complex.']);
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too expensive.']);
   });
 
   it('should allow introspection', async () => {
@@ -224,6 +224,6 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too complex.']);
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too expensive.']);
   });
 });

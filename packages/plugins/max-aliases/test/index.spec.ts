@@ -44,11 +44,11 @@ describe('global', () => {
   });
 
   const query = `query {
-    firstBook: getBook(title: "null") {
+    firstBooks: getBook(title: "null") {
       author
       title
     }
-    secondBook: getBook(title: "null") {
+    secondBooks: getBook(title: "null") {
       author
       title
     }
@@ -61,8 +61,8 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
     expect(result.data).toEqual({
-      firstBook: null,
-      secondBook: null,
+      firstBooks: null,
+      secondBooks: null,
     });
   });
 

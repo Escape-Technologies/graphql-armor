@@ -66,17 +66,17 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Request is too deep.']);
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
   });
 
   it('should reject fragment', async () => {
     const testkit = createTestkit([maxDepthPlugin({ n: 5 - 1 })], schema);
     const result = await testkit.execute(`
     query {
-      ...BookFragment
+      ...BooksFragment
     }
 
-    fragment BookFragment on Query {
+    fragment BooksFragment on Query {
       books {
         title
         author
@@ -86,6 +86,6 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Request is too deep.']);
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
   });
 });

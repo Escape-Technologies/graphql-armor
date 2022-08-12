@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, expect, it } from '@jest/globals';
 
 import { EnvelopArmor } from '../../src/envelop/armor';

@@ -6,7 +6,7 @@ import type { MaxDepthOptions } from '@escape.tech/graphql-armor-max-depth';
 import type { MaxDirectivesOptions } from '@escape.tech/graphql-armor-max-directives';
 
 export type ProtectionConfiguration = {
-  enabled: boolean;
+  enabled?: boolean;
 };
 
 export type GraphQLArmorConfig = {

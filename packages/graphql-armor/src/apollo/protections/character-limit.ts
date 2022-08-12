@@ -19,9 +19,10 @@ const plugin = ({ maxLength }: CharacterLimitOptions) => {
 
 export class ApolloCharacterLimitProtection extends ApolloProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.characterLimit) return true;
-    return this.config.characterLimit.enabled;
+    if (!this.config.characterLimit) {
+      return this.enabledByDefault;
+    }
+    return this.config.characterLimit.enabled ?? this.enabledByDefault;
   }
 
   get options(): CharacterLimitOptions {

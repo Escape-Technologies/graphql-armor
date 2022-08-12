@@ -9,6 +9,7 @@ export type ApolloServerConfigurationEnhancement = {
 
 export abstract class ApolloProtection {
   config: GraphQLArmorConfig;
+  enabledByDefault: boolean = true;
 
   constructor(config: GraphQLArmorConfig) {
     this.config = config;

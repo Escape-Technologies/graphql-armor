@@ -5,9 +5,10 @@ import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-p
 
 export class ApolloMaxDirectivesProtection extends ApolloProtection {
   get isEnabled(): boolean {
-    // default
-    if (!this.config.maxDirectives) return true;
-    return this.config.maxDirectives.enabled;
+    if (!this.config.maxDirectives) {
+      return this.enabledByDefault;
+    }
+    return this.config.maxDirectives.enabled ?? this.enabledByDefault;
   }
 
   get options(): MaxDirectivesOptions {

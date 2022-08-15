@@ -1,4 +1,4 @@
-import type { Plugin } from '@envelop/core';
+import type { OnPluginInitEventPayload, Plugin } from '@envelop/core';
 
 import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
@@ -9,7 +9,7 @@ import { EnvelopMaxAliasesProtection } from './protections/max-aliases';
 import { EnvelopMaxDepthProtection } from './protections/max-depth';
 import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
 
-export class EnvelopArmor {
+export class EnvelopArmor implements Plugin {
   private config: GraphQLArmorConfig;
 
   private readonly protections: EnvelopProtection[];
@@ -25,6 +25,18 @@ export class EnvelopArmor {
       new EnvelopMaxDirectivesProtection(config),
       new EnvelopCostLimitProtection(config),
     ];
+  }
+
+  onPluginInit({ addPlugin }: OnPluginInitEventPayload) {
+    for (const protection of this.protections) {
+      if (protection.isEnabled) {
+        const enhancements = protection.protect();
+
+        for (const plugin of enhancements.plugins) {
+          addPlugin(plugin);
+        }
+      }
+    }
   }
 
   protect(): {

@@ -89,13 +89,10 @@ const server = new ApolloServer({
 ```typescript
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
 
-const armor = new EnvelopArmor();
-const protection = armor.protect()
-
 async function main() {
   const server = createServer({
     schema,
-    plugins: [...protection.plugins],
+    plugins: [new EnvelopArmor()],
   });
   await server.start();
 }
@@ -108,11 +105,8 @@ main();
 ```typescript
 import { EnvelopArmor } from '@escape.tech/graphql-armor';
 
-const armor = new EnvelopArmor();
-const protection = armor.protect()
-
 const getEnveloped = envelop({
-  plugins: [otherPlugins, ...protection.plugins],
+  plugins: [otherPlugins, new EnvelopArmor()],
 });
 ```
 

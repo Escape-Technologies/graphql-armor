@@ -341,7 +341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.18.10, @babel/core@npm:^7.7.7":
+"@babel/core@npm:7.18.10, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.7.7":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -714,7 +714,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-proposal-class-properties@npm:^7.18.6":
+"@babel/plugin-proposal-class-properties@npm:7.18.6, @babel/plugin-proposal-class-properties@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-proposal-class-properties@npm:7.18.6"
   dependencies:
@@ -739,7 +739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-proposal-decorators@npm:^7.18.10":
+"@babel/plugin-proposal-decorators@npm:7.18.10":
   version: 7.18.10
   resolution: "@babel/plugin-proposal-decorators@npm:7.18.10"
   dependencies:
@@ -1506,7 +1506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.18.10":
+"@babel/preset-env@npm:7.18.10":
   version: 7.18.10
   resolution: "@babel/preset-env@npm:7.18.10"
   dependencies:
@@ -1606,7 +1606,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.18.6":
+"@babel/preset-typescript@npm:7.18.6":
   version: 7.18.6
   resolution: "@babel/preset-typescript@npm:7.18.6"
   dependencies:
@@ -1747,7 +1747,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/cli@npm:^2.24.2":
+"@changesets/cli@npm:2.24.2":
   version: 2.24.2
   resolution: "@changesets/cli@npm:2.24.2"
   dependencies:
@@ -1945,7 +1945,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^17.0.0":
+"@commitlint/cli@npm:17.0.3":
   version: 17.0.3
   resolution: "@commitlint/cli@npm:17.0.3"
   dependencies:
@@ -1972,7 +1972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-angular@npm:^17.0.0":
+"@commitlint/config-angular@npm:17.0.3":
   version: 17.0.3
   resolution: "@commitlint/config-angular@npm:17.0.3"
   dependencies:
@@ -2150,6 +2150,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/core@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@envelop/core@npm:2.4.2"
+  dependencies:
+    "@envelop/types": 2.3.1
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: c4491acf6bee574ed535e9cd2fca757d5051bc7165abbdc2650d0d99f38dcb1521f923bdab30f75f5021b6beecfcb9d17fb30f92f697ed3330822c1cb987ece0
+  languageName: node
+  linkType: hard
+
 "@envelop/core@npm:^2.4.0":
   version: 2.4.1
   resolution: "@envelop/core@npm:2.4.1"
@@ -2158,17 +2169,6 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 101435f8897d0d31648ccc5eccc7b4f7c2cbab0d6b476b6324b597745114d0b6aa0311a56d150a4203620a9004de3ab324f019f280244df0905d326e5580ccf1
-  languageName: node
-  linkType: hard
-
-"@envelop/core@npm:^2.4.2":
-  version: 2.4.2
-  resolution: "@envelop/core@npm:2.4.2"
-  dependencies:
-    "@envelop/types": 2.3.1
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: c4491acf6bee574ed535e9cd2fca757d5051bc7165abbdc2650d0d99f38dcb1521f923bdab30f75f5021b6beecfcb9d17fb30f92f697ed3330822c1cb987ece0
   languageName: node
   linkType: hard
 
@@ -2184,7 +2184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:^4.4.2":
+"@envelop/testing@npm:4.4.2":
   version: 4.4.2
   resolution: "@envelop/testing@npm:4.4.2"
   dependencies:
@@ -2206,7 +2206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:2.3.1, @envelop/types@npm:^2.3.1":
+"@envelop/types@npm:2.3.1":
   version: 2.3.1
   resolution: "@envelop/types@npm:2.3.1"
   peerDependencies:
@@ -2231,12 +2231,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2246,12 +2246,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2261,12 +2261,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2353,12 +2353,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2368,12 +2368,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2383,12 +2383,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": ^2.4.2
-    "@envelop/testing": ^4.4.2
-    "@envelop/types": ^2.3.1
-    "@types/node": ^18.6.3
+    "@envelop/core": 2.4.2
+    "@envelop/testing": 4.4.2
+    "@envelop/types": 2.3.1
+    "@types/node": 18.6.3
     graphql: ^16.5.0
-    typescript: ^4.7.4
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
   languageName: unknown
@@ -2398,27 +2398,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-monorepo@workspace:."
   dependencies:
-    "@babel/core": ^7.18.10
-    "@babel/plugin-proposal-class-properties": ^7.18.6
-    "@babel/plugin-proposal-decorators": ^7.18.10
-    "@babel/preset-env": ^7.18.10
-    "@babel/preset-typescript": ^7.18.6
-    "@changesets/cli": ^2.24.2
-    "@commitlint/cli": ^17.0.0
-    "@commitlint/config-angular": ^17.0.0
-    "@escape.tech/mookme": ^2.2.0-beta.2
-    "@preconstruct/cli": ^2.2.1
-    "@trivago/prettier-plugin-sort-imports": ^3.3.0
-    "@types/babel__core": ^7
-    "@types/babel__preset-env": ^7
-    "@types/node": ^18.6.5
-    "@typescript-eslint/eslint-plugin": ^5.33.0
-    "@typescript-eslint/parser": ^5.33.0
-    eslint: ^8.21.0
-    eslint-config-google: ^0.14.0
-    jest: ^28.1.3
-    prettier: ^2.7.1
-    typescript: ^4.7.4
+    "@babel/core": 7.18.10
+    "@babel/plugin-proposal-class-properties": 7.18.6
+    "@babel/plugin-proposal-decorators": 7.18.10
+    "@babel/preset-env": 7.18.10
+    "@babel/preset-typescript": 7.18.6
+    "@changesets/cli": 2.24.2
+    "@commitlint/cli": 17.0.3
+    "@commitlint/config-angular": 17.0.3
+    "@escape.tech/mookme": 2.2.0-beta.6
+    "@preconstruct/cli": 2.2.1
+    "@trivago/prettier-plugin-sort-imports": 3.3.0
+    "@types/babel__core": 7.1.19
+    "@types/babel__preset-env": 7.9.2
+    "@types/node": 18.6.5
+    "@typescript-eslint/eslint-plugin": 5.33.0
+    "@typescript-eslint/parser": 5.33.0
+    eslint: 8.21.0
+    eslint-config-google: 0.14.0
+    jest: 28.1.3
+    prettier: 2.7.1
+    typescript: 4.7.4
   languageName: unknown
   linkType: soft
 
@@ -2426,7 +2426,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@envelop/core": ^2.4.2
+    "@envelop/core": 2.4.2
     "@escape.tech/graphql-armor-block-field-suggestions": ^1.1.1
     "@escape.tech/graphql-armor-character-limit": ^1.2.0
     "@escape.tech/graphql-armor-cost-limit": ^1.1.0
@@ -2435,10 +2435,10 @@ __metadata:
     "@escape.tech/graphql-armor-max-directives": ^1.1.2
     apollo-server: ^3.10.0
     apollo-server-core: ^3.10.0
-    apollo-server-types: ^3.6.2
+    apollo-server-types: 3.6.2
     graphql: ^16.5.0
-    ts-node: ^10.9.1
-    typescript: ^4.7.4
+    ts-node: 10.9.1
+    typescript: 4.7.4
   peerDependencies:
     "@envelop/core": ^2.4.2
     "@types/node": ^18.6.3
@@ -2449,7 +2449,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/mookme@npm:^2.2.0-beta.2":
+"@escape.tech/mookme@npm:2.2.0-beta.6":
   version: 2.2.0-beta.6
   resolution: "@escape.tech/mookme@npm:2.2.0-beta.6"
   dependencies:
@@ -3338,7 +3338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@preconstruct/cli@npm:^2.2.1":
+"@preconstruct/cli@npm:2.2.1":
   version: 2.2.1
   resolution: "@preconstruct/cli@npm:2.2.1"
   dependencies:
@@ -3596,7 +3596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trivago/prettier-plugin-sort-imports@npm:^3.3.0":
+"@trivago/prettier-plugin-sort-imports@npm:3.3.0":
   version: 3.3.0
   resolution: "@trivago/prettier-plugin-sort-imports@npm:3.3.0"
   dependencies:
@@ -3662,7 +3662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7, @types/babel__core@npm:^7.1.14":
+"@types/babel__core@npm:7.1.19, @types/babel__core@npm:^7.1.14":
   version: 7.1.19
   resolution: "@types/babel__core@npm:7.1.19"
   dependencies:
@@ -3684,7 +3684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__preset-env@npm:^7":
+"@types/babel__preset-env@npm:7.9.2":
   version: 7.9.2
   resolution: "@types/babel__preset-env@npm:7.9.2"
   checksum: a905ed92a3f602384966153e74a94790425e98af54e392a7fcfb5c5ded2f2a58c49a9fa64a0cb506fbffb8169ad25b56ea87983c812a4fb880f0716668c8c085
@@ -3899,10 +3899,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.6.3":
+"@types/node@npm:*, @types/node@npm:18.6.3, @types/node@npm:>=12, @types/node@npm:^18.6.3":
   version: 18.6.3
   resolution: "@types/node@npm:18.6.3"
   checksum: 38495b8fd27200d2b7ab9ccd8c1e2475d2411fba15330f2cba869a85ef79dd42382a2658c8dd298ace8c21ed3bfafcdea408faecd74928b144377d07d00e7c8c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:18.6.5":
+  version: 18.6.5
+  resolution: "@types/node@npm:18.6.5"
+  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
   languageName: node
   linkType: hard
 
@@ -3917,13 +3924,6 @@ __metadata:
   version: 12.20.55
   resolution: "@types/node@npm:12.20.55"
   checksum: e4f86785f4092706e0d3b0edff8dca5a13b45627e4b36700acd8dfe6ad53db71928c8dee914d4276c7fd3b6ccd829aa919811c9eb708a2c8e4c6eb3701178c37
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^18.6.5":
-  version: 18.6.5
-  resolution: "@types/node@npm:18.6.5"
-  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
   languageName: node
   linkType: hard
 
@@ -4025,6 +4025,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/eslint-plugin@npm:5.33.0":
+  version: 5.33.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:5.33.0"
+  dependencies:
+    "@typescript-eslint/scope-manager": 5.33.0
+    "@typescript-eslint/type-utils": 5.33.0
+    "@typescript-eslint/utils": 5.33.0
+    debug: ^4.3.4
+    functional-red-black-tree: ^1.0.1
+    ignore: ^5.2.0
+    regexpp: ^3.2.0
+    semver: ^7.3.7
+    tsutils: ^3.21.0
+  peerDependencies:
+    "@typescript-eslint/parser": ^5.0.0
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: d408f3f474b34fefde8ee65d98deb126949fd7d8e211a7f95c5cc2b507dedbf8eb239f3895e0c37aa6338989531e37c5f35c2e0de36a126c52f0846e89605487
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^5.31.0":
   version: 5.32.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.32.0"
@@ -4048,26 +4071,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.33.0":
+"@typescript-eslint/parser@npm:5.33.0":
   version: 5.33.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:5.33.0"
+  resolution: "@typescript-eslint/parser@npm:5.33.0"
   dependencies:
     "@typescript-eslint/scope-manager": 5.33.0
-    "@typescript-eslint/type-utils": 5.33.0
-    "@typescript-eslint/utils": 5.33.0
+    "@typescript-eslint/types": 5.33.0
+    "@typescript-eslint/typescript-estree": 5.33.0
     debug: ^4.3.4
-    functional-red-black-tree: ^1.0.1
-    ignore: ^5.2.0
-    regexpp: ^3.2.0
-    semver: ^7.3.7
-    tsutils: ^3.21.0
   peerDependencies:
-    "@typescript-eslint/parser": ^5.0.0
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: d408f3f474b34fefde8ee65d98deb126949fd7d8e211a7f95c5cc2b507dedbf8eb239f3895e0c37aa6338989531e37c5f35c2e0de36a126c52f0846e89605487
+  checksum: 2617aba987a70ee6b16ecc6afa6d245422df33a9d056018ff2e316159e667a0ab9d9c15fcea95e0ba65832661e71cc2753a221e77f0b0fab278e52c4497b8278
   languageName: node
   linkType: hard
 
@@ -4085,23 +4102,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 3fcfa183cad125c3198fd63701c6e13dad1cc984d309e8cd40ec9a2eb857902abfd7e9ee3f030b18eb1c18c795a61ea289ef147a7f9dfac38df905e7514316af
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/parser@npm:^5.33.0":
-  version: 5.33.0
-  resolution: "@typescript-eslint/parser@npm:5.33.0"
-  dependencies:
-    "@typescript-eslint/scope-manager": 5.33.0
-    "@typescript-eslint/types": 5.33.0
-    "@typescript-eslint/typescript-estree": 5.33.0
-    debug: ^4.3.4
-  peerDependencies:
-    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 2617aba987a70ee6b16ecc6afa6d245422df33a9d056018ff2e316159e667a0ab9d9c15fcea95e0ba65832661e71cc2753a221e77f0b0fab278e52c4497b8278
   languageName: node
   linkType: hard
 
@@ -4766,7 +4766,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-types@npm:^0.9.0 || ^3.0.0, apollo-server-types@npm:^3.6.2":
+"apollo-server-types@npm:3.6.2, apollo-server-types@npm:^0.9.0 || ^3.0.0, apollo-server-types@npm:^3.6.2":
   version: 3.6.2
   resolution: "apollo-server-types@npm:3.6.2"
   dependencies:
@@ -6221,7 +6221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-google@npm:^0.14.0":
+"eslint-config-google@npm:0.14.0, eslint-config-google@npm:^0.14.0":
   version: 0.14.0
   resolution: "eslint-config-google@npm:0.14.0"
   peerDependencies:
@@ -6275,7 +6275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:>=8.15.0, eslint@npm:^8.21.0":
+"eslint@npm:8.21.0, eslint@npm:>=8.15.0":
   version: 8.21.0
   resolution: "eslint@npm:8.21.0"
   dependencies:
@@ -8367,7 +8367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^28.1.3":
+"jest@npm:28.1.3":
   version: 28.1.3
   resolution: "jest@npm:28.1.3"
   dependencies:
@@ -9684,21 +9684,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:2.7.1, prettier@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "prettier@npm:2.7.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^1.19.1":
   version: 1.19.1
   resolution: "prettier@npm:1.19.1"
   bin:
     prettier: ./bin-prettier.js
   checksum: bc78219e0f8173a808f4c6c8e0a137dd8ebd4fbe013e63fe1a37a82b48612f17b8ae8e18a992adf802ee2cf7428f14f084e7c2846ca5759cf4013c6e54810e1f
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^2.7.1":
-  version: 2.7.1
-  resolution: "prettier@npm:2.7.1"
-  bin:
-    prettier: bin-prettier.js
-  checksum: 55a4409182260866ab31284d929b3cb961e5fdb91fe0d2e099dac92eaecec890f36e524b4c19e6ceae839c99c6d7195817579cdffc8e2c80da0cb794463a748b
   languageName: node
   linkType: hard
 
@@ -11096,7 +11096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.4.0, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
+"ts-node@npm:10.9.1, ts-node@npm:^10.4.0, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:

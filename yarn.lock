@@ -2227,7 +2227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@escape.tech/graphql-armor-block-field-suggestions@^1.1.1, @escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions":
+"@escape.tech/graphql-armor-block-field-suggestions@^1.2.0, @escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
@@ -2242,7 +2242,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-character-limit@^1.2.0, @escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit":
+"@escape.tech/graphql-armor-character-limit@^1.3.0, @escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
@@ -2257,7 +2257,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-cost-limit@^1.1.0, @escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit":
+"@escape.tech/graphql-armor-cost-limit@^1.2.0, @escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
@@ -2349,7 +2349,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-aliases@^1.1.2, @escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases":
+"@escape.tech/graphql-armor-max-aliases@^1.2.0, @escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
@@ -2364,7 +2364,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-depth@^1.2.0, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
+"@escape.tech/graphql-armor-max-depth@^1.3.0, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
@@ -2379,7 +2379,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-directives@^1.1.2, @escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives":
+"@escape.tech/graphql-armor-max-directives@^1.2.0, @escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
@@ -2427,12 +2427,12 @@ __metadata:
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
     "@envelop/core": 2.5.0
-    "@escape.tech/graphql-armor-block-field-suggestions": ^1.1.1
-    "@escape.tech/graphql-armor-character-limit": ^1.2.0
-    "@escape.tech/graphql-armor-cost-limit": ^1.1.0
-    "@escape.tech/graphql-armor-max-aliases": ^1.1.2
-    "@escape.tech/graphql-armor-max-depth": ^1.2.0
-    "@escape.tech/graphql-armor-max-directives": ^1.1.2
+    "@escape.tech/graphql-armor-block-field-suggestions": ^1.2.0
+    "@escape.tech/graphql-armor-character-limit": ^1.3.0
+    "@escape.tech/graphql-armor-cost-limit": ^1.2.0
+    "@escape.tech/graphql-armor-max-aliases": ^1.2.0
+    "@escape.tech/graphql-armor-max-depth": ^1.3.0
+    "@escape.tech/graphql-armor-max-directives": ^1.2.0
     apollo-server: 3.10.1
     apollo-server-core: 3.10.1
     apollo-server-types: 3.6.2

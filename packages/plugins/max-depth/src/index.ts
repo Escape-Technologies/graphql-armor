@@ -22,7 +22,11 @@ class MaxDepthVisitor {
   private readonly options: MaxDepthOptions;
   private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, onError: (msg: string) => any,  options: MaxDepthOptions = maxDepthDefaultOptions) {
+  constructor(
+    context: ValidationContext,
+    onError: (msg: string) => any,
+    options: MaxDepthOptions = maxDepthDefaultOptions,
+  ) {
     this.context = context;
     this.options = Object.assign(
       {},

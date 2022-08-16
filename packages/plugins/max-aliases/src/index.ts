@@ -21,16 +21,12 @@ class MaxAliasesVisitor {
   private readonly options: MaxAliasesOptions;
   private onError: (msg: string) => any;
 
-  constructor(
-    context: ValidationContext,
-    onError: (msg: string) => any,
-    options: MaxAliasesOptions = maxAliasesDefaultOptions,
-  ) {
+  constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxAliasesOptions) {
     this.context = context;
     this.options = Object.assign(
       {},
       maxAliasesDefaultOptions,
-      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+      ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
 
     this.onError = onError;

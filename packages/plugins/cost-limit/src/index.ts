@@ -32,16 +32,12 @@ class CostLimitVisitor {
   private readonly options: CostLimitOptions;
   private readonly onError: any;
 
-  constructor(
-    context: ValidationContext,
-    onError: (string: any) => any,
-    options: CostLimitOptions = costLimitDefaultOptions,
-  ) {
+  constructor(context: ValidationContext, onError: (string: any) => any, options?: CostLimitOptions) {
     this.context = context;
     this.options = Object.assign(
       {},
       costLimitDefaultOptions,
-      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+      ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
     this.onError = onError;
 

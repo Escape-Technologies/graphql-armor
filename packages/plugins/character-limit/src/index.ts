@@ -7,9 +7,9 @@ const characterLimitDefaultOptions: CharacterLimitOptions = {
   maxLength: 15000,
 };
 
-const characterLimitPlugin = ({
-  maxLength = characterLimitDefaultOptions.maxLength,
-}: CharacterLimitOptions = characterLimitDefaultOptions): Plugin<AfterParseCtx> => {
+const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin<AfterParseCtx> => {
+  const maxLength = options?.maxLength ?? characterLimitDefaultOptions.maxLength;
+
   return {
     onParse({ context }) {
       if (context.query && context.query.length > maxLength!) {

@@ -22,16 +22,12 @@ class MaxDirectivesVisitor {
   private readonly options: MaxDirectivesOptions;
   private readonly onError: (msg: string) => any;
 
-  constructor(
-    context: ValidationContext,
-    onError: (msg: string) => any,
-    options: MaxDirectivesOptions = maxDirectivesDefaultOptions,
-  ) {
+  constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxDirectivesOptions) {
     this.context = context;
     this.options = Object.assign(
       {},
       maxDirectivesDefaultOptions,
-      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+      ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
     this.onError = onError;
 

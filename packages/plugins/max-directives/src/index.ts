@@ -10,7 +10,11 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDirectivesOptions = { n: number };
+type MaxDirectivesOptions = { n?: number };
+const maxDirectivesDefaultOptions = {
+  n: 50,
+};
+
 class MaxDirectivesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -18,9 +22,17 @@ class MaxDirectivesVisitor {
   private readonly options: MaxDirectivesOptions;
   private readonly onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxDirectivesOptions, onError: (msg: string) => any) {
+  constructor(
+    context: ValidationContext,
+    onError: (msg: string) => any,
+    options: MaxDirectivesOptions = maxDirectivesDefaultOptions,
+  ) {
     this.context = context;
-    this.options = options;
+    this.options = Object.assign(
+      {},
+      maxDirectivesDefaultOptions,
+      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+    );
     this.onError = onError;
 
     this.OperationDefinition = {
@@ -30,7 +42,7 @@ class MaxDirectivesVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const directives = this.countDirectives(operation);
-    if (directives > this.options.n) {
+    if (directives > this.options.n!) {
       this.onError('Too many directives.');
     }
   }
@@ -58,16 +70,16 @@ class MaxDirectivesVisitor {
 }
 
 const maxDirectivesRule =
-  (options: MaxDirectivesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
-    new MaxDirectivesVisitor(context, options, onError);
+  (onError: (msg: string) => any, options?: MaxDirectivesOptions) => (context: ValidationContext) =>
+    new MaxDirectivesVisitor(context, onError, options);
 
-const maxDirectivesPlugin = (options: MaxDirectivesOptions): Plugin => {
+const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(
-        maxDirectivesRule(options, (msg: string) => {
+        maxDirectivesRule((msg: string) => {
           throw new GraphQLError(msg);
-        }),
+        }, options),
       );
     },
   };

@@ -2150,14 +2150,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:2.4.2":
-  version: 2.4.2
-  resolution: "@envelop/core@npm:2.4.2"
+"@envelop/core@npm:2.5.0":
+  version: 2.5.0
+  resolution: "@envelop/core@npm:2.5.0"
   dependencies:
     "@envelop/types": 2.3.1
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: c4491acf6bee574ed535e9cd2fca757d5051bc7165abbdc2650d0d99f38dcb1521f923bdab30f75f5021b6beecfcb9d17fb30f92f697ed3330822c1cb987ece0
+  checksum: 69bf82ce49b1d31d931a27a952e844a51dca86013acde33eb19709f2670f3389bb31a61fd7843b1b1a3836eb69400bfffb6152558d3892b69484184532bacde3
   languageName: node
   linkType: hard
 
@@ -2231,7 +2231,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2246,7 +2246,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2261,7 +2261,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2353,7 +2353,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2368,7 +2368,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2383,7 +2383,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@envelop/testing": 4.4.2
     "@envelop/types": 2.3.1
     "@types/node": 18.6.3
@@ -2426,7 +2426,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@envelop/core": 2.4.2
+    "@envelop/core": 2.5.0
     "@escape.tech/graphql-armor-block-field-suggestions": ^1.1.1
     "@escape.tech/graphql-armor-character-limit": ^1.2.0
     "@escape.tech/graphql-armor-cost-limit": ^1.1.0

@@ -2,8 +2,15 @@ import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
 type AfterParseCtx = { query: string | undefined };
-type CharacterLimitOptions = { maxLength: number };
-const characterLimitPlugin = ({ maxLength }: CharacterLimitOptions): Plugin<AfterParseCtx> => {
+type CharacterLimitOptions = { maxLength?: number };
+
+const characterLimitDefaultOptions = {
+  maxLength: 15000,
+};
+
+const characterLimitPlugin = ({
+  maxLength = characterLimitDefaultOptions.maxLength,
+}: CharacterLimitOptions = characterLimitDefaultOptions): Plugin<AfterParseCtx> => {
   return {
     onParse({ context }) {
       if (context.query && context.query.length > maxLength) {
@@ -13,4 +20,4 @@ const characterLimitPlugin = ({ maxLength }: CharacterLimitOptions): Plugin<Afte
   };
 };
 
-export { characterLimitPlugin, CharacterLimitOptions };
+export { characterLimitPlugin, CharacterLimitOptions, characterLimitDefaultOptions };

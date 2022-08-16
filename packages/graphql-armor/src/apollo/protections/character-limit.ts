@@ -1,4 +1,4 @@
-import { characterLimitDefaultOptions, haracterLimitOptions } from '@escape.tech/graphql-armor-character-limit';
+import { CharacterLimitOptions, characterLimitDefaultOptions } from '@escape.tech/graphql-armor-character-limit';
 import type { GraphQLRequestContext } from 'apollo-server-types';
 import { GraphQLError } from 'graphql';
 

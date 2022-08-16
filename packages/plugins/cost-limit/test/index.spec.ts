@@ -139,6 +139,10 @@ export const schema = makeExecutableSchema({
 describe('global', () => {
   it('should be defined', () => {
     expect(costLimitPlugin).toBeDefined();
+
+    const t0 = costLimitPlugin();
+    const t1 = costLimitPlugin({});
+    const t2 = costLimitPlugin({ maxCost: 6000 });
   });
 
   const query = `query {

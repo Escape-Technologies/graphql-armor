@@ -14,11 +14,11 @@ export class ApolloCostLimitProtection extends ApolloProtection {
   protect(): ApolloServerConfigurationEnhancement {
     return {
       validationRules: [
-        costLimitRule(this.config.costLimit, (message: string) => {
+        costLimitRule((message: string) => {
           throw new GraphQLError(message, {
             extensions: { code: 'BAD_USER_INPUT' },
           });
-        }),
+        }, this.config.costLimit),
       ],
     };
   }

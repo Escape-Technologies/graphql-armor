@@ -50,6 +50,10 @@ const mockedParsePlugin = (): Plugin => {
 describe('global', () => {
   it('should be defined', () => {
     expect(characterLimitPlugin).toBeDefined();
+
+    const t0 = characterLimitPlugin();
+    const t1 = characterLimitPlugin({});
+    const t2 = characterLimitPlugin({ maxLength: 100 });
   });
 
   const query = `query {

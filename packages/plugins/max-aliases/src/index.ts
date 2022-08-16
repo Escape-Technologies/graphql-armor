@@ -9,7 +9,11 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxAliasesOptions = { n: number };
+type MaxAliasesOptions = { n?: number };
+const maxAliasesDefaultOptions = {
+  n: 15,
+};
+
 class MaxAliasesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -17,11 +21,19 @@ class MaxAliasesVisitor {
   private readonly options: MaxAliasesOptions;
   private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxAliasesOptions, onError: (msg: string) => any) {
+  constructor(
+    context: ValidationContext,
+    onError: (msg: string) => any,
+    options: MaxAliasesOptions = maxAliasesDefaultOptions,
+  ) {
     this.context = context;
-    this.options = options;
-    this.onError = onError;
+    this.options = Object.assign(
+      {},
+      maxAliasesDefaultOptions,
+      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+    );
 
+    this.onError = onError;
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
     };
@@ -29,7 +41,7 @@ class MaxAliasesVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const aliases = this.countAliases(operation);
-    if (aliases > this.options.n) {
+    if (aliases > this.options.n!) {
       this.onError('Too many aliases.');
     }
   }
@@ -39,7 +51,7 @@ class MaxAliasesVisitor {
   ): number {
     let aliases = 0;
     if ('alias' in node && node.alias) {
-      aliases++;
+      ++aliases;
     }
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
@@ -50,16 +62,18 @@ class MaxAliasesVisitor {
   }
 }
 
-const maxAliasesRule = (options: MaxAliasesOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
-  new MaxAliasesVisitor(context, options, onError);
+const maxAliasesRule =
+  (onError: (msg: string) => any, options: MaxAliasesOptions = maxAliasesDefaultOptions) =>
+  (context: ValidationContext) =>
+    new MaxAliasesVisitor(context, onError, options);
 
-const maxAliasesPlugin = (options: MaxAliasesOptions): Plugin => {
+const maxAliasesPlugin = (options: MaxAliasesOptions = maxAliasesDefaultOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(
-        maxAliasesRule(options, (msg: string) => {
+        maxAliasesRule((msg: string) => {
           throw new GraphQLError(msg);
-        }),
+        }, options),
       );
     },
   };

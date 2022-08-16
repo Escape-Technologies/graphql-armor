@@ -3,7 +3,6 @@ import { GraphQLError } from 'graphql';
 
 type AfterParseCtx = { query: string | undefined };
 type CharacterLimitOptions = { maxLength?: number };
-
 const characterLimitDefaultOptions = {
   maxLength: 15000,
 };

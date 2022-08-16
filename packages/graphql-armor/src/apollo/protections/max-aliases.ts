@@ -14,11 +14,11 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
   protect(): ApolloServerConfigurationEnhancement {
     return {
       validationRules: [
-        maxAliasesRule(this.config.maxAliases, (message: string) => {
+        maxAliasesRule((message: string) => {
           throw new GraphQLError(message, {
             extensions: { code: 'BAD_USER_INPUT' },
           });
-        }),
+        }, this.config.maxAliases),
       ],
     };
   }

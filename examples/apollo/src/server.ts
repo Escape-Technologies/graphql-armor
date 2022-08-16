@@ -69,11 +69,9 @@ const armor = new ApolloArmor({
     n: 1,
   },
   maxDirectives: {
-    enabled: true,
     n: 10,
   },
   maxDepth: {
-    enabled: true,
     n: 4,
   },
 });

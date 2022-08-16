@@ -41,6 +41,10 @@ export const schema = makeExecutableSchema({
 describe('global', () => {
   it('should be defined', () => {
     expect(maxAliasesPlugin).toBeDefined();
+
+    const t0 = maxAliasesPlugin();
+    const t1 = maxAliasesPlugin({});
+    const t2 = maxAliasesPlugin({ n: 10 });
   });
 
   const query = `query {

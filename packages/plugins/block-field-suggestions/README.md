@@ -2,6 +2,10 @@
 
 This plugin will disable the suggestions in a GraphQL query.
 
+GraphQL suggestions are messages (Did you mean ...) that help you adjusting your query.
+
+This can lead to a Schema leak even if the introspection is disabled.
+
 ## Getting Started
 
 ```bash

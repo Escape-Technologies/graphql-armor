@@ -39,6 +39,10 @@ export const schema = makeExecutableSchema({
 describe('global', () => {
   it('should be defined', () => {
     expect(maxDirectivesPlugin).toBeDefined();
+
+    const t0 = maxDirectivesPlugin();
+    const t1 = maxDirectivesPlugin({});
+    const t2 = maxDirectivesPlugin({ n: 10 });
   });
 
   const query = `query {

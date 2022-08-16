@@ -1,5 +1,20 @@
 # @escape.tech/graphql-armor
 
+## 1.0.8
+
+### Patch Changes
+
+- 1815f8b: feat: integrate tests
+  refactor: implicit plugin enable
+  refactor: implicit plugin option
+- Updated dependencies [1815f8b]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.2.0
+  - @escape.tech/graphql-armor-character-limit@1.3.0
+  - @escape.tech/graphql-armor-cost-limit@1.2.0
+  - @escape.tech/graphql-armor-max-aliases@1.2.0
+  - @escape.tech/graphql-armor-max-depth@1.3.0
+  - @escape.tech/graphql-armor-max-directives@1.2.0
+
 ## 1.0.7
 
 ### Patch Changes

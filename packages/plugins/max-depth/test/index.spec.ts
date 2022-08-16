@@ -40,6 +40,10 @@ export const schema = makeExecutableSchema({
 describe('global', () => {
   it('should be defined', () => {
     expect(maxDepthPlugin).toBeDefined();
+
+    const t0 = maxDepthPlugin();
+    const t1 = maxDepthPlugin({});
+    const t2 = maxDepthPlugin({ n: 10 });
   });
 
   const query = `query {

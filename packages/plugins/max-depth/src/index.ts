@@ -10,7 +10,11 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDepthOptions = { n: number };
+type MaxDepthOptions = { n?: number };
+const maxDepthDefaultOptions = {
+  n: 6,
+};
+
 class MaxDepthVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
@@ -18,9 +22,13 @@ class MaxDepthVisitor {
   private readonly options: MaxDepthOptions;
   private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, options: MaxDepthOptions, onError: (msg: string) => any) {
+  constructor(context: ValidationContext, onError: (msg: string) => any,  options: MaxDepthOptions = maxDepthDefaultOptions) {
     this.context = context;
-    this.options = options;
+    this.options = Object.assign(
+      {},
+      maxDepthDefaultOptions,
+      ...Object.entries(options).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+    );
     this.onError = onError;
 
     this.OperationDefinition = {
@@ -30,7 +38,7 @@ class MaxDepthVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
-    if (depth > this.options.n) {
+    if (depth > this.options.n!) {
       this.onError('Query is too deep.');
     }
   }
@@ -54,16 +62,16 @@ class MaxDepthVisitor {
   }
 }
 
-const maxDepthRule = (options: MaxDepthOptions, onError: (msg: string) => any) => (context: ValidationContext) =>
-  new MaxDepthVisitor(context, options, onError);
+const maxDepthRule = (onError: (msg: string) => any, options?: MaxDepthOptions) => (context: ValidationContext) =>
+  new MaxDepthVisitor(context, onError, options);
 
-const maxDepthPlugin = (options: MaxDepthOptions): Plugin => {
+const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(
-        maxDepthRule(options, (msg: string) => {
+        maxDepthRule((msg: string) => {
           throw new GraphQLError(msg);
-        }),
+        }, options),
       );
     },
   };

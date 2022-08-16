@@ -11,7 +11,7 @@ import {
 } from 'graphql';
 
 type MaxDirectivesOptions = { n?: number };
-const maxDirectivesDefaultOptions = {
+const maxDirectivesDefaultOptions: MaxDirectivesOptions = {
   n: 50,
 };
 

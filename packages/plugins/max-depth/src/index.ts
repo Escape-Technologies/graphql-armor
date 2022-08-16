@@ -11,7 +11,7 @@ import {
 } from 'graphql';
 
 type MaxDepthOptions = { n?: number };
-const maxDepthDefaultOptions = {
+const maxDepthDefaultOptions: MaxDepthOptions = {
   n: 6,
 };
 

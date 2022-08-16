@@ -3,7 +3,7 @@ import { GraphQLError } from 'graphql';
 
 type AfterParseCtx = { query: string | undefined };
 type CharacterLimitOptions = { maxLength?: number };
-const characterLimitDefaultOptions = {
+const characterLimitDefaultOptions: CharacterLimitOptions = {
   maxLength: 15000,
 };
 
@@ -12,7 +12,7 @@ const characterLimitPlugin = ({
 }: CharacterLimitOptions = characterLimitDefaultOptions): Plugin<AfterParseCtx> => {
   return {
     onParse({ context }) {
-      if (context.query && context.query.length > maxLength) {
+      if (context.query && context.query.length > maxLength!) {
         throw new GraphQLError(`Query is too large.`);
       }
     },

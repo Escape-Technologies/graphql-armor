@@ -10,7 +10,7 @@ import {
 } from 'graphql';
 
 type MaxAliasesOptions = { n?: number };
-const maxAliasesDefaultOptions = {
+const maxAliasesDefaultOptions: MaxAliasesOptions = {
   n: 15,
 };
 

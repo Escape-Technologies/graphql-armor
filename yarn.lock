@@ -2433,8 +2433,8 @@ __metadata:
     "@escape.tech/graphql-armor-max-aliases": ^1.1.2
     "@escape.tech/graphql-armor-max-depth": ^1.2.0
     "@escape.tech/graphql-armor-max-directives": ^1.1.2
-    apollo-server: ^3.10.0
-    apollo-server-core: ^3.10.0
+    apollo-server: 3.10.0
+    apollo-server-core: 3.10.0
     apollo-server-types: 3.6.2
     graphql: ^16.5.0
     ts-node: 10.9.1
@@ -4683,7 +4683,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:^2.23.0 || ^3.0.0, apollo-server-core@npm:^3.10.0":
+"apollo-server-core@npm:3.10.0, apollo-server-core@npm:^2.23.0 || ^3.0.0, apollo-server-core@npm:^3.10.0":
   version: 3.10.0
   resolution: "apollo-server-core@npm:3.10.0"
   dependencies:
@@ -4780,7 +4780,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server@npm:^3.10.0":
+"apollo-server@npm:3.10.0, apollo-server@npm:^3.10.0":
   version: 3.10.0
   resolution: "apollo-server@npm:3.10.0"
   dependencies:

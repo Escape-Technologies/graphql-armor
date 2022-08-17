@@ -1,0 +1,29 @@
+name: e2e
+
+on:
+  push:
+    tags:
+      - "@escape.tech/graphql-armor@*"
+
+env:
+  YARN_ENABLE_IMMUTABLE_INSTALLS: false
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: |
+          rm -rf yarn.lock node_modules packages
+          corepack enable
+
+          sed -i "s/graphql-armor\": \".\"/graphql-armor\": \"$( ${{ github.ref_name }} | cut -c 28- )\"/g" examples/*/package.json
+
+          yarn
+      - name: Run Tests
+        run: |
+          yarn test

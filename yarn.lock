@@ -2364,7 +2364,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-depth@^1.3.0, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
+"@escape.tech/graphql-armor-max-depth@^1.4.0, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
@@ -2431,7 +2431,7 @@ __metadata:
     "@escape.tech/graphql-armor-character-limit": ^1.3.0
     "@escape.tech/graphql-armor-cost-limit": ^1.2.0
     "@escape.tech/graphql-armor-max-aliases": ^1.2.0
-    "@escape.tech/graphql-armor-max-depth": ^1.3.0
+    "@escape.tech/graphql-armor-max-depth": ^1.4.0
     "@escape.tech/graphql-armor-max-directives": ^1.2.0
     apollo-server: 3.10.1
     apollo-server-core: 3.10.1

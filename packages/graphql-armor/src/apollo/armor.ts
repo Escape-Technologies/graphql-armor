@@ -10,13 +10,9 @@ import { ApolloMaxDepthProtection } from './protections/max-depth';
 import { ApolloMaxDirectivesProtection } from './protections/max-directives';
 
 export class ApolloArmor {
-  private config: GraphQLArmorConfig;
-
   private readonly protections: ApolloProtection[];
 
   constructor(config: GraphQLArmorConfig = {}) {
-    this.config = config;
-
     this.protections = [
       new ApolloBlockFieldSuggestionProtection(config),
       new ApolloCharacterLimitProtection(config),

@@ -1,6 +1,7 @@
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
+import { getIntrospectionQuery } from 'graphql';
 import { exitCode } from 'process';
 
 import { maxDepthPlugin } from '../src/index';
@@ -91,5 +92,14 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
+  });
+
+  it('should allow introspection', async () => {
+    const testkit = createTestkit([maxDepthPlugin({ n: 2, ignoreIntrospection: true })], schema);
+    const result = await testkit.execute(getIntrospectionQuery());
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data?.__schema).toBeDefined();
   });
 });

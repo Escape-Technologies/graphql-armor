@@ -1,107 +1,10 @@
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
+import { getIntrospectionQuery } from 'graphql';
 
 import { costLimitPlugin } from '../src/index';
 
-const introspectionQuery = `
-query IntrospectionQuery {
-  __schema {
-    
-    queryType { name }
-    mutationType { name }
-    subscriptionType { name }
-    types {
-      ...FullType
-    }
-    directives {
-      name
-      description
-      
-      locations
-      args {
-        ...InputValue
-      }
-    }
-  }
-}
-
-fragment FullType on __Type {
-  kind
-  name
-  description
-  
-  fields(includeDeprecated: true) {
-    name
-    description
-    args {
-      ...InputValue
-    }
-    type {
-      ...TypeRef
-    }
-    isDeprecated
-    deprecationReason
-  }
-  inputFields {
-    ...InputValue
-  }
-  interfaces {
-    ...TypeRef
-  }
-  enumValues(includeDeprecated: true) {
-    name
-    description
-    isDeprecated
-    deprecationReason
-  }
-  possibleTypes {
-    ...TypeRef
-  }
-}
-
-fragment InputValue on __InputValue {
-  name
-  description
-  type { ...TypeRef }
-  defaultValue
-  
-  
-}
-
-fragment TypeRef on __Type {
-  kind
-  name
-  ofType {
-    kind
-    name
-    ofType {
-      kind
-      name
-      ofType {
-        kind
-        name
-        ofType {
-          kind
-          name
-          ofType {
-            kind
-            name
-            ofType {
-              kind
-              name
-              ofType {
-                kind
-                name
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
 const typeDefinitions = `
   type Book {
     title: String
@@ -194,10 +97,11 @@ describe('global', () => {
       ],
       schema,
     );
-    const result = await testkit.execute(introspectionQuery);
+    const result = await testkit.execute(getIntrospectionQuery());
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
+    expect(result.data?.__schema).toBeDefined();
   });
 
   it('should support fragment', async () => {

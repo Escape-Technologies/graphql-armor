@@ -10,9 +10,10 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDepthOptions = { n?: number };
+type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean };
 const maxDepthDefaultOptions: MaxDepthOptions = {
   n: 6,
+  ignoreIntrospection: true,
 };
 
 class MaxDepthVisitor {
@@ -47,6 +48,10 @@ class MaxDepthVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth: number = 0,
   ): number {
+    if (this.options.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+      return 0;
+    }
+
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
         depth = Math.max(depth, this.countDepth(child, depth + 1));

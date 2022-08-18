@@ -54,7 +54,7 @@ const resolvers = {
 const armor = new ApolloArmor({
   characterLimit: {
     enabled: true,
-    maxLength: 1000,
+    maxLength: 2000,
   },
   costLimit: {
     enabled: true,

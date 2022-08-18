@@ -1,4 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
+import { getIntrospectionQuery } from 'graphql';
 
 import { server } from '../src/server';
 
@@ -30,7 +31,7 @@ describe('startup', () => {
           books {
             title
             author
-          } ${' '.repeat(1000)}
+          } ${' '.repeat(2000)}
         }`,
       });
       expect(false).toBe(true);
@@ -126,6 +127,18 @@ describe('startup', () => {
       expect(false).toBe(true);
     } catch (e) {
       expect(e.message).toContain('Query is too deep.');
+    }
+  });
+
+  it('should allow introspection', async () => {
+    try {
+      const query = await server.executeOperation({
+        query: getIntrospectionQuery(),
+      });
+      expect(query.errors).toBeUndefined();
+      expect(query.data).toBeDefined();
+    } catch (e) {
+      expect(e).toBeUndefined();
     }
   });
 });

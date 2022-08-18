@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 1.2.1
+
+### Patch Changes
+
+- 8e2f90c: feat(field-suggestion): mask usage
+
 ## 1.2.0
 
 ### Minor Changes

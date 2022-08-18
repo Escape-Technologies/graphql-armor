@@ -29,10 +29,10 @@ export class EnvelopArmor {
     this.protections = [
       new EnvelopBlockFieldSuggestionProtection(config),
       new EnvelopCharacterLimitProtection(config),
-      new EnvelopMaxDepthProtection(config),
-      new EnvelopMaxAliasesProtection(config),
       new EnvelopMaxDirectivesProtection(config),
+      new EnvelopMaxAliasesProtection(config),
       new EnvelopCostLimitProtection(config),
+      new EnvelopMaxDepthProtection(config),
     ];
   }
 

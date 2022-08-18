@@ -1,7 +1,10 @@
 import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
-type BlockFieldSuggestionOptions = { mask?: string };
+type BlockFieldSuggestionsOptions = { mask?: string };
+export const blockFieldSuggestionsDefaultOptions: BlockFieldSuggestionsOptions = {
+  mask: '[Suggestion message hidden by GraphQLArmor]',
+};
 
 const formatter = (error: GraphQLError, mask = '[Suggestion message hidden by GraphQLArmor]'): GraphQLError => {
   if (error instanceof GraphQLError) {
@@ -10,7 +13,7 @@ const formatter = (error: GraphQLError, mask = '[Suggestion message hidden by Gr
   return error as GraphQLError;
 };
 
-const blockFieldSuggestionsPlugin = (options?: BlockFieldSuggestionOptions): Plugin => {
+const blockFieldSuggestionsPlugin = (options?: BlockFieldSuggestionsOptions): Plugin => {
   return {
     onValidate: () => {
       return function onValidateEnd({ valid, result, setResult }) {

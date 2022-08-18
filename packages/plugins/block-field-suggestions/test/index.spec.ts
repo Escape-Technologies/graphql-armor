@@ -89,7 +89,7 @@ describe('global', () => {
   });
 
   it('should use configured mask', async () => {
-    const testkit = createTestkit([blockFieldSuggestionsPlugin({mask:'<[REDACTED]>'})], schema);
+    const testkit = createTestkit([blockFieldSuggestionsPlugin({ mask: '<[REDACTED]>' })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);

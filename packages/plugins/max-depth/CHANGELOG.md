@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.4.1
+
+### Patch Changes
+
+- 241423f: Fix depth limit calculation
+
 ## 1.3.0
 
 ### Minor Changes

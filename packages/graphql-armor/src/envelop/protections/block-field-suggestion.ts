@@ -12,7 +12,7 @@ export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
 
   protect(): EnvelopConfigurationEnhancement {
     return {
-      plugins: [blockFieldSuggestionsPlugin()],
+      plugins: [blockFieldSuggestionsPlugin(this.config.blockFieldSuggestion)],
     };
   }
 }

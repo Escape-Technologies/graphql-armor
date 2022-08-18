@@ -16,7 +16,7 @@ npm install @escape.tech/graphl-armor-block-field-suggestions
 yarn add @escape.tech/graphl-armor-block-field-suggestions
 ```
 
-## Usage example
+## Usage example default
 
 ### With `@envelop/core` from `@the-guild-org`
 
@@ -28,6 +28,24 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     blockFieldSuggestions(),
+  ]
+})
+```
+
+## Usage example with custom mask
+
+### With `@envelop/core` from `@the-guild-org`
+
+```typescript
+import { envelop } from '@envelop/core';
+import { blockFieldSuggestions } from '@escape.tech/graphql-armor-block-field-suggestions';
+
+const getEnveloped = envelop({
+  plugins: [
+    // ... other plugins ...
+    blockFieldSuggestions({
+        mask: '<[REDACTED]>'
+    }),
   ]
 })
 ```

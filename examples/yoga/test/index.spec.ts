@@ -17,7 +17,6 @@ describe('startup', () => {
 
     expect(response.statusCode).toBe(200);
     const body = JSON.parse(response.text);
-    expect(body.data).toBeDefined();
     expect(body.data?.__schema).toBeDefined();
     expect(body.errors).toBeUndefined();
   });

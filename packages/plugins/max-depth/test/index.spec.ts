@@ -100,6 +100,6 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
-    expect(result.data).toBeDefined();
+    expect(result.data?.__schema).toBeDefined();
   });
 });

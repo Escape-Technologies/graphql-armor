@@ -136,7 +136,7 @@ describe('startup', () => {
         query: getIntrospectionQuery(),
       });
       expect(query.errors).toBeUndefined();
-      expect(query.data).toBeDefined();
+      expect(query.data?.__schema).toBeDefined();
     } catch (e) {
       expect(e).toBeUndefined();
     }

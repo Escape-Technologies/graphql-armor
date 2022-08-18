@@ -101,6 +101,7 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
+    expect(result.data?.__schema).toBeDefined();
   });
 
   it('should support fragment', async () => {

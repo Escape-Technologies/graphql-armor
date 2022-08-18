@@ -2,14 +2,18 @@ import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
-import { exitCode } from 'process';
 
 import { maxDepthPlugin } from '../src/index';
 
 const typeDefinitions = `
+  type Author {
+    name: String
+    books: [Book]
+  }
+
   type Book {
     title: String
-    author: String
+    author: Author
   }
 
   type Query {
@@ -19,17 +23,20 @@ const typeDefinitions = `
 const books = [
   {
     title: 'The Awakening',
-    author: 'Kate Chopin',
+    author: { name: 'Kate Chopin' },
   },
   {
     title: 'City of Glass',
-    author: 'Paul Auster',
+    author: { name: 'Paul Auster' },
   },
 ];
 
 const resolvers = {
   Query: {
     books: () => books,
+  },
+  Author: {
+    books: (author) => books.filter((book) => book.author === author.name),
   },
 };
 
@@ -49,7 +56,9 @@ describe('global', () => {
 
   const query = `query {
     books {
-      author
+      author {
+        name
+      }
       title
     }
   }`;
@@ -84,7 +93,9 @@ describe('global', () => {
     fragment BooksFragment on Query {
       books {
         title
-        author
+        author {
+          name
+        }
       }
     }
     `);

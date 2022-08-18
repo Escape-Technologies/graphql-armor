@@ -8,7 +8,7 @@ const plugin = ({ maxLength }: CharacterLimitOptions) => {
   return {
     async requestDidStart(context: GraphQLRequestContext) {
       if (!context.request.query) return;
-      if (context.request.query.length > maxLength) {
+      if (context.request.query.length > maxLength!) {
         throw new GraphQLError('Query is too large.', {
           extensions: { code: 'BAD_USER_INPUT' },
         });
@@ -27,7 +27,11 @@ export class ApolloCharacterLimitProtection extends ApolloProtection {
 
   protect(): ApolloServerConfigurationEnhancement {
     return {
-      plugins: [plugin(this.config.characterLimit ?? characterLimitDefaultOptions)],
+      plugins: [
+        plugin({
+          maxLength: this.config.characterLimit?.maxLength ?? characterLimitDefaultOptions.maxLength,
+        }),
+      ],
     };
   }
 }

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 1.2.1
+
+### Patch Changes
+
+- f8a2a9b: refactor: usage of Required type
+
 ## 1.2.0
 
 ### Minor Changes

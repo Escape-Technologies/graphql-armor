@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-character-limit
 
+## 1.3.2
+
+### Patch Changes
+
+- f8a2a9b: refactor: usage of Required type
+
 ## 1.3.1
 
 ### Patch Changes

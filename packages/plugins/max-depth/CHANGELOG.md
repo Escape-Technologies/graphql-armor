@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.4.2
+
+### Patch Changes
+
+- f8a2a9b: refactor: usage of Required type
+
 ## 1.4.1
 
 ### Patch Changes

@@ -1,4 +1,3 @@
-import { Plugin } from '@envelop/core';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
@@ -37,16 +36,6 @@ const schema = makeExecutableSchema({
   typeDefs: [typeDefinitions],
 });
 
-const mockedParsePlugin = (): Plugin => {
-  return {
-    onParse({ params, extendContext }) {
-      extendContext({
-        query: params.source,
-      });
-    },
-  };
-};
-
 describe('global', () => {
   it('should be defined', () => {
     expect(characterLimitPlugin).toBeDefined();
@@ -75,7 +64,7 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([mockedParsePlugin(), characterLimitPlugin({ maxLength: 54 - 1 })], schema);
+    const testkit = createTestkit([characterLimitPlugin({ maxLength: 54 - 1 })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);

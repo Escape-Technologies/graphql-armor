@@ -38,7 +38,7 @@ describe('startup', () => {
       }`,
       });
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(400);
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
@@ -54,7 +54,7 @@ describe('startup', () => {
         ...BooksFragment
         ...BooksFragment
       }
-      
+
       fragment BooksFragment on Query {
         books {
           title

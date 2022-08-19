@@ -11,7 +11,7 @@ import {
 } from 'graphql';
 
 type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean };
-const maxDepthDefaultOptions: MaxDepthOptions = {
+const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   n: 6,
   ignoreIntrospection: true,
 };
@@ -20,12 +20,12 @@ class MaxDepthVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: MaxDepthOptions;
+  private readonly config: Required<MaxDepthOptions>;
   private onError: (msg: string) => any;
 
   constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxDepthOptions) {
     this.context = context;
-    this.options = Object.assign(
+    this.config = Object.assign(
       {},
       maxDepthDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
@@ -39,7 +39,7 @@ class MaxDepthVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
-    if (depth > this.options.n!) {
+    if (depth > this.config.n) {
       this.onError('Query is too deep.');
     }
   }
@@ -48,7 +48,7 @@ class MaxDepthVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     parentDepth: number = 0,
   ): number {
-    if (this.options.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+    if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
       return 0;
     }
     let depth = parentDepth;

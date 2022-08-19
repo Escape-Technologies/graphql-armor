@@ -2,11 +2,11 @@ import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
 type BlockFieldSuggestionsOptions = { mask?: string };
-export const blockFieldSuggestionsDefaultOptions: BlockFieldSuggestionsOptions = {
+const blockFieldSuggestionsDefaultOptions: Required<BlockFieldSuggestionsOptions> = {
   mask: '[Suggestion message hidden by GraphQLArmor]',
 };
 
-const formatter = (error: GraphQLError, mask = '[Suggestion message hidden by GraphQLArmor]'): GraphQLError => {
+const formatter = (error: GraphQLError, mask: string): GraphQLError => {
   if (error instanceof GraphQLError) {
     error.message = error.message.replace(/Did you mean ".+"/g, mask);
   }
@@ -14,15 +14,17 @@ const formatter = (error: GraphQLError, mask = '[Suggestion message hidden by Gr
 };
 
 const blockFieldSuggestionsPlugin = (options?: BlockFieldSuggestionsOptions): Plugin => {
+  const mask = options?.mask ?? blockFieldSuggestionsDefaultOptions.mask;
+
   return {
     onValidate: () => {
       return function onValidateEnd({ valid, result, setResult }) {
         if (!valid) {
-          setResult(result.map((error) => formatter(error, options?.mask)));
+          setResult(result.map((error) => formatter(error, mask)));
         }
       };
     },
   };
 };
 
-export { blockFieldSuggestionsPlugin };
+export { blockFieldSuggestionsPlugin, blockFieldSuggestionsDefaultOptions, BlockFieldSuggestionsOptions };

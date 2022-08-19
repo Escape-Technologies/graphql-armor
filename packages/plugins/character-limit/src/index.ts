@@ -2,7 +2,7 @@ import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
 type CharacterLimitOptions = { maxLength?: number };
-const characterLimitDefaultOptions: CharacterLimitOptions = {
+const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   maxLength: 15000,
 };
 
@@ -14,7 +14,7 @@ const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin<object> =
       setParseFn((source, options) => {
         const query = typeof source === 'string' ? source : source.body;
 
-        if (query && query.length > maxLength!) {
+        if (query && query.length > maxLength) {
           throw new GraphQLError(`Query is too large.`);
         }
 

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-character-limit
 
+## 1.3.1
+
+### Patch Changes
+
+- bf2ca93: Enforce query character limit before query is parsed
+
 ## 1.3.0
 
 ### Minor Changes

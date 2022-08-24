@@ -49,6 +49,16 @@ We additionnaly support the following engines through the [Envelop](https://www.
 
 See [here](https://www.envelop.dev/docs/integrations) for more information about Envelop compatibility.
 
+## Installation
+
+```bash
+# npm
+npm install -S @escape.tech/graphql-armor
+
+# yarn
+yarn add @escape.tech/graphql-armor
+```
+
 ## Getting Started
 
 Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation examples. (such as NestJS with Apollo Server)

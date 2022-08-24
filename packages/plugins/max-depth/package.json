@@ -2,7 +2,7 @@
   "name": "@escape.tech/graphql-armor-max-depth",
   "version": "1.4.2",
   "description": "Limit the depth allowed in a GraphQL query.",
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "main": "dist/graphql-armor-max-depth.cjs.js",
   "module": "dist/graphql-armor-max-depth.esm.js",
   "files": [

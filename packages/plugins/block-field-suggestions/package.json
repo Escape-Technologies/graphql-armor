@@ -2,7 +2,7 @@
   "name": "@escape.tech/graphql-armor-block-field-suggestions",
   "version": "1.2.2",
   "description": "Block graphql field suggestion.",
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "main": "dist/graphql-armor-block-field-suggestions.cjs.js",
   "module": "dist/graphql-armor-block-field-suggestions.esm.js",
   "files": [

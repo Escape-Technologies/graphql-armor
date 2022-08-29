@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 1.2.2
+
+### Patch Changes
+
+- 0c5d3db: fix: readme package name
+
 ## 1.2.1
 
 ### Patch Changes

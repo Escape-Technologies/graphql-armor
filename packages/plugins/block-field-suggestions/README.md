@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-block-field-suggestions
+# @escape.tech/graphql-armor-block-field-suggestions
 
 This plugin will disable the suggestions in a GraphQL query.
 
@@ -10,10 +10,10 @@ This can lead to a Schema leak even if the introspection is disabled.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-block-field-suggestions
+npm install @escape.tech/graphql-armor-block-field-suggestions
 
 # yarn
-yarn add @escape.tech/graphl-armor-block-field-suggestions
+yarn add @escape.tech/graphql-armor-block-field-suggestions
 ```
 
 ## Usage example default

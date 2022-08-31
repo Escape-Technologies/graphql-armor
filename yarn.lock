@@ -98,7 +98,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/gateway@npm:^2.0.5":
+"@apollo/gateway@npm:2.0.5":
   version: 2.0.5
   resolution: "@apollo/gateway@npm:2.0.5"
   dependencies:
@@ -2371,12 +2371,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo"
   dependencies:
-    "@apollo/gateway": ^2.0.5
+    "@apollo/gateway": 2.0.5
     "@escape.tech/graphql-armor": "*"
     "@types/express": ^4
     "@types/node": ^18.6.3
-    apollo-server: ^3.10.0
-    apollo-server-express: ^3.10.0
+    apollo-server: 3.10.0
+    apollo-server-express: 3.10.0
     express: ^4.18.1
     graphql: ^16.5.0
     nodemon: ^2.0.19
@@ -2394,7 +2394,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-example-nestjs@workspace:examples/nestjs"
   dependencies:
-    "@apollo/gateway": ^2.0.5
+    "@apollo/gateway": 2.0.5
     "@escape.tech/graphql-armor": "*"
     "@nestjs/apollo": ^10.0.19
     "@nestjs/cli": ^9.0.0
@@ -2407,7 +2407,7 @@ __metadata:
     "@types/node": ^18.6.3
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0
-    apollo-server-express: ^3.10.0
+    apollo-server-express: 3.10.0
     eslint: ">=8.15.0"
     eslint-config-google: ^0.14.0
     express: ^4.18.1
@@ -4897,7 +4897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.10.0":
+"apollo-server-express@npm:3.10.0, apollo-server-express@npm:^3.10.0":
   version: 3.10.0
   resolution: "apollo-server-express@npm:3.10.0"
   dependencies:
@@ -4966,6 +4966,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apollo-server@npm:3.10.0":
+  version: 3.10.0
+  resolution: "apollo-server@npm:3.10.0"
+  dependencies:
+    "@types/express": 4.17.13
+    apollo-server-core: ^3.10.0
+    apollo-server-express: ^3.10.0
+    express: ^4.17.1
+  peerDependencies:
+    graphql: ^15.3.0 || ^16.0.0
+  checksum: 05522f7eb258f641d47e4f95e6f65462532a506830684a4bd62134ff54dc03777863b578a82a3a977e2366ca5dfbaf54e0dbf93f2cbaf675bc3842924ca39fee
+  languageName: node
+  linkType: hard
+
 "apollo-server@npm:3.10.2":
   version: 3.10.2
   resolution: "apollo-server@npm:3.10.2"
@@ -4977,20 +4991,6 @@ __metadata:
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
   checksum: 9f3c22ed1d4275a8bd5559b276dadab26758c3b4ae90b454d86aeccfa1a0da90d1201f627676e36ec84b8d581f767f24037d682a58615247b393930aca850324
-  languageName: node
-  linkType: hard
-
-"apollo-server@npm:^3.10.0":
-  version: 3.10.0
-  resolution: "apollo-server@npm:3.10.0"
-  dependencies:
-    "@types/express": 4.17.13
-    apollo-server-core: ^3.10.0
-    apollo-server-express: ^3.10.0
-    express: ^4.17.1
-  peerDependencies:
-    graphql: ^15.3.0 || ^16.0.0
-  checksum: 05522f7eb258f641d47e4f95e6f65462532a506830684a4bd62134ff54dc03777863b578a82a3a977e2366ca5dfbaf54e0dbf93f2cbaf675bc3842924ca39fee
   languageName: node
   linkType: hard
 

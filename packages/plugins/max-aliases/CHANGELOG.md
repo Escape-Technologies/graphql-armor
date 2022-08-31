@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 1.2.3
+
+### Patch Changes
+
+- 08c546a: count field alias in fragment spreads
+
 ## 1.2.2
 
 ### Patch Changes

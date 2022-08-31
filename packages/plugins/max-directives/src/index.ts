@@ -54,8 +54,7 @@ class MaxDirectivesVisitor {
       for (let child of node.selectionSet.selections) {
         directives += this.countDirectives(child);
       }
-    }
-    if (node.kind == Kind.FRAGMENT_SPREAD) {
+    } else if (node.kind == Kind.FRAGMENT_SPREAD) {
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
         directives += this.countDirectives(fragment);

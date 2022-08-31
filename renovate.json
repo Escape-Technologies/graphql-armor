@@ -4,5 +4,32 @@
     "config:base"
   ],
   "prHourlyLimit": 0,
-  "prConcurrentLimit": 0
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "groupName": "envelop",
+      "matchPackagePrefixes": "@envelop"
+    },
+    {
+      "groupName": "examples",
+      "matchPaths": [
+        "examples/**"
+      ]
+    }
+  ],
+  "major": {
+    "stabilityDays": 3
+  },
+  "minor": {
+    "stabilityDays": 1
+  },
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ]
 }

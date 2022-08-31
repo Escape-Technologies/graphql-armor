@@ -53,6 +53,11 @@ class MaxAliasesVisitor {
       for (let child of node.selectionSet.selections) {
         aliases += this.countAliases(child);
       }
+    } else if (node.kind === 'FragmentSpread') {
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        aliases += this.countAliases(fragment);
+      }
     }
     return aliases;
   }

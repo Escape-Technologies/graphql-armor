@@ -1,7 +1,9 @@
 // @ts-nocheck
+import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 
-import { EnvelopArmor } from '../../src/envelop/armor';
+import { EnvelopArmor, EnvelopArmorPlugin } from '../../src/envelop/armor';
 
 describe('envelopArmor', () => {
   const envelop = new EnvelopArmor();
@@ -47,5 +49,72 @@ describe('envelopArmor', () => {
 
     const enhancementsDisabled = envelopDisabled.protect();
     expect(enhancementsDisabled.plugins.length).toEqual(0);
+  });
+});
+
+const typeDefinitions = /* GraphQL */ `
+  type Author {
+    name: String
+    books: [Book]
+  }
+
+  type Book {
+    title: String
+    author: Author
+  }
+
+  type Query {
+    books: [Book]
+  }
+`;
+const books = [
+  {
+    title: 'The Awakening',
+    author: { name: 'Kate Chopin' },
+  },
+  {
+    title: 'City of Glass',
+    author: { name: 'Paul Auster' },
+  },
+];
+
+const resolvers = {
+  Query: {
+    books: () => books,
+  },
+  Author: {
+    books: (author) => books.filter((book) => book.author === author.name),
+  },
+};
+
+const schema = makeExecutableSchema({
+  resolvers: [resolvers],
+  typeDefs: [typeDefinitions],
+});
+
+describe('envelopArmorPlugin', () => {
+  it('should define our plugins', async () => {
+    const testkit = createTestkit(
+      [
+        EnvelopArmorPlugin({
+          maxDepth: {
+            n: 2,
+          },
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`query {
+      books {
+        title
+        author {
+          name
+        }
+      }
+    }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
   });
 });

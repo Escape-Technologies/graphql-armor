@@ -78,6 +78,7 @@ describe('global', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual(['Too many aliases.']);
   });
+
   it('should respect fragment aliases', async () => {
     const testkit = createTestkit([maxAliasesPlugin({ n: 1 })], schema);
     const result = await testkit.execute(/* GraphQL */ `

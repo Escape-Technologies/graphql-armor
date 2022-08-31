@@ -113,6 +113,20 @@ async function main() {
 main();
 ```
 
+```typescript
+import { EnvelopArmorPlugin } from '@escape.tech/graphql-armor';
+
+async function main() {
+  const server = createServer({
+    schema,
+    plugins: [EnvelopArmorPlugin()],
+  });
+  await server.start();
+}
+
+main();
+```
+
 ### Envelop
 
 ```typescript
@@ -123,6 +137,14 @@ const protection = armor.protect()
 
 const getEnveloped = envelop({
   plugins: [otherPlugins, ...protection.plugins],
+});
+```
+
+```typescript
+import { EnvelopArmorPlugin } from '@escape.tech/graphql-armor';
+
+const getEnveloped = envelop({
+  plugins: [otherPlugins, EnvelopArmorPlugin()],
 });
 ```
 

@@ -78,4 +78,22 @@ describe('global', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual(['Too many aliases.']);
   });
+  it('should respect fragment aliases', async () => {
+    const testkit = createTestkit([maxAliasesPlugin({ n: 1 })], schema);
+    const result = await testkit.execute(/* GraphQL */ `
+      query A {
+        getBook(title: "null") {
+          firstTitle: title
+          ...BookFragment
+        }
+      }
+      fragment BookFragment on Book {
+        secondTitle: title
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Too many aliases.']);
+  });
 });

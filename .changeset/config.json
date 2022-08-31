@@ -10,5 +10,7 @@
   "ignore": [
     "@escape.tech/graphql-armor-example-*",
     "@escape.tech/graphql-armor-docs"
-  ]
+  ],
+  "labels": ["dependencies"],
+  "assignees": ["c3b5aw"]
 }

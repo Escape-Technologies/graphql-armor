@@ -1,5 +1,20 @@
 # @escape.tech/graphql-armor
 
+## 1.1.0
+
+### Minor Changes
+
+- 6abc6ad: feat(envelop): add plugin initializer
+
+  Simplified `Envelop` plugin initializer.
+
+  ```ts
+  createServer({
+    schema,
+    plugins: [EnvelopArmorPlugin()],
+  });
+  ```
+
 ## 1.0.10
 
 ### Patch Changes

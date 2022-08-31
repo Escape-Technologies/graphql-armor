@@ -1,20 +1,25 @@
 import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
-type AfterParseCtx = { query: string | undefined };
 type CharacterLimitOptions = { maxLength?: number };
-const characterLimitDefaultOptions: CharacterLimitOptions = {
+const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   maxLength: 15000,
 };
 
-const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin<AfterParseCtx> => {
+const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin<object> => {
   const maxLength = options?.maxLength ?? characterLimitDefaultOptions.maxLength;
 
   return {
-    onParse({ context }) {
-      if (context.query && context.query.length > maxLength!) {
-        throw new GraphQLError(`Query is too large.`);
-      }
+    onParse({ parseFn, setParseFn }) {
+      setParseFn((source, options) => {
+        const query = typeof source === 'string' ? source : source.body;
+
+        if (query && query.length > maxLength) {
+          throw new GraphQLError(`Query is too large.`);
+        }
+
+        return parseFn(source, options);
+      });
     },
   };
 };

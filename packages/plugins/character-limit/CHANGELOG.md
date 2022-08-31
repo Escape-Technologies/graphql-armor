@@ -1,5 +1,23 @@
 # @escape.tech/graphql-armor-character-limit
 
+## 1.3.3
+
+### Patch Changes
+
+- 0c5d3db: fix: readme package name
+
+## 1.3.2
+
+### Patch Changes
+
+- f8a2a9b: refactor: usage of Required type
+
+## 1.3.1
+
+### Patch Changes
+
+- bf2ca93: Enforce query character limit before query is parsed
+
 ## 1.3.0
 
 ### Minor Changes

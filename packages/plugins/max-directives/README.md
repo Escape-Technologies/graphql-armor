@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-max-directives
+# @escape.tech/graphql-armor-max-directives
 
 This plugin will limit the number of directives in a GraphQL query.
 
@@ -6,10 +6,10 @@ This plugin will limit the number of directives in a GraphQL query.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-max-directives
+npm install @escape.tech/graphql-armor-max-directives
 
 # yarn
-yarn add @escape.tech/graphl-armor-max-directives
+yarn add @escape.tech/graphql-armor-max-directives
 ```
 
 ## Usage example

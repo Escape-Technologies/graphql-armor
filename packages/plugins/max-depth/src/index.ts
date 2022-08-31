@@ -57,8 +57,7 @@ class MaxDepthVisitor {
       for (let child of node.selectionSet.selections) {
         depth = Math.max(depth, this.countDepth(child, parentDepth + 1));
       }
-    }
-    if (node.kind == Kind.FRAGMENT_SPREAD) {
+    } else if (node.kind == Kind.FRAGMENT_SPREAD) {
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
         depth = Math.max(depth, this.countDepth(fragment, parentDepth + 1));

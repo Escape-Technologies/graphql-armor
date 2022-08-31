@@ -29,7 +29,7 @@ const books = [
 const resolvers = {
   Query: {
     books: () => books,
-    getBook: (title: String) => books.find((book) => book.title === title),
+    getBook: (title: string) => books.find((book) => book.title === title),
   },
 };
 

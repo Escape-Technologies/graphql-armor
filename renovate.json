@@ -4,5 +4,17 @@
     "config:base"
   ],
   "prHourlyLimit": 0,
-  "prConcurrentLimit": 0
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "groupName": "envelop",
+      "matchPackagePrefixes": "@envelop"
+    }
+  ],
+  "major": {
+    "stabilityDays": 3
+  },
+  "minor": {
+    "stabilityDays": 1
+  }
 }

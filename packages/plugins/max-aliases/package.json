@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-max-aliases",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Limit the number of aliases allowed in a GraphQL query.",
   "packageManager": "yarn@3.2.3",
   "main": "dist/graphql-armor-max-aliases.cjs.js",

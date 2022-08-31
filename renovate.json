@@ -9,6 +9,12 @@
     {
       "groupName": "envelop",
       "matchPackagePrefixes": "@envelop"
+    },
+    {
+      "groupName": "examples",
+      "matchPaths": [
+        "examples/**"
+      ]
     }
   ],
   "major": {
@@ -16,5 +22,14 @@
   },
   "minor": {
     "stabilityDays": 1
-  }
+  },
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ]
 }

@@ -1,5 +1,17 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 1.2.2
+
+### Patch Changes
+
+- 0c5d3db: fix: readme package name
+
+## 1.2.1
+
+### Patch Changes
+
+- f8a2a9b: refactor: usage of Required type
+
 ## 1.2.0
 
 ### Minor Changes

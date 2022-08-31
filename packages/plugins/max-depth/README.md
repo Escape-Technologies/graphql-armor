@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-max-depth
+# @escape.tech/graphql-armor-max-depth
 
 This plugin will limit the depth in a GraphQL query.
 
@@ -6,10 +6,10 @@ This plugin will limit the depth in a GraphQL query.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-max-depth
+npm install @escape.tech/graphql-armor-max-depth
 
 # yarn
-yarn add @escape.tech/graphl-armor-max-depth
+yarn add @escape.tech/graphql-armor-max-depth
 ```
 
 ## Usage example

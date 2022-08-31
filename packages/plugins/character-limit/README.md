@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-character-limit
+# @escape.tech/graphql-armor-character-limit
 
 This plugin will limit the number of character in a GraphQL query.
 
@@ -6,10 +6,10 @@ This plugin will limit the number of character in a GraphQL query.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-character-limit
+npm install @escape.tech/graphql-armor-character-limit
 
 # yarn
-yarn add @escape.tech/graphl-armor-character-limit
+yarn add @escape.tech/graphql-armor-character-limit
 ```
 
 ## Usage example

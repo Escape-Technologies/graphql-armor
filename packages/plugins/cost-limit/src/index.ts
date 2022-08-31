@@ -17,7 +17,7 @@ type CostLimitOptions = {
   depthCostFactor?: number;
   ignoreIntrospection?: boolean;
 };
-const costLimitDefaultOptions: CostLimitOptions = {
+const costLimitDefaultOptions: Required<CostLimitOptions> = {
   maxCost: 5000,
   objectCost: 2,
   scalarCost: 1,
@@ -29,12 +29,12 @@ class CostLimitVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: CostLimitOptions;
+  private readonly config: Required<CostLimitOptions>;
   private readonly onError: any;
 
   constructor(context: ValidationContext, onError: (string: any) => any, options?: CostLimitOptions) {
     this.context = context;
-    this.options = Object.assign(
+    this.config = Object.assign(
       {},
       costLimitDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
@@ -48,7 +48,7 @@ class CostLimitVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
-    if (complexity > this.options.maxCost!) {
+    if (complexity > this.config.maxCost) {
       this.onError(`Query is too expensive.`);
     }
   }
@@ -57,25 +57,25 @@ class CostLimitVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth: number = 0,
   ): number {
-    if (this.options.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+    if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
       return 0;
     }
 
     // const typeDefs: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType = this.context
     // .getSchema()
     // .getQueryType();
-    let cost = this.options.scalarCost!;
+    let cost = this.config.scalarCost;
     if ('selectionSet' in node && node.selectionSet) {
-      cost = this.options.objectCost!;
+      cost = this.config.objectCost;
       for (let child of node.selectionSet.selections) {
-        cost += this.options.depthCostFactor! * this.computeComplexity(child, depth + 1);
+        cost += this.config.depthCostFactor * this.computeComplexity(child, depth + 1);
       }
     }
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        cost += this.options.depthCostFactor! * this.computeComplexity(fragment, depth + 1);
+        cost += this.config.depthCostFactor * this.computeComplexity(fragment, depth + 1);
       }
     }
 

@@ -11,7 +11,7 @@ import {
 } from 'graphql';
 
 type MaxDirectivesOptions = { n?: number };
-const maxDirectivesDefaultOptions: MaxDirectivesOptions = {
+const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
 };
 
@@ -19,12 +19,12 @@ class MaxDirectivesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: MaxDirectivesOptions;
+  private readonly config: Required<MaxDirectivesOptions>;
   private readonly onError: (msg: string) => any;
 
   constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxDirectivesOptions) {
     this.context = context;
-    this.options = Object.assign(
+    this.config = Object.assign(
       {},
       maxDirectivesDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
@@ -38,7 +38,7 @@ class MaxDirectivesVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const directives = this.countDirectives(operation);
-    if (directives > this.options.n!) {
+    if (directives > this.config.n) {
       this.onError('Too many directives.');
     }
   }

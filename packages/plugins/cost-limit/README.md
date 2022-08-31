@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-cost-limit
+# @escape.tech/graphql-armor-cost-limit
 
 This plugin will limit the cost of a GraphQL query.
 
@@ -6,10 +6,10 @@ This plugin will limit the cost of a GraphQL query.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-cost-limit
+npm install @escape.tech/graphql-armor-cost-limit
 
 # yarn
-yarn add @escape.tech/graphl-armor-cost-limit
+yarn add @escape.tech/graphql-armor-cost-limit
 ```
 
 ## Usage example

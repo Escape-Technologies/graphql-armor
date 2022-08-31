@@ -1,4 +1,4 @@
-# @escape.tech/graphl-armor-max-aliases
+# @escape.tech/graphql-armor-max-aliases
 
 This plugin will limit the number of aliases in a GraphQL query.
 
@@ -6,10 +6,10 @@ This plugin will limit the number of aliases in a GraphQL query.
 
 ```bash
 # npm
-npm install @escape.tech/graphl-armor-max-aliases
+npm install @escape.tech/graphql-armor-max-aliases
 
 # yarn
-yarn add @escape.tech/graphl-armor-max-aliases
+yarn add @escape.tech/graphql-armor-max-aliases
 ```
 
 ## Usage example

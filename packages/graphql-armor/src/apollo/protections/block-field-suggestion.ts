@@ -1,18 +1,23 @@
-import type { PluginDefinition } from 'apollo-server-core';
+import {
+  BlockFieldSuggestionsOptions,
+  blockFieldSuggestionsDefaultOptions,
+} from '@escape.tech/graphql-armor-block-field-suggestions';
 import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
-const plugin: PluginDefinition = {
-  async requestDidStart() {
-    return {
-      async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
-        for (const error of errors) {
-          error.message = error.message.replace(/Did you mean ".+"/g, '[Suggestion message hidden by GraphQLArmor]');
-        }
-      },
-    };
-  },
+const plugin = ({ mask }: BlockFieldSuggestionsOptions) => {
+  return {
+    async requestDidStart() {
+      return {
+        async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
+          for (const error of errors) {
+            error.message = error.message.replace(/Did you mean ".+"/g, mask);
+          }
+        },
+      };
+    },
+  };
 };
 
 export class ApolloBlockFieldSuggestionProtection extends ApolloProtection {
@@ -25,7 +30,7 @@ export class ApolloBlockFieldSuggestionProtection extends ApolloProtection {
 
   protect(): ApolloServerConfigurationEnhancement {
     return {
-      plugins: [plugin],
+      plugins: [plugin(this.config.blockFieldSuggestion ?? blockFieldSuggestionsDefaultOptions)],
     };
   }
 }

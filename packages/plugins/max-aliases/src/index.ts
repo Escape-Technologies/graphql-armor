@@ -10,7 +10,7 @@ import {
 } from 'graphql';
 
 type MaxAliasesOptions = { n?: number };
-const maxAliasesDefaultOptions: MaxAliasesOptions = {
+const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
 };
 
@@ -18,12 +18,12 @@ class MaxAliasesVisitor {
   public readonly OperationDefinition: Record<string, any>;
 
   private readonly context: ValidationContext;
-  private readonly options: MaxAliasesOptions;
+  private readonly config: Required<MaxAliasesOptions>;
   private onError: (msg: string) => any;
 
   constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxAliasesOptions) {
     this.context = context;
-    this.options = Object.assign(
+    this.config = Object.assign(
       {},
       maxAliasesDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
@@ -37,7 +37,7 @@ class MaxAliasesVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const aliases = this.countAliases(operation);
-    if (aliases > this.options.n!) {
+    if (aliases > this.config.n) {
       this.onError('Too many aliases.');
     }
   }
@@ -52,6 +52,11 @@ class MaxAliasesVisitor {
     if ('selectionSet' in node && node.selectionSet) {
       for (let child of node.selectionSet.selections) {
         aliases += this.countAliases(child);
+      }
+    } else if (node.kind === 'FragmentSpread') {
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        aliases += this.countAliases(fragment);
       }
     }
     return aliases;

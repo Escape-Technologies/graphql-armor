@@ -9,6 +9,12 @@
     {
       "groupName": "envelop",
       "matchPackagePrefixes": "@envelop"
+    },
+    {
+      "groupName": "examples",
+      "matchPaths": [
+        "examples/**"
+      ]
     }
   ],
   "major": {

@@ -97,8 +97,8 @@ describe('envelopArmorPlugin', () => {
     const testkit = createTestkit(
       [
         EnvelopArmorPlugin({
-          maxDepthPlugin: {
-            n: 1,
+          maxDepth: {
+            n: 2,
           },
         }),
       ],
@@ -107,10 +107,11 @@ describe('envelopArmorPlugin', () => {
     const result = await testkit.execute(`query {
       books {
         title
+        author {
+          name
+        }
       }
     }`);
-
-    console.log(result.data);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();

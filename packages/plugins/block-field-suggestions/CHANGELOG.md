@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 1.2.4
+
+### Patch Changes
+
+- cadf453: fix:
+  - nullish coalescing operator evaluation
+    will now be made through babel plugin
+
 ## 1.2.3
 
 ### Patch Changes

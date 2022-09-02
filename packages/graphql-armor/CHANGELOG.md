@@ -1,5 +1,20 @@
 # @escape.tech/graphql-armor
 
+## 1.1.1
+
+### Patch Changes
+
+- cadf453: fix:
+  - nullish coalescing operator evaluation
+    will now be made through babel plugin
+- Updated dependencies [cadf453]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.2.4
+  - @escape.tech/graphql-armor-character-limit@1.3.4
+  - @escape.tech/graphql-armor-cost-limit@1.2.3
+  - @escape.tech/graphql-armor-max-aliases@1.2.4
+  - @escape.tech/graphql-armor-max-depth@1.4.4
+  - @escape.tech/graphql-armor-max-directives@1.2.3
+
 ## 1.1.0
 
 ### Minor Changes

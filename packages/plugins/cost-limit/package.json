@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-cost-limit",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Limit the cost of a GraphQL Query.",
   "packageManager": "yarn@3.2.3",
   "main": "dist/graphql-armor-cost-limit.cjs.js",

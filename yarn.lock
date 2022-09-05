@@ -2364,6 +2364,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@escape.tech/graphql-armor-document-token-limit@workspace:packages/plugins/document-token-limit":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-document-token-limit@workspace:packages/plugins/document-token-limit"
+  dependencies:
+    "@envelop/core": 2.6.0
+    "@envelop/testing": 4.6.0
+    "@envelop/types": 2.4.0
+    "@types/node": 18.6.3
+    graphql: ^16.5.0
+    typescript: 4.8.2
+  peerDependencies:
+    "@envelop/core": ^2.4.2
+  languageName: unknown
+  linkType: soft
+
 "@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-example-apollo@workspace:examples/apollo"

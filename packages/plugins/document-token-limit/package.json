@@ -1,0 +1,39 @@
+{
+  "name": "@escape.tech/graphql-armor-document-token-limit",
+  "version": "1.3.4",
+  "description": "Limit the number of tokens allowed in a GraphQL document.",
+  "packageManager": "yarn@3.2.3",
+  "main": "dist/graphql-armor-document-token-limit.cjs.js",
+  "module": "dist/graphql-armor-document-token-limit.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Escape-Technologies/graphql-armor.git",
+    "directory": "packages/plugins/max-aliases"
+  },
+  "author": "Laurin Quast <laurinquast@googlemail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
+  },
+  "homepage": "https://github.com/Escape-Technologies/graphql-armor",
+  "dependencies": {
+    "graphql": "^16.5.0"
+  },
+  "peerDependencies": {
+    "@envelop/core": "^2.4.2"
+  },
+  "devDependencies": {
+    "@envelop/core": "2.6.0",
+    "@envelop/testing": "4.6.0",
+    "@envelop/types": "2.4.0",
+    "@types/node": "18.6.3",
+    "typescript": "4.8.2"
+  }
+}

@@ -26,7 +26,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors).toHaveLength(1);
-    expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 1000 exceeded.');
+    expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 2000 exceeded.');
   });
   it('does not rejects an oepration below the max token count', async () => {
     const operation = `{ ${Array(documentTokenLimitDefaultOptions.maxTokenCount - 2).join('a ')} }`;

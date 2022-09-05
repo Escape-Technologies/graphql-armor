@@ -42,7 +42,7 @@ class ParserWithLexer extends Parser {
 
 type DocumentTokenLimitOptions = { maxTokenCount?: number };
 export const documentTokenLimitDefaultOptions: Required<DocumentTokenLimitOptions> = {
-  maxTokenCount: 1000,
+  maxTokenCount: 2000,
 };
 
 export function documentTokenLimitPlugin(options?: DocumentTokenLimitOptions): Plugin {

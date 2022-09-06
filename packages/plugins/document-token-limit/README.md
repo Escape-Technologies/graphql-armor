@@ -24,7 +24,7 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     documentTokenLimitPlugin({
-        maxTokenCount: 2000, // Number of characters allowed | Default: 2000
+        maxTokenCount: 2000, // Number of tokens allowed in a document | Default: 2000
     }),
   ]
 })

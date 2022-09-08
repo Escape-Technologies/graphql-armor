@@ -70,6 +70,9 @@ const armor = new ApolloArmor({
   maxDepth: {
     n: 4,
   },
+  maxTokens: {
+    n: 250,
+  },
 });
 
 export const server = new ApolloServer({

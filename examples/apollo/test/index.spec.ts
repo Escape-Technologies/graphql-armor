@@ -24,19 +24,15 @@ describe('startup', () => {
     expect(query.errors?.map((e) => e.extensions?.exception?.stacktrace)).toEqual([undefined]);
   });
 
-  it('should block too large query', async () => {
+  it('should block too many tokens', async () => {
+    const maxTokens = 250;
     try {
       const query = await server.executeOperation({
-        query: `query {
-          books {
-            title
-            author
-          } ${' '.repeat(2000)}
-        }`,
+        query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain('Query is too large.');
+      expect(e.message).toContain(`Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`);
     }
   });
 

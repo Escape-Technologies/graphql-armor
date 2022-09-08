@@ -39,7 +39,7 @@ class MaxTokensParserWLexer extends Parser {
   }
 }
 
-  // new ParserWithLexer(context.source, { ...options, n: options?.n ?? maxTokenDefaultOptions.n });
+// new ParserWithLexer(context.source, { ...options, n: options?.n ?? maxTokenDefaultOptions.n });
 type MaxTokensOptions = { n?: number };
 const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
   n: 1000,

@@ -26,6 +26,9 @@ export function initServer() {
         maxDepth: {
           n: 4,
         },
+        maxTokens: {
+          n: 250,
+        },
       }),
     ],
   });

@@ -33,9 +33,6 @@ describe('apolloArmor', () => {
       blockFieldSuggestion: {
         enabled: false,
       },
-      characterLimit: {
-        enabled: false,
-      },
       costLimit: {
         enabled: false,
       },
@@ -46,6 +43,9 @@ describe('apolloArmor', () => {
         enabled: false,
       },
       maxDirectives: {
+        enabled: false,
+      },
+      maxTokens: {
         enabled: false,
       },
     });

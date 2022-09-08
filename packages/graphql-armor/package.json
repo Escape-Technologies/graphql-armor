@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@envelop/core": "2.6.0",
+    "@types/node": "^18.6.3",
     "apollo-server-core": "3.10.2",
     "apollo-server-types": "3.6.2",
     "ts-node": "10.9.1",

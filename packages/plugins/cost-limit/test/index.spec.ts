@@ -81,7 +81,9 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too expensive.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query Cost limit of 10 exceeded, found 11.',
+    ]);
   });
 
   it('should allow introspection', async () => {
@@ -132,6 +134,8 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too expensive.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query Cost limit of 46 exceeded, found 47.',
+    ]);
   });
 });

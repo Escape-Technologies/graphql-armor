@@ -42,7 +42,7 @@ describe('startup', () => {
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Query is too large.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Character limit of 2000 exceeded, found 2075.');
   });
 
   it('should have cost limit', async () => {
@@ -67,7 +67,7 @@ describe('startup', () => {
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Query is too expensive.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 139.');
   });
 
   it('should disable field suggestion', async () => {
@@ -86,7 +86,7 @@ describe('startup', () => {
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
     expect(body.errors?.map((e) => e.message)).toContain(
-      'Cannot query field "titlee" on type "Book". [Suggestion message hidden by GraphQLArmor]?',
+      'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
     );
   });
 
@@ -111,10 +111,10 @@ describe('startup', () => {
     expect(body.data).toBeDefined();
     expect(body.data?.__typename).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Too many aliases.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
   });
 
-  it('should limit directices', async () => {
+  it('should limit directives', async () => {
     const response = await request(server)
       .post('/graphql')
       .send({
@@ -128,7 +128,7 @@ describe('startup', () => {
     expect(body.data).toBeDefined();
     expect(body.data?.__typename).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Too many directives.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Directives limit of 10 exceeded, found 11.');
   });
 
   it('should limit depth', async () => {
@@ -152,7 +152,7 @@ describe('startup', () => {
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Query is too deep.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Query depth limit of 4 exceeded, found 5.');
   });
 
   it('should allow introspection', async () => {

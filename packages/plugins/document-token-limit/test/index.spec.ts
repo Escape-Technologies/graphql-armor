@@ -26,7 +26,11 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors).toHaveLength(1);
-    expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 2000 exceeded.');
+    expect(result.errors?.[0].message).toEqual(
+      `Syntax Error: Token limit of ${documentTokenLimitDefaultOptions.maxTokenCount} exceeded, found ${
+        documentTokenLimitDefaultOptions.maxTokenCount + 1
+      }.`,
+    );
   });
   it('does not rejects an oepration below the max token count', async () => {
     const operation = `{ ${Array(documentTokenLimitDefaultOptions.maxTokenCount - 2).join('a ')} }`;
@@ -43,7 +47,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors).toHaveLength(1);
-    expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 4 exceeded.');
+    expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 4 exceeded, found 5.');
   });
   it('does not rejects an oepration below the max token count (user provided)', async () => {
     const count = 4;

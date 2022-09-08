@@ -76,7 +76,9 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Too many aliases.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Aliases limit of 1 exceeded, found 2.',
+    ]);
   });
 
   it('should respect fragment aliases', async () => {
@@ -95,6 +97,8 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Too many aliases.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Aliases limit of 1 exceeded, found 2.',
+    ]);
   });
 });

@@ -3,7 +3,7 @@ import { GraphQLError } from 'graphql';
 
 type BlockFieldSuggestionsOptions = { mask?: string };
 const blockFieldSuggestionsDefaultOptions: Required<BlockFieldSuggestionsOptions> = {
-  mask: '[Suggestion message hidden by GraphQLArmor]',
+  mask: '[Suggestion hidden]',
 };
 
 const formatter = (error: GraphQLError, mask: string): GraphQLError => {

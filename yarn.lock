@@ -2654,7 +2654,7 @@ __metadata:
     "@escape.tech/graphql-armor-max-aliases": ^1.2.4
     "@escape.tech/graphql-armor-max-depth": ^1.4.4
     "@escape.tech/graphql-armor-max-directives": ^1.2.3
-    "@types/node": ^18.6.3
+    "@types/node": 18.7.16
     apollo-server-core: 3.10.2
     apollo-server-types: 3.6.2
     graphql: ^16.5.0
@@ -4186,7 +4186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.7.16, @types/node@npm:^18.6.3":
+"@types/node@npm:18.7.16":
   version: 18.7.16
   resolution: "@types/node@npm:18.7.16"
   checksum: 01a3d35c764a3f0e7370b56e1ad4203731131883c65784e020009014171b3f53c4649cde6c7aa4f1026b907ee87ef6ae6ece2bc518151dc7b81100fe8b1db3ad

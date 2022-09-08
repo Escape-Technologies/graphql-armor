@@ -1,5 +1,32 @@
 # @escape.tech/graphql-armor
 
+## 1.2.0
+
+### Minor Changes
+
+- 6176fd2: ### feat: - Add max-tokens package (@n1ru4l) - Remove character-limit from core - Include limitation message:
+  `Syntax Error: ${plugin} limit of ${limit} exceeded, found ${found}.`
+
+  ### chore:
+
+      - Drop `apollo-server` / `@types/node` direct dependencies
+      - Tests consistency
+
+  ### repo:
+
+      - Update examples
+      - Update renovate config, nopin/nogroup
+
+### Patch Changes
+
+- Updated dependencies [6176fd2]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.3.0
+  - @escape.tech/graphql-armor-cost-limit@1.3.0
+  - @escape.tech/graphql-armor-max-aliases@1.3.0
+  - @escape.tech/graphql-armor-max-depth@1.5.0
+  - @escape.tech/graphql-armor-max-directives@1.3.0
+  - @escape.tech/graphql-armor-max-tokens@1.0.1
+
 ## 1.1.1
 
 ### Patch Changes

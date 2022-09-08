@@ -8,10 +8,6 @@ export function initServer() {
     schema,
     plugins: [
       EnvelopArmorPlugin({
-        characterLimit: {
-          enabled: true,
-          maxLength: 2000,
-        },
         costLimit: {
           enabled: true,
           maxCost: 100,
@@ -29,6 +25,9 @@ export function initServer() {
         },
         maxDepth: {
           n: 4,
+        },
+        maxTokens: {
+          n: 250,
         },
       }),
     ],

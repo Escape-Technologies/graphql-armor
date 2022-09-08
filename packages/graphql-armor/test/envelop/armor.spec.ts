@@ -30,9 +30,6 @@ describe('envelopArmor', () => {
       blockFieldSuggestion: {
         enabled: false,
       },
-      characterLimit: {
-        enabled: false,
-      },
       costLimit: {
         enabled: false,
       },
@@ -43,6 +40,9 @@ describe('envelopArmor', () => {
         enabled: false,
       },
       maxDirectives: {
+        enabled: false,
+      },
+      maxTokens: {
         enabled: false,
       },
     });

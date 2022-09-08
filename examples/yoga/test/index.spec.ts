@@ -26,23 +26,21 @@ describe('startup', () => {
     expect(response.body.errors?.map((e) => e.extensions?.exception?.stacktrace)).toEqual([undefined]);
   });
 
-  it('should block too large query', async () => {
+  it('should block too many tokens', async () => {
+    const maxTokens = 250;
     const response = await request(server)
       .post('/graphql')
       .send({
-        query: `query {
-        books {
-          title
-          author
-        } ${' '.repeat(2000)}
-      }`,
+        query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
 
     expect(response.statusCode).toBe(400);
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Character limit of 2000 exceeded, found 2075.');
+    expect(body.errors?.map((e) => e.message)).toContain(
+      `Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`,
+    );
   });
 
   it('should have cost limit', async () => {

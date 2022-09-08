@@ -24,6 +24,7 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
   - [Depth Limit](#depth-limit)
   - [Directives Limit](#directives-limit)
   - [Field Suggestion](#field-suggestion)
+  - [Token Limit](#token-limit)
 - [Contributing](#contributing)
 
 ## Supported GraphQL Engines
@@ -182,6 +183,7 @@ This section describes how to configure each plugin individually.
 - [Depth Limit](#depth-limit)
 - [Directives Limit](#directives-limit)
 - [Field Suggestion](#field-suggestion)
+- [Token Limit](#token-limit)
 
 ### Stacktraces (Apollo Only)
 
@@ -225,7 +227,7 @@ const server = new ApolloServer({
 
 ### Character Limit
 
-This plugin is enabled by default.
+This plugin is disabled by default.
 
 It enforces a character limit on your GraphQL queries.
 
@@ -236,7 +238,7 @@ Configuration
 ```typescript
 {
   characterLimit: {
-    // enabled: true,
+    // enabled: false,
     maxLength: 15000,
   }
 }
@@ -287,7 +289,7 @@ Example of such a suggestion:
 
 This plugin is enabled by default.
 
-Put a limit on the number of aliases.
+Limit the number of aliases in a document.
 
 ```typescript
 {
@@ -302,7 +304,7 @@ Put a limit on the number of aliases.
 
 This plugin is enabled by default.
 
-Put a limit on the number of directives.
+Limit the number of directives in a document.
 
 ```typescript
 {
@@ -317,13 +319,28 @@ Put a limit on the number of directives.
 
 This plugin is enabled by default.
 
-Put a depth limit to the request.
+Limit the depth of a document.
 
 ```typescript
 {
   maxDepth: {
     // enabled: true,
     n: 6,
+  }
+}
+```
+
+### Token Limit
+
+This plugin is enabled by default.
+
+Limit the number of GraphQL tokens in a document.
+
+```typescript
+{
+  maxTokens: {
+    // enabled: true,
+    n: 1000,
   }
 }
 ```
@@ -341,5 +358,3 @@ bash ./install-dev.sh
 ```
 
 We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
-
-*This project is young so there might be bugs but we are very reactive so feel free to open issues.*

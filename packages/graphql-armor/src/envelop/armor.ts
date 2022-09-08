@@ -3,11 +3,11 @@ import type { OnPluginInitEventPayload, Plugin } from '@envelop/core';
 import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
 import { EnvelopBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
-import { EnvelopCharacterLimitProtection } from './protections/character-limit';
 import { EnvelopCostLimitProtection } from './protections/cost-limit';
 import { EnvelopMaxAliasesProtection } from './protections/max-aliases';
 import { EnvelopMaxDepthProtection } from './protections/max-depth';
 import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
+import { EnvelopMaxTokensProtection } from './protections/max-tokens';
 
 export const EnvelopArmorPlugin = (config?: GraphQLArmorConfig): Plugin => {
   const armor = new EnvelopArmor(config);
@@ -28,7 +28,7 @@ export class EnvelopArmor {
   constructor(config: GraphQLArmorConfig = {}) {
     this.protections = [
       new EnvelopBlockFieldSuggestionProtection(config),
-      new EnvelopCharacterLimitProtection(config),
+      new EnvelopMaxTokensProtection(config),
       new EnvelopMaxDirectivesProtection(config),
       new EnvelopMaxAliasesProtection(config),
       new EnvelopCostLimitProtection(config),

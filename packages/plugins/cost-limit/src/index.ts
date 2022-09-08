@@ -7,7 +7,7 @@ import type {
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { Kind, GraphQLError } from 'graphql';
+import { GraphQLError, Kind } from 'graphql';
 
 type CostLimitOptions = {
   maxCost?: number;

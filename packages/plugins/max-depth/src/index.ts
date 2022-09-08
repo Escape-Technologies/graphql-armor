@@ -7,7 +7,7 @@ import type {
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
-import { GraphQLError, Kind } from 'graphql'
+import { GraphQLError, Kind } from 'graphql';
 
 type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean };
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {

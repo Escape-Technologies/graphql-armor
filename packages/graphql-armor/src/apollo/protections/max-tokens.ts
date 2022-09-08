@@ -1,22 +1,23 @@
-import { MaxTokensOptions, maxTokenDefaultOptions } from '@escape.tech/graphql-armor-max-tokens';
-import type { GraphQLRequestContext } from 'apollo-server-types';
-import { GraphQLError } from 'graphql';
+import { maxTokenDefaultOptions, MaxTokensOptions, MaxTokensParserWLexer } from '@escape.tech/graphql-armor-max-tokens';
+import { GraphQLRequestContext } from 'apollo-server-types';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
-const plugin = ({ n }: MaxTokensOptions) => {
+
+const plugin = ({ n } : MaxTokensOptions) => {
   const _n = n ?? maxTokenDefaultOptions.n;
   return {
-    async parsingDidStart({ request }: GraphQLRequestContext) {
-      console.log('parsingDidStart', request);
-      if (request.query.length > _n) {
-        throw new GraphQLError(`Query is too long. Maximum allowed tokens is ${n}.`, {
-          extensions: { code: 'BAD_USER_INPUT' },
-        });
+    async requestDidStart() {
+      return {
+        async parsingDidStart(requestContext: GraphQLRequestContext) {
+          const source = requestContext.source;
+          const parser = new MaxTokensParserWLexer(source, { n: _n });
+          parser.parseDocument();
+        }
       }
-    },
-  };
-};
+    }
+  }
+} 
 
 export class ApolloMaxTokensProtection extends ApolloProtection {
   get isEnabled(): boolean {
@@ -29,11 +30,7 @@ export class ApolloMaxTokensProtection extends ApolloProtection {
 
   protect(): ApolloServerConfigurationEnhancement {
     return {
-      plugins: [
-        plugin({
-          n: this.config.maxTokens?.n,
-        }),
-      ],
+      plugins: [plugin(this.config.maxTokens ?? maxTokenDefaultOptions)],
     };
   }
 }

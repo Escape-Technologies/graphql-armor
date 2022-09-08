@@ -2,18 +2,17 @@ import { Plugin } from '@envelop/types';
 import { GraphQLError, Source, TokenKind } from 'graphql';
 import { ParseOptions, Parser } from 'graphql/language/parser';
 
-type ParserWithLexerOptions = ParseOptions & {
+type maxTokensParserWLexerOptions = ParseOptions & {
   n: number;
 };
-
-class ParserWithLexer extends Parser {
+class MaxTokensParserWLexer extends Parser {
   private _tokenCount = 0;
 
   get tokenCount() {
     return this._tokenCount;
   }
 
-  constructor(source: string | Source, options: ParserWithLexerOptions) {
+  constructor(source: string | Source, options: maxTokensParserWLexerOptions) {
     super(source, options);
     const lexer = this._lexer;
     this._lexer = new Proxy(lexer, {
@@ -40,16 +39,17 @@ class ParserWithLexer extends Parser {
   }
 }
 
+  // new ParserWithLexer(context.source, { ...options, n: options?.n ?? maxTokenDefaultOptions.n });
 type MaxTokensOptions = { n?: number };
 const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
-  n: 2000,
+  n: 1000,
 };
 
 function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
   const maxTokenCount = options?.n ?? maxTokenDefaultOptions.n;
 
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
-    const parser = new ParserWithLexer(source, { ...options, n: maxTokenCount });
+    const parser = new MaxTokensParserWLexer(source, { ...options, n: maxTokenCount });
     return parser.parseDocument();
   }
   return {
@@ -59,4 +59,4 @@ function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
   };
 }
 
-export { MaxTokensOptions, maxTokenDefaultOptions, maxTokensPlugin };
+export { MaxTokensOptions, maxTokenDefaultOptions, maxTokensPlugin, MaxTokensParserWLexer };

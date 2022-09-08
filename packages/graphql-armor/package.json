@@ -37,13 +37,13 @@
     "@escape.tech/graphql-armor-max-aliases": "^1.2.4",
     "@escape.tech/graphql-armor-max-depth": "^1.4.4",
     "@escape.tech/graphql-armor-max-directives": "^1.2.3",
-    "graphql": "^16.5.0"
+    "graphql": "^15.8.0 || ^16.0.0"
   },
   "peerDependencies": {
     "@envelop/core": "^2.4.2",
     "apollo-server-core": "^3.10.0",
     "apollo-server-types": "^3.6.2",
-    "graphql": "^16.5.0"
+    "graphql": "^15.8.0 || ^16.0.0"
   },
   "devDependencies": {
     "@envelop/core": "2.6.0",

@@ -1,14 +1,13 @@
 import type { Plugin } from '@envelop/core';
-import {
+import type {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
-  GraphQLError,
   InlineFragmentNode,
-  Kind,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
+import { GraphQLError, Kind } from 'graphql'
 
 type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean };
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {

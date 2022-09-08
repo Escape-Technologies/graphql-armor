@@ -1,13 +1,13 @@
 import type { Plugin } from '@envelop/core';
-import {
+import type {
   FieldNode,
   FragmentDefinitionNode,
   FragmentSpreadNode,
-  GraphQLError,
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
 } from 'graphql';
+import { GraphQLError } from 'graphql';
 
 type MaxAliasesOptions = { n?: number };
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {

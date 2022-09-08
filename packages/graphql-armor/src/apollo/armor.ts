@@ -3,11 +3,11 @@ import type { Config as ApolloServerConfig, PluginDefinition, ValidationRule } f
 import { GraphQLArmorConfig } from '../config';
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
-import { ApolloCharacterLimitProtection } from './protections/character-limit';
 import { ApolloCostLimitProtection } from './protections/cost-limit';
 import { ApolloMaxAliasesProtection } from './protections/max-aliases';
 import { ApolloMaxDepthProtection } from './protections/max-depth';
 import { ApolloMaxDirectivesProtection } from './protections/max-directives';
+import { ApolloMaxTokensProtection } from './protections/max-tokens';
 
 export class ApolloArmor {
   private readonly protections: ApolloProtection[];
@@ -15,7 +15,7 @@ export class ApolloArmor {
   constructor(config: GraphQLArmorConfig = {}) {
     this.protections = [
       new ApolloBlockFieldSuggestionProtection(config),
-      new ApolloCharacterLimitProtection(config),
+      new ApolloMaxTokensProtection(config),
       new ApolloCostLimitProtection(config),
       new ApolloMaxAliasesProtection(config),
       new ApolloMaxDirectivesProtection(config),

@@ -7,12 +7,13 @@ import { GraphQLError } from 'graphql';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 const plugin = ({ mask }: BlockFieldSuggestionsOptions) => {
+  const _mask = mask ?? blockFieldSuggestionsDefaultOptions.mask;
   return {
     async requestDidStart() {
       return {
         async didEncounterErrors({ errors }: { errors: ReadonlyArray<GraphQLError> }) {
           for (const error of errors) {
-            error.message = error.message.replace(/Did you mean ".+"/g, mask);
+            error.message = error.message.replace(/Did you mean ".+"/g, _mask);
           }
         },
       };

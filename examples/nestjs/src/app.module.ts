@@ -7,12 +7,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
 
-const armor = new ApolloArmor({
-  characterLimit: {
-    enabled: true,
-    maxLength: 100,
-  },
-});
+const armor = new ApolloArmor();
 
 @Module({
   imports: [

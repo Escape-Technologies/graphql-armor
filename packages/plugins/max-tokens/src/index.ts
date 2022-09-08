@@ -41,11 +41,11 @@ class ParserWithLexer extends Parser {
 }
 
 type MaxTokensOptions = { n?: number };
-export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
+const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
   n: 2000,
 };
 
-export function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
+function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
   const maxTokenCount = options?.n ?? maxTokenDefaultOptions.n;
 
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
@@ -58,3 +58,5 @@ export function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
     },
   };
 }
+
+export { MaxTokensOptions, maxTokenDefaultOptions, maxTokensPlugin };

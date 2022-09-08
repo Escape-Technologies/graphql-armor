@@ -94,11 +94,12 @@ const schema = makeExecutableSchema({
 
 describe('envelopArmorPlugin', () => {
   it('should define our plugins', async () => {
+    const maxDepth = 2;
     const testkit = createTestkit(
       [
         EnvelopArmorPlugin({
           maxDepth: {
-            n: 2,
+            n: maxDepth,
           },
         }),
       ],
@@ -116,7 +117,7 @@ describe('envelopArmorPlugin', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Query depth limit of 2 exceeded, found 3.',
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
     ]);
   });
 });

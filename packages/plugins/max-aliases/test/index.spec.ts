@@ -71,18 +71,20 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([maxAliasesPlugin({ n: 1 })], schema);
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Aliases limit of 1 exceeded, found 2.',
+      `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
     ]);
   });
 
   it('should respect fragment aliases', async () => {
-    const testkit = createTestkit([maxAliasesPlugin({ n: 1 })], schema);
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);
     const result = await testkit.execute(/* GraphQL */ `
       query A {
         getBook(title: "null") {
@@ -98,7 +100,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Aliases limit of 1 exceeded, found 2.',
+      `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
     ]);
   });
 });

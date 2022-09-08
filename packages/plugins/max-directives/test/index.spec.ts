@@ -59,18 +59,20 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([maxDirectivesPlugin({ n: 3 })], schema);
+    const maxDirectives = 3;
+    const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Directives limit of 3 exceeded, found 4.',
+      `Syntax Error: Directives limit of ${maxDirectives} exceeded, found ${maxDirectives + 1}.`,
     ]);
   });
 
   it('should works on fragment', async () => {
-    const testkit = createTestkit([maxDirectivesPlugin({ n: 3 })], schema);
+    const maxDirectives = 3;
+    const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives })], schema);
     const result = await testkit.execute(`query {
         ...DirectivesFragment
       }
@@ -83,7 +85,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Directives limit of 3 exceeded, found 4.',
+      `Syntax Error: Directives limit of ${maxDirectives} exceeded, found ${maxDirectives + 1}.`,
     ]);
   });
 });

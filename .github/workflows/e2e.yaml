@@ -3,7 +3,7 @@ name: e2e
 on:
   push:
     tags:
-      - "@escape.tech/graphql-armor@*"
+      - "**/graphql-armor@**"
 
 env:
   YARN_ENABLE_IMMUTABLE_INSTALLS: false

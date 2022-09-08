@@ -80,7 +80,9 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query depth limit of 1 exceeded, found 3.',
+    ]);
   });
 
   it('should reject fragment', async () => {
@@ -102,7 +104,9 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query depth limit of 4 exceeded, found 5.',
+    ]);
   });
 
   it('should allow introspection', async () => {

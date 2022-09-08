@@ -15,7 +15,7 @@ const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin<object> =
         const query = typeof source === 'string' ? source : source.body;
 
         if (query && query.length > maxLength) {
-          throw new GraphQLError(`Query is too large.`);
+          throw new GraphQLError(`Syntax Error: Character limit of ${maxLength} exceeded, found ${query.length}.`);
         }
 
         return parseFn(source, options);

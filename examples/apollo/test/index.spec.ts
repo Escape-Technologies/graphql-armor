@@ -58,7 +58,7 @@ describe('startup', () => {
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain('Query is too expensive.');
+      expect(e.message).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 139.');
     }
   });
 
@@ -74,7 +74,7 @@ describe('startup', () => {
 
     expect(query.errors).toBeDefined();
     expect(query.errors?.map((e) => e.message)).toContain(
-      'Cannot query field "titlee" on type "Book". [Suggestion message hidden by GraphQLArmor]?',
+      'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
     );
   });
 
@@ -94,7 +94,7 @@ describe('startup', () => {
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain('Too many aliases.');
+      expect(e.message).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
     }
   });
 
@@ -105,7 +105,7 @@ describe('startup', () => {
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain('Too many directives.');
+      expect(e.message).toContain('Syntax Error: Directives limit of 10 exceeded, found 11.');
     }
   });
 
@@ -126,7 +126,7 @@ describe('startup', () => {
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain('Query is too deep.');
+      expect(e.message).toContain('Syntax Error: Query depth limit of 4 exceeded, found 5');
     }
   });
 

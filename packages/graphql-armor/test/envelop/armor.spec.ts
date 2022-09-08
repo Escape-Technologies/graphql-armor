@@ -115,6 +115,8 @@ describe('envelopArmorPlugin', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too deep.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query depth limit of 2 exceeded, found 3.',
+    ]);
   });
 });

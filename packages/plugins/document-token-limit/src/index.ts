@@ -26,10 +26,13 @@ class ParserWithLexer extends Parser {
             }
 
             if (this._tokenCount > options.tokenLimit) {
-              throw new GraphQLError(`Syntax Error: Token limit of ${options.tokenLimit} exceeded.`, {
-                source: this._lexer.source,
-                positions: [token.start],
-              });
+              throw new GraphQLError(
+                `Syntax Error: Token limit of ${options.tokenLimit} exceeded, found ${this._tokenCount}.`,
+                {
+                  source: this._lexer.source,
+                  positions: [token.start],
+                },
+              );
             }
             return token;
           };

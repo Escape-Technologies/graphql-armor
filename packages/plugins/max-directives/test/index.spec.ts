@@ -64,7 +64,9 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Too many directives.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Directives limit of 3 exceeded, found 4.',
+    ]);
   });
 
   it('should works on fragment', async () => {
@@ -80,6 +82,8 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Too many directives.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Directives limit of 3 exceeded, found 4.',
+    ]);
   });
 });

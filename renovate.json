@@ -15,6 +15,12 @@
       "matchPaths": [
         "examples/**"
       ]
+    },
+    {
+      "matchPaths": [
+        "packages/**"
+      ],
+      "rangeStrategy": "replace"
     }
   ],
   "major": {

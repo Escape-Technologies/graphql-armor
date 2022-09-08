@@ -69,6 +69,8 @@ describe('global', () => {
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual(['Query is too large.']);
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Character limit of 53 exceeded, found 54.',
+    ]);
   });
 });

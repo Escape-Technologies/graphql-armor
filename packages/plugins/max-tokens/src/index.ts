@@ -3,7 +3,7 @@ import { GraphQLError, Source, TokenKind } from 'graphql';
 import { ParseOptions, Parser } from 'graphql/language/parser';
 
 type ParserWithLexerOptions = ParseOptions & {
-  tokenLimit: number;
+  n: number;
 };
 
 class ParserWithLexer extends Parser {
@@ -25,14 +25,11 @@ class ParserWithLexer extends Parser {
               this._tokenCount++;
             }
 
-            if (this._tokenCount > options.tokenLimit) {
-              throw new GraphQLError(
-                `Syntax Error: Token limit of ${options.tokenLimit} exceeded, found ${this._tokenCount}.`,
-                {
-                  source: this._lexer.source,
-                  positions: [token.start],
-                },
-              );
+            if (this._tokenCount > options.n) {
+              throw new GraphQLError(`Syntax Error: Token limit of ${options.n} exceeded, found ${this._tokenCount}.`, {
+                source: this._lexer.source,
+                positions: [token.start],
+              });
             }
             return token;
           };
@@ -43,16 +40,16 @@ class ParserWithLexer extends Parser {
   }
 }
 
-type DocumentTokenLimitOptions = { maxTokenCount?: number };
-export const documentTokenLimitDefaultOptions: Required<DocumentTokenLimitOptions> = {
-  maxTokenCount: 2000,
+type MaxTokensOptions = { n?: number };
+export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
+  n: 2000,
 };
 
-export function documentTokenLimitPlugin(options?: DocumentTokenLimitOptions): Plugin {
-  const maxTokenCount = options?.maxTokenCount ?? documentTokenLimitDefaultOptions.maxTokenCount;
+export function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
+  const maxTokenCount = options?.n ?? maxTokenDefaultOptions.n;
 
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
-    const parser = new ParserWithLexer(source, { ...options, tokenLimit: maxTokenCount });
+    const parser = new ParserWithLexer(source, { ...options, n: maxTokenCount });
     return parser.parseDocument();
   }
   return {

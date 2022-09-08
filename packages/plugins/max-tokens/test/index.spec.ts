@@ -2,7 +2,7 @@ import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { describe, expect, it } from '@jest/globals';
 import { buildSchema } from 'graphql';
 
-import { documentTokenLimitDefaultOptions, documentTokenLimitPlugin } from '../src/index';
+import { maxTokenDefaultOptions, maxTokensPlugin } from '../src/index';
 
 const schema = buildSchema(/* GraphQL */ `
   type Query {
@@ -12,29 +12,27 @@ const schema = buildSchema(/* GraphQL */ `
 
 describe('global', () => {
   it('should be defined', () => {
-    expect(documentTokenLimitPlugin).toBeDefined();
+    expect(maxTokensPlugin).toBeDefined();
 
-    documentTokenLimitPlugin();
-    documentTokenLimitPlugin({});
-    documentTokenLimitPlugin({ maxTokenCount: 1 });
+    maxTokensPlugin();
+    maxTokensPlugin({});
+    maxTokensPlugin({ n: 1 });
   });
 
   it('rejects an operation with more than the default max token count', async () => {
-    const operation = `{ ${Array(documentTokenLimitDefaultOptions.maxTokenCount).join('a ')} }`;
-    const testkit = createTestkit([documentTokenLimitPlugin()], schema);
+    const operation = `{ ${Array(maxTokenDefaultOptions.n).join('a ')} }`;
+    const testkit = createTestkit([maxTokensPlugin()], schema);
     const result = await testkit.execute(operation);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors).toHaveLength(1);
     expect(result.errors?.[0].message).toEqual(
-      `Syntax Error: Token limit of ${documentTokenLimitDefaultOptions.maxTokenCount} exceeded, found ${
-        documentTokenLimitDefaultOptions.maxTokenCount + 1
-      }.`,
+      `Syntax Error: Token limit of ${maxTokenDefaultOptions.n} exceeded, found ${maxTokenDefaultOptions.n + 1}.`,
     );
   });
   it('does not rejects an oepration below the max token count', async () => {
-    const operation = `{ ${Array(documentTokenLimitDefaultOptions.maxTokenCount - 2).join('a ')} }`;
-    const testkit = createTestkit([documentTokenLimitPlugin()], schema);
+    const operation = `{ ${Array(maxTokenDefaultOptions.n - 2).join('a ')} }`;
+    const testkit = createTestkit([maxTokensPlugin()], schema);
     const result = await testkit.execute(operation);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
@@ -42,7 +40,7 @@ describe('global', () => {
   it('rejects an operation with more than the default max token count (user provided)', async () => {
     const count = 4;
     const operation = `{ ${Array(count).join('a ')} }`;
-    const testkit = createTestkit([documentTokenLimitPlugin({ maxTokenCount: 4 })], schema);
+    const testkit = createTestkit([maxTokensPlugin({ n: count })], schema);
     const result = await testkit.execute(operation);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
@@ -52,7 +50,7 @@ describe('global', () => {
   it('does not rejects an oepration below the max token count (user provided)', async () => {
     const count = 4;
     const operation = `{ ${Array(count - 2).join('a ')} }`;
-    const testkit = createTestkit([documentTokenLimitPlugin({ maxTokenCount: 4 })], schema);
+    const testkit = createTestkit([maxTokensPlugin({ n: count })], schema);
     const result = await testkit.execute(operation);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();

@@ -1,4 +1,4 @@
-# @escape.tech/graphql-armor-document-token-limit
+# @escape.tech/graphql-armor-max-tokens
 
 This plugin will limit the number of tokens in a GraphQL operation.
 
@@ -6,10 +6,10 @@ This plugin will limit the number of tokens in a GraphQL operation.
 
 ```bash
 # npm
-npm install @escape.tech/graphql-armor-document-token-limit
+npm install @escape.tech/graphql-armor-max-tokens
 
 # yarn
-yarn add @escape.tech/graphql-armor-document-token-limit
+yarn add @escape.tech/graphql-armor-max-tokens
 ```
 
 ## Usage example
@@ -18,13 +18,13 @@ yarn add @escape.tech/graphql-armor-document-token-limit
 
 ```typescript
 import { envelop } from '@envelop/core';
-import { documentTokenLimitPlugin } from '@escape.tech/graphql-armor-document-token-limit';
+import { maxTokensPlugin } from '@escape.tech/graphql-armor-max-tokens';
 
 const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
-    documentTokenLimitPlugin({
-        maxTokenCount: 2000, // Number of tokens allowed in a document | Default: 2000
+    maxTokensPlugin({
+        maxTokenCount: 1000, // Number of tokens allowed in a document | Default: 1000
     }),
   ]
 })

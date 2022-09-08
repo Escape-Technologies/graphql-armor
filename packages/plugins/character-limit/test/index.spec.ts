@@ -64,13 +64,14 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([characterLimitPlugin({ maxLength: 54 - 1 })], schema);
+    const length = 53;
+    const testkit = createTestkit([characterLimitPlugin({ maxLength: length })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Character limit of 53 exceeded, found 54.',
+      `Syntax Error: Character limit of ${length} exceeded, found ${length + 1}.`,
     ]);
   });
 });

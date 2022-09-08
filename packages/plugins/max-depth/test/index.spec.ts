@@ -75,18 +75,20 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const testkit = createTestkit([maxDepthPlugin({ n: 2 - 1 })], schema);
+    const maxDepth = 1;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Query depth limit of 1 exceeded, found 3.',
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 2}.`,
     ]);
   });
 
   it('should reject fragment', async () => {
-    const testkit = createTestkit([maxDepthPlugin({ n: 5 - 1 })], schema);
+    const maxDepth = 4;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth })], schema);
     const result = await testkit.execute(`
     query {
       ...BooksFragment
@@ -105,7 +107,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Query depth limit of 4 exceeded, found 5.',
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
     ]);
   });
 

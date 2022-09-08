@@ -9,16 +9,16 @@
 '@escape.tech/graphql-armor-max-tokens': patch
 ---
 
-feat:
-Add max-tokens package (@n1ru4l)
-Remove character-limit from core
-Include limitation message:
-`Syntax Error: ${plugin} limit of ${limit} exceeded, found ${found}.`
+### feat:
+	- Add max-tokens package (@n1ru4l)
+	- Remove character-limit from core
+	- Include limitation message:
+		`Syntax Error: ${plugin} limit of ${limit} exceeded, found ${found}.`
 
-chore:
-Drop `apollo-server` / `@types/node` direct dependencies
-Tests consistency
+### chore:
+	- Drop `apollo-server` / `@types/node` direct dependencies
+	- Tests consistency
 
-repo:
-Update examples
-Update renovate config, nopin/nogroup
+### repo:
+	- Update examples
+	- Update renovate config, nopin/nogroup

@@ -33,6 +33,6 @@
     "@envelop/core": "2.6.0",
     "@envelop/testing": "4.6.0",
     "@envelop/types": "2.4.0",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   }
 }

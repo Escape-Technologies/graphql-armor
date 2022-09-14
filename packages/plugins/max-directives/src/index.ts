@@ -39,7 +39,9 @@ class MaxDirectivesVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const directives = this.countDirectives(operation);
     if (directives > this.config.n) {
-      this.onError(`Syntax Error: Directives limit of ${this.config.n} exceeded, found ${directives}.`);
+      this.context.reportError(
+        this.onError(`Syntax Error: Directives limit of ${this.config.n} exceeded, found ${directives}.`),
+      );
     }
   }
 

@@ -40,7 +40,9 @@ class MaxDepthVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
     if (depth > this.config.n) {
-      this.onError(`Syntax Error: Query depth limit of ${this.config.n} exceeded, found ${depth}.`);
+      this.context.reportError(
+        this.onError(`Syntax Error: Query depth limit of ${this.config.n} exceeded, found ${depth}.`),
+      );
     }
   }
 

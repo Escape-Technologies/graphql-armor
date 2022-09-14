@@ -15,7 +15,7 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
     return {
       validationRules: [
         maxAliasesRule((message: string) => {
-          throw new GraphQLError(message, {
+          return new GraphQLError(message, {
             extensions: { code: 'BAD_USER_INPUT' },
           });
         }, this.config.maxAliases),

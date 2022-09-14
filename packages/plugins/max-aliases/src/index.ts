@@ -38,7 +38,9 @@ class MaxAliasesVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const aliases = this.countAliases(operation);
     if (aliases > this.config.n) {
-      this.onError(`Syntax Error: Aliases limit of ${this.config.n} exceeded, found ${aliases}.`);
+      this.context.reportError(
+        this.onError(`Syntax Error: Aliases limit of ${this.config.n} exceeded, found ${aliases}.`),
+      );
     }
   }
 

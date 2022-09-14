@@ -15,7 +15,7 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
     return {
       validationRules: [
         maxDirectivesRule((message: string) => {
-          throw new GraphQLError(message, {
+          return new GraphQLError(message, {
             extensions: { code: 'BAD_USER_INPUT' },
           });
         }, this.config.maxDirectives),

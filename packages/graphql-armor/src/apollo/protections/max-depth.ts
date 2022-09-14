@@ -15,7 +15,7 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
     return {
       validationRules: [
         maxDepthRule((message: string) => {
-          throw new GraphQLError(message, {
+          return new GraphQLError(message, {
             extensions: { code: 'BAD_USER_INPUT' },
           });
         }, this.config.maxDepth),

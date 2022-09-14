@@ -16,4 +16,5 @@ export type GraphQLArmorConfig = {
   maxDepth?: ProtectionConfiguration & MaxDepthOptions;
   maxDirectives?: ProtectionConfiguration & MaxDirectivesOptions;
   maxTokens?: ProtectionConfiguration & MaxTokensOptions;
+  rewriteHttpCode?: ProtectionConfiguration;
 };

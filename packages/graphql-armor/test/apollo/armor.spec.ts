@@ -22,7 +22,7 @@ describe('apolloArmor', () => {
   });
 
   it('should have property that equals', () => {
-    expect(enhancements.plugins.length).toEqual(2);
+    expect(enhancements.plugins.length).toEqual(3);
     expect(enhancements.validationRules.length).toEqual(4);
     expect(enhancements.allowBatchedHttpRequests).toEqual(false);
     expect(enhancements.debug).toEqual(false);
@@ -51,6 +51,8 @@ describe('apolloArmor', () => {
     });
 
     const enhancementsDisabled = apolloDisabled.protect();
+
+    expect(enhancementsDisabled.validationRules.length).toEqual(0);
     expect(enhancementsDisabled.plugins.length).toEqual(0);
   });
 });

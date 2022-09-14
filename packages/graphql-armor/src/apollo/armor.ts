@@ -1,6 +1,7 @@
 import type { Config as ApolloServerConfig, PluginDefinition, ValidationRule } from 'apollo-server-core';
 
 import { GraphQLArmorConfig } from '../config';
+import { ApolloRewriteHTTPCode } from './internal/rewrite-http-code';
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { ApolloCostLimitProtection } from './protections/cost-limit';
@@ -10,10 +11,12 @@ import { ApolloMaxDirectivesProtection } from './protections/max-directives';
 import { ApolloMaxTokensProtection } from './protections/max-tokens';
 
 export class ApolloArmor {
-  private readonly protections: ApolloProtection[];
+  private _protections: ApolloProtection[];
+  private _config: GraphQLArmorConfig;
 
   constructor(config: GraphQLArmorConfig = {}) {
-    this.protections = [
+    this._config = config;
+    this._protections = [
       new ApolloBlockFieldSuggestionProtection(config),
       new ApolloMaxTokensProtection(config),
       new ApolloCostLimitProtection(config),
@@ -32,13 +35,23 @@ export class ApolloArmor {
     let plugins: ApolloServerConfig['plugins'] = [];
     let validationRules: ApolloServerConfig['validationRules'] = [];
 
-    for (const protection of this.protections) {
+    for (const protection of this._protections) {
       if (protection.isEnabled) {
         const { plugins: newPlugins, validationRules: newValidationRules } = protection.protect();
         plugins = [...plugins, ...(newPlugins || [])];
         validationRules = [...validationRules, ...(newValidationRules || [])];
       }
     }
+
+    /* Load the rewrite HTTP code plugin last, if any validationRule has been added */
+    if (validationRules.length > 0) {
+      this._protections = [...this._protections, new ApolloRewriteHTTPCode(this._config)];
+      if (this._protections[this._protections.length - 1].isEnabled) {
+        const { plugins: newPlugins } = this._protections[this._protections.length - 1].protect();
+        plugins = [...plugins, ...(newPlugins || [])];
+      }
+    }
+
     return {
       plugins,
       validationRules,

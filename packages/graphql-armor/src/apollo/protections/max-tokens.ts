@@ -10,8 +10,10 @@ const plugin = ({ n }: MaxTokensOptions) => {
       return {
         async parsingDidStart(requestContext: GraphQLRequestContext) {
           const source = requestContext.source;
-          const parser = new MaxTokensParserWLexer(source, { n: _n });
-          parser.parseDocument();
+          if (source !== undefined) {
+            const parser = new MaxTokensParserWLexer(source, { n: _n });
+            parser.parseDocument();
+          }
         },
       };
     },

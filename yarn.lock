@@ -2449,8 +2449,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2463,8 +2461,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2477,8 +2473,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2568,8 +2562,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2582,8 +2574,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2596,8 +2586,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2610,8 +2598,6 @@ __metadata:
     "@envelop/types": 2.4.0
     graphql: ^16.5.0
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
   languageName: unknown
   linkType: soft
 
@@ -2660,11 +2646,6 @@ __metadata:
     graphql: ^16.5.0
     ts-node: 10.9.1
     typescript: 4.8.3
-  peerDependencies:
-    "@envelop/core": ^2.4.2
-    apollo-server-core: ^3.10.0
-    apollo-server-types: ^3.6.2
-    graphql: ^16.5.0
   languageName: unknown
   linkType: soft
 

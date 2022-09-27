@@ -1,5 +1,22 @@
 # @escape.tech/graphql-armor
 
+## 1.2.1
+
+### Patch Changes
+
+- feaaf34: chore(deps):
+
+  - Drop peerDependencies in favor of optionalDependencies.
+  - GraphQL JS has been fixed to v16.6.0 in devDependencies and examples.
+
+- Updated dependencies [feaaf34]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.3.1
+  - @escape.tech/graphql-armor-cost-limit@1.3.1
+  - @escape.tech/graphql-armor-max-aliases@1.3.1
+  - @escape.tech/graphql-armor-max-depth@1.5.1
+  - @escape.tech/graphql-armor-max-directives@1.3.1
+  - @escape.tech/graphql-armor-max-tokens@1.0.2
+
 ## 1.2.0
 
 ### Minor Changes

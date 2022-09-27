@@ -1,5 +1,14 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 1.0.2
+
+### Patch Changes
+
+- feaaf34: chore(deps):
+
+  - Drop peerDependencies in favor of optionalDependencies.
+  - GraphQL JS has been fixed to v16.6.0 in devDependencies and examples.
+
 ## 1.0.1
 
 ### Patch Changes

@@ -2447,7 +2447,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2459,7 +2459,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2471,7 +2471,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2493,7 +2493,7 @@ __metadata:
     apollo-server: 3.10.2
     apollo-server-express: 3.10.2
     express: 4.18.1
-    graphql: 16.5.0
+    graphql: 16.6.0
     nodemon: 2.0.19
     reflect-metadata: 0.1.13
     rxjs: 7.5.6
@@ -2526,7 +2526,7 @@ __metadata:
     eslint: 8.23.0
     eslint-config-google: 0.14.0
     express: 4.18.1
-    graphql: 16.5.0
+    graphql: 16.6.0
     nodemon: 2.0.19
     prettier: 2.7.1
     reflect-metadata: 0.1.13
@@ -2545,7 +2545,7 @@ __metadata:
     "@graphql-tools/schema": 9.0.3
     "@graphql-yoga/node": 2.13.13
     "@types/node": 18.6.3
-    graphql: 16.5.0
+    graphql: 16.6.0
     supertest: 6.2.4
     ts-node: 10.9.1
     ts-node-dev: 2.0.0
@@ -2560,7 +2560,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2572,7 +2572,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2584,7 +2584,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2596,7 +2596,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
-    graphql: ^16.5.0
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -2643,7 +2643,7 @@ __metadata:
     "@types/node": ^18.6.3
     apollo-server-core: 3.10.2
     apollo-server-types: 3.6.2
-    graphql: ^16.5.0
+    graphql: 16.6.0
     ts-node: 10.9.1
     typescript: 4.8.3
   languageName: unknown
@@ -7502,10 +7502,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.5.0, graphql@npm:^16.5.0":
-  version: 16.5.0
-  resolution: "graphql@npm:16.5.0"
-  checksum: a82a926d085818934d04fdf303a269af170e79de943678bd2726370a96194f9454ade9d6d76c2de69afbd7b9f0b4f8061619baecbbddbe82125860e675ac219e
+"graphql@npm:16.6.0":
+  version: 16.6.0
+  resolution: "graphql@npm:16.6.0"
+  checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
   languageName: node
   linkType: hard
 

@@ -26,6 +26,9 @@
   "dependencies": {
     "graphql": "^16.0.0"
   },
+  "optionalDependencies": {
+    "@envelop/core": "^2.4.0"
+  },
   "devDependencies": {
     "@envelop/core": "2.6.0",
     "@envelop/testing": "4.6.0",

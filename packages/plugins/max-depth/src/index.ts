@@ -1,4 +1,5 @@
 import type { Plugin } from '@envelop/core';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -10,10 +11,13 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean };
+export type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean } & GraphQLArmorCallbackConfiguration;
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   n: 6,
   ignoreIntrospection: true,
+  onAccept: [],
+  onReject: [],
+  throwRejection: true,
 };
 
 class MaxDepthVisitor {
@@ -21,16 +25,14 @@ class MaxDepthVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxDepthOptions>;
-  private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxDepthOptions) {
+  constructor(context: ValidationContext, options?: MaxDepthOptions) {
     this.context = context;
     this.config = Object.assign(
       {},
       maxDepthDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
-    this.onError = onError;
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -40,7 +42,21 @@ class MaxDepthVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
     if (depth > this.config.n) {
-      this.onError(`Syntax Error: Query depth limit of ${this.config.n} exceeded, found ${depth}.`);
+      const err = new GraphQLError(`Syntax Error: Query depth limit of ${this.config.n} exceeded, found ${depth}.`);
+
+      for (const handler of this.config.onReject) {
+        handler(this.context, err);
+      }
+
+      if (this.config.throwRejection) {
+        throw err;
+      } else {
+        this.context.reportError(err);
+      }
+    } else {
+      for (const handler of this.config.onAccept) {
+        handler(this.context, { n: depth });
+      }
     }
   }
 
@@ -67,19 +83,15 @@ class MaxDepthVisitor {
   }
 }
 
-const maxDepthRule = (onError: (msg: string) => any, options?: MaxDepthOptions) => (context: ValidationContext) =>
-  new MaxDepthVisitor(context, onError, options);
+export const maxDepthRule = (options?: MaxDepthOptions) => (context: ValidationContext) =>
+  new MaxDepthVisitor(context, options);
 
-const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
+export const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(
-        maxDepthRule((msg: string) => {
-          throw new GraphQLError(msg);
-        }, options),
+        maxDepthRule(options),
       );
     },
   };
 };
-
-export { maxDepthRule, MaxDepthOptions, maxDepthPlugin };

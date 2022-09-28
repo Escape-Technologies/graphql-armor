@@ -1,5 +1,5 @@
 {
-  "name": "@escape.tech/graphql-armor-example-yoga",
+  "name": "example-yoga",
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for yoga.",

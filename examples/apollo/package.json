@@ -1,5 +1,5 @@
 {
-  "name": "@escape.tech/graphql-armor-example-apollo",
+  "name": "example-apollo",
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for Apollo.",

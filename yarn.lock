@@ -2589,6 +2589,7 @@ __metadata:
     "@envelop/core": 2.6.0
     "@envelop/testing": 4.6.0
     "@envelop/types": 2.4.0
+    "@escape.tech/graphql-armor-types": 0.0.1
     graphql: 16.6.0
     typescript: 4.8.3
   dependenciesMeta:
@@ -2636,6 +2637,15 @@ __metadata:
     eslint-config-google: 0.14.0
     jest: 29.0.3
     prettier: 2.7.1
+    typescript: 4.8.3
+  languageName: unknown
+  linkType: soft
+
+"@escape.tech/graphql-armor-types@0.0.1, @escape.tech/graphql-armor-types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@escape.tech/graphql-armor-types@workspace:packages/types"
+  dependencies:
+    graphql: 16.6.0
     typescript: 4.8.3
   languageName: unknown
   linkType: soft

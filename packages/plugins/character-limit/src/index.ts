@@ -23,7 +23,9 @@ export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin =>
         const query = typeof source === 'string' ? source : source.body;
 
         if (query && query.length > config.maxLength) {
-          const err = new GraphQLError(`Syntax Error: Character limit of ${config.maxLength} exceeded.`);
+          const err = new GraphQLError(
+            `Syntax Error: Character limit of ${config.maxLength} exceeded, found ${query.length}.`,
+          );
 
           for (const handler of config.onReject) {
             handler(null, err);

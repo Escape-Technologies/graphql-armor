@@ -11,7 +11,7 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDirectivesOptions = {
+export type MaxDirectivesOptions = {
   n?: number;
 } & GraphQLArmorCallbackConfiguration;
 const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
@@ -82,15 +82,13 @@ class MaxDirectivesVisitor {
   }
 }
 
-const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
+export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
   new MaxDirectivesVisitor(context, options);
 
-const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
+export const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(maxDirectivesRule(options));
     },
   };
 };
-
-export { maxDirectivesRule, MaxDirectivesOptions, maxDirectivesPlugin };

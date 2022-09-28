@@ -263,6 +263,9 @@ Configuration
     scalarCost: 1, // cost of retrieving a scalar
     depthCostFactor: 1.5, // multiplicative cost of depth
     ignoreIntrospection: true, // by default, introspection queries are ignored.
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -296,6 +299,9 @@ Limit the number of aliases in a document.
   maxAliases: {
     // enabled: true,
     n: 15,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -311,6 +317,9 @@ Limit the number of directives in a document.
   maxDirectives: {
     // enabled: true,
     n: 50,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -326,6 +335,9 @@ Limit the depth of a document.
   maxDepth: {
     // enabled: true,
     n: 6,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -341,6 +353,9 @@ Limit the number of GraphQL tokens in a document.
   maxTokens: {
     // enabled: true,
     n: 1000,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    throwRejection: true, // When rejected, do you want to throw the error or do nothing?
   }
 }
 ```

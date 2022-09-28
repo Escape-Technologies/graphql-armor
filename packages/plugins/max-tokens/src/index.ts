@@ -1,19 +1,38 @@
 import { Plugin } from '@envelop/types';
-import { GraphQLError, Source, TokenKind } from 'graphql';
+import { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import { Source, TokenKind } from 'graphql';
+import { syntaxError } from 'graphql/error';
 import { ParseOptions, Parser } from 'graphql/language/parser';
 
 type maxTokensParserWLexerOptions = ParseOptions & {
   n: number;
+} & Required<GraphQLArmorCallbackConfiguration>;
+
+export type MaxTokensOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
+export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
+  n: 1000,
+  onAccept: [],
+  onReject: [],
+  throwRejection: true,
 };
-class MaxTokensParserWLexer extends Parser {
+
+export class MaxTokensParserWLexer extends Parser {
   private _tokenCount = 0;
+  private readonly config: Required<MaxTokensOptions>;
 
   get tokenCount() {
     return this._tokenCount;
   }
 
-  constructor(source: string | Source, options: maxTokensParserWLexerOptions) {
+  constructor(source: string | Source, options?: maxTokensParserWLexerOptions) {
     super(source, options);
+
+    this.config = Object.assign(
+      {},
+      maxTokenDefaultOptions,
+      ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
+    );
+
     const lexer = this._lexer;
     this._lexer = new Proxy(lexer, {
       get: (target, prop, receiver) => {
@@ -24,11 +43,24 @@ class MaxTokensParserWLexer extends Parser {
               this._tokenCount++;
             }
 
-            if (this._tokenCount > options.n) {
-              throw new GraphQLError(`Syntax Error: Token limit of ${options.n} exceeded, found ${this._tokenCount}.`, {
-                source: this._lexer.source,
-                positions: [token.start],
-              });
+            if (this._tokenCount > this.config.n) {
+              const err = syntaxError(
+                this._lexer.source,
+                token.start,
+                `Token limit of ${this.config.n} exceeded, found ${this._tokenCount}.`,
+              );
+
+              for (const handler of this.config.onReject) {
+                handler(null, err);
+              }
+
+              if (this.config.throwRejection) {
+                throw err;
+              }
+            }
+
+            for (const handler of this.config.onAccept) {
+              handler(null, { n: this._tokenCount });
             }
             return token;
           };
@@ -39,17 +71,9 @@ class MaxTokensParserWLexer extends Parser {
   }
 }
 
-// new ParserWithLexer(context.source, { ...options, n: options?.n ?? maxTokenDefaultOptions.n });
-type MaxTokensOptions = { n?: number };
-const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
-  n: 1000,
-};
-
-function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
-  const maxTokenCount = options?.n ?? maxTokenDefaultOptions.n;
-
+export function maxTokensPlugin(config?: MaxTokensOptions): Plugin {
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
-    const parser = new MaxTokensParserWLexer(source, { ...options, n: maxTokenCount });
+    const parser = new MaxTokensParserWLexer(source, Object.assign({}, options, config));
     return parser.parseDocument();
   }
   return {
@@ -58,5 +82,3 @@ function maxTokensPlugin(options?: MaxTokensOptions): Plugin {
     },
   };
 }
-
-export { MaxTokensOptions, maxTokenDefaultOptions, maxTokensPlugin, MaxTokensParserWLexer };

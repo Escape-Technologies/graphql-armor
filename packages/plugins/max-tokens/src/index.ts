@@ -6,7 +6,7 @@ import { ParseOptions, Parser } from 'graphql/language/parser';
 
 type maxTokensParserWLexerOptions = ParseOptions & {
   n: number;
-} & Required<GraphQLArmorCallbackConfiguration>;
+} & GraphQLArmorCallbackConfiguration;
 
 export type MaxTokensOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
 export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {

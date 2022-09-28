@@ -1,6 +1,6 @@
 import { maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
-import { GraphQLError } from 'graphql';
 
+import { badInputContextHandler, badInputHandler } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxDepthProtection extends ApolloProtection {
@@ -12,14 +12,22 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
+    if (this.config.maxDepth == undefined) {
+      this.config.maxDepth = {};
+    }
+
+    if (this.config.maxDepth.onReject == undefined) {
+      this.config.maxDepth.onReject = [];
+    }
+
+    if (this.config.maxDepth.throwRejection === undefined || this.config.maxDepth.throwRejection) {
+      this.config.maxDepth.onReject.push(badInputHandler);
+    } else {
+      this.config.maxDepth.onReject.push(badInputContextHandler);
+    }
+
     return {
-      validationRules: [
-        maxDepthRule((message: string) => {
-          throw new GraphQLError(message, {
-            extensions: { code: 'BAD_USER_INPUT' },
-          });
-        }, this.config.maxDepth),
-      ],
+      validationRules: [maxDepthRule(this.config.maxDepth)],
     };
   }
 }

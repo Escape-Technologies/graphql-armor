@@ -89,9 +89,7 @@ export const maxDepthRule = (options?: MaxDepthOptions) => (context: ValidationC
 export const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        maxDepthRule(options),
-      );
+      addValidationRule(maxDepthRule(options));
     },
   };
 };

@@ -1,5 +1,5 @@
 {
-  "name": "@escape.tech/graphql-armor-example-nestjs",
+  "name": "example-nestjs",
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for NestJS.",

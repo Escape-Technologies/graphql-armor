@@ -1,4 +1,5 @@
 import type { Plugin } from '@envelop/core';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -10,19 +11,22 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type CostLimitOptions = {
+export type CostLimitOptions = {
   maxCost?: number;
   objectCost?: number;
   scalarCost?: number;
   depthCostFactor?: number;
   ignoreIntrospection?: boolean;
-};
+} & GraphQLArmorCallbackConfiguration;
 const costLimitDefaultOptions: Required<CostLimitOptions> = {
   maxCost: 5000,
   objectCost: 2,
   scalarCost: 1,
   depthCostFactor: 1.5,
   ignoreIntrospection: true,
+  onAccept: [],
+  onReject: [],
+  throwRejection: true,
 };
 
 class CostLimitVisitor {
@@ -30,16 +34,14 @@ class CostLimitVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<CostLimitOptions>;
-  private readonly onError: any;
 
-  constructor(context: ValidationContext, onError: (string: any) => any, options?: CostLimitOptions) {
+  constructor(context: ValidationContext, options?: CostLimitOptions) {
     this.context = context;
     this.config = Object.assign(
       {},
       costLimitDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
-    this.onError = onError;
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -49,7 +51,23 @@ class CostLimitVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
     if (complexity > this.config.maxCost) {
-      this.onError(`Syntax Error: Query Cost limit of ${this.config.maxCost} exceeded, found ${complexity}.`);
+      const err = new GraphQLError(
+        `Syntax Error: Query Cost limit of ${this.config.maxCost} exceeded, found ${complexity}.`,
+      );
+
+      for (const handler of this.config.onReject) {
+        handler(this.context, err);
+      }
+
+      if (this.config.throwRejection) {
+        throw err;
+      } else {
+        this.context.reportError(err);
+      }
+    } else {
+      for (const handler of this.config.onAccept) {
+        handler(this.context, { n: complexity });
+      }
     }
   }
 
@@ -83,20 +101,13 @@ class CostLimitVisitor {
   }
 }
 
-const costLimitRule =
-  (errorHandler: (msg: string) => void, options?: CostLimitOptions) => (context: ValidationContext) =>
-    new CostLimitVisitor(context, errorHandler, options);
+export const costLimitRule = (options?: CostLimitOptions) => (context: ValidationContext) =>
+  new CostLimitVisitor(context, options);
 
-const costLimitPlugin = (options?: CostLimitOptions): Plugin => {
+export const costLimitPlugin = (options?: CostLimitOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        costLimitRule((msg: string) => {
-          throw new GraphQLError(msg);
-        }, options),
-      );
+      addValidationRule(costLimitRule(options));
     },
   };
 };
-
-export { costLimitRule, CostLimitOptions, costLimitPlugin };

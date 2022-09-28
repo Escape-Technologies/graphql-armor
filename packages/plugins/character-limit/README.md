@@ -24,7 +24,7 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     characterLimitPlugin({
-        maxLength: 15000, // Number of characters allowed | Default: 150000
+        maxLength: 15000, // Number of characters allowed | Default: 15000
     }),
   ]
 })

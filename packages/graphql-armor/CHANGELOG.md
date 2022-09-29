@@ -1,5 +1,25 @@
 # @escape.tech/graphql-armor
 
+## 1.3.0
+
+### Minor Changes
+
+- c16a2bb: v1.3.0
+
+  - Feat(plugins)/provide-custom-configuration-callbacks [#162](https://github.com/Escape-Technologies/graphql-armor/issues/162)
+  - Refactor(apollo): changed protection default behavior to contextual report [#191](https://github.com/Escape-Technologies/graphql-armor/issues/191)
+  - Chore(deps): new types packages (@escape.tech/graphql-armor-types)
+  - Chore(deps): updated devDependencies
+
+### Patch Changes
+
+- Updated dependencies [c16a2bb]
+  - @escape.tech/graphql-armor-cost-limit@1.4.0
+  - @escape.tech/graphql-armor-max-aliases@1.4.0
+  - @escape.tech/graphql-armor-max-depth@1.6.0
+  - @escape.tech/graphql-armor-max-directives@1.4.0
+  - @escape.tech/graphql-armor-max-tokens@1.1.0
+
 ## 1.2.1
 
 ### Patch Changes

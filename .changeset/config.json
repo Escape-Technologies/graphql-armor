@@ -8,7 +8,7 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@escape.tech/graphql-armor-example-*",
+    "example-*",
     "@escape.tech/graphql-armor-docs"
   ],
   "labels": ["dependencies"],

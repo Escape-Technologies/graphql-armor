@@ -14,11 +14,11 @@ import {
 export type MaxDirectivesOptions = {
   n?: number;
 } & GraphQLArmorCallbackConfiguration;
-const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
+export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
   onAccept: [],
   onReject: [],
-  throwRejection: true,
+  throwOnRejection: true,
 };
 
 class MaxDirectivesVisitor {
@@ -49,7 +49,7 @@ class MaxDirectivesVisitor {
         handler(this.context, err);
       }
 
-      if (this.config.throwRejection) {
+      if (this.config.throwOnRejection) {
         throw err;
       } else {
         this.context.reportError(err);

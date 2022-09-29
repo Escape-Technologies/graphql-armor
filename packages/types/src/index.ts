@@ -5,5 +5,5 @@ export type GraphQLArmorRejectCallback = (ctx: ValidationContext | null, error: 
 export type GraphQLArmorCallbackConfiguration = {
   onAccept?: GraphQLArmorAcceptCallback[];
   onReject?: GraphQLArmorRejectCallback[];
-  throwRejection?: boolean;
+  throwOnRejection?: boolean;
 };

@@ -35,10 +35,11 @@ export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfigurat
     config.onReject = [];
   }
 
-  if (config.throwOnRejection) {
-    config.onReject.push(badInputHandler);
-  } else if (config.throwOnRejection === undefined) {
+  if (config.throwOnRejection === undefined) {
     config.onReject.push(badInputContextHandler);
+    config.throwOnRejection = false;
+  } else if (config.throwOnRejection === true) {
+    config.onReject.push(badInputHandler);
   }
 
   return config;

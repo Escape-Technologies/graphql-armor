@@ -1,4 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
+import exp from 'constants';
 import { getIntrospectionQuery } from 'graphql';
 
 import { server } from '../src/server';
@@ -37,25 +38,22 @@ describe('startup', () => {
   });
 
   it('should have cost limit', async () => {
-    try {
-      const query = await server.executeOperation({
-        query: `query {
-          ...BooksFragment
-          ...BooksFragment
-          ...BooksFragment
+    const query = await server.executeOperation({
+      query: `query {
+        ...BooksFragment
+        ...BooksFragment
+        ...BooksFragment
+      }
+      
+      fragment BooksFragment on Query {
+        books {
+          title
+          author
         }
-        
-        fragment BooksFragment on Query {
-          books {
-            title
-            author
-          }
-        }`,
-      });
-      expect(false).toBe(true);
-    } catch (e) {
-      expect(e.message).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 139.');
-    }
+      }`,
+    });
+    expect(query.errors).toBeDefined();
+    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 139.');
   });
 
   it('should block field suggestion', async () => {
@@ -69,61 +67,57 @@ describe('startup', () => {
     });
 
     expect(query.errors).toBeDefined();
+    expect(query.errors).toHaveLength(2);
     expect(query.errors?.map((e) => e.message)).toContain(
       'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
     );
   });
 
   it('should limit aliases', async () => {
-    try {
-      const query = await server.executeOperation({
-        query: `query {
-          firstBooks: books {
-            title
-            author
-          }
-          secondBooks: books {
-            title
-            author
-          }
-        }`,
-      });
-      expect(false).toBe(true);
-    } catch (e) {
-      expect(e.message).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
-    }
+    const query = await server.executeOperation({
+      query: `query {
+        firstBooks: books {
+          title
+          author
+        }
+        secondBooks: books {
+          title
+          author
+        }
+      }`,
+    });
+    expect(query.errors).toBeDefined();
+    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
   });
 
   it('should limit directives', async () => {
-    try {
-      const query = await server.executeOperation({
-        query: `query { __typename ${'@a'.repeat(10 + 1)} }`,
-      });
-      expect(false).toBe(true);
-    } catch (e) {
-      expect(e.message).toContain('Syntax Error: Directives limit of 10 exceeded, found 11.');
-    }
+    const directivesCount = 11;
+    const query = await server.executeOperation({
+      query: `query { __typename ${'@a'.repeat(directivesCount)} }`,
+    });
+    expect(query.errors).toBeDefined();
+    expect(query.errors).toHaveLength(directivesCount + 1);
+    expect(query.errors?.map((e) => e.message)).toContain(
+      `Syntax Error: Directives limit of ${directivesCount - 1} exceeded, found ${directivesCount}.`,
+    );
   });
 
   it('should limit depth', async () => {
-    try {
-      const query = await server.executeOperation({
-        query: `query {
-          books {
-            author {
-              books {
-                author {
-                  name
-                }
+    const query = await server.executeOperation({
+      query: `query {
+        books {
+          author {
+            books {
+              author {
+                name
               }
             }
           }
-        }`,
-      });
-      expect(false).toBe(true);
-    } catch (e) {
-      expect(e.message).toContain('Syntax Error: Query depth limit of 4 exceeded, found 5');
-    }
+        }
+      }`,
+    });
+    expect(query.errors).toBeDefined();
+    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query depth limit of 4 exceeded, found 5.');
   });
 
   it('should allow introspection', async () => {

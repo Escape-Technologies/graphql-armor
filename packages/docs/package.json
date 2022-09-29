@@ -1,5 +1,8 @@
 {
-  "name": "@escape.tech/graphql-armor-docs",
+  "name": "docs",
   "packageManager": "yarn@3.2.3",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "vuepress": "next"
+  }
 }

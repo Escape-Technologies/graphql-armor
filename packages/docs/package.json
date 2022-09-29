@@ -2,6 +2,10 @@
   "name": "docs",
   "packageManager": "yarn@3.2.3",
   "private": true,
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
   "devDependencies": {
     "vuepress": "next"
   }

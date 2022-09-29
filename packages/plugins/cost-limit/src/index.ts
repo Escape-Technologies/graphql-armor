@@ -61,8 +61,6 @@ class CostLimitVisitor {
 
       if (this.config.throwOnRejection) {
         throw err;
-      } else {
-        this.context.reportError(err);
       }
     } else {
       for (const handler of this.config.onAccept) {

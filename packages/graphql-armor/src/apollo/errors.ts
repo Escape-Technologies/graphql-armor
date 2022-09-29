@@ -1,7 +1,7 @@
 import { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError, ValidationContext } from 'graphql';
 
-const badInputHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
+export const badInputHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
   if (ctx) {
     throw new GraphQLError(error.message, {
       extensions: { code: 'BAD_USER_INPUT' },
@@ -9,7 +9,7 @@ const badInputHandler = (ctx: ValidationContext | null, error: GraphQLError) => 
   }
 };
 
-const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
+export const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
   if (ctx) {
     ctx.reportError(
       new GraphQLError(error.message, {
@@ -24,19 +24,20 @@ const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLErr
  * return a 400 error code, instead of 500 for the apollo server.
  *
  * Default `throw` handler will be used only if throw is explicitly set to true.
+ * If set to false, nothing will happen.
  */
 export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): T => {
   if (config === undefined) {
     config = {} as T & GraphQLArmorCallbackConfiguration;
   }
 
-  if (config.onReject == undefined) {
+  if (config.onReject === undefined) {
     config.onReject = [];
   }
 
-  if (config.throwRejection === undefined || config.throwRejection) {
+  if (config.throwOnRejection) {
     config.onReject.push(badInputHandler);
-  } else {
+  } else if (config.throwOnRejection === undefined) {
     config.onReject.push(badInputContextHandler);
   }
 

@@ -25,7 +25,7 @@ const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLErr
  *
  * Default `throw` handler will be used only if throw is explicitly set to true.
  */
-export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): Required<T> => {
+export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): T => {
   if (config === undefined) {
     config = {} as T & GraphQLArmorCallbackConfiguration;
   }

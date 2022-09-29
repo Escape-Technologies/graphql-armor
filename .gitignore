@@ -10,3 +10,6 @@ coverage
 
 .yarn/cache
 .idea
+
+.temp
+.cache

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "ES2018",
+        "lib": ["ES6"],
+        "sourceMap": true,
+        "strict": true,
+        "declaration": true,
+        "skipLibCheck": true
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src"],
+}

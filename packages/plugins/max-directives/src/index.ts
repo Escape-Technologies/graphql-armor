@@ -1,4 +1,5 @@
 import type { Plugin } from '@envelop/core';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -10,9 +11,14 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxDirectivesOptions = { n?: number };
-const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
+export type MaxDirectivesOptions = {
+  n?: number;
+} & GraphQLArmorCallbackConfiguration;
+export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
+  onAccept: [],
+  onReject: [],
+  throwOnRejection: true,
 };
 
 class MaxDirectivesVisitor {
@@ -20,16 +26,14 @@ class MaxDirectivesVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxDirectivesOptions>;
-  private readonly onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxDirectivesOptions) {
+  constructor(context: ValidationContext, options?: MaxDirectivesOptions) {
     this.context = context;
     this.config = Object.assign(
       {},
       maxDirectivesDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
-    this.onError = onError;
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -39,7 +43,19 @@ class MaxDirectivesVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const directives = this.countDirectives(operation);
     if (directives > this.config.n) {
-      this.onError(`Syntax Error: Directives limit of ${this.config.n} exceeded, found ${directives}.`);
+      const err = new GraphQLError(`Syntax Error: Directives limit of ${this.config.n} exceeded, found ${directives}.`);
+
+      for (const handler of this.config.onReject) {
+        handler(this.context, err);
+      }
+
+      if (this.config.throwOnRejection) {
+        throw err;
+      }
+    } else {
+      for (const handler of this.config.onAccept) {
+        handler(this.context, { n: directives });
+      }
     }
   }
 
@@ -64,20 +80,13 @@ class MaxDirectivesVisitor {
   }
 }
 
-const maxDirectivesRule =
-  (onError: (msg: string) => any, options?: MaxDirectivesOptions) => (context: ValidationContext) =>
-    new MaxDirectivesVisitor(context, onError, options);
+export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
+  new MaxDirectivesVisitor(context, options);
 
-const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
+export const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        maxDirectivesRule((msg: string) => {
-          throw new GraphQLError(msg);
-        }, options),
-      );
+      addValidationRule(maxDirectivesRule(options));
     },
   };
 };
-
-export { maxDirectivesRule, MaxDirectivesOptions, maxDirectivesPlugin };

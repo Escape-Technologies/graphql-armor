@@ -1,4 +1,5 @@
 import type { Plugin } from '@envelop/core';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -9,9 +10,12 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxAliasesOptions = { n?: number };
+type MaxAliasesOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
+  onAccept: [],
+  onReject: [],
+  throwOnRejection: true,
 };
 
 class MaxAliasesVisitor {
@@ -19,9 +23,8 @@ class MaxAliasesVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxAliasesOptions>;
-  private onError: (msg: string) => any;
 
-  constructor(context: ValidationContext, onError: (msg: string) => any, options?: MaxAliasesOptions) {
+  constructor(context: ValidationContext, options?: MaxAliasesOptions) {
     this.context = context;
     this.config = Object.assign(
       {},
@@ -29,7 +32,6 @@ class MaxAliasesVisitor {
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
 
-    this.onError = onError;
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
     };
@@ -38,7 +40,19 @@ class MaxAliasesVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const aliases = this.countAliases(operation);
     if (aliases > this.config.n) {
-      this.onError(`Syntax Error: Aliases limit of ${this.config.n} exceeded, found ${aliases}.`);
+      const err = new GraphQLError(`Syntax Error: Aliases limit of ${this.config.n} exceeded, found ${aliases}.`);
+
+      for (const handler of this.config.onReject) {
+        handler(this.context, err);
+      }
+
+      if (this.config.throwOnRejection) {
+        throw err;
+      }
+    } else {
+      for (const handler of this.config.onAccept) {
+        handler(this.context, { n: aliases });
+      }
     }
   }
 
@@ -63,17 +77,13 @@ class MaxAliasesVisitor {
   }
 }
 
-const maxAliasesRule = (onError: (msg: string) => any, options?: MaxAliasesOptions) => (context: ValidationContext) =>
-  new MaxAliasesVisitor(context, onError, options);
+const maxAliasesRule = (options?: MaxAliasesOptions) => (context: ValidationContext) =>
+  new MaxAliasesVisitor(context, options);
 
 const maxAliasesPlugin = (options?: MaxAliasesOptions): Plugin => {
   return {
     onValidate({ addValidationRule }: any) {
-      addValidationRule(
-        maxAliasesRule((msg: string) => {
-          throw new GraphQLError(msg);
-        }, options),
-      );
+      addValidationRule(maxAliasesRule(options));
     },
   };
 };

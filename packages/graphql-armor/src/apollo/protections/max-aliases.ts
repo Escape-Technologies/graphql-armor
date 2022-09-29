@@ -1,6 +1,6 @@
 import { maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
-import { GraphQLError } from 'graphql';
 
+import { badInputHandlerSelector } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxAliasesProtection extends ApolloProtection {
@@ -12,14 +12,10 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
+    this.config.maxAliases = badInputHandlerSelector<typeof this.config.maxAliases>(this.config.maxAliases);
+
     return {
-      validationRules: [
-        maxAliasesRule((message: string) => {
-          throw new GraphQLError(message, {
-            extensions: { code: 'BAD_USER_INPUT' },
-          });
-        }, this.config.maxAliases),
-      ],
+      validationRules: [maxAliasesRule(this.config.maxAliases)],
     };
   }
 }

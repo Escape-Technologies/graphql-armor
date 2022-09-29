@@ -3,15 +3,14 @@ import { GraphQLRequestContext } from 'apollo-server-types';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
-const plugin = ({ n }: MaxTokensOptions) => {
-  const _n = n ?? maxTokenDefaultOptions.n;
+const plugin = (options: MaxTokensOptions) => {
   return {
     async requestDidStart() {
       return {
         async parsingDidStart(requestContext: GraphQLRequestContext) {
           const source = requestContext.source;
           if (source !== undefined) {
-            const parser = new MaxTokensParserWLexer(source, { n: _n });
+            const parser = new MaxTokensParserWLexer(source, options);
             parser.parseDocument();
           }
         },

@@ -1,6 +1,6 @@
 import { maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
-import { GraphQLError } from 'graphql';
 
+import { badInputHandlerSelector } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxDirectivesProtection extends ApolloProtection {
@@ -12,14 +12,10 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
+    this.config.maxDirectives = badInputHandlerSelector<typeof this.config.maxDirectives>(this.config.maxDirectives);
+
     return {
-      validationRules: [
-        maxDirectivesRule((message: string) => {
-          throw new GraphQLError(message, {
-            extensions: { code: 'BAD_USER_INPUT' },
-          });
-        }, this.config.maxDirectives),
-      ],
+      validationRules: [maxDirectivesRule(this.config.maxDirectives)],
     };
   }
 }

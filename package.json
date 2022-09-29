@@ -57,6 +57,7 @@
     "preconstruct": {
         "packages": [
             "packages/graphql-armor",
+            "packages/types",
             "packages/plugins/*"
         ],
         "distFilenameStrategy": "unscoped-package-name"

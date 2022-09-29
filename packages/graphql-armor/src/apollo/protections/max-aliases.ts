@@ -12,7 +12,7 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.maxAliases = badInputHandlerSelector(this.config.maxAliases);
+    this.config.maxAliases = badInputHandlerSelector<typeof this.config.maxAliases>(this.config.maxAliases);
 
     return {
       validationRules: [maxAliasesRule(this.config.maxAliases)],

@@ -12,7 +12,7 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.maxDepth = badInputHandlerSelector(this.config.maxDepth);
+    this.config.maxDepth = badInputHandlerSelector<typeof this.config.maxDepth>(this.config.maxDepth);
 
     return {
       validationRules: [maxDepthRule(this.config.maxDepth)],

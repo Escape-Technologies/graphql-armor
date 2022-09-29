@@ -12,7 +12,7 @@ export class ApolloCostLimitProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.costLimit = badInputHandlerSelector(this.config.costLimit);
+    this.config.costLimit = badInputHandlerSelector<typeof this.config.costLimit>(this.config.costLimit);
 
     return {
       validationRules: [costLimitRule(this.config.costLimit)],

@@ -12,7 +12,7 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.maxDirectives = badInputHandlerSelector(this.config.maxDirectives);
+    this.config.maxDirectives = badInputHandlerSelector<typeof this.config.maxDirectives>(this.config.maxDirectives);
 
     return {
       validationRules: [maxDirectivesRule(this.config.maxDirectives)],

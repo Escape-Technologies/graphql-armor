@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Dead-simple, yet highly customizable security middleware for Apollo GraphQL servers shield",
   "keywords": [
     "apollo",
@@ -36,7 +36,7 @@
     "@escape.tech/graphql-armor-max-aliases": "^1.4.0",
     "@escape.tech/graphql-armor-max-depth": "^1.6.0",
     "@escape.tech/graphql-armor-max-directives": "^1.4.0",
-    "@escape.tech/graphql-armor-max-tokens": "^1.1.0",
+    "@escape.tech/graphql-armor-max-tokens": "^1.1.1",
     "graphql": "^16.0.0"
   },
   "optionalDependencies": {

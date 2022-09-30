@@ -265,7 +265,7 @@ Configuration
     ignoreIntrospection: true, // by default, introspection queries are ignored.
     onAccept: [], // Callbacks that are ran whenever a Query is accepted
     onReject: [], // Callbacks that are ran whenever a Query is rejected
-    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
+    throwOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -301,7 +301,7 @@ Limit the number of aliases in a document.
     n: 15,
     onAccept: [], // Callbacks that are ran whenever a Query is accepted
     onReject: [], // Callbacks that are ran whenever a Query is rejected
-    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
+    throwOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -319,7 +319,7 @@ Limit the number of directives in a document.
     n: 50,
     onAccept: [], // Callbacks that are ran whenever a Query is accepted
     onReject: [], // Callbacks that are ran whenever a Query is rejected
-    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
+    throwOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -337,7 +337,7 @@ Limit the depth of a document.
     n: 6,
     onAccept: [], // Callbacks that are ran whenever a Query is accepted
     onReject: [], // Callbacks that are ran whenever a Query is rejected
-    throwRejection: true, // When rejected, do you want to throw the error or report to the context?
+    throwOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -355,7 +355,7 @@ Limit the number of GraphQL tokens in a document.
     n: 1000,
     onAccept: [], // Callbacks that are ran whenever a Query is accepted
     onReject: [], // Callbacks that are ran whenever a Query is rejected
-    throwRejection: true, // When rejected, do you want to throw the error or do nothing?
+    throwOnRejection: true, // When rejected, do you want to throw the error or do nothing?
   }
 }
 ```

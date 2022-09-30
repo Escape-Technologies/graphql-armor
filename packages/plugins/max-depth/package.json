@@ -27,7 +27,8 @@
     "graphql": "^16.0.0"
   },
   "optionalDependencies": {
-    "@envelop/core": "^2.4.0"
+    "@envelop/core": "^2.4.0",
+    "@escape.tech/graphql-armor-types": "0.1.0"
   },
   "devDependencies": {
     "@envelop/core": "2.6.0",

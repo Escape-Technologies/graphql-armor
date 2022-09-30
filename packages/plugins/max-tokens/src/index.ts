@@ -1,5 +1,5 @@
 import { Plugin } from '@envelop/types';
-import { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { Source, TokenKind } from 'graphql';
 import { syntaxError } from 'graphql/error';
 import { ParseOptions, Parser } from 'graphql/language/parser';

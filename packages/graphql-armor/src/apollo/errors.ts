@@ -1,4 +1,4 @@
-import { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError, ValidationContext } from 'graphql';
 
 export const badInputHandler = (ctx: ValidationContext | null, error: GraphQLError) => {

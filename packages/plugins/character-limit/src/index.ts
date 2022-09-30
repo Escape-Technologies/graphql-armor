@@ -1,5 +1,5 @@
 import type { Plugin } from '@envelop/core';
-import { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError } from 'graphql';
 
 export type CharacterLimitOptions = { maxLength?: number } & GraphQLArmorCallbackConfiguration;

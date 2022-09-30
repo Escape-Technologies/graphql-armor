@@ -3390,9 +3390,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/apollo@npm:10.1.0":
-  version: 10.1.0
-  resolution: "@nestjs/apollo@npm:10.1.0"
+"@nestjs/apollo@npm:10.1.3":
+  version: 10.1.3
+  resolution: "@nestjs/apollo@npm:10.1.3"
   dependencies:
     iterall: 1.3.0
     lodash.omit: 4.5.0
@@ -3415,7 +3415,7 @@ __metadata:
       optional: true
     apollo-server-fastify:
       optional: true
-  checksum: 5a225f2dbc09687e2479beaa9ef08838e479d52bf7871820182916d7adbdf5b05e123c6ac17d3f398ec849bca26750f7e7feb59f7715ddab7389b7cfed797432
+  checksum: 71cc9a418a1ecf394cac4284f59979a6f358faf136f05af378f00dca4670fc8815d654e8328c7b6f169cac2494b2081d4e7e42c0cb7335b0007daa627ea1b44e
   languageName: node
   linkType: hard
 
@@ -3504,14 +3504,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/graphql@npm:10.1.2":
-  version: 10.1.2
-  resolution: "@nestjs/graphql@npm:10.1.2"
+"@nestjs/graphql@npm:10.1.3":
+  version: 10.1.3
+  resolution: "@nestjs/graphql@npm:10.1.3"
   dependencies:
     "@graphql-tools/merge": 8.3.6
     "@graphql-tools/schema": 9.0.4
     "@graphql-tools/utils": 8.12.0
-    "@nestjs/mapped-types": 1.1.0
+    "@nestjs/mapped-types": 1.2.0
     chokidar: 3.5.3
     fast-glob: 3.2.12
     graphql-tag: 2.12.6
@@ -3521,7 +3521,7 @@ __metadata:
     subscriptions-transport-ws: 0.11.0
     tslib: 2.4.0
     uuid: 9.0.0
-    ws: 8.8.1
+    ws: 8.9.0
   peerDependencies:
     "@apollo/subgraph": ^0.1.5 || ^0.3.0 || ^0.4.0 || ^2.0.0
     "@nestjs/common": ^8.2.3 || ^9.0.0
@@ -3534,13 +3534,13 @@ __metadata:
       optional: true
     ts-morph:
       optional: true
-  checksum: 6ac41bbb2653741f204ce38403e811e58c7638b26d6b8a57461f0809dca65dc81311bca0295e2d38ae0c447d5849d6bfdc24a954b8b400d147ad95c8901ceb3b
+  checksum: 5aef7bf85a201587b35349d1bf83b4b145e2673ae8cd95d338513c1b4f50d5122e2e1e1ea061900899a20048eca0187d4bd14a1a34d1066ec84e79a617ffd380
   languageName: node
   linkType: hard
 
-"@nestjs/mapped-types@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@nestjs/mapped-types@npm:1.1.0"
+"@nestjs/mapped-types@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@nestjs/mapped-types@npm:1.2.0"
   peerDependencies:
     "@nestjs/common": ^7.0.8 || ^8.0.0 || ^9.0.0
     class-transformer: ^0.2.0 || ^0.3.0 || ^0.4.0 || ^0.5.0
@@ -3551,7 +3551,7 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 22deac62c44a4c8a491aa2d9e94385092ef4644d6299ddf9b545b87858d4be861479c6e19de860550489f38699bf7cdc28fdedc9b09f5770ea35d347f9743c28
+  checksum: cc625310873c5caf69521bc03c75a6780467f662fd4c8b2402f6e65228268eec1244c131dbf65c81c985680feacee50dae7d3c1f2b7bced7bad79922389aa38f
   languageName: node
   linkType: hard
 
@@ -6718,11 +6718,11 @@ __metadata:
   dependencies:
     "@apollo/gateway": 2.1.3
     "@escape.tech/graphql-armor": "*"
-    "@nestjs/apollo": 10.1.0
+    "@nestjs/apollo": 10.1.3
     "@nestjs/cli": 9.1.4
     "@nestjs/common": 9.1.2
     "@nestjs/core": 9.1.2
-    "@nestjs/graphql": 10.1.2
+    "@nestjs/graphql": 10.1.3
     "@nestjs/platform-express": 9.1.2
     "@nestjs/testing": 9.1.2
     "@types/express": 4.17.14
@@ -12270,9 +12270,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.8.1":
-  version: 8.8.1
-  resolution: "ws@npm:8.8.1"
+"ws@npm:8.9.0":
+  version: 8.9.0
+  resolution: "ws@npm:8.9.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -12281,7 +12281,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 2152cf862cae0693f3775bc688a6afb2e989d19d626d215e70f5fcd8eb55b1c3b0d3a6a4052905ec320e2d7734e20aeedbf9744496d62f15a26ad79cf4cf7dae
+  checksum: 23aa0f021b2eb65c108ec4c3e08c0d81ba01f82b500432dfe327fd6be36079c1d81fdb0eac6464d2a0eb49904d34a9ab8c59619d673fa07b8346f83aeb0cbf12
   languageName: node
   linkType: hard
 

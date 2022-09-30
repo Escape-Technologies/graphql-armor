@@ -1,5 +1,14 @@
 # @escape.tech/graphql-armor
 
+## 1.3.1
+
+### Patch Changes
+
+- 542b49d: fix:
+  Incorrect @escape.tech/graphql-armor-types dependency
+- Updated dependencies [542b49d]
+  - @escape.tech/graphql-armor-max-tokens@1.1.1
+
 ## 1.3.0
 
 ### Minor Changes

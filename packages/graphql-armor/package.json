@@ -9,7 +9,7 @@
     "security",
     "middleware"
   ],
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@3.2.4",
   "main": "dist/graphql-armor.cjs.js",
   "module": "dist/graphql-armor.esm.js",
   "files": [

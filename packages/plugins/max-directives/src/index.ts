@@ -18,7 +18,7 @@ export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 class MaxDirectivesVisitor {
@@ -49,7 +49,7 @@ class MaxDirectivesVisitor {
         handler(this.context, err);
       }
 
-      if (this.config.throwOnRejection) {
+      if (this.config.propagateOnRejection) {
         throw err;
       }
     } else {

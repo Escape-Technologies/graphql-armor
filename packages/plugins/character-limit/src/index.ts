@@ -7,7 +7,7 @@ export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   maxLength: 15000,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin => {
@@ -31,7 +31,7 @@ export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin =>
             handler(null, err);
           }
 
-          if (config.throwOnRejection) {
+          if (config.propagateOnRejection) {
             throw err;
           }
         } else {

@@ -15,7 +15,7 @@ const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 class MaxAliasesVisitor {
@@ -46,7 +46,7 @@ class MaxAliasesVisitor {
         handler(this.context, err);
       }
 
-      if (this.config.throwOnRejection) {
+      if (this.config.propagateOnRejection) {
         throw err;
       }
     } else {

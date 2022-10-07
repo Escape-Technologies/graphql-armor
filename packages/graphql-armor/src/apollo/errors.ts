@@ -1,14 +1,6 @@
 import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError, ValidationContext } from 'graphql';
 
-export const badInputHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
-  if (ctx) {
-    throw new GraphQLError(error.message, {
-      extensions: { code: 'BAD_USER_INPUT' },
-    });
-  }
-};
-
 export const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
   if (ctx) {
     ctx.reportError(
@@ -35,11 +27,8 @@ export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfigurat
     config.onReject = [];
   }
 
-  if (config.throwOnRejection === undefined) {
+  if (config.propagateOnRejection === true) {
     config.onReject.push(badInputContextHandler);
-    config.throwOnRejection = false;
-  } else if (config.throwOnRejection === true) {
-    config.onReject.push(badInputHandler);
   }
 
   return config;

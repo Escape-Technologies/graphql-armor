@@ -17,7 +17,7 @@ const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   ignoreIntrospection: true,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 class MaxDepthVisitor {
@@ -48,7 +48,7 @@ class MaxDepthVisitor {
         handler(this.context, err);
       }
 
-      if (this.config.throwOnRejection) {
+      if (this.config.propagateOnRejection) {
         throw err;
       }
     } else {

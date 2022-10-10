@@ -1,6 +1,6 @@
 import { maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
 
-import { badInputHandlerSelector } from '../errors';
+import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxDepthProtection extends ApolloProtection {
@@ -12,7 +12,7 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.maxDepth = badInputHandlerSelector<typeof this.config.maxDepth>(this.config.maxDepth);
+    this.config.maxDepth = inferApolloPropagator<typeof this.config.maxDepth>(this.config.maxDepth);
 
     return {
       validationRules: [maxDepthRule(this.config.maxDepth)],

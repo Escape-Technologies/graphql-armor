@@ -1,5 +1,26 @@
 # @escape.tech/graphql-armor
 
+## 1.4.0
+
+### Minor Changes
+
+- 3b204b6: refactor(apollo): throwOnRejection #220
+
+  - throwOnRejection became propagateOnRejection.
+
+  - Apollo will now **report to context** by default.
+    Errors might be very verbose but this is the best way to handle it until Apollo Server 4 is released.
+    If you want to still throw errors, you can use the onReject callback, however, you will need to handle the HTTP 500 afterwards yourself.
+
+### Patch Changes
+
+- Updated dependencies [3b204b6]
+  - @escape.tech/graphql-armor-cost-limit@1.5.0
+  - @escape.tech/graphql-armor-max-aliases@1.5.0
+  - @escape.tech/graphql-armor-max-depth@1.7.0
+  - @escape.tech/graphql-armor-max-directives@1.5.0
+  - @escape.tech/graphql-armor-max-tokens@1.2.0
+
 ## 1.3.1
 
 ### Patch Changes

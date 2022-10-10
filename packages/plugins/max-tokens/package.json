@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-max-tokens",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Limit the number of tokens allowed in a GraphQL document.",
   "packageManager": "yarn@3.2.4",
   "main": "dist/graphql-armor-max-tokens.cjs.js",
@@ -28,13 +28,13 @@
   },
   "optionalDependencies": {
     "@envelop/core": "^2.4.0",
-    "@escape.tech/graphql-armor-types": "0.1.0"
+    "@escape.tech/graphql-armor-types": "0.2.0"
   },
   "devDependencies": {
     "@envelop/core": "2.6.0",
     "@envelop/testing": "4.6.0",
     "@envelop/types": "2.4.0",
-    "@escape.tech/graphql-armor-types": "0.1.0",
+    "@escape.tech/graphql-armor-types": "0.2.0",
     "graphql": "16.6.0",
     "typescript": "4.8.4"
   }

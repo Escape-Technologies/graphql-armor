@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for yoga.",
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@3.2.4",
   "main": "./src/main.ts",
   "scripts": {
     "build": "tsc",

@@ -1,7 +1,7 @@
 import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError, ValidationContext } from 'graphql';
 
-export const badInputContextHandler = (ctx: ValidationContext | null, error: GraphQLError) => {
+export const reportToContext = (ctx: ValidationContext | null, error: GraphQLError) => {
   if (ctx) {
     ctx.reportError(
       new GraphQLError(error.message, {
@@ -18,7 +18,7 @@ export const badInputContextHandler = (ctx: ValidationContext | null, error: Gra
  * Default `rejection` handler will be used only if throw is explicitly set to true.
  * If set to false, nothing will happen.
  */
-export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): T => {
+export const inferApolloPropagator = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): T => {
   if (config === undefined) {
     config = {} as T & GraphQLArmorCallbackConfiguration;
   }
@@ -29,7 +29,7 @@ export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfigurat
 
   if (config.propagateOnRejection === true || config.propagateOnRejection === undefined) {
     config.propagateOnRejection = false;
-    config.onReject.push(badInputContextHandler);
+    config.onReject.push(reportToContext);
   }
 
   return config;

@@ -1,6 +1,6 @@
 import { costLimitRule } from '@escape.tech/graphql-armor-cost-limit';
 
-import { badInputHandlerSelector } from '../errors';
+import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloCostLimitProtection extends ApolloProtection {
@@ -12,7 +12,7 @@ export class ApolloCostLimitProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.costLimit = badInputHandlerSelector<typeof this.config.costLimit>(this.config.costLimit);
+    this.config.costLimit = inferApolloPropagator<typeof this.config.costLimit>(this.config.costLimit);
 
     return {
       validationRules: [costLimitRule(this.config.costLimit)],

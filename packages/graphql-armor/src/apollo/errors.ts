@@ -16,7 +16,7 @@ export const badInputContextHandler = (ctx: ValidationContext | null, error: Gra
  * return a 400 error code, instead of 500 for the apollo server.
  *
  * Default `rejection` handler will be used only if throw is explicitly set to true.
- * If set to false, nothing will happens.
+ * If set to false, nothing will happen.
  */
 export const badInputHandlerSelector = <T extends GraphQLArmorCallbackConfiguration | undefined>(config: T): T => {
   if (config === undefined) {

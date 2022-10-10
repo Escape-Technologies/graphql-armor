@@ -13,7 +13,7 @@ export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
   n: 1000,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 export class MaxTokensParserWLexer extends Parser {
@@ -54,7 +54,7 @@ export class MaxTokensParserWLexer extends Parser {
                 handler(null, err);
               }
 
-              if (this.config.throwOnRejection) {
+              if (this.config.propagateOnRejection) {
                 throw err;
               }
             }

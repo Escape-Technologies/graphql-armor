@@ -26,7 +26,7 @@ const costLimitDefaultOptions: Required<CostLimitOptions> = {
   ignoreIntrospection: true,
   onAccept: [],
   onReject: [],
-  throwOnRejection: true,
+  propagateOnRejection: true,
 };
 
 class CostLimitVisitor {
@@ -59,7 +59,7 @@ class CostLimitVisitor {
         handler(this.context, err);
       }
 
-      if (this.config.throwOnRejection) {
+      if (this.config.propagateOnRejection) {
         throw err;
       }
     } else {

@@ -1,6 +1,6 @@
 import { maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
 
-import { badInputHandlerSelector } from '../errors';
+import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 export class ApolloMaxDirectivesProtection extends ApolloProtection {
@@ -12,7 +12,7 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
   }
 
   protect(): ApolloServerConfigurationEnhancement {
-    this.config.maxDirectives = badInputHandlerSelector<typeof this.config.maxDirectives>(this.config.maxDirectives);
+    this.config.maxDirectives = inferApolloPropagator<typeof this.config.maxDirectives>(this.config.maxDirectives);
 
     return {
       validationRules: [maxDirectivesRule(this.config.maxDirectives)],

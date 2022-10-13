@@ -230,16 +230,7 @@ It enforces a character limit on your GraphQL queries.
 
 The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
-Configuration
-
-```typescript
-{
-  characterLimit: {
-    // enabled: false,
-    maxLength: 15000,
-  }
-}
-```
+For configuration details, refer to this [README](https://github.com/Escape-Technologies/graphql-armor/tree/main/packages/plugins/character-limit).
 
 ### Cost Limit
 

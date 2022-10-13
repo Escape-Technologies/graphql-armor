@@ -161,9 +161,6 @@ import { ApolloArmor } from '@escape.tech/graphql-armor';
 const armor = new ApolloArmor({
     costLimit: {
         maxCost: 1000,
-    },
-    characterLimit: {
-        maxLength: 15000,
     }
   }
 });

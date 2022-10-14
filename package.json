@@ -50,7 +50,7 @@
         "packages/plugins/*"
     ],
     "volta": {
-        "node": "16.17.1",
+        "node": "16.18.0",
         "yarn": "1.22.19"
     },
     "packageManager": "yarn@3.2.4",

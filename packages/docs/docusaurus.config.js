@@ -65,7 +65,7 @@ const config = {
             type: 'doc',
             docId: 'getting-started',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Getting started',
           },
           {
             href: 'https://github.com/Escape-Technologies/graphql-armor',
@@ -81,8 +81,20 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Getting Started',
                 to: '/docs/getting-started',
+              },
+              {
+                label: 'Supported Engines',
+                to: '/docs/supported-engines',
+              },
+              {
+                label: 'Configuration',
+                to: '/docs/category/configuration',
+              },
+              {
+                label: 'Plugins',
+                to: '/docs/category/plugins',
               },
             ],
           },

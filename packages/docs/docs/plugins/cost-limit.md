@@ -1,10 +1,51 @@
 # Cost limit
 
-Limit the complexity of a GraphQL document.
+**Limit** the **complexity** of a GraphQL document.
 
-## About the remediation
+- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
+- [Standalone usage](#standalone-usage)
+  - [Installation](#installation)
+  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
 
-## Installation
+## Configuring for GraphQL Armor
+
+```ts
+GraphQLArmor({
+  maxAliases: {
+    // Toogle the plugin | default: true
+    enabled?: boolean,
+    
+    // Cost allowed | default: 5000
+    maxCost?: int,
+
+    // Static cost of an object | default: 2
+    objectCost?: int,
+
+    // Static cost of a field | default: 1
+    scalarCost?: int,
+
+    // Factorial applied to nested operator | default: 1.5
+    depthCostFactor?: int,
+
+    // Ignore the cost of introspection queries | default: true
+    ignoreIntrospection?: boolean,
+
+    // Callbacks that are ran whenever a Query is accepted
+    onAccept?: GraphQLArmorAcceptCallback[],
+
+    // Callbacks that are ran whenever a Query is rejected
+    onReject?: GraphQLArmorRejectCallback[],
+
+    // Do you want to propagate the rejection to the client? | default: true
+    propagateOnRejection?: boolean,
+  }
+})
+```
+
+## Standalone usage
+
+### Installation
 
 :::note
 If you want to use the `costLimit` plugin out of GraphQL Armor, you can install it from npm:
@@ -17,8 +58,6 @@ npm install @escape.tech/graphql-armor-cost-limit
 # yarn
 yarn add @escape.tech/graphql-armor-cost-limit
 ```
-
-## Usage
 
 ### With `@graphql/graphql-js`
 
@@ -45,7 +84,3 @@ const getEnveloped = envelop({
   ]
 });
 ```
-
-## Additional configuration
-
-> Refer to the [shared plugin configuration](../category/configuration/shared-plugin) page to view the accessible parameters exposed by GraphQL Armor core.

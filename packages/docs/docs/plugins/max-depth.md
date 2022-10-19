@@ -1,10 +1,44 @@
 # Max Depth
 
-Limit the depth of a GraphQL document.
+**Limit** the **depth** of a GraphQL document.
 
-## About the remediation
+It is used to prevent too large queries that could lead to overfetching or **DOS attack**.
 
-## Installation
+- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
+- [Standalone usage](#standalone-usage)
+  - [Installation](#installation)
+  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+
+## Configuring for GraphQL Armor
+
+```ts
+GraphQLArmor({
+  maxDepth: {
+    // Toogle the plugin | default: true
+    enabled?: boolean,
+    
+    // Directives threshold | default: 6
+    n?: int,
+
+    // Ignore the depth of introspection queries | default: true
+    ignoreIntrospection?: boolean,
+
+    // Callbacks that are ran whenever a Query is accepted
+    onAccept?: GraphQLArmorAcceptCallback[],
+
+    // Callbacks that are ran whenever a Query is rejected
+    onReject?: GraphQLArmorRejectCallback[],
+
+    // Do you want to propagate the rejection to the client? | default: true
+    propagateOnRejection?: boolean,
+  }
+})
+```
+
+## Standalone usage
+
+### Installation
 
 :::note
 If you want to use the `maxDepth` plugin out of GraphQL Armor, you can install it from npm:
@@ -17,8 +51,6 @@ npm install @escape.tech/graphql-armor-max-depth
 # yarn
 yarn add @escape.tech/graphql-armor-max-depth
 ```
-
-## Usage
 
 ### With `@graphql/graphql-js`
 
@@ -36,12 +68,8 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     maxDepthPlugin({
-        n: 6, // Number of depth allowed | Default: 6
+        n: 6,
     }),
   ]
 });
 ```
-
-## Additional configuration
-
-> Refer to the [shared plugin configuration](../category/configuration/shared-plugin) page to view the accessible parameters exposed by GraphQL Armor core.

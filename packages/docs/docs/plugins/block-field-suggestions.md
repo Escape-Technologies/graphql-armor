@@ -1,16 +1,34 @@
 # Block field suggestions
 
-Prevent returning field suggestions and leaking your schema to unauthorized actors.
+Prevent **returning field suggestions** and **leaking your schema** to unauthorized actors.
 
-## About the remediation
+In production, this can lead to Schema leak even if the introspection is disabled.
 
-This plugin will disable the suggestions thrown by a GraphQL query.
 
-GraphQL suggestions are messages (`.. Did you mean ...`) that help you adjusting your query, correcting the typos and so on.
+- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
+- [Standalone usage](#standalone-usage)
+  - [Installation](#installation)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+    - [Using the default mask](#using-the-default-mask)
+    - [Using custom mask](#using-custom-mask)
 
-In production, this can lead to a Schema leak even if the introspection is disabled.
+## Configuring for GraphQL Armor
 
-## Installation
+```ts
+GraphQLArmor({
+  blockFieldSuggestions: {
+    // Toogle the plugin | default: true
+    enabled?: boolean,
+    
+    // Mask applied to the error message | default: '[Suggestion hidden]'
+    mask?: string,
+  }
+})
+```
+
+## Standalone usage
+
+### Installation
 
 :::note
 If you want to use the `blockFieldSuggestions` plugin out of GraphQL Armor, you can install it from npm:
@@ -23,8 +41,6 @@ npm install @escape.tech/graphql-armor-block-field-suggestions
 # yarn
 yarn add @escape.tech/graphql-armor-block-field-suggestions
 ```
-
-## Usage
 
 ### With `@envelop/core` from `@the-guild-org`
 
@@ -42,7 +58,7 @@ const getEnveloped = envelop({
 });
 ```
 
-#### Using custom mask for the error
+#### Using custom mask
 
 ```ts
 import { envelop } from '@envelop/core';

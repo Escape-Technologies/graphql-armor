@@ -1,16 +1,17 @@
 # Character Limit
 
-Limit number of characters in a GraphQL document.
+**Limit** number of **characters** in a GraphQL document.
+
+This help preventing **DoS attacks** by limiting the size of the document.
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Design decisions](#design-decisions)
 
 :::caution Out of core
 This plugin is not part of the core package, you need to install it separately.
 :::
-
-## About the remediation
-
-This plugin will limit the number of characters in a GraphQL document.
-
-This help preventing DoS attacks by limiting the size of the document.
 
 ## Installation
 
@@ -39,10 +40,6 @@ const getEnveloped = envelop({
   ]
 });
 ```
-
-## Additional configuration
-
-> Refer to the [shared plugin configuration](../category/configuration/shared-plugin) page to view the accessible parameters exposed by GraphQL Armor core.
 
 ## Design decisions
 

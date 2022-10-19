@@ -9,7 +9,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "example-*",
-    "services/**"
+    "docs"
   ],
   "labels": ["dependencies"],
   "assignees": ["c3b5aw"]

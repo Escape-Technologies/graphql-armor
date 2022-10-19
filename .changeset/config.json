@@ -9,7 +9,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "example-*",
-    "@escape.tech/graphql-armor-docs"
+    "services/**"
   ],
   "labels": ["dependencies"],
   "assignees": ["c3b5aw"]

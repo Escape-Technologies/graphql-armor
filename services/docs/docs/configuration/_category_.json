@@ -1,0 +1,8 @@
+{
+  "label": "Configuration",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "In depth documentation on how to configure GraphQL Armor"
+  }
+}

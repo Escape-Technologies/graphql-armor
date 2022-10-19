@@ -6,3 +6,5 @@
 build
 coverage
 dist
+
+services/docs/.docusaurus

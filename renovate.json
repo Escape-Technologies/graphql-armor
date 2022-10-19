@@ -17,6 +17,12 @@
       ]
     },
     {
+      "groupName": "docs",
+      "matchPaths": [
+        "services/docs/**"
+      ]
+    },
+    {
       "matchPaths": [
         "packages/**"
       ],

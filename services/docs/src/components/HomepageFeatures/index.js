@@ -6,17 +6,17 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Large support',
-    Svg: require('@site/static/img/logo.svg').default,
+    Svg: require('@site/static/img/transparent.svg').default,
     description: <>GraphQL Armor is built on top of GraphQL JS and supports most of nodeJS engines.</>,
   },
   {
     title: 'Easy to Install',
-    Svg: require('@site/static/img/logo.svg').default,
+    Svg: require('@site/static/img/transparent.svg').default,
     description: <>You can add GraphQL Armor to an existing GraphQL server in just a few lines of code.</>,
   },
   {
     title: 'Fully configurable',
-    Svg: require('@site/static/img/logo.svg').default,
+    Svg: require('@site/static/img/transparent.svg').default,
     description: <>We provide a fully configurable callbacks API to fit your needs.</>,
   },
 ];

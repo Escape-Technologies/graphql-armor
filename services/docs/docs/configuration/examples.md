@@ -1,5 +1,7 @@
 # Examples
 
+Straightforward examples of how to configure GraphQL Armor.
+
 - [Make GraphQL Armor inoffensive](#make-graphql-armor-inoffensive)
 - [Observe rejected requests](#observe-rejected-requests)
 
@@ -13,23 +15,21 @@ Here is an example to set **every plugin** to be **inoffensive**:
 
 ```ts
 GraphQLArmor({
-  blockFieldSuggestions: {
-    costLimit: {
-        propagateOnRejection: false,
-    },
-    maxAliases: {
-        propagateOnRejection: false,
-    },
-    maxDepth: {
-        propagateOnRejection: false,
-    },
-    maxDirectives: {
-        propagateOnRejection: false,
-    },
-    maxTokens: {
-        propagateOnRejection: false,
-    }
-}
+  costLimit: {
+    propagateOnRejection: false,
+  },
+  maxAliases: {
+    propagateOnRejection: false,
+  },
+  maxDepth: {
+    propagateOnRejection: false,
+  },
+  maxDirectives: {
+    propagateOnRejection: false,
+  },
+  maxTokens: {
+    propagateOnRejection: false,
+  }
 })
 ```
 
@@ -55,22 +55,20 @@ const logRejection = (ctx: ValidationContext | null, error: GraphQLError) => {
 }
 
 GraphQLArmor({
-  blockFieldSuggestions: {
-    costLimit: {
-        onReject: [logRejection]
-    },
-    maxAliases: {
-        onReject: [logRejection]
-    },
-    maxDepth: {
-        onReject: [logRejection]
-    },
-    maxDirectives: {
-        onReject: [logRejection]
-    },
-    maxTokens: {
-        onReject: [logRejection]
-    }
-}
+  costLimit: {
+    onReject: [logRejection]
+  },
+  maxAliases: {
+    onReject: [logRejection]
+  },
+  maxDepth: {
+    onReject: [logRejection]
+  },
+  maxDirectives: {
+    onReject: [logRejection]
+  },
+  maxTokens: {
+    onReject: [logRejection]
+  }
 })
 ```

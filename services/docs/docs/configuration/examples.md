@@ -1,6 +1,7 @@
 # Examples
 
-- [Make G]
+- [Make GraphQL Armor inoffensive](#make-graphql-armor-inoffensive)
+- [Observe rejected requests](#observe-rejected-requests)
 
 ## Make GraphQL Armor inoffensive
 

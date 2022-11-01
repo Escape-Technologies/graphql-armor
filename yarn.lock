@@ -2562,24 +2562,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/apply-release-plan@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "@changesets/apply-release-plan@npm:6.1.1"
+"@changesets/apply-release-plan@npm:^6.1.2":
+  version: 6.1.2
+  resolution: "@changesets/apply-release-plan@npm:6.1.2"
   dependencies:
-    "@babel/runtime": "npm:^7.10.4"
-    "@changesets/config": "npm:^2.2.0"
-    "@changesets/get-version-range-type": "npm:^0.3.2"
-    "@changesets/git": "npm:^1.5.0"
-    "@changesets/types": "npm:^5.2.0"
-    "@manypkg/get-packages": "npm:^1.1.3"
-    detect-indent: "npm:^6.0.0"
-    fs-extra: "npm:^7.0.1"
-    lodash.startcase: "npm:^4.4.0"
-    outdent: "npm:^0.5.0"
-    prettier: "npm:^2.7.1"
-    resolve-from: "npm:^5.0.0"
-    semver: "npm:^5.4.1"
-  checksum: 34da2d52eced00bc5f51c8e8ce16c0e487743219f057da2b3e6c6597bb2d50498f3996c779e4fc29b19d357c9b700d82310d723395ba09350b9a139c9e0e0d23
+    "@babel/runtime": ^7.10.4
+    "@changesets/config": ^2.2.0
+    "@changesets/get-version-range-type": ^0.3.2
+    "@changesets/git": ^1.5.0
+    "@changesets/types": ^5.2.0
+    "@manypkg/get-packages": ^1.1.3
+    detect-indent: ^6.0.0
+    fs-extra: ^7.0.1
+    lodash.startcase: ^4.4.0
+    outdent: ^0.5.0
+    prettier: ^2.7.1
+    resolve-from: ^5.0.0
+    semver: ^5.4.1
+  checksum: efe2cdc493cb2182140b73ff76e34ee7c90887bfa2f42b4ec07db0107ec94b9c0e95519912dafcf9eb530ad2414487fbd61ca6e6d5f853fe383db93856d0d362
   languageName: node
   linkType: hard
 
@@ -2606,46 +2606,46 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/cli@npm:2.25.0":
-  version: 2.25.0
-  resolution: "@changesets/cli@npm:2.25.0"
+"@changesets/cli@npm:2.25.2":
+  version: 2.25.2
+  resolution: "@changesets/cli@npm:2.25.2"
   dependencies:
-    "@babel/runtime": "npm:^7.10.4"
-    "@changesets/apply-release-plan": "npm:^6.1.1"
-    "@changesets/assemble-release-plan": "npm:^5.2.2"
-    "@changesets/changelog-git": "npm:^0.1.13"
-    "@changesets/config": "npm:^2.2.0"
-    "@changesets/errors": "npm:^0.1.4"
-    "@changesets/get-dependents-graph": "npm:^1.3.4"
-    "@changesets/get-release-plan": "npm:^3.0.15"
-    "@changesets/git": "npm:^1.5.0"
-    "@changesets/logger": "npm:^0.0.5"
-    "@changesets/pre": "npm:^1.0.13"
-    "@changesets/read": "npm:^0.5.8"
-    "@changesets/types": "npm:^5.2.0"
-    "@changesets/write": "npm:^0.2.1"
-    "@manypkg/get-packages": "npm:^1.1.3"
-    "@types/is-ci": "npm:^3.0.0"
-    "@types/semver": "npm:^6.0.0"
-    ansi-colors: "npm:^4.1.3"
-    chalk: "npm:^2.1.0"
-    enquirer: "npm:^2.3.0"
-    external-editor: "npm:^3.1.0"
-    fs-extra: "npm:^7.0.1"
-    human-id: "npm:^1.0.2"
-    is-ci: "npm:^3.0.1"
-    meow: "npm:^6.0.0"
-    outdent: "npm:^0.5.0"
-    p-limit: "npm:^2.2.0"
-    preferred-pm: "npm:^3.0.0"
-    resolve-from: "npm:^5.0.0"
-    semver: "npm:^5.4.1"
-    spawndamnit: "npm:^2.0.0"
-    term-size: "npm:^2.1.0"
-    tty-table: "npm:^4.1.5"
+    "@babel/runtime": ^7.10.4
+    "@changesets/apply-release-plan": ^6.1.2
+    "@changesets/assemble-release-plan": ^5.2.2
+    "@changesets/changelog-git": ^0.1.13
+    "@changesets/config": ^2.2.0
+    "@changesets/errors": ^0.1.4
+    "@changesets/get-dependents-graph": ^1.3.4
+    "@changesets/get-release-plan": ^3.0.15
+    "@changesets/git": ^1.5.0
+    "@changesets/logger": ^0.0.5
+    "@changesets/pre": ^1.0.13
+    "@changesets/read": ^0.5.8
+    "@changesets/types": ^5.2.0
+    "@changesets/write": ^0.2.2
+    "@manypkg/get-packages": ^1.1.3
+    "@types/is-ci": ^3.0.0
+    "@types/semver": ^6.0.0
+    ansi-colors: ^4.1.3
+    chalk: ^2.1.0
+    enquirer: ^2.3.0
+    external-editor: ^3.1.0
+    fs-extra: ^7.0.1
+    human-id: ^1.0.2
+    is-ci: ^3.0.1
+    meow: ^6.0.0
+    outdent: ^0.5.0
+    p-limit: ^2.2.0
+    preferred-pm: ^3.0.0
+    resolve-from: ^5.0.0
+    semver: ^5.4.1
+    spawndamnit: ^2.0.0
+    term-size: ^2.1.0
+    tty-table: ^4.1.5
   bin:
     changeset: bin.js
-  checksum: 54439bdfa7ca115964482f6323e9475b5917d68c2e0752a272ed133b863fce51eeba86366d8740a275dc0b891af8e272602da69d04144f40e4bf3531f48fe8fb
+  checksum: 815c69cb6cee75ede88361582581d94a860d96335e7bab179481cd5e2bb1e60cc39662dccd2b2b87818e9c63a84ff9eb469ed27f13b6adf4401a699e49beb79c
   languageName: node
   linkType: hard
 
@@ -2784,16 +2784,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/write@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@changesets/write@npm:0.2.1"
+"@changesets/write@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@changesets/write@npm:0.2.2"
   dependencies:
-    "@babel/runtime": "npm:^7.10.4"
-    "@changesets/types": "npm:^5.2.0"
-    fs-extra: "npm:^7.0.1"
-    human-id: "npm:^1.0.2"
-    prettier: "npm:^2.7.1"
-  checksum: 98b4d9c12fe13177860407557979d475361076a596103895440f52b2724f7004d6c98af39105fda0eaa52ceca8c0dc0ec9c8ab10eec7a0cb9bf83301f2ca48b3
+    "@babel/runtime": ^7.10.4
+    "@changesets/types": ^5.2.0
+    fs-extra: ^7.0.1
+    human-id: ^1.0.2
+    prettier: ^2.7.1
+  checksum: e23fb4a88e12af32db59d2f1866380ec4a50e7fa55cb55d860619f0735c5078ed170f832125672bb007b7a0cced67d9304a1b81260a7224af6afe0e3957dc999
   languageName: node
   linkType: hard
 
@@ -3756,7 +3756,7 @@ __metadata:
     "@babel/plugin-proposal-nullish-coalescing-operator": 7.18.6
     "@babel/preset-env": 7.19.4
     "@babel/preset-typescript": 7.18.6
-    "@changesets/cli": 2.25.0
+    "@changesets/cli": 2.25.2
     "@commitlint/cli": 17.2.0
     "@commitlint/config-angular": 17.2.0
     "@escape.tech/mookme": 2.2.0

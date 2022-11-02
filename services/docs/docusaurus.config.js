@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'GraphQL Armor',
   tagline: 'The missing Node GraphQL security security layer',
-  url: 'https://escape-technologies.github.io',
+  url: 'https://escape.tech',
   baseUrl: '/graphql-armor/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

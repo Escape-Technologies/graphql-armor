@@ -1,5 +1,28 @@
 # @escape.tech/graphql-armor
 
+## 1.5.0
+
+### Minor Changes
+
+- 59626ad: feat(docs): dedicated docs site
+
+  fix(dev): install-dev script mookme init
+
+  chore(deps/example): bump
+  chore(deps/monorepo): bump linters & tools
+  chore(optional-deps/_): envelop v3 support
+  chore(optional-deps/_): bump apollo-server to 3.11
+
+### Patch Changes
+
+- Updated dependencies [59626ad]
+  - @escape.tech/graphql-armor-block-field-suggestions@1.4.0
+  - @escape.tech/graphql-armor-cost-limit@1.6.0
+  - @escape.tech/graphql-armor-max-aliases@1.6.0
+  - @escape.tech/graphql-armor-max-depth@1.8.0
+  - @escape.tech/graphql-armor-max-directives@1.6.0
+  - @escape.tech/graphql-armor-max-tokens@1.3.0
+
 ## 1.4.0
 
 ### Minor Changes

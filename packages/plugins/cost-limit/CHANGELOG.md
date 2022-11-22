@@ -1,5 +1,18 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 1.6.0
+
+### Minor Changes
+
+- 59626ad: feat(docs): dedicated docs site
+
+  fix(dev): install-dev script mookme init
+
+  chore(deps/example): bump
+  chore(deps/monorepo): bump linters & tools
+  chore(optional-deps/_): envelop v3 support
+  chore(optional-deps/_): bump apollo-server to 3.11
+
 ## 1.5.0
 
 ### Minor Changes

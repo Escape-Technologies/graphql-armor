@@ -3969,7 +3969,7 @@ __metadata:
     "@envelop/testing": 5.0.3
     "@envelop/types": 3.0.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -3985,7 +3985,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4003,7 +4003,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4021,7 +4021,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4039,7 +4039,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4057,7 +4057,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4075,7 +4075,7 @@ __metadata:
     "@envelop/types": 3.0.0
     "@escape.tech/graphql-armor-types": 0.2.0
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4108,7 +4108,7 @@ __metadata:
     eslint-config-google: 0.14.0
     jest: 29.3.0
     prettier: 2.7.1
-    typescript: 4.8.4
+    typescript: 4.9.3
   languageName: unknown
   linkType: soft
 
@@ -4117,7 +4117,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-types@workspace:packages/types"
   dependencies:
     graphql: 16.6.0
-    typescript: 4.8.4
+    typescript: 4.9.3
   languageName: unknown
   linkType: soft
 
@@ -4138,7 +4138,7 @@ __metadata:
     apollo-server-types: 3.7.0
     graphql: 16.6.0
     ts-node: 10.9.1
-    typescript: 4.8.4
+    typescript: 4.9.3
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -17950,6 +17950,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:4.9.3":
+  version: 4.9.3
+  resolution: "typescript@npm:4.9.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 17b8f816050b412403e38d48eef0e893deb6be522d6dc7caf105e54a72e34daf6835c447735fd2b28b66784e72bfbf87f627abb4818a8e43d1fa8106396128dc
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.6.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
@@ -17967,6 +17977,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 301459fc3eb3b1a38fe91bf96d98eb55da88a9cb17b4ef80b4d105d620f4d547ba776cc27b44cc2ef58b66eda23fe0a74142feb5e79a6fb99f54fc018a696afa
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@4.9.3#~builtin<compat/typescript>":
+  version: 4.9.3
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=701156"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
   languageName: node
   linkType: hard
 

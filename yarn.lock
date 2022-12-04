@@ -3885,13 +3885,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:3.0.3":
-  version: 3.0.3
-  resolution: "@envelop/core@npm:3.0.3"
+"@envelop/core@npm:3.0.4":
+  version: 3.0.4
+  resolution: "@envelop/core@npm:3.0.4"
   dependencies:
-    "@envelop/types": 3.0.0
+    "@envelop/types": 3.0.1
     tslib: 2.4.0
-  checksum: 8a1d020f4f7991a284bbce6a0da3750c48aa893edd43d034b1b5b9348e3d4a82a979ec3fa1a5e094fa6692218cc6e4b642bacc7798c29f2a04b97258c962d032
+  checksum: 87184b432e80f947d96119acd3e769bbaeb052324d84d2f4a3ae27e7bfb4f8f913c364055e7a5ca04ef48439181bc5762450920a299f882763a7e2f788c52818
   languageName: node
   linkType: hard
 
@@ -3920,17 +3920,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:5.0.3":
-  version: 5.0.3
-  resolution: "@envelop/testing@npm:5.0.3"
+"@envelop/testing@npm:5.0.4":
+  version: 5.0.4
+  resolution: "@envelop/testing@npm:5.0.4"
   dependencies:
     "@graphql-tools/utils": ^8.8.0
     tslib: ^2.4.0
   peerDependencies:
-    "@envelop/core": ^3.0.3
-    "@envelop/types": ^3.0.0
+    "@envelop/core": ^3.0.4
+    "@envelop/types": ^3.0.1
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 3e02a96eda8ba5e86f8a7f0cfc51e83c1f6695ff72a5745c6b2605f004c71f74a03c8021a964bc7d52e523c78eeacf5cf43a723da859ae2e058aef38ca87684e
+  checksum: 7c4891aff7f1ba2ee5c7597bc269120813243456a1442d8e595e25b772dc1a9802bd9cd522fe043c1ff5b1c72ade32550b0a401df8213f9db14f9b32269ec4da
   languageName: node
   linkType: hard
 
@@ -3945,12 +3945,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@envelop/types@npm:3.0.0"
+"@envelop/types@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@envelop/types@npm:3.0.1"
   dependencies:
-    tslib: "npm:^2.4.0"
-  checksum: a6f02b2b62f45ea7d3ddd0c7866345850492574691ba96c055b7a9469af3f7140c9cf44a1312fb4cfb8725226700420f0f137f10c149571e1ce2f95edf02378b
+    tslib: ^2.4.0
+  checksum: f9e4ed76efc5b7fba09fe8fecaf589f0e03167683d2c8f18c290af03c6425a8bcf7e23bf699988469c63eb1e38dd91ac160ab753ec563ac5f4b26ba65d1a87b3
   languageName: node
   linkType: hard
 
@@ -3971,9 +3971,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     graphql: 16.6.0
     typescript: 4.9.3
   dependenciesMeta:
@@ -3986,9 +3986,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4004,9 +4004,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4022,9 +4022,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4040,9 +4040,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4058,9 +4058,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4076,9 +4076,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
-    "@envelop/core": 3.0.3
-    "@envelop/testing": 5.0.3
-    "@envelop/types": 3.0.0
+    "@envelop/core": 3.0.4
+    "@envelop/testing": 5.0.4
+    "@envelop/types": 3.0.1
     "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.3
@@ -4131,7 +4131,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@envelop/core": 3.0.3
+    "@envelop/core": 3.0.4
     "@escape.tech/graphql-armor-block-field-suggestions": ^1.4.0
     "@escape.tech/graphql-armor-cost-limit": ^1.6.0
     "@escape.tech/graphql-armor-max-aliases": ^1.6.0

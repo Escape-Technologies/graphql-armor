@@ -1,5 +1,8 @@
 import { Plugin } from '@envelop/types';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorParseConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import { Source, TokenKind } from 'graphql';
 import { syntaxError } from 'graphql/error';
 import { ParseOptions, Parser } from 'graphql/language/parser';
@@ -71,14 +74,18 @@ export class MaxTokensParserWLexer extends Parser {
   }
 }
 
-export function maxTokensPlugin(config?: MaxTokensOptions): Plugin {
+export function maxTokensPlugin<PluginContext extends Record<string, unknown> = {}>(
+  config?: MaxTokensOptions & GraphQLArmorParseConfiguration<PluginContext>,
+): Plugin<PluginContext> {
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
     // @ts-expect-error TODO(@c3b5aw): address the type issue
     const parser = new MaxTokensParserWLexer(source, Object.assign({}, options, config));
     return parser.parseDocument();
   }
+  const enabled = typeof config?.enabled === 'function' ? config.enabled : () => config?.enabled ?? true;
   return {
-    onParse({ setParseFn }) {
+    onParse({ setParseFn, context, params }) {
+      if (!enabled({ context, params })) return;
       setParseFn(parseWithTokenLimit);
     },
   };

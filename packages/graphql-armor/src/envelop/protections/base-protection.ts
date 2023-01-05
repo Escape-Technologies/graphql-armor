@@ -2,18 +2,16 @@ import type { Plugin as EnvelopPlugin } from '@envelop/core';
 
 import { GraphQLArmorConfig } from '../../config';
 
-export type EnvelopConfigurationEnhancement = {
-  plugins: EnvelopPlugin[];
+export type EnvelopConfigurationEnhancement<PluginContext extends Record<string, unknown>> = {
+  plugins: EnvelopPlugin<PluginContext>[];
 };
 
-export abstract class EnvelopProtection {
-  config: GraphQLArmorConfig;
-  enabledByDefault: boolean = true;
+export abstract class EnvelopProtection<PluginContext extends Record<string, unknown>> {
+  config: GraphQLArmorConfig<PluginContext>;
 
-  constructor(config: GraphQLArmorConfig) {
+  constructor(config: GraphQLArmorConfig<PluginContext>) {
     this.config = config;
   }
 
-  abstract protect(): EnvelopConfigurationEnhancement;
-  abstract get isEnabled(): boolean;
+  abstract protect(): EnvelopConfigurationEnhancement<PluginContext>;
 }

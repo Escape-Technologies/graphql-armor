@@ -1,5 +1,8 @@
 import type { Plugin } from '@envelop/core';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorValidateConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -80,12 +83,16 @@ class MaxAliasesVisitor {
 const maxAliasesRule = (options?: MaxAliasesOptions) => (context: ValidationContext) =>
   new MaxAliasesVisitor(context, options);
 
-const maxAliasesPlugin = (options?: MaxAliasesOptions): Plugin => {
+function maxAliasesPlugin<PluginContext extends Record<string, unknown> = {}>(
+  options?: MaxAliasesOptions & GraphQLArmorValidateConfiguration<PluginContext>,
+): Plugin<PluginContext> {
+  const enabled = typeof options?.enabled === 'function' ? options.enabled : () => options?.enabled ?? true;
   return {
-    onValidate({ addValidationRule }: any) {
+    onValidate({ addValidationRule, context, params }) {
+      if (!enabled({ context, params })) return;
       addValidationRule(maxAliasesRule(options));
     },
   };
-};
+}
 
 export { maxAliasesRule, maxAliasesPlugin, MaxAliasesOptions };

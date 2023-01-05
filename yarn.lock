@@ -4033,6 +4033,7 @@ __metadata:
     "@envelop/core": 3.0.4
     "@envelop/testing": 5.0.4
     "@envelop/types": 3.0.1
+    "@escape.tech/graphql-armor-types": 0.3.0
     graphql: 16.6.0
     typescript: 4.9.4
   dependenciesMeta:
@@ -4181,6 +4182,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-types@workspace:packages/types"
   dependencies:
+    "@envelop/types": 3.0.1
     graphql: 16.6.0
     typescript: 4.9.4
   languageName: unknown

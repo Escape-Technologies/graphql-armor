@@ -1,5 +1,8 @@
 import type { Plugin } from '@envelop/core';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorValidateConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -102,10 +105,14 @@ class CostLimitVisitor {
 export const costLimitRule = (options?: CostLimitOptions) => (context: ValidationContext) =>
   new CostLimitVisitor(context, options);
 
-export const costLimitPlugin = (options?: CostLimitOptions): Plugin => {
+export function costLimitPlugin<PluginContext extends Record<string, unknown> = {}>(
+  options?: CostLimitOptions & GraphQLArmorValidateConfiguration<PluginContext>,
+): Plugin<PluginContext> {
+  const enabled = typeof options?.enabled === 'function' ? options.enabled : () => options?.enabled ?? true;
   return {
-    onValidate({ addValidationRule }: any) {
+    onValidate({ addValidationRule, context, params }) {
+      if (!enabled({ context, params })) return;
       addValidationRule(costLimitRule(options));
     },
   };
-};
+}

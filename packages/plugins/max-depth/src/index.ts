@@ -1,5 +1,8 @@
 import type { Plugin } from '@envelop/core';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorValidateConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -84,10 +87,14 @@ class MaxDepthVisitor {
 export const maxDepthRule = (options?: MaxDepthOptions) => (context: ValidationContext) =>
   new MaxDepthVisitor(context, options);
 
-export const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
+export function maxDepthPlugin<PluginContext extends Record<string, unknown> = {}>(
+  options?: MaxDepthOptions & GraphQLArmorValidateConfiguration<PluginContext>,
+): Plugin<PluginContext> {
+  const enabled = typeof options?.enabled === 'function' ? options.enabled : () => options?.enabled ?? true;
   return {
-    onValidate({ addValidationRule }: any) {
+    onValidate({ addValidationRule, context, params }) {
+      if (!enabled({ context, params })) return;
       addValidationRule(maxDepthRule(options));
     },
   };
-};
+}

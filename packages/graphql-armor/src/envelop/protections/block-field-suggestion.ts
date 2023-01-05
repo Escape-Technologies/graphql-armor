@@ -2,15 +2,10 @@ import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-fi
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
-export class EnvelopBlockFieldSuggestionProtection extends EnvelopProtection {
-  get isEnabled(): boolean {
-    if (!this.config.blockFieldSuggestion) {
-      return this.enabledByDefault;
-    }
-    return this.config.blockFieldSuggestion.enabled ?? this.enabledByDefault;
-  }
-
-  protect(): EnvelopConfigurationEnhancement {
+export class EnvelopBlockFieldSuggestionProtection<
+  PluginContext extends Record<string, unknown>,
+> extends EnvelopProtection<PluginContext> {
+  protect(): EnvelopConfigurationEnhancement<PluginContext> {
     return {
       plugins: [blockFieldSuggestionsPlugin(this.config.blockFieldSuggestion)],
     };

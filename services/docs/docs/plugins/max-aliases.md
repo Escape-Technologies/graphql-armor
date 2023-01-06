@@ -18,7 +18,7 @@ GraphQLArmor({
     // Toogle the plugin | default: true
     enabled?: boolean,
     
-    // Directives threshold | default: 15
+    // Aliases threshold | default: 15
     n?: int,
 
     // Callbacks that are ran whenever a Query is accepted

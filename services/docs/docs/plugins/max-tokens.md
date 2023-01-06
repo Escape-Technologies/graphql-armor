@@ -20,7 +20,7 @@ GraphQLArmor({
     // Toogle the plugin | default: true
     enabled?: boolean,
     
-    // Directives threshold | default: 1000
+    // Tokens threshold | default: 1000
     n?: int,
 
     // Callbacks that are ran whenever a Query is accepted
@@ -40,21 +40,21 @@ GraphQLArmor({
 ### Installation
 
 :::note
-If you want to use the `maxDepth` plugin out of GraphQL Armor, you can install it from npm:
+If you want to use the `maxTokens` plugin out of GraphQL Armor, you can install it from npm:
 :::
 
 ```bash
 # npm
-npm install @escape.tech/graphql-armor-max-depth
+npm install @escape.tech/graphql-armor-max-tokens
 
 # yarn
-yarn add @escape.tech/graphql-armor-max-depth
+yarn add @escape.tech/graphql-armor-max-tokens
 ```
 
 ### With `@graphql/graphql-js`
 
 ```ts
-import { maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
+import { maxDepthRule } from '@escape.tech/graphql-armor-max-tokens';
 ```
 
 ### With `@envelop/core` from `@the-guild-org`

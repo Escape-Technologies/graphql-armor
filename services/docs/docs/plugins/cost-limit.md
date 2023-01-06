@@ -12,7 +12,7 @@
 
 ```ts
 GraphQLArmor({
-  maxAliases: {
+  costLimit: {
     // Toogle the plugin | default: true
     enabled?: boolean,
     

@@ -1,6 +1,6 @@
+import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 import { describe, expect, it } from '@jest/globals';
 
-import type { GraphQLArmorConfig } from '../src/index';
 import { ApolloArmor, EnvelopArmor } from '../src/index';
 
 describe('global', () => {

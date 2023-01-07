@@ -51,7 +51,7 @@
         "services/*"
     ],
     "volta": {
-        "node": "18.12.0",
+        "node": "18.13.0",
         "yarn": "1.22.19"
     },
     "packageManager": "yarn@3.3.0",

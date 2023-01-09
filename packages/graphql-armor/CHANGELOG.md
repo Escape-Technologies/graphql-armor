@@ -1,5 +1,20 @@
 # @escape.tech/graphql-armor
 
+## 1.6.0
+
+### Minor Changes
+
+- db50253: Moves config types into graphql-armor-types package
+- db50253: Exports type GraphQLArmorConfig globally
+
+### Patch Changes
+
+- @escape.tech/graphql-armor-cost-limit@1.6.1
+- @escape.tech/graphql-armor-max-aliases@1.6.1
+- @escape.tech/graphql-armor-max-depth@1.8.1
+- @escape.tech/graphql-armor-max-directives@1.6.1
+- @escape.tech/graphql-armor-max-tokens@1.3.1
+
 ## 1.5.0
 
 ### Minor Changes

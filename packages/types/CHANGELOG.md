@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-types
 
+## 0.4.0
+
+### Minor Changes
+
+- db50253: Moves config types into graphql-armor-types package
+
 ## 0.3.0
 
 ### Minor Changes

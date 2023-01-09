@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-types",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Export GraphQL Armor types.",
   "packageManager": "yarn@3.3.1",
   "main": "dist/graphql-armor-types.cjs.js",

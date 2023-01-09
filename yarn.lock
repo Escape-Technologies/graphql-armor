@@ -4227,7 +4227,7 @@ __metadata:
     "@escape.tech/graphql-armor-types": 0.3.0
     "@types/node": ^18.6.3
     apollo-server-core: 3.11.0
-    apollo-server-types: 3.7.0
+    apollo-server-types: 3.7.1
     graphql: 16.6.0
     ts-node: 10.9.1
     typescript: 4.9.4
@@ -7352,21 +7352,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-types@npm:3.7.0, apollo-server-types@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "apollo-server-types@npm:3.7.0"
-  dependencies:
-    "@apollo/utils.keyvaluecache": ^1.0.1
-    "@apollo/utils.logger": ^1.0.0
-    apollo-reporting-protobuf: ^3.3.3
-    apollo-server-env: ^4.2.1
-  peerDependencies:
-    graphql: ^15.3.0 || ^16.0.0
-  checksum: a5d2da987775dc0ffbbb3ffbe2c49a9a56133ee27586efc236d07a148bd58dd9548b43bf23ab8c9269fc4dddb347e206d45081856f491e9282f101b7b88054ea
-  languageName: node
-  linkType: hard
-
-"apollo-server-types@npm:^3.7.1":
+"apollo-server-types@npm:3.7.1, apollo-server-types@npm:^3.7.1":
   version: 3.7.1
   resolution: "apollo-server-types@npm:3.7.1"
   dependencies:
@@ -7377,6 +7363,20 @@ __metadata:
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
   checksum: fe9a0847d0b8ab70dbe407b4ba1f5e506d351ff1f728193f4b308806e73b958f50537478a71edeefdd66fcf3dbf32ec732b6ffe6542860d5b683b1d657a019a2
+  languageName: node
+  linkType: hard
+
+"apollo-server-types@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "apollo-server-types@npm:3.7.0"
+  dependencies:
+    "@apollo/utils.keyvaluecache": ^1.0.1
+    "@apollo/utils.logger": ^1.0.0
+    apollo-reporting-protobuf: ^3.3.3
+    apollo-server-env: ^4.2.1
+  peerDependencies:
+    graphql: ^15.3.0 || ^16.0.0
+  checksum: a5d2da987775dc0ffbbb3ffbe2c49a9a56133ee27586efc236d07a148bd58dd9548b43bf23ab8c9269fc4dddb347e206d45081856f491e9282f101b7b88054ea
   languageName: node
   linkType: hard
 

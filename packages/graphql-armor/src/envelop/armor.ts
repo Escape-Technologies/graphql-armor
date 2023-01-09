@@ -1,6 +1,6 @@
 import type { OnPluginInitEventPayload, Plugin } from '@envelop/core';
+import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 
-import { GraphQLArmorConfig } from '../config';
 import { EnvelopProtection } from './protections/base-protection';
 import { EnvelopBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { EnvelopCostLimitProtection } from './protections/cost-limit';

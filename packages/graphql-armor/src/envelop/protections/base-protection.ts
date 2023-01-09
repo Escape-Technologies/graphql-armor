@@ -1,6 +1,5 @@
 import type { Plugin as EnvelopPlugin } from '@envelop/core';
-
-import { GraphQLArmorConfig } from '../../config';
+import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 
 export type EnvelopConfigurationEnhancement = {
   plugins: EnvelopPlugin[];
@@ -8,7 +7,7 @@ export type EnvelopConfigurationEnhancement = {
 
 export abstract class EnvelopProtection {
   config: GraphQLArmorConfig;
-  enabledByDefault: boolean = true;
+  enabledByDefault = true;
 
   constructor(config: GraphQLArmorConfig) {
     this.config = config;

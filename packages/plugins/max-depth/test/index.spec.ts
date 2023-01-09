@@ -86,6 +86,18 @@ describe('global', () => {
     ]);
   });
 
+  it('should works when enabled option returns false', async () => {
+    const maxDepth = 1;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, enabled: () => false })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      books: books,
+    });
+  });
+
   it('should reject fragment', async () => {
     const maxDepth = 4;
     const testkit = createTestkit([maxDepthPlugin({ n: maxDepth })], schema);

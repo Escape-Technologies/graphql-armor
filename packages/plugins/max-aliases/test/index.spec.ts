@@ -82,6 +82,19 @@ describe('global', () => {
     ]);
   });
 
+  it('should works when enabled option returns false', async () => {
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, enabled: () => false })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      firstBooks: null,
+      secondBooks: null,
+    });
+  });
+
   it('should respect fragment aliases', async () => {
     const maxAliases = 1;
     const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);

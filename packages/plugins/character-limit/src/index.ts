@@ -1,8 +1,12 @@
 import type { Plugin } from '@envelop/core';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorParseConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import { GraphQLError } from 'graphql';
 
 export type CharacterLimitOptions = { maxLength?: number } & GraphQLArmorCallbackConfiguration;
+
 export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   maxLength: 15000,
   onAccept: [],
@@ -10,15 +14,20 @@ export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   propagateOnRejection: true,
 };
 
-export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin => {
+export function characterLimitPlugin<PluginContext extends Record<string, unknown>>(
+  options?: CharacterLimitOptions & GraphQLArmorParseConfiguration<PluginContext>,
+): Plugin<PluginContext> {
   const config = Object.assign(
     {},
     characterLimitDefaultOptions,
     ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
   );
+  const enabled = typeof options?.enabled === 'function' ? options.enabled : () => options?.enabled ?? true;
 
   return {
-    onParse({ parseFn, setParseFn }) {
+    onParse({ parseFn, setParseFn, params, context }) {
+      if (!enabled({ context, params })) return;
+
       setParseFn((source, options) => {
         const query = typeof source === 'string' ? source : source.body;
 
@@ -44,4 +53,4 @@ export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin =>
       });
     },
   };
-};
+}

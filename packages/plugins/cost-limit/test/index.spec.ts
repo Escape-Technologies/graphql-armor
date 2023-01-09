@@ -30,7 +30,7 @@ const books = [
 const resolvers = {
   Query: {
     books: () => books,
-    getBook: (title: String) => books.find((book) => book.title === title),
+    getBook: (title: string) => books.find((book) => book.title === title),
   },
 };
 
@@ -84,6 +84,27 @@ describe('global', () => {
     expect(result.errors?.map((error) => error.message)).toEqual([
       'Syntax Error: Query Cost limit of 10 exceeded, found 11.',
     ]);
+  });
+
+  it('should works for default query when enabled option returns false', async () => {
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: 10,
+          objectCost: 1,
+          scalarCost: 1,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+          enabled: () => false,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({ books: books });
   });
 
   it('should allow introspection', async () => {

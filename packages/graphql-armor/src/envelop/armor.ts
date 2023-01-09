@@ -22,10 +22,10 @@ export const EnvelopArmorPlugin = (config?: GraphQLArmorConfig): Plugin => {
   };
 };
 
-export class EnvelopArmor {
-  private readonly protections: EnvelopProtection[];
+export class EnvelopArmor<PluginContext extends Record<string, unknown>> {
+  private readonly protections: EnvelopProtection<PluginContext>[];
 
-  constructor(config: GraphQLArmorConfig = {}) {
+  constructor(config: GraphQLArmorConfig<PluginContext> = {}) {
     this.protections = [
       new EnvelopBlockFieldSuggestionProtection(config),
       new EnvelopMaxTokensProtection(config),
@@ -37,16 +37,13 @@ export class EnvelopArmor {
   }
 
   protect(): {
-    plugins: Plugin[];
+    plugins: Plugin<PluginContext>[];
   } {
-    const plugins: Plugin[] = [];
+    const plugins: Plugin<PluginContext>[] = [];
 
     for (const protection of this.protections) {
-      if (protection.isEnabled) {
-        const enhancements = protection.protect();
-
-        plugins.push(...enhancements.plugins);
-      }
+      const enhancements = protection.protect();
+      plugins.push(...enhancements.plugins);
     }
 
     return {

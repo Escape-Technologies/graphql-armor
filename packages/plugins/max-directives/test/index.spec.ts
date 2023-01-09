@@ -70,6 +70,16 @@ describe('global', () => {
     ]);
   });
 
+  it('should works when enabled option returns false', async () => {
+    const maxDirectives = 3;
+    const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives, enabled: () => false })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(Array(4).fill('Unknown directive "@a".'));
+  });
+
   it('should works on fragment', async () => {
     const maxDirectives = 3;
     const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives })], schema);

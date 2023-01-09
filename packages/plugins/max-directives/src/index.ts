@@ -1,5 +1,8 @@
 import type { Plugin } from '@envelop/core';
-import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
+import type {
+  GraphQLArmorCallbackConfiguration,
+  GraphQLArmorValidateConfiguration,
+} from '@escape.tech/graphql-armor-types';
 import {
   FieldNode,
   FragmentDefinitionNode,
@@ -83,10 +86,15 @@ class MaxDirectivesVisitor {
 export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
   new MaxDirectivesVisitor(context, options);
 
-export const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
+export function maxDirectivesPlugin<PluginContext extends Record<string, unknown> = {}>(
+  options?: MaxDirectivesOptions & GraphQLArmorValidateConfiguration<PluginContext>,
+): Plugin<PluginContext> {
+  const enabled = typeof options?.enabled === 'function' ? options.enabled : () => options?.enabled ?? true;
+
   return {
-    onValidate({ addValidationRule }: any) {
+    onValidate({ addValidationRule, context, params }) {
+      if (!enabled({ context, params })) return;
       addValidationRule(maxDirectivesRule(options));
     },
   };
-};
+}

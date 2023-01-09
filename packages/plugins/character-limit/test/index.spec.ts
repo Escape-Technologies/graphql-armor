@@ -74,4 +74,16 @@ describe('global', () => {
       `Syntax Error: Character limit of ${length} exceeded, found ${length + 1}.`,
     ]);
   });
+
+  it('should not reject query when enabled option returns false', async () => {
+    const length = 53;
+    const testkit = createTestkit([characterLimitPlugin({ maxLength: length, enabled: () => false })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      books: books,
+    });
+  });
 });

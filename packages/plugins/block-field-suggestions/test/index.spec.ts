@@ -88,6 +88,17 @@ describe('global', () => {
     ]);
   });
 
+  it('should suggest field when enabled option returns false', async () => {
+    const testkit = createTestkit([blockFieldSuggestionsPlugin({ enabled: () => false })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Cannot query field "titlee" on type "Book". Did you mean "title"?',
+    ]);
+  });
+
   it('should use configured mask', async () => {
     const testkit = createTestkit([blockFieldSuggestionsPlugin({ mask: '<[REDACTED]>' })], schema);
     const result = await testkit.execute(query);

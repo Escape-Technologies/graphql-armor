@@ -19,6 +19,13 @@ describe('global', () => {
     maxTokensPlugin({ n: 1 });
   });
 
+  it('should works when enabled option returns false', async () => {
+    const operation = `{ ${Array(maxTokenDefaultOptions.n).join('a ')} }`;
+    const testkit = createTestkit([maxTokensPlugin({ enabled: () => false })], schema);
+    const result = await testkit.execute(operation);
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+  });
   it('rejects an operation with more than the default max token count', async () => {
     const operation = `{ ${Array(maxTokenDefaultOptions.n).join('a ')} }`;
     const testkit = createTestkit([maxTokensPlugin()], schema);

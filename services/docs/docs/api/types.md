@@ -4,7 +4,7 @@ Import types to configure GraphQL Armor from the `@escape.tech/graphql-armor-typ
 
 ## Config
 
-The complete set of [configuration options](#plugins) is available in the  `GraphQLArmorConfig` type and can be imported from the `@escape.tech/graphql-armor-types` package:
+The complete set of [configuration options](#plugins) is available in the `GraphQLArmorConfig` type and can be imported from the `@escape.tech/graphql-armor-types` package:
 
 ```ts
 export type ProtectionConfiguration = {

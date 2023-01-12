@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 1.7.0
+
+### Minor Changes
+
+- c4f8145: Remove OperationDefinition from calculation
+  The global cost is decreased by a depthFactor.
+
 ## 1.6.1
 
 ## 1.6.0

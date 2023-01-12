@@ -3,3 +3,4 @@
 ---
 
 Remove OperationDefinition from calculation
+The global cost is decreased by a depthFactor.

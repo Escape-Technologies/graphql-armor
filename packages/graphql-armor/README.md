@@ -33,7 +33,7 @@ We support the following engines :
 - [Apollo Server](https://www.apollographql.com/)
 - [GraphQL Yoga](https://www.graphql-yoga.com/)
 
-We additionnaly support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
+We additionally support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
 
 - GraphQL-Helix
 - Node.js HTTP
@@ -167,7 +167,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  debug: true // Ignore Armor's recommandation
+  debug: true // Ignore Armor's recommendation
 });
 ```
 
@@ -187,7 +187,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  allowBatchedHttpRequests: true // Ignore Armor's recommandations
+  allowBatchedHttpRequests: true // Ignore Armor's recommendations
 });
 ```
 

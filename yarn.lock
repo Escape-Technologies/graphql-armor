@@ -4088,7 +4088,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-cost-limit@^1.6.1, @escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit":
+"@escape.tech/graphql-armor-cost-limit@^1.7.0, @escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
@@ -4221,7 +4221,7 @@ __metadata:
   dependencies:
     "@envelop/core": 3.0.4
     "@escape.tech/graphql-armor-block-field-suggestions": ^1.4.0
-    "@escape.tech/graphql-armor-cost-limit": ^1.6.1
+    "@escape.tech/graphql-armor-cost-limit": ^1.7.0
     "@escape.tech/graphql-armor-max-aliases": ^1.6.1
     "@escape.tech/graphql-armor-max-depth": ^1.8.1
     "@escape.tech/graphql-armor-max-directives": ^1.6.1

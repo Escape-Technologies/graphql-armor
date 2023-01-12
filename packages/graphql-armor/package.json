@@ -32,7 +32,7 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "@escape.tech/graphql-armor-block-field-suggestions": "^1.4.0",
-    "@escape.tech/graphql-armor-cost-limit": "^1.6.1",
+    "@escape.tech/graphql-armor-cost-limit": "^1.7.0",
     "@escape.tech/graphql-armor-max-aliases": "^1.6.1",
     "@escape.tech/graphql-armor-max-depth": "^1.8.1",
     "@escape.tech/graphql-armor-max-directives": "^1.6.1",

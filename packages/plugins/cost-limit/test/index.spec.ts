@@ -69,8 +69,8 @@ describe('global', () => {
       [
         costLimitPlugin({
           maxCost: 10,
-          objectCost: 1,
-          scalarCost: 1,
+          objectCost: 4,
+          scalarCost: 2,
           depthCostFactor: 2,
           ignoreIntrospection: true,
         }),
@@ -82,7 +82,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Syntax Error: Query Cost limit of 10 exceeded, found 11.',
+      'Syntax Error: Query Cost limit of 10 exceeded, found 12.',
     ]);
   });
 
@@ -107,13 +107,13 @@ describe('global', () => {
   });
 
   it('should support fragment', async () => {
-    const maxCost = 46;
+    const maxCost = 57;
     const testkit = createTestkit(
       [
         costLimitPlugin({
           maxCost: maxCost,
-          objectCost: 1,
-          scalarCost: 1,
+          objectCost: 4,
+          scalarCost: 2,
           depthCostFactor: 2,
           ignoreIntrospection: true,
         }),

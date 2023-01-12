@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 1.7.0
+
+### Minor Changes
+
+- d5dcca2: updates cost-limit plugin to 1.7.0
+
 ## 1.6.0
 
 ### Minor Changes

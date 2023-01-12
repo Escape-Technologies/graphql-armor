@@ -24,7 +24,7 @@
   "dependencies": {
     "@escape.tech/graphql-armor": "*",
     "@graphql-tools/schema": "9.0.12",
-    "@graphql-yoga/node": "2.13.13",
+    "@graphql-yoga/node": "3.3.0",
     "graphql": "16.6.0"
   },
   "devDependencies": {

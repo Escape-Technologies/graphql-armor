@@ -71,10 +71,14 @@ class CostLimitVisitor {
 
   private computeComplexity(
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
-    depth: number = 0,
+    depth = 0,
   ): number {
     if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
       return 0;
+    }
+
+    if (node.kind == Kind.OPERATION_DEFINITION) {
+      return node.selectionSet.selections.reduce((v, child) => v + this.computeComplexity(child, depth + 1), 0);
     }
 
     // const typeDefs: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType = this.context
@@ -83,7 +87,7 @@ class CostLimitVisitor {
     let cost = this.config.scalarCost;
     if ('selectionSet' in node && node.selectionSet) {
       cost = this.config.objectCost;
-      for (let child of node.selectionSet.selections) {
+      for (const child of node.selectionSet.selections) {
         cost += this.config.depthCostFactor * this.computeComplexity(child, depth + 1);
       }
     }

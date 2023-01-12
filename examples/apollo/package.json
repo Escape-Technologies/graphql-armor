@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@apollo/gateway": "2.2.2",
+    "@apollo/gateway": "2.2.3",
     "@escape.tech/graphql-armor": "*",
     "apollo-server": "3.11.1",
     "apollo-server-express": "3.11.1",

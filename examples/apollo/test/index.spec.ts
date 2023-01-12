@@ -43,6 +43,9 @@ describe('startup', () => {
         ...BooksFragment
         ...BooksFragment
         ...BooksFragment
+        ...BooksFragment
+        ...BooksFragment
+        ...BooksFragment
       }
       
       fragment BooksFragment on Query {
@@ -53,7 +56,7 @@ describe('startup', () => {
       }`,
     });
     expect(query.errors).toBeDefined();
-    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 139.');
+    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 138.');
   });
 
   it('should block field suggestion', async () => {

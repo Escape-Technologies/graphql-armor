@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor
 
+## 1.7.1
+
+### Patch Changes
+
+- 8e1a154: chore: fixed plugin dependencies version
+  chore: bump max-directive to v1.6.3
+
 ## 1.7.0
 
 ### Minor Changes

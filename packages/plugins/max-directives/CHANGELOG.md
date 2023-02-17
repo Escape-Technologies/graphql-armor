@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 1.6.3
+
+### Patch Changes
+
+- 146a06d: fix: crash on recursive fragments
+
 ## 1.6.1
 
 ## 1.6.0

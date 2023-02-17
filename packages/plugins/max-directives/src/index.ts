@@ -26,6 +26,7 @@ class MaxDirectivesVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxDirectivesOptions>;
+  private readonly visitedFragments: Set<string> = new Set();
 
   constructor(context: ValidationContext, options?: MaxDirectivesOptions) {
     this.context = context;
@@ -67,10 +68,14 @@ class MaxDirectivesVisitor {
       directives += node.directives.length;
     }
     if ('selectionSet' in node && node.selectionSet) {
-      for (let child of node.selectionSet.selections) {
+      for (const child of node.selectionSet.selections) {
         directives += this.countDirectives(child);
       }
     } else if (node.kind == Kind.FRAGMENT_SPREAD) {
+      if (this.visitedFragments.has(node.name.value)) {
+        return 0;
+      }
+      this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
         directives += this.countDirectives(fragment);

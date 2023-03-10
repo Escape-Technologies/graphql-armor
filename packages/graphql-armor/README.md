@@ -2,9 +2,9 @@
 
 GraphQL Armor is a dead-simple yet highly customizable security middleware for various GraphQL server engines.
 
-![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/static/img/banner.png)
+![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/services/docs/static/img/banner.png)
 
-[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![release](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
+[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![release](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml) [![e2e](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/e2e.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/e2e.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor) [![codecov](https://codecov.io/gh/Escape-Technologies/graphql-armor/branch/main/graph/badge.svg)](https://codecov.io/gh/Escape-Technologies/graphql-armor)
 
 ## Contents
 
@@ -24,6 +24,7 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
   - [Depth Limit](#depth-limit)
   - [Directives Limit](#directives-limit)
   - [Field Suggestion](#field-suggestion)
+  - [Token Limit](#token-limit)
 - [Contributing](#contributing)
 
 ## Supported GraphQL Engines
@@ -48,6 +49,16 @@ We additionally support the following engines through the [Envelop](https://www.
 - express-graphql
 
 See [here](https://www.envelop.dev/docs/integrations) for more information about Envelop compatibility.
+
+## Installation
+
+```bash
+# npm
+npm install -S @escape.tech/graphql-armor
+
+# yarn
+yarn add @escape.tech/graphql-armor
+```
 
 ## Getting Started
 
@@ -103,6 +114,20 @@ async function main() {
 main();
 ```
 
+```typescript
+import { EnvelopArmorPlugin } from '@escape.tech/graphql-armor';
+
+async function main() {
+  const server = createServer({
+    schema,
+    plugins: [EnvelopArmorPlugin()],
+  });
+  await server.start();
+}
+
+main();
+```
+
 ### Envelop
 
 ```typescript
@@ -113,6 +138,14 @@ const protection = armor.protect()
 
 const getEnveloped = envelop({
   plugins: [otherPlugins, ...protection.plugins],
+});
+```
+
+```typescript
+import { EnvelopArmorPlugin } from '@escape.tech/graphql-armor';
+
+const getEnveloped = envelop({
+  plugins: [otherPlugins, EnvelopArmorPlugin()],
 });
 ```
 
@@ -128,9 +161,6 @@ import { ApolloArmor } from '@escape.tech/graphql-armor';
 const armor = new ApolloArmor({
     costLimit: {
         maxCost: 1000,
-    },
-    characterLimit: {
-        maxLength: 15000,
     }
   }
 });
@@ -150,14 +180,15 @@ This section describes how to configure each plugin individually.
 - [Depth Limit](#depth-limit)
 - [Directives Limit](#directives-limit)
 - [Field Suggestion](#field-suggestion)
+- [Token Limit](#token-limit)
 
 ### Stacktraces (Apollo Only)
 
-This plugin is for Apollo Server only, and is enabled by default.
+This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#debug).
 
-Stacktraces are managed by the Apollo configuration parameter `debug` which may have `true` as a default value in some setups. GraphQL Armor changes this default value to `false`.
+Stacktraces are managed by the Apollo configuration parameter `includeStacktraceInErrorResponses`. GraphQL Armor set this default value to `false` too.
 
-For rolling back to Apollo's default parameter, you can use the following code:
+For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -167,17 +198,17 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  debug: true // Ignore Armor's recommendation
+  includeStacktraceInErrorResponses: true,
 });
 ```
 
 ### Batched queries (Apollo Only)
 
-This plugin is for Apollo Server only, and is enabled by default.
+This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#http-batching-is-off-by-default).
 
-Batched queries are enabled by default, which makes DoS attacks easier by stacking expensive requests. We make them disabled by default.
+Batched queries are managed by the Apollo configuration parameter `allowBatchedHttpRequests`. GraphQL Armor set this default value to `false` too.
 
-For rolling back to Apollo's default parameter, you can use the following code:
+For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -187,27 +218,27 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  allowBatchedHttpRequests: true // Ignore Armor's recommendations
+  allowBatchedHttpRequests: true // Note: setting the value to `true` makes DoS attacks easier by stacking expensive requests
 });
 ```
 
 ### Character Limit
 
-This plugin is enabled by default.
+This plugin is disabled by default.
 
 It enforces a character limit on your GraphQL queries.
 
 The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
-Configuration
+For configuration details, refer to this [README](https://github.com/Escape-Technologies/graphql-armor/tree/main/packages/plugins/character-limit).
 
-```typescript
-{
-  characterLimit: {
-    enabled: true,
-    maxLength: 15000,
-  }
-}
+	```typescript	
+{	
+  characterLimit: {	
+    enabled: true,	
+    maxLength: 15000,	
+  }	
+}	
 ```
 
 ### Cost Limit
@@ -223,12 +254,15 @@ Configuration
 ```typescript
 {
   costLimit: {
-    enabled: true,
+    // enabled: true,
     maxCost: 5000, // maximum cost of a request before it is rejected
     objectCost: 2, // cost of retrieving an object
     scalarCost: 1, // cost of retrieving a scalar
     depthCostFactor: 1.5, // multiplicative cost of depth
     ignoreIntrospection: true, // by default, introspection queries are ignored.
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    propagateOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -239,14 +273,14 @@ This plugin is enabled by default.
 
 It will prevent suggesting fields in case of an erroneous request. Suggestions can lead to the leak of your schema even with disabled introspection, which can be very detrimental in case of a private API. One could use [GraphDNA](https://github.com/Escape-Technologies/graphdna) to recover an API schema even with disabled introspection, as long as field suggestions are enabled.
 
-Example of such a suggestion : 
+Example of such a suggestion:
 
 `Cannot query field "sta" on type "Media". Did you mean "stats", "staff", or "status"?`
 
 ```typescript
 {
   blockFieldSuggestion: {
-    enabled: true,
+    // enabled: true,
   }
 }
 ```
@@ -255,13 +289,16 @@ Example of such a suggestion :
 
 This plugin is enabled by default.
 
-Put a limit on the number of aliases.
+Limit the number of aliases in a document.
 
 ```typescript
 {
   maxAliases: {
-    enabled: true,
+    // enabled: true,
     n: 15,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    propagateOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -270,13 +307,16 @@ Put a limit on the number of aliases.
 
 This plugin is enabled by default.
 
-Put a limit on the number of directives.
+Limit the number of directives in a document.
 
 ```typescript
 {
   maxDirectives: {
-    enabled: true,
+    // enabled: true,
     n: 50,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    propagateOnRejection: true, // When rejected, do you want to throw the error or report to the context?
   }
 }
 ```
@@ -285,13 +325,34 @@ Put a limit on the number of directives.
 
 This plugin is enabled by default.
 
-Put a depth limit to the request.
+Limit the depth of a document.
 
 ```typescript
 {
   maxDepth: {
-    enabled: true,
+    // enabled: true,
     n: 6,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    propagateOnRejection: true, // When rejected, do you want to throw the error or report to the context?
+  }
+}
+```
+
+### Token Limit
+
+This plugin is enabled by default.
+
+Limit the number of GraphQL tokens in a document.
+
+```typescript
+{
+  maxTokens: {
+    // enabled: true,
+    n: 1000,
+    onAccept: [], // Callbacks that are ran whenever a Query is accepted
+    onReject: [], // Callbacks that are ran whenever a Query is rejected
+    propagateOnRejection: true, // When rejected, do you want to throw the error or do nothing?
   }
 }
 ```
@@ -309,5 +370,3 @@ bash ./install-dev.sh
 ```
 
 We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
-
-*This project is young so there might be bugs but we are very reactive so feel free to open issues.*

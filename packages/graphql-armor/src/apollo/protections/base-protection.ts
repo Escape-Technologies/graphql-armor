@@ -1,9 +1,9 @@
+import type { ApolloServerOptions as ApolloServerConfig } from '@apollo/server';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
-import type { Config as ApolloServerConfig } from 'apollo-server-core';
 
 export type ApolloServerConfigurationEnhancement = {
-  plugins?: ApolloServerConfig['plugins'];
-  validationRules?: ApolloServerConfig['validationRules'];
+  plugins?: ApolloServerConfig<{}>['plugins'];
+  validationRules?: ApolloServerConfig<{}>['validationRules'];
 };
 
 export abstract class ApolloProtection {

@@ -1,21 +1,21 @@
-import { server } from './server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { json } from 'body-parser';
 
-const express = require('express');
-const app = express();
-
-const http = require('http');
-const httpServer = http.createServer(app);
+import { app, httpServer, server } from './server';
 
 (async () => {
   await server.start();
-  server.applyMiddleware({
-    app,
-    path: '/',
-  });
+  app.use(
+    '/graphql',
+    json(),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    }),
+  );
 
   await new Promise<void>((resolve) => {
     const x = httpServer.listen({ port: 4000 }, resolve);
   });
 
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 })();

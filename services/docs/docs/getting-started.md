@@ -39,9 +39,13 @@ If you do not use plugins and validations rules, we recommend you to proceed wit
 ```ts
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
+interface AppContext {
+	token?: string;
+}
+
 const armor = new ApolloArmor();
 
-const server = new ApolloServer({
+const server = new ApolloServer<AppContext>({
   typeDefs,
   resolvers,
   ...armor.protect()
@@ -53,10 +57,14 @@ Otherwise, if you already have some plugins or validation rules, we recommend yo
 ```ts
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
+interface AppContext {
+	token?: string;
+}
+
 const armor = new ApolloArmor();
 const protection = armor.protect()
 
-const server = new ApolloServer({
+const server = new ApolloServer<AppContext>({
   typeDefs,
   resolvers,
   ...protection,

@@ -1,13 +1,21 @@
+import { GraphQLRequestContext } from '@apollo/server';
 import { MaxTokensOptions, MaxTokensParserWLexer, maxTokenDefaultOptions } from '@escape.tech/graphql-armor-max-tokens';
-import { GraphQLRequestContext } from 'apollo-server-types';
+import { GraphQLError } from 'graphql';
 
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 const plugin = (options: MaxTokensOptions) => {
   return {
+    async unexpectedErrorProcessingRequest(err: any) {
+      throw new GraphQLError(err.error, {
+        extensions: {
+          code: 'GRAPHQL_VALIDATION_FAILED',
+        },
+      });
+    },
     async requestDidStart() {
       return {
-        async parsingDidStart(requestContext: GraphQLRequestContext) {
+        async parsingDidStart(requestContext: GraphQLRequestContext<{}>) {
           const source = requestContext.source;
           if (source !== undefined) {
             const parser = new MaxTokensParserWLexer(source, options);

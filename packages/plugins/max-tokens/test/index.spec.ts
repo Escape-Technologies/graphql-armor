@@ -30,7 +30,7 @@ describe('global', () => {
       `Syntax Error: Token limit of ${maxTokenDefaultOptions.n} exceeded, found ${maxTokenDefaultOptions.n + 1}.`,
     );
   });
-  it('does not rejects an oepration below the max token count', async () => {
+  it('does not rejects an operation below the max token count', async () => {
     const operation = `{ ${Array(maxTokenDefaultOptions.n - 2).join('a ')} }`;
     const testkit = createTestkit([maxTokensPlugin()], schema);
     const result = await testkit.execute(operation);
@@ -47,7 +47,7 @@ describe('global', () => {
     expect(result.errors).toHaveLength(1);
     expect(result.errors?.[0].message).toEqual('Syntax Error: Token limit of 4 exceeded, found 5.');
   });
-  it('does not rejects an oepration below the max token count (user provided)', async () => {
+  it('does not rejects an operation below the max token count (user provided)', async () => {
     const count = 4;
     const operation = `{ ${Array(count - 2).join('a ')} }`;
     const testkit = createTestkit([maxTokensPlugin({ n: count })], schema);

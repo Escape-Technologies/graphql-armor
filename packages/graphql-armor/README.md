@@ -11,7 +11,7 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 - [Contents](#contents)
 - [Supported GraphQL Engines](#supported-graphql-engines)
 - [Getting Started](#getting-started)
-  - [Apollo Server](#apollo-server)
+  - [Apollo Server 4](#apollo-server-4), [Apollo Server 3](#apollo-server-3)
   - [GraphQL Yoga](#graphql-yoga)
   - [Envelop](#envelop)
 - [Getting Started with configuration](#getting-started-with-configuration)
@@ -189,9 +189,9 @@ GraphQL Armor is fully configurable in a per-plugin fashion.
 View the [per plugin configuration section](#per-plugin-configure) for more information about how to configure each plugin separately.
 
 ```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
+import { ApolloV4Armor } from '@escape.tech/graphql-armor';
 
-const armor = new ApolloArmor({
+const armor = new ApolloV4Armor({
     costLimit: {
         maxCost: 1000,
     }

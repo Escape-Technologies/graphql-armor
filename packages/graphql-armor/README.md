@@ -11,7 +11,7 @@ GraphQL Armor is a dead-simple yet highly customizable security middleware for v
 - [Contents](#contents)
 - [Supported GraphQL Engines](#supported-graphql-engines)
 - [Getting Started](#getting-started)
-  - [Apollo Server 4](#apollo-server-4), [Apollo Server 3](#apollo-server-3)
+  - [Apollo Server](#apollo-server)
   - [GraphQL Yoga](#graphql-yoga)
   - [Envelop](#envelop)
 - [Getting Started with configuration](#getting-started-with-configuration)
@@ -64,40 +64,7 @@ yarn add @escape.tech/graphql-armor
 
 Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation examples. (such as NestJS with Apollo Server)
 
-### Apollo Server 4
-
-```typescript
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
-
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor();
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  ...armor.protect()
-});
-```
-
-If you already have some plugins or validation rules, proceed this way:
-
-```typescript
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
-
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor();
-const protection = armor.protect()
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  ...protection,
-  plugins: [...protection.plugins, myPlugin1, myPlugin2 ]
-  validationRules: [, ...protection.validationRules, myRule1, myRule2 ]
-});
-```
-
-### Apollo Server 3
+### Apollo Server
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -189,9 +156,9 @@ GraphQL Armor is fully configurable in a per-plugin fashion.
 View the [per plugin configuration section](#per-plugin-configure) for more information about how to configure each plugin separately.
 
 ```typescript
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-const armor = new ApolloV4Armor({
+const armor = new ApolloArmor({
     costLimit: {
         maxCost: 1000,
     }
@@ -224,10 +191,9 @@ Stacktraces are managed by the Apollo configuration parameter `includeStacktrace
 For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor();
+const armor = new ApolloArmor();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -262,10 +228,9 @@ Batched queries are managed by the Apollo configuration parameter `allowBatchedH
 For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor();
+const armor = new ApolloArmor();
 const server = new ApolloServer({
   typeDefs,
   resolvers,

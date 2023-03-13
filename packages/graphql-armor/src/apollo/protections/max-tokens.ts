@@ -1,4 +1,4 @@
-import { GraphQLRequestContext } from '@apollo/server';
+import { BaseContext, GraphQLRequestContext } from '@apollo/server';
 import { MaxTokensOptions, MaxTokensParserWLexer, maxTokenDefaultOptions } from '@escape.tech/graphql-armor-max-tokens';
 import { GraphQLError } from 'graphql';
 
@@ -15,7 +15,7 @@ const plugin = (options: MaxTokensOptions) => {
     },
     async requestDidStart() {
       return {
-        async parsingDidStart(requestContext: GraphQLRequestContext<{}>) {
+        async parsingDidStart(requestContext: GraphQLRequestContext<BaseContext>) {
           const source = requestContext.source;
           if (source !== undefined) {
             const parser = new MaxTokensParserWLexer(source, options);

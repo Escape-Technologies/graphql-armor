@@ -1,4 +1,4 @@
-import type { ApolloServerOptions as ApolloServerConfig, ApolloServerPlugin as PluginDefinition } from '@apollo/server';
+import type { ApolloServerOptions, BaseContext } from '@apollo/server';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 import type { ValidationRule } from 'graphql';
 
@@ -12,10 +12,8 @@ import { ApolloMaxTokensProtection } from './protections/max-tokens';
 
 export class ApolloArmor {
   private readonly protections: ApolloProtection[];
-  private readonly version: string;
 
-  constructor(config: GraphQLArmorConfig = {}, version = '') {
-    this.version = version;
+  constructor(config: GraphQLArmorConfig = {}) {
     this.protections = [
       new ApolloBlockFieldSuggestionProtection(config),
       new ApolloMaxTokensProtection(config),
@@ -32,18 +30,13 @@ export class ApolloArmor {
     allowBatchedHttpRequests: false;
     includeStacktraceInErrorResponses: false;
   } {
-    let plugins: ApolloServerConfig<{}>['plugins'] = [];
-    let validationRules: ApolloServerConfig<{}>['validationRules'] = [];
+    let plugins: ApolloServerOptions<BaseContext>['plugins'] = [];
+    let validationRules: ApolloServerOptions<BaseContext>['validationRules'] = [];
 
     for (const protection of this.protections) {
       if (protection.isEnabled) {
         const { plugins: newPlugins, validationRules: newValidationRules } = protection.protect();
-
-        if (this.version === 'v4') {
-          plugins = [...plugins, ...((newPlugins as PluginDefinition[]) || [])];
-        } else {
-          plugins = [...plugins, ...(newPlugins || [])];
-        }
+        plugins = [...plugins, ...(newPlugins || [])];
 
         validationRules = [...validationRules, ...(newValidationRules || [])];
       }
@@ -54,11 +47,5 @@ export class ApolloArmor {
       allowBatchedHttpRequests: false,
       includeStacktraceInErrorResponses: false,
     };
-  }
-}
-
-export class ApolloV4Armor extends ApolloArmor {
-  constructor(config: GraphQLArmorConfig = {}, version = 'v4') {
-    super(config, version);
   }
 }

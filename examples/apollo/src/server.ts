@@ -1,6 +1,6 @@
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+import { ApolloArmor } from '@escape.tech/graphql-armor';
 import gql from 'graphql-tag';
 
 const express = require('express');
@@ -57,8 +57,7 @@ const resolvers = {
   },
 };
 
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor({
+const armor = new ApolloArmor({
   costLimit: {
     enabled: true,
     maxCost: 100,

@@ -1,12 +1,6 @@
-import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { ApolloV4Armor } from '@escape.tech/graphql-armor';
-import gql from 'graphql-tag';
-
-const express = require('express');
-const app = express();
-const http = require('http');
-const httpServer = http.createServer(app);
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+import { gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Book {
@@ -57,8 +51,7 @@ const resolvers = {
   },
 };
 
-// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
-const armor = new ApolloV4Armor({
+const armor = new ApolloArmor({
   costLimit: {
     enabled: true,
     maxCost: 100,
@@ -82,16 +75,8 @@ const armor = new ApolloV4Armor({
   },
 });
 
-interface AppContext {
-  token?: string;
-}
-
-const protection = armor.protect();
-const server = new ApolloServer<AppContext>({
+export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  ...protection,
-  plugins: [...protection.plugins, ApolloServerPluginDrainHttpServer({ httpServer })],
+  ...armor.protect(),
 });
-
-export { app, httpServer, server };

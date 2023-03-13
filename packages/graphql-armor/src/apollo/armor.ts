@@ -12,8 +12,10 @@ import { ApolloMaxTokensProtection } from './protections/max-tokens';
 
 export class ApolloArmor {
   private readonly protections: ApolloProtection[];
+  private readonly version: string;
 
-  constructor(config: GraphQLArmorConfig = {}) {
+  constructor(config: GraphQLArmorConfig = {}, version = '') {
+    this.version = version;
     this.protections = [
       new ApolloBlockFieldSuggestionProtection(config),
       new ApolloMaxTokensProtection(config),
@@ -25,7 +27,7 @@ export class ApolloArmor {
   }
 
   protect(): {
-    plugins: PluginDefinition[];
+    plugins: any;
     validationRules: ValidationRule[];
     allowBatchedHttpRequests: false;
     includeStacktraceInErrorResponses: false;
@@ -36,7 +38,13 @@ export class ApolloArmor {
     for (const protection of this.protections) {
       if (protection.isEnabled) {
         const { plugins: newPlugins, validationRules: newValidationRules } = protection.protect();
-        plugins = [...plugins, ...((newPlugins as PluginDefinition[]) || [])];
+
+        if (this.version === 'v4') {
+          plugins = [...plugins, ...((newPlugins as PluginDefinition[]) || [])];
+        } else {
+          plugins = [...plugins, ...(newPlugins || [])];
+        }
+
         validationRules = [...validationRules, ...(newValidationRules || [])];
       }
     }
@@ -46,5 +54,11 @@ export class ApolloArmor {
       allowBatchedHttpRequests: false,
       includeStacktraceInErrorResponses: false,
     };
+  }
+}
+
+export class ApolloV4Armor extends ApolloArmor {
+  constructor(config: GraphQLArmorConfig = {}, version = 'v4') {
+    super(config, version);
   }
 }

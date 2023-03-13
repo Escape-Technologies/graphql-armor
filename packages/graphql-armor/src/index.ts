@@ -1,2 +1,2 @@
-export { ApolloArmor } from './apollo/armor';
+export { ApolloArmor, ApolloV4Armor } from './apollo/armor';
 export { EnvelopArmor, EnvelopArmorPlugin } from './envelop/armor';

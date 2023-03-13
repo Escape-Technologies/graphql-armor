@@ -64,7 +64,40 @@ yarn add @escape.tech/graphql-armor
 
 Refer to the [Examples directory](https://github.com/Escape-Technologies/graphql-armor/tree/main/examples) for specific implementation examples. (such as NestJS with Apollo Server)
 
-### Apollo Server
+### Apollo Server 4
+
+```typescript
+import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+
+// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
+const armor = new ApolloV4Armor();
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect()
+});
+```
+
+If you already have some plugins or validation rules, proceed this way:
+
+```typescript
+import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+
+// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
+const armor = new ApolloV4Armor();
+const protection = armor.protect()
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...protection,
+  plugins: [...protection.plugins, myPlugin1, myPlugin2 ]
+  validationRules: [, ...protection.validationRules, myRule1, myRule2 ]
+});
+```
+
+### Apollo Server 3
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -183,7 +216,7 @@ This section describes how to configure each plugin individually.
 - [Token Limit](#token-limit)
 
 ### Stacktraces (Apollo Only)
-
+#### Apollo Server 4
 This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#debug).
 
 Stacktraces are managed by the Apollo configuration parameter `includeStacktraceInErrorResponses`. GraphQL Armor set this default value to `false` too.
@@ -191,9 +224,10 @@ Stacktraces are managed by the Apollo configuration parameter `includeStacktrace
 For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
-import { ApolloArmor } from '@escape.tech/graphql-armor';
+import { ApolloV4Armor } from '@escape.tech/graphql-armor';
 
-const armor = new ApolloArmor();
+// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
+const armor = new ApolloV4Armor();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -202,13 +236,8 @@ const server = new ApolloServer({
 });
 ```
 
-### Batched queries (Apollo Only)
-
-This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#http-batching-is-off-by-default).
-
-Batched queries are managed by the Apollo configuration parameter `allowBatchedHttpRequests`. GraphQL Armor set this default value to `false` too.
-
-For overriding Apollo's default parameter, you can use the following code:
+#### Apollo Server 3
+In Apollo Server 3, this is enabled by default. For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -218,7 +247,45 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  allowBatchedHttpRequests: true // Note: setting the value to `true` makes DoS attacks easier by stacking expensive requests
+  debug: false,
+});
+```
+
+
+
+### Batched queries (Apollo Only)
+#### Apollo Server 4
+This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#http-batching-is-off-by-default).
+
+Batched queries are managed by the Apollo configuration parameter `allowBatchedHttpRequests`. GraphQL Armor set this default value to `false` too.
+
+For overriding Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloV4Armor } from '@escape.tech/graphql-armor';
+
+// you can also import ApolloArmor instead and use it this way: const armor = new ApolloArmor({}, 'v4');
+const armor = new ApolloV4Armor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  allowBatchedHttpRequests: true // setting the value to `true` makes DoS attacks easier by stacking expensive requests
+});
+```
+
+#### Apollo Server 3
+In Apollo Server 3, this is enabled by default. For overriding Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  allowBatchedHttpRequests: false // setting the value to `false` is recommended to prevent stacking expensive requests
 });
 ```
 

@@ -31,7 +31,7 @@
         "@changesets/cli": "2.26.0",
         "@commitlint/cli": "17.4.0",
         "@commitlint/config-angular": "17.4.0",
-        "@escape.tech/mookme": "2.2.0",
+        "@escape.tech/mookme": "2.3.0",
         "@preconstruct/cli": "2.3.0",
         "@trivago/prettier-plugin-sort-imports": "4.1.1",
         "@types/babel__core": "7.20.0",

@@ -4281,7 +4281,7 @@ __metadata:
     "@changesets/cli": 2.26.0
     "@commitlint/cli": 17.4.0
     "@commitlint/config-angular": 17.4.0
-    "@escape.tech/mookme": 2.2.0
+    "@escape.tech/mookme": 2.3.0
     "@preconstruct/cli": 2.3.0
     "@trivago/prettier-plugin-sort-imports": 4.1.1
     "@types/babel__core": 7.20.0
@@ -4335,18 +4335,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/mookme@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@escape.tech/mookme@npm:2.2.0"
+"@escape.tech/mookme@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@escape.tech/mookme@npm:2.3.0"
   dependencies:
-    chalk: "npm:^4.1.1"
-    commander: "npm:^7.2.0"
-    debug: "npm:^4.3.4"
-    inquirer: "npm:^8.0.0"
-    wildcard-match: "npm:^5.1.0"
+    chalk: ^4.1.1
+    commander: ^7.2.0
+    debug: ^4.3.4
+    inquirer: ^8.0.0
+    wildcard-match: ^5.1.0
   bin:
     mookme: bin/index.js
-  checksum: a10abe577a1c9fa06e3e832e952ca1a9e26f9e3098fd06948650d8715173048d8d3137a47a4bee8b4a2423ce581a69f8942cd3c636aa7067950402fb1795a492
+  checksum: 549709fa4b16317bfcc39954f94de67bca86528f5c206ccf0c213be45d52bceef24431179d8e4c2c974c13d1ef01342e69313afb44117a030cee8ba2360e4d78
   languageName: node
   linkType: hard
 

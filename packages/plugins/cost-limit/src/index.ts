@@ -17,12 +17,14 @@ export type CostLimitOptions = {
   scalarCost?: number;
   depthCostFactor?: number;
   ignoreIntrospection?: boolean;
+  fragmentRecursionCost?: number;
 } & GraphQLArmorCallbackConfiguration;
 const costLimitDefaultOptions: Required<CostLimitOptions> = {
   maxCost: 5000,
   objectCost: 2,
   scalarCost: 1,
   depthCostFactor: 1.5,
+  fragmentRecursionCost: 1000,
   ignoreIntrospection: true,
   onAccept: [],
   onReject: [],
@@ -95,7 +97,7 @@ class CostLimitVisitor {
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
-        return 0;
+        return this.config.fragmentRecursionCost;
       }
       this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);

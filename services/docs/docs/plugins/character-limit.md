@@ -1,13 +1,14 @@
 # Character Limit
 
-**Limit** number of **characters** in a GraphQL document.
+**Limit** number of **characters** in a GraphQL query document.
 
 This help preventing **DoS attacks** by limiting the size of the document.
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
-- [Design decisions](#design-decisions)
+- [Character Limit](#character-limit)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+  - [Design decisions](#design-decisions)
 
 :::caution Out of core
 This plugin is not part of the core package, you need to install it separately.
@@ -43,8 +44,8 @@ const getEnveloped = envelop({
 
 ## Design decisions
 
-This plugin relies on a parser plugin to works and access query from the context.
+This plugin relies on a parser plugin to works and access query document through the context.
 
-This should be supported by the engine you use.
+This plugin is not part of the core package as your engine may provide such feature.
 
-If you experience any issues, please open an issue.
+This plugin does not limit the size of input variables.

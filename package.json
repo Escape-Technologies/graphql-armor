@@ -54,7 +54,7 @@
         "node": "18.15.0",
         "yarn": "1.22.19"
     },
-    "packageManager": "yarn@3.3.1",
+    "packageManager": "yarn@3.5.0",
     "preconstruct": {
         "packages": [
             "packages/graphql-armor",

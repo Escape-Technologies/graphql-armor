@@ -141,13 +141,18 @@ describe('global', () => {
   });
 
   it('should not crash on recursive fragment', async () => {
-    const testkit = createTestkit([costLimitPlugin({
-      maxCost: 50,
-      objectCost: 4,
-      scalarCost: 2,
-      depthCostFactor: 2,
-      ignoreIntrospection: true,
-    })], schema);
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: 50,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
     const result = await testkit.execute(`query {
         ...A
       }

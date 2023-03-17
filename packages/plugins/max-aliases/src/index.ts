@@ -6,9 +6,9 @@ import {
   FragmentSpreadNode,
   GraphQLError,
   InlineFragmentNode,
+  Kind,
   OperationDefinitionNode,
   ValidationContext,
-  Kind,
 } from 'graphql';
 
 type MaxAliasesOptions = { n?: number } & GraphQLArmorCallbackConfiguration;

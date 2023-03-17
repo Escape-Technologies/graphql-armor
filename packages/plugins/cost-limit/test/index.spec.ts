@@ -167,6 +167,8 @@ describe('global', () => {
     `);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
+    expect(result.errors?.map((error) => error.message)).toContain(
+      'Syntax Error: Query Cost limit of 50 exceeded, found 16050.',
+    );
   });
 });

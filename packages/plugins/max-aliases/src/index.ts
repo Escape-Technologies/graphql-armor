@@ -8,6 +8,7 @@ import {
   InlineFragmentNode,
   OperationDefinitionNode,
   ValidationContext,
+  Kind,
 } from 'graphql';
 
 type MaxAliasesOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
@@ -23,6 +24,7 @@ class MaxAliasesVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxAliasesOptions>;
+  private readonly visitedFragments: Set<string> = new Set();
 
   constructor(context: ValidationContext, options?: MaxAliasesOptions) {
     this.context = context;
@@ -64,10 +66,14 @@ class MaxAliasesVisitor {
       ++aliases;
     }
     if ('selectionSet' in node && node.selectionSet) {
-      for (let child of node.selectionSet.selections) {
+      for (const child of node.selectionSet.selections) {
         aliases += this.countAliases(child);
       }
-    } else if (node.kind === 'FragmentSpread') {
+    } else if (node.kind === Kind.FRAGMENT_SPREAD) {
+      if (this.visitedFragments.has(node.name.value)) {
+        return 0;
+      }
+      this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
         aliases += this.countAliases(fragment);

@@ -1,5 +1,15 @@
 # @escape.tech/graphql-armor
 
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies [097334a]
+- Updated dependencies [097334a]
+  - @escape.tech/graphql-armor-max-aliases@1.7.0
+  - @escape.tech/graphql-armor-cost-limit@1.7.1
+  - @escape.tech/graphql-armor-max-depth@1.8.2
+
 ## 1.7.1
 
 ### Patch Changes

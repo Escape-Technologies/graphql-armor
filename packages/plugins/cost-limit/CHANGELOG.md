@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 1.7.1
+
+### Patch Changes
+
+- 097334a: graceful handler for recursive fragments
+
 ## 1.7.0
 
 ### Minor Changes

@@ -4063,13 +4063,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:3.0.4":
-  version: 3.0.4
-  resolution: "@envelop/core@npm:3.0.4"
+"@envelop/core@npm:3.0.6":
+  version: 3.0.6
+  resolution: "@envelop/core@npm:3.0.6"
   dependencies:
-    "@envelop/types": 3.0.1
-    tslib: 2.4.0
-  checksum: 87184b432e80f947d96119acd3e769bbaeb052324d84d2f4a3ae27e7bfb4f8f913c364055e7a5ca04ef48439181bc5762450920a299f882763a7e2f788c52818
+    "@envelop/types": 3.0.2
+    tslib: ^2.5.0
+  checksum: ccc1d1964875a7be0771ad76f057689699ae398e74a6526c2f70d37a3770fb1cacb1356aaeaef3d17084042331161273c8e2d8e4713cc62fd7f4f770d8f8a5d3
   languageName: node
   linkType: hard
 
@@ -4098,17 +4098,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:5.0.4":
-  version: 5.0.4
-  resolution: "@envelop/testing@npm:5.0.4"
+"@envelop/testing@npm:5.0.6":
+  version: 5.0.6
+  resolution: "@envelop/testing@npm:5.0.6"
   dependencies:
     "@graphql-tools/utils": ^8.8.0
-    tslib: ^2.4.0
+    tslib: ^2.5.0
   peerDependencies:
-    "@envelop/core": ^3.0.4
-    "@envelop/types": ^3.0.1
+    "@envelop/core": ^3.0.6
+    "@envelop/types": ^3.0.2
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 7c4891aff7f1ba2ee5c7597bc269120813243456a1442d8e595e25b772dc1a9802bd9cd522fe043c1ff5b1c72ade32550b0a401df8213f9db14f9b32269ec4da
+  checksum: 7d0ce912de72c0faa35240c2742c15d23ddf0963670bb682c1d70498ee96fe8145cbc3120b24f58d64974ec78d623bd6e136254c0f9ecdb492ca7845d5ec686e
   languageName: node
   linkType: hard
 
@@ -4123,12 +4123,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@envelop/types@npm:3.0.1"
+"@envelop/types@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@envelop/types@npm:3.0.2"
   dependencies:
-    tslib: ^2.4.0
-  checksum: f9e4ed76efc5b7fba09fe8fecaf589f0e03167683d2c8f18c290af03c6425a8bcf7e23bf699988469c63eb1e38dd91ac160ab753ec563ac5f4b26ba65d1a87b3
+    tslib: ^2.5.0
+  checksum: 605e63bd3a0be3ec0f465735531b8575151f508d02c02e07213e5a30a740e74d0bf5827dcac86432ecf95b782f7bc82de806188dda5ba24407680c495012ebb9
   languageName: node
   linkType: hard
 
@@ -4149,9 +4149,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     graphql: 16.6.0
     typescript: 4.9.5
   dependenciesMeta:
@@ -4164,9 +4164,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4182,9 +4182,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4200,9 +4200,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4218,9 +4218,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4236,9 +4236,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4254,9 +4254,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
-    "@envelop/core": 3.0.4
-    "@envelop/testing": 5.0.4
-    "@envelop/types": 3.0.1
+    "@envelop/core": 3.0.6
+    "@envelop/testing": 5.0.6
+    "@envelop/types": 3.0.2
     "@escape.tech/graphql-armor-types": 0.4.0
     graphql: 16.6.0
     typescript: 4.9.5
@@ -4309,7 +4309,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@envelop/core": 3.0.4
+    "@envelop/core": 3.0.6
     "@escape.tech/graphql-armor-block-field-suggestions": 1.4.0
     "@escape.tech/graphql-armor-cost-limit": 1.7.1
     "@escape.tech/graphql-armor-max-aliases": 1.7.0
@@ -18264,6 +18264,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "tslib@npm:2.5.0"
+  checksum: ae3ed5f9ce29932d049908ebfdf21b3a003a85653a9a140d614da6b767a93ef94f460e52c3d787f0e4f383546981713f165037dc2274df212ea9f8a4541004e1
   languageName: node
   linkType: hard
 

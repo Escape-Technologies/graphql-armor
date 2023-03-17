@@ -1,6 +1,6 @@
 # @escape.tech/graphql-armor-character-limit
 
-This plugin will limit the number of character in a GraphQL query.
+**Limit** number of **characters** in a GraphQL query document.
 
 ## Getting Started
 
@@ -32,8 +32,8 @@ const getEnveloped = envelop({
 
 ## Design considerations
 
-This plugin relies on a parser plugin to works and access query from the context.
+This plugin relies on a parser plugin to works and access query document through the context.
 
-This should be supported by the engine you use.
+This plugin is not part of the core package as your engine may provide such feature.
 
-If you experience any issues, please open an issue.
+This plugin does not limit the size of input variables.

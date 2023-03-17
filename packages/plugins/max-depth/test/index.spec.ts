@@ -119,4 +119,23 @@ describe('global', () => {
     expect(result.errors).toBeUndefined();
     expect(result.data?.__schema).toBeDefined();
   });
+
+  it('should not crash on recursive fragment', async () => {
+    const testkit = createTestkit([maxDepthPlugin({ n: 3 })], schema);
+    const result = await testkit.execute(`query {
+        ...A
+      }
+
+      fragment A on Query {
+        ...B
+      }
+
+      fragment B on Query {
+        ...A
+      }
+    `);
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
+  });
 });

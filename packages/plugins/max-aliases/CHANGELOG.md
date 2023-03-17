@@ -1,5 +1,15 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 1.7.0
+
+### Minor Changes
+
+- 097334a: add fragmentRecursionCost
+
+### Patch Changes
+
+- 097334a: graceful handler for recursive fragments
+
 ## 1.6.1
 
 ## 1.6.0

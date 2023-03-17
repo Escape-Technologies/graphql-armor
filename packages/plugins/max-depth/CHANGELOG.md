@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.8.2
+
+### Patch Changes
+
+- 097334a: graceful handler for recursive fragments
+
 ## 1.8.1
 
 ## 1.8.0

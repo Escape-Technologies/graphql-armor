@@ -139,4 +139,36 @@ describe('global', () => {
       `Syntax Error: Query Cost limit of ${maxCost} exceeded, found ${maxCost + 1}.`,
     ]);
   });
+
+  it('should not crash on recursive fragment', async () => {
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: 50,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`query {
+        ...A
+      }
+
+      fragment A on Query {
+        ...B
+      }
+
+      fragment B on Query {
+        ...A
+      }
+    `);
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toContain(
+      'Syntax Error: Query Cost limit of 50 exceeded, found 16050.',
+    );
+  });
 });

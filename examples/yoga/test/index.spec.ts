@@ -68,7 +68,7 @@ describe('startup', () => {
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 138.');
+    expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 5023.');
   });
 
   it('should disable field suggestion', async () => {

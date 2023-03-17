@@ -34,6 +34,7 @@ class CostLimitVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<CostLimitOptions>;
+  private readonly visitedFragments: Set<string> = new Set();
 
   constructor(context: ValidationContext, options?: CostLimitOptions) {
     this.context = context;
@@ -93,6 +94,10 @@ class CostLimitVisitor {
     }
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
+      if (this.visitedFragments.has(node.name.value)) {
+        return 0;
+      }
+      this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
         cost += this.config.depthCostFactor * this.computeComplexity(fragment, depth + 1);

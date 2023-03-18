@@ -64,7 +64,7 @@ describe('global', () => {
   });
 
   it('should reject query', async () => {
-    const length = 53;
+    const length = query.length - 1;
     const testkit = createTestkit([characterLimitPlugin({ maxLength: length })], schema);
     const result = await testkit.execute(query);
 
@@ -73,5 +73,21 @@ describe('global', () => {
     expect(result.errors?.map((error) => error.message)).toEqual([
       `Syntax Error: Character limit of ${length} exceeded, found ${length + 1}.`,
     ]);
+  });
+
+  it('should not limit query variables', async () => {
+    const length = query.length;
+    const testkit = createTestkit([characterLimitPlugin({ maxLength: length })], schema);
+    const result = await testkit.execute(query, {
+      variables: {
+        foo: 'bar'.repeat(100),
+      },
+    });
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      books: books,
+    });
   });
 });

@@ -1,12 +1,6 @@
-import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { ApolloArmor } from '@escape.tech/graphql-armor';
-import gql from 'graphql-tag';
-
-const express = require('express');
-const app = express();
-const http = require('http');
-const httpServer = http.createServer(app);
+import { gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Book {
@@ -81,16 +75,8 @@ const armor = new ApolloArmor({
   },
 });
 
-interface AppContext {
-  token?: string;
-}
-
-const protection = armor.protect();
-const server = new ApolloServer<AppContext>({
+export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  ...protection,
-  plugins: [...protection.plugins, ApolloServerPluginDrainHttpServer({ httpServer })],
+  ...armor.protect(),
 });
-
-export { app, httpServer, server };

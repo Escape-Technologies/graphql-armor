@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import assert from 'assert';
+import exp from 'constants';
 import { getIntrospectionQuery } from 'graphql';
 
 import { server } from '../src/server';
@@ -14,15 +14,12 @@ describe('startup', () => {
   })();
 
   it('should have no stacktraces', async () => {
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query {
         throw
       }`,
     });
 
-    assert(body.kind === 'single');
-
-    const query = body.singleResult;
     expect(query.errors).toHaveLength(1);
     // @ts-ignore
     expect(query.errors?.map((e) => e.extensions?.exception?.stacktrace)).toEqual([undefined]);
@@ -31,7 +28,7 @@ describe('startup', () => {
   it('should block too many tokens', async () => {
     const maxTokens = 250;
     try {
-      await server.executeOperation({
+      const query = await server.executeOperation({
         query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
       expect(false).toBe(true);
@@ -41,7 +38,7 @@ describe('startup', () => {
   });
 
   it('should have cost limit', async () => {
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query {
         ...BooksFragment
         ...BooksFragment
@@ -58,9 +55,6 @@ describe('startup', () => {
         }
       }`,
     });
-    assert(body.kind === 'single');
-
-    const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors?.map((e) => e.message)).toContain(
       'Syntax Error: Query Cost limit of 100 exceeded, found 5023.',
@@ -68,7 +62,7 @@ describe('startup', () => {
   });
 
   it('should block field suggestion', async () => {
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query {
         books {
           titlee
@@ -76,9 +70,7 @@ describe('startup', () => {
         }
       }`,
     });
-    assert(body.kind === 'single');
 
-    const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors).toHaveLength(2);
     expect(query.errors?.map((e) => e.message)).toContain(
@@ -87,7 +79,7 @@ describe('startup', () => {
   });
 
   it('should limit aliases', async () => {
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query {
         firstBooks: books {
           title
@@ -99,21 +91,15 @@ describe('startup', () => {
         }
       }`,
     });
-    assert(body.kind === 'single');
-
-    const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
   });
 
   it('should limit directives', async () => {
     const directivesCount = 11;
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query { __typename ${'@a'.repeat(directivesCount)} }`,
     });
-    assert(body.kind === 'single');
-
-    const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors).toHaveLength(directivesCount + 1);
     expect(query.errors?.map((e) => e.message)).toContain(
@@ -122,7 +108,7 @@ describe('startup', () => {
   });
 
   it('should limit depth', async () => {
-    const { body } = await server.executeOperation({
+    const query = await server.executeOperation({
       query: `query {
         books {
           author {
@@ -135,21 +121,15 @@ describe('startup', () => {
         }
       }`,
     });
-    assert(body.kind === 'single');
-
-    const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query depth limit of 4 exceeded, found 5.');
   });
 
   it('should allow introspection', async () => {
     try {
-      const { body } = await server.executeOperation({
+      const query = await server.executeOperation({
         query: getIntrospectionQuery(),
       });
-      assert(body.kind === 'single');
-
-      const query = body.singleResult;
       expect(query.errors).toBeUndefined();
       expect(query.data?.__schema).toBeDefined();
     } catch (e) {

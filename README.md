@@ -34,7 +34,7 @@ We support the following engines :
 - [Apollo Server](https://www.apollographql.com/)
 - [GraphQL Yoga](https://www.graphql-yoga.com/)
 
-We additionnaly support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
+We additionally support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
 
 - GraphQL-Helix
 - Node.js HTTP
@@ -183,12 +183,12 @@ This section describes how to configure each plugin individually.
 - [Token Limit](#token-limit)
 
 ### Stacktraces (Apollo Only)
+#### Apollo Server 4
+This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#debug).
 
-This plugin is for Apollo Server only, and is enabled by default.
+Stacktraces are managed by the Apollo configuration parameter `includeStacktraceInErrorResponses`. GraphQL Armor set this default value to `false` too.
 
-Stacktraces are managed by the Apollo configuration parameter `debug` which may have `true` as a default value in some setups. GraphQL Armor changes this default value to `false`.
-
-For rolling back to Apollo's default parameter, you can use the following code:
+For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -198,17 +198,12 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  debug: true // Ignore Armor's recommandation
+  includeStacktraceInErrorResponses: true,
 });
 ```
 
-### Batched queries (Apollo Only)
-
-This plugin is for Apollo Server only, and is enabled by default.
-
-Batched queries are enabled by default, which makes DoS attacks easier by stacking expensive requests. We make them disabled by default.
-
-For rolling back to Apollo's default parameter, you can use the following code:
+#### Apollo Server 3
+In Apollo Server 3, this is enabled by default. For overriding Apollo's default parameter, you can use the following code:
 
 ```typescript
 import { ApolloArmor } from '@escape.tech/graphql-armor';
@@ -218,7 +213,44 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   ...armor.protect(),
-  allowBatchedHttpRequests: true // Ignore Armor's recommandations
+  debug: false,
+});
+```
+
+
+
+### Batched queries (Apollo Only)
+#### Apollo Server 4
+This plugin is for Apollo Server only, and is [disabled by default](https://www.apollographql.com/docs/apollo-server/migration/#http-batching-is-off-by-default).
+
+Batched queries are managed by the Apollo configuration parameter `allowBatchedHttpRequests`. GraphQL Armor set this default value to `false` too.
+
+For overriding Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  allowBatchedHttpRequests: true // setting the value to `true` makes DoS attacks easier by stacking expensive requests
+});
+```
+
+#### Apollo Server 3
+In Apollo Server 3, this is enabled by default. For overriding Apollo's default parameter, you can use the following code:
+
+```typescript
+import { ApolloArmor } from '@escape.tech/graphql-armor';
+
+const armor = new ApolloArmor();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  ...armor.protect(),
+  allowBatchedHttpRequests: false // setting the value to `false` is recommended to prevent stacking expensive requests
 });
 ```
 
@@ -231,6 +263,15 @@ It enforces a character limit on your GraphQL queries.
 The limit is not applied to the whole HTTP body - multipart form data/file upload will still work.
 
 For configuration details, refer to this [README](https://github.com/Escape-Technologies/graphql-armor/tree/main/packages/plugins/character-limit).
+
+	```typescript	
+{	
+  characterLimit: {	
+    enabled: true,	
+    maxLength: 15000,	
+  }	
+}	
+```
 
 ### Cost Limit
 

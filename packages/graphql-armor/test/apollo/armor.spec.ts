@@ -18,14 +18,14 @@ describe('apolloArmor', () => {
     expect(enhancements).toHaveProperty('plugins');
     expect(enhancements).toHaveProperty('validationRules');
     expect(enhancements).toHaveProperty('allowBatchedHttpRequests');
-    expect(enhancements).toHaveProperty('debug');
+    expect(enhancements).toHaveProperty('includeStacktraceInErrorResponses');
   });
 
   it('should have property that equals', () => {
     expect(enhancements.plugins.length).toEqual(2);
     expect(enhancements.validationRules.length).toEqual(4);
     expect(enhancements.allowBatchedHttpRequests).toEqual(false);
-    expect(enhancements.debug).toEqual(false);
+    expect(enhancements.includeStacktraceInErrorResponses).toEqual(false);
   });
 
   it('should not include disabled plugins', () => {

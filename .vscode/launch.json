@@ -13,12 +13,21 @@
     {
         "type": "node",
         "request": "launch",
-        "name": "Apollo example dev",
+        "name": "Apollo example dev - version 4",
         "runtimeExecutable": "yarn",
         "cwd": "${workspaceRoot}",
         "console": "integratedTerminal",
         "runtimeArgs": ["workspace", "example-apollo", "dev"]
     },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Apollo example dev - version 3",
+      "runtimeExecutable": "yarn",
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "runtimeArgs": ["workspace", "example-apollo-v3", "dev"]
+  },
     {
         "type": "node",
         "request": "launch",

@@ -1,5 +1,6 @@
+import type { ApolloServerOptions, ApolloServerPlugin, BaseContext } from '@apollo/server';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
-import type { Config as ApolloServerConfig, PluginDefinition, ValidationRule } from 'apollo-server-core';
+import type { ValidationRule } from 'graphql';
 
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
@@ -24,18 +25,19 @@ export class ApolloArmor {
   }
 
   protect(): {
-    plugins: PluginDefinition[];
+    plugins: ApolloServerPlugin[];
     validationRules: ValidationRule[];
     allowBatchedHttpRequests: false;
-    debug: false;
+    includeStacktraceInErrorResponses: false;
   } {
-    let plugins: ApolloServerConfig['plugins'] = [];
-    let validationRules: ApolloServerConfig['validationRules'] = [];
+    let plugins: ApolloServerOptions<BaseContext>['plugins'] = [];
+    let validationRules: ApolloServerOptions<BaseContext>['validationRules'] = [];
 
     for (const protection of this.protections) {
       if (protection.isEnabled) {
         const { plugins: newPlugins, validationRules: newValidationRules } = protection.protect();
         plugins = [...plugins, ...(newPlugins || [])];
+
         validationRules = [...validationRules, ...(newValidationRules || [])];
       }
     }
@@ -43,7 +45,7 @@ export class ApolloArmor {
       plugins,
       validationRules,
       allowBatchedHttpRequests: false,
-      debug: false,
+      includeStacktraceInErrorResponses: false,
     };
   }
 }

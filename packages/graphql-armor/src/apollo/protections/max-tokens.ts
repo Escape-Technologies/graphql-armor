@@ -1,7 +1,7 @@
 import { BaseContext, GraphQLRequestContext } from '@apollo/server';
 import { MaxTokensOptions, MaxTokensParserWLexer, maxTokenDefaultOptions } from '@escape.tech/graphql-armor-max-tokens';
-import { inferApolloPropagator } from '../errors';
 
+import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
 const plugin = (options: MaxTokensOptions) => {

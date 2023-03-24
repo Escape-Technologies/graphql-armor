@@ -1,4 +1,4 @@
-import type { ApolloServerOptions, BaseContext, ApolloServerPlugin } from '@apollo/server';
+import type { ApolloServerOptions, ApolloServerPlugin, BaseContext } from '@apollo/server';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 import type { ValidationRule } from 'graphql';
 

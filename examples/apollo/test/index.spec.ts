@@ -31,7 +31,7 @@ describe('startup', () => {
   it('should block too many tokens', async () => {
     const maxTokens = 250;
     try {
-      const { body } = await server.executeOperation({
+      await server.executeOperation({
         query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
       expect(false).toBe(true);

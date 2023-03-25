@@ -1,5 +1,16 @@
 # @escape.tech/graphql-armor
 
+## 1.8.0
+
+### Minor Changes
+
+- af3437f: # Apollo Server
+
+  - Support Apollo Server 4.0 (thanks @arvi)
+  - Migrate Apollo devDependencies: `apollo-server-core` -> `@apollo/server`
+  - Migrate Apollo devDependencies: `apollo-server-types` -> `@apollo/server`
+  - Fix max tokens inferrence 500 error code
+
 ## 1.7.2
 
 ### Patch Changes

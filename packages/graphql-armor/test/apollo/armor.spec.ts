@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, expect, it } from '@jest/globals';
 
 import { ApolloArmor } from '../../src/apollo/armor';

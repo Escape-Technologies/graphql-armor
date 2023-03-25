@@ -1,5 +1,4 @@
 import { describe, expect, it } from '@jest/globals';
-import exp from 'constants';
 import { getIntrospectionQuery } from 'graphql';
 
 import { server } from '../src/server';
@@ -28,7 +27,7 @@ describe('startup', () => {
   it('should block too many tokens', async () => {
     const maxTokens = 250;
     try {
-      const query = await server.executeOperation({
+      await server.executeOperation({
         query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
       expect(false).toBe(true);

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 1.7.1
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+
 ## 1.7.0
 
 ### Minor Changes

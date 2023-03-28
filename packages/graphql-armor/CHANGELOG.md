@@ -1,5 +1,16 @@
 # @escape.tech/graphql-armor
 
+## 1.8.1
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+- Updated dependencies [8d0ab85]
+  - @escape.tech/graphql-armor-max-directives@1.6.4
+  - @escape.tech/graphql-armor-max-aliases@1.7.1
+  - @escape.tech/graphql-armor-cost-limit@1.7.2
+  - @escape.tech/graphql-armor-max-depth@1.8.3
+
 ## 1.8.0
 
 ### Minor Changes

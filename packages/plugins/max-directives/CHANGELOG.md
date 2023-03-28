@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 1.6.4
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+
 ## 1.6.3
 
 ### Patch Changes

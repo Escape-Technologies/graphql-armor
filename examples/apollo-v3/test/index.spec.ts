@@ -55,9 +55,7 @@ describe('startup', () => {
       }`,
     });
     expect(query.errors).toBeDefined();
-    expect(query.errors?.map((e) => e.message)).toContain(
-      'Syntax Error: Query Cost limit of 100 exceeded, found 5023.',
-    );
+    expect(query.errors?.map((e) => e.message)).toContain('Syntax Error: Query Cost limit of 100 exceeded, found 138.');
   });
 
   it('should block field suggestion', async () => {

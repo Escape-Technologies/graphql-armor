@@ -95,8 +95,8 @@ class CostLimitVisitor {
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
-        const visitCost = this.visitedFragments.get(node.name.value) ?? 0
-        return cost + (this.config.depthCostFactor * visitCost);
+        const visitCost = this.visitedFragments.get(node.name.value) ?? 0;
+        return cost + this.config.depthCostFactor * visitCost;
       } else {
         this.visitedFragments.set(node.name.value, -1);
       }

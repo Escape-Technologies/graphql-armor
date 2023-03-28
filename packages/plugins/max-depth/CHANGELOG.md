@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.8.3
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+
 ## 1.8.2
 
 ### Patch Changes

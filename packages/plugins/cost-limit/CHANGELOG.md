@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 1.7.2
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+
 ## 1.7.1
 
 ### Patch Changes

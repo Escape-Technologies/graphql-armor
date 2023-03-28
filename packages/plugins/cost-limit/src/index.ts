@@ -36,7 +36,7 @@ class CostLimitVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<CostLimitOptions>;
-  private readonly visitedFragments: Set<string> = new Set();
+  private readonly visitedFragments: Map<string, number>;
 
   constructor(context: ValidationContext, options?: CostLimitOptions) {
     this.context = context;
@@ -45,6 +45,7 @@ class CostLimitVisitor {
       costLimitDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
+    this.visitedFragments = new Map();
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -84,9 +85,6 @@ class CostLimitVisitor {
       return node.selectionSet.selections.reduce((v, child) => v + this.computeComplexity(child, depth + 1), 0);
     }
 
-    // const typeDefs: GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType = this.context
-    // .getSchema()
-    // .getQueryType();
     let cost = this.config.scalarCost;
     if ('selectionSet' in node && node.selectionSet) {
       cost = this.config.objectCost;
@@ -97,12 +95,18 @@ class CostLimitVisitor {
 
     if (node.kind == Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
-        return this.config.fragmentRecursionCost;
+        const visitCost = this.visitedFragments.get(node.name.value) ?? 0
+        return cost + (this.config.depthCostFactor * visitCost);
+      } else {
+        this.visitedFragments.set(node.name.value, -1);
       }
-      this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        cost += this.config.depthCostFactor * this.computeComplexity(fragment, depth + 1);
+        const additionalCost = this.computeComplexity(fragment, depth + 1);
+        if (this.visitedFragments.get(node.name.value) === -1) {
+          this.visitedFragments.set(node.name.value, additionalCost);
+        }
+        cost += this.config.depthCostFactor * additionalCost;
       }
     }
 

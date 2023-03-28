@@ -63,7 +63,7 @@ describe('startup', () => {
     const query = body.singleResult;
     expect(query.errors).toBeDefined();
     expect(query.errors?.map((e) => e.message)).toContain(
-      'Syntax Error: Query Cost limit of 100 exceeded, found 5023.',
+      'Syntax Error: Query Cost limit of 100 exceeded, found 138.',
     );
   });
 

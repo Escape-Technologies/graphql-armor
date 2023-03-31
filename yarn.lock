@@ -2054,6 +2054,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-syntax-jsx@npm:^7.21.4":
+  version: 7.21.4
+  resolution: "@babel/plugin-syntax-jsx@npm:7.21.4"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.20.2
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: bb7309402a1d4e155f32aa0cf216e1fa8324d6c4cfd248b03280028a015a10e46b6efd6565f515f8913918a3602b39255999c06046f7d4b8a5106be2165d724a
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-syntax-logical-assignment-operators@npm:^7.10.4, @babel/plugin-syntax-logical-assignment-operators@npm:^7.8.3":
   version: 7.10.4
   resolution: "@babel/plugin-syntax-logical-assignment-operators@npm:7.10.4"
@@ -2386,9 +2397,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-modules-amd@npm:^7.19.6":
-  version: 7.19.6
-  resolution: "@babel/plugin-transform-modules-amd@npm:7.19.6"
+"@babel/plugin-transform-modules-commonjs@npm:^7.19.6, @babel/plugin-transform-modules-commonjs@npm:^7.21.2, @babel/plugin-transform-modules-commonjs@npm:^7.7.5":
+  version: 7.21.2
+  resolution: "@babel/plugin-transform-modules-commonjs@npm:7.21.2"
   dependencies:
     "@babel/helper-module-transforms": ^7.19.6
     "@babel/helper-plugin-utils": ^7.19.0
@@ -2689,22 +2700,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.18.6":
-  version: 7.18.10
-  resolution: "@babel/plugin-transform-typescript@npm:7.18.10"
-  dependencies:
-    "@babel/helper-create-class-features-plugin": "npm:^7.18.9"
-    "@babel/helper-plugin-utils": "npm:^7.18.9"
-    "@babel/plugin-syntax-typescript": "npm:^7.18.6"
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 9fba23131b747936112549f26e5007d2762c36dc2f3a753b0cded9bf220364c85fc432b45eba1848037bc9f9317c78ff0b3f88977851499ad9115f6083c0a7fb
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-transform-typescript@npm:^7.21.0":
-  version: 7.21.0
-  resolution: "@babel/plugin-transform-typescript@npm:7.21.0"
+"@babel/plugin-transform-typescript@npm:^7.21.0, @babel/plugin-transform-typescript@npm:^7.21.3":
+  version: 7.21.3
+  resolution: "@babel/plugin-transform-typescript@npm:7.21.3"
   dependencies:
     "@babel/helper-create-class-features-plugin": ^7.21.0
     "@babel/helper-plugin-utils": ^7.20.2
@@ -2939,7 +2937,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:7.21.0":
+"@babel/preset-typescript@npm:7.21.4":
+  version: 7.21.4
+  resolution: "@babel/preset-typescript@npm:7.21.4"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.20.2
+    "@babel/helper-validator-option": ^7.21.0
+    "@babel/plugin-syntax-jsx": ^7.21.4
+    "@babel/plugin-transform-modules-commonjs": ^7.21.2
+    "@babel/plugin-transform-typescript": ^7.21.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 83b2f2bf7be3a970acd212177525f58bbb1f2e042b675a47d021a675ae27cf00b6b6babfaf3ae5c980592c9ed1b0712e5197796b691905d25c99f9006478ea06
+  languageName: node
+  linkType: hard
+
+"@babel/preset-typescript@npm:^7.18.6":
   version: 7.21.0
   resolution: "@babel/preset-typescript@npm:7.21.0"
   dependencies:
@@ -4480,7 +4493,7 @@ __metadata:
     "@babel/plugin-proposal-decorators": 7.21.0
     "@babel/plugin-proposal-nullish-coalescing-operator": 7.18.6
     "@babel/preset-env": 7.20.2
-    "@babel/preset-typescript": 7.21.0
+    "@babel/preset-typescript": 7.21.4
     "@changesets/cli": 2.26.1
     "@commitlint/cli": 17.5.1
     "@commitlint/config-angular": 17.4.4

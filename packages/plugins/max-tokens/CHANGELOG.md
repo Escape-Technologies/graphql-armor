@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 1.3.2
+
+### Patch Changes
+
+- 3c004d5: -- No code changes --
+  chore(docs): Link to online documentation
+  chore(readme): Update README.md
+
 ## 1.3.1
 
 ## 1.3.0

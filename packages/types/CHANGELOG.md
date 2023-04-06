@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor-types
 
+## 0.4.1
+
+### Patch Changes
+
+- 3c004d5: -- No code changes --
+  chore(docs): Link to online documentation
+  chore(readme): Update README.md
+
 ## 0.4.0
 
 ### Minor Changes

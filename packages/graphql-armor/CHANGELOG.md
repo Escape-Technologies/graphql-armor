@@ -1,5 +1,28 @@
 # @escape.tech/graphql-armor
 
+## 1.7.3
+
+### Patch Changes
+
+- Backport 1.8.1
+  - 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+  - Updated dependencies [8d0ab85]
+    - @escape.tech/graphql-armor-max-directives@1.6.4
+    - @escape.tech/graphql-armor-max-aliases@1.7.1
+    - @escape.tech/graphql-armor-cost-limit@1.7.2
+    - @escape.tech/graphql-armor-max-depth@1.8.3
+- Backport 1.8.2
+  - 3c004d5: -- No code changes --
+    chore(docs): Link to online documentation
+    chore(readme): Update README.md
+  - Updated dependencies [3c004d5]
+    - @escape.tech/graphql-armor-block-field-suggestions@1.4.1
+    - @escape.tech/graphql-armor-cost-limit@1.7.3
+    - @escape.tech/graphql-armor-max-aliases@1.7.2
+    - @escape.tech/graphql-armor-max-depth@1.8.4
+    - @escape.tech/graphql-armor-max-directives@1.6.5
+    - @escape.tech/graphql-armor-max-tokens@1.3.2
+
 ## 1.7.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 1.8.4
+
+### Patch Changes
+
+- 3c004d5: -- No code changes --
+  chore(docs): Link to online documentation
+  chore(readme): Update README.md
+
+## 1.8.3
+
+### Patch Changes
+
+- 8d0ab85: Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+
 ## 1.8.2
 
 ### Patch Changes

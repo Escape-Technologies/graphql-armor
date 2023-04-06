@@ -4,11 +4,13 @@
 
 It is used to prevent **DOS attack**, **heap overflow** or **server overloading**.
 
-- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
-- [Standalone usage](#standalone-usage)
-  - [Installation](#installation)
-  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
-  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Max Directives](#max-directives)
+  - [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
+  - [Standalone usage](#standalone-usage)
+    - [Installation](#installation)
+    - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+  - [References](#references)
 
 ## Configuring for GraphQL Armor
 
@@ -70,3 +72,8 @@ const getEnveloped = envelop({
   ]
 });
 ```
+
+## References
+
+- https://github.com/graphql-java/graphql-java/issues/2888
+- https://github.com/graphql-java/graphql-java/pull/2892

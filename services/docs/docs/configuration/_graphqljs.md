@@ -1,1 +1,0 @@
-# GraphQL JS Configuration

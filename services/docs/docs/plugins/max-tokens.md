@@ -12,6 +12,7 @@ The token limit is often limited by the graphql parser, but this is not always t
     - [Installation](#installation)
     - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
     - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+  - [References](#references)
 
 ## Configuring for GraphQL Armor
 
@@ -76,3 +77,8 @@ const getEnveloped = envelop({
   ]
 });
 ```
+
+## References
+
+- https://github.com/graphql/graphql-js/pull/3684
+- https://github.com/advisories/GHSA-p4qx-6w5p-4rj2

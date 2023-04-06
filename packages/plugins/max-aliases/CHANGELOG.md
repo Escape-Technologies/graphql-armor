@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 1.7.2
+
+### Patch Changes
+
+- 3c004d5: -- No code changes --
+  chore(docs): Link to online documentation
+  chore(readme): Update README.md
+
 ## 1.7.1
 
 ### Patch Changes

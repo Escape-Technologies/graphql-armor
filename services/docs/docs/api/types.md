@@ -23,6 +23,16 @@ export type GraphQLArmorConfig = {
 
 ## Callbacks
 
+### Configuration
+
+```ts
+export type GraphQLArmorCallbackConfiguration = {
+  onAccept?: GraphQLArmorAcceptCallback[];
+  onReject?: GraphQLArmorRejectCallback[];
+  propagateOnRejection?: boolean;
+};
+```
+
 ### GraphQLArmorAcceptCallback
 
 ```ts

@@ -8,7 +8,7 @@
         "build": "preconstruct build",
         "build:yarn": "yarn workspaces foreach -ptv run build",
         "watch": "preconstruct watch",
-        "lint": "prettier --check '**/*.{ts,js}'",
+        "lint": "prettier --check '**/*.{ts,js}' && diff README.md packages/graphql-armor/README.md",
         "prettier": "prettier --write '**/*.{ts,js}'",
         "test": "jest",
         "test:ci": "jest --coverage",

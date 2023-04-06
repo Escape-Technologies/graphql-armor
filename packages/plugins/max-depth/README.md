@@ -2,7 +2,11 @@
 
 This plugin will limit the depth in a GraphQL query.
 
-## Getting Started
+## Installation
+
+This plugin is bundled within GraphQL Armor, so you don't need to install it separately.
+
+However, for a standalone usage, you can install it with:
 
 ```bash
 # npm
@@ -12,26 +16,6 @@ npm install @escape.tech/graphql-armor-max-depth
 yarn add @escape.tech/graphql-armor-max-depth
 ```
 
-## Usage example
+## Documentation
 
-### With `@graphql/graphql-js`
-
-```typescript
-import { maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
-```
-
-### With `@envelop/core` from `@the-guild-org`
-
-```typescript
-import { envelop } from '@envelop/core';
-import { maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth';
-
-const getEnveloped = envelop({
-  plugins: [
-    // ... other plugins ...
-    maxDepthPlugin({
-        n: 6, // Number of depth allowed | Default: 6
-    }),
-  ]
-})
-```
+[https://escape.tech/graphql-armor/docs/plugins/max-depth](https://escape.tech/graphql-armor/docs/plugins/max-depth)

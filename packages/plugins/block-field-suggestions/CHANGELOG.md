@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 1.4.1
+
+### Patch Changes
+
+- 3c004d5: -- No code changes --
+  chore(docs): Link to online documentation
+  chore(readme): Update README.md
+
 ## 1.4.0
 
 ### Minor Changes

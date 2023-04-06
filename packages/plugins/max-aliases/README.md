@@ -1,6 +1,8 @@
 # @escape.tech/graphql-armor-max-aliases
 
-This plugin will limit the number of aliases in a GraphQL query.
+**Limit** the number of **aliases** in a GraphQL document.
+
+It is used to prevent **DOS attack** or **heap overflow**.
 
 ## Installation
 

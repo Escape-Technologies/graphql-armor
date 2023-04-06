@@ -1,6 +1,8 @@
 # @escape.tech/graphql-armor-max-depth
 
-This plugin will limit the depth in a GraphQL query.
+**Limit** the **depth** of a GraphQL document.
+
+It is used to prevent too large queries that could lead to overfetching or **DOS attack**.
 
 ## Installation
 

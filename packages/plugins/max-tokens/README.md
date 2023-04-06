@@ -1,6 +1,8 @@
 # @escape.tech/graphql-armor-max-tokens
 
-This plugin will limit the number of tokens in a GraphQL operation.
+**Limit** the number of **tokens** in a GraphQL document.
+
+It is used to prevent **DOS attack**, **heap overflow** or **server overloading**.
 
 ## Installation
 

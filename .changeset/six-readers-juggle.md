@@ -6,4 +6,4 @@
 '@escape.tech/graphql-armor': patch
 ---
 
-Fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)
+backport: fix: Inline fragment visitor (Thanks @simoncrypta @dthyresson)

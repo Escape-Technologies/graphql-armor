@@ -10,6 +10,5 @@
 '@escape.tech/graphql-armor-types': patch
 ---
 
--- No code changes --
 chore(docs): Link to online documentation
 chore(readme): Update README.md

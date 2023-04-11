@@ -7,6 +7,7 @@ on:
       - completed
     branches:
       - main
+      - 1.7.x
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

@@ -2,9 +2,9 @@
 
 GraphQL Armor is a dead-simple yet highly customizable security middleware for various GraphQL server engines.
 
-![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/packages/docs/static/img/banner.png)
+![GraphQL-Armor banner](https://raw.githubusercontent.com/Escape-Technologies/graphql-armor/main/services/docs/static/img/banner.png)
 
-[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![release](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor)
+[![CI](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/ci.yaml) [![release](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/release.yaml) [![e2e](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/e2e.yaml/badge.svg)](https://github.com/Escape-Technologies/graphql-armor/actions/workflows/e2e.yaml) ![npm](https://img.shields.io/npm/v/@escape.tech/graphql-armor) [![codecov](https://codecov.io/gh/Escape-Technologies/graphql-armor/branch/main/graph/badge.svg)](https://codecov.io/gh/Escape-Technologies/graphql-armor)
 
 ## Installation
 
@@ -27,7 +27,7 @@ We support the following engines :
 - [Apollo Server](https://www.apollographql.com/)
 - [GraphQL Yoga](https://www.graphql-yoga.com/)
 
-We additionally support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
+We additionnaly support the following engines through the [Envelop](https://www.envelop.dev/) plugin system :
 
 - GraphQL-Helix
 - Node.js HTTP
@@ -57,5 +57,3 @@ bash ./install-dev.sh
 ```
 
 We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
-
-*This project is young so there might be bugs but we are very reactive so feel free to open issues.*

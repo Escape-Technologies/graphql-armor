@@ -2,7 +2,9 @@
 
 **Limit** number of **characters** in a GraphQL query document.
 
-## Getting Started
+This help preventing **DoS attacks** by hard-limiting the size of the query document.
+
+## Installation
 
 ```bash
 # npm
@@ -12,28 +14,6 @@ npm install @escape.tech/graphql-armor-character-limit
 yarn add @escape.tech/graphql-armor-character-limit
 ```
 
-## Usage example
+## Documentation
 
-### With `@envelop/core` from `@the-guild-org`
-
-```typescript
-import { envelop } from '@envelop/core';
-import { characterLimitPlugin } from '@escape.tech/graphql-armor-character-limit';
-
-const getEnveloped = envelop({
-  plugins: [
-    // ... other plugins ...
-    characterLimitPlugin({
-        maxLength: 15000, // Number of characters allowed | Default: 15000
-    }),
-  ]
-})
-```
-
-## Design considerations
-
-This plugin relies on a parser plugin to works and access query document through the context.
-
-This plugin is not part of the core package as your engine may provide such feature.
-
-This plugin does not limit the size of input variables.
+[https://escape.tech/graphql-armor/docs/plugins/character-limit](https://escape.tech/graphql-armor/docs/plugins/character-limit)

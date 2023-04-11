@@ -24,7 +24,7 @@ class MaxAliasesVisitor {
 
   private readonly context: ValidationContext;
   private readonly config: Required<MaxAliasesOptions>;
-  private readonly visitedFragments: Set<string> = new Set();
+  private readonly visitedFragments: Map<string, number>;
 
   constructor(context: ValidationContext, options?: MaxAliasesOptions) {
     this.context = context;
@@ -33,6 +33,7 @@ class MaxAliasesVisitor {
       maxAliasesDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
+    this.visitedFragments = new Map();
 
     this.OperationDefinition = {
       enter: this.onOperationDefinitionEnter,
@@ -71,12 +72,17 @@ class MaxAliasesVisitor {
       }
     } else if (node.kind === Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
-        return 0;
+        return this.visitedFragments.get(node.name.value) ?? 0;
+      } else {
+        this.visitedFragments.set(node.name.value, -1);
       }
-      this.visitedFragments.add(node.name.value);
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        aliases += this.countAliases(fragment);
+        const additionalAliases = this.countAliases(fragment);
+        if (this.visitedFragments.get(node.name.value) === -1) {
+          this.visitedFragments.set(node.name.value, additionalAliases);
+        }
+        aliases += additionalAliases;
       }
     }
     return aliases;

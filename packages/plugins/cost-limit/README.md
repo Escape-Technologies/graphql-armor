@@ -1,8 +1,12 @@
 # @escape.tech/graphql-armor-cost-limit
 
-This plugin will limit the cost of a GraphQL query.
+**Limit** the **complexity** of a GraphQL document.
 
-## Getting Started
+## Installation
+
+This plugin is bundled within GraphQL Armor, so you don't need to install it separately.
+
+However, for a standalone usage, you can install it with:
 
 ```bash
 # npm
@@ -12,30 +16,6 @@ npm install @escape.tech/graphql-armor-cost-limit
 yarn add @escape.tech/graphql-armor-cost-limit
 ```
 
-## Usage example
+## Documentation
 
-### With `@graphql/graphql-js`
-
-```typescript
-import { costLimitRule } from '@escape.tech/graphql-armor-cost-limit';
-```
-
-### With `@envelop/core` from `@the-guild-org`
-
-```typescript
-import { envelop } from '@envelop/core';
-import { costLimitPlugin } from '@escape.tech/graphql-armor-cost-limit';
-
-const getEnveloped = envelop({
-  plugins: [
-    // ... other plugins ...
-    costLimitPlugin({
-        maxCost: 5000,              // Default: 5000
-        objectCost: 2,              // Default: 2
-        scalarCost: 1,              // Default: 1
-        depthCostFactor: 1.5,       // Default: 1.5
-        ignoreIntrospection: true,  // Default: true
-    }),
-  ]
-})
-```
+[https://escape.tech/graphql-armor/docs/plugins/cost-limit](https://escape.tech/graphql-armor/docs/plugins/cost-limit)

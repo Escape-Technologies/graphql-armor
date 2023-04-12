@@ -3612,7 +3612,7 @@ __metadata:
     "@commitlint/cli": 17.5.1
     "@commitlint/config-angular": 17.4.4
     "@escape.tech/mookme": 2.3.0
-    "@preconstruct/cli": 2.4.4
+    "@preconstruct/cli": 2.5.0
     "@trivago/prettier-plugin-sort-imports": 4.1.1
     "@types/babel__core": 7.20.0
     "@types/babel__preset-env": 7.9.2
@@ -4716,9 +4716,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@preconstruct/cli@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@preconstruct/cli@npm:2.4.4"
+"@preconstruct/cli@npm:2.5.0":
+  version: 2.5.0
+  resolution: "@preconstruct/cli@npm:2.5.0"
   dependencies:
     "@babel/code-frame": ^7.5.5
     "@babel/core": ^7.7.7
@@ -4742,7 +4742,7 @@ __metadata:
     is-ci: ^2.0.0
     is-reference: ^1.2.1
     jest-worker: ^26.3.0
-    magic-string: ^0.25.7
+    magic-string: ^0.30.0
     meow: ^7.1.0
     ms: ^2.1.2
     normalize-path: ^3.0.0
@@ -4753,13 +4753,13 @@ __metadata:
     quick-lru: ^5.1.1
     resolve: ^1.17.0
     resolve-from: ^5.0.0
-    rollup: ^2.32.0
+    rollup: ^2.79.1
     semver: ^7.3.4
-    terser: ^5.2.1
+    terser: ^5.16.8
     v8-compile-cache: ^2.1.1
   bin:
     preconstruct: bin.js
-  checksum: a91979088a1fb492184fc66be15d6e8349676fd85db5d1559a1b761c16ae9d7223b2adb667b3ba2db0e4df7a92bb35e76c6be6bc46d32893bde55f144e5e53a2
+  checksum: 794d06482c2031844e6670ce9b99c3f07d7bea7b5889786923a90ce0ac81615f17337996addb7df4184990fce85979a44a84737fa53486ffeb5ce8c47cc9f748
   languageName: node
   linkType: hard
 
@@ -12843,6 +12843,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^0.30.0":
+  version: 0.30.0
+  resolution: "magic-string@npm:0.30.0"
+  dependencies:
+    "@jridgewell/sourcemap-codec": ^1.4.13
+  checksum: 7bdf22e27334d8a393858a16f5f840af63a7c05848c000fd714da5aa5eefa09a1bc01d8469362f25cc5c4a14ec01b46557b7fff8751365522acddf21e57c488d
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^3.0.0, make-dir@npm:^3.0.2, make-dir@npm:^3.1.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -15715,7 +15724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.32.0":
+"rollup@npm:^2.79.1":
   version: 2.79.1
   resolution: "rollup@npm:2.79.1"
   dependencies:
@@ -16859,7 +16868,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.10.0, terser@npm:^5.16.5, terser@npm:^5.2.1":
+"terser@npm:^5.10.0, terser@npm:^5.16.5":
   version: 5.16.8
   resolution: "terser@npm:5.16.8"
   dependencies:
@@ -16870,6 +16879,20 @@ __metadata:
   bin:
     terser: bin/terser
   checksum: f4a3ef4848a71f74f637c009395cf5a28660b56237fb8f13532cecfb24d6263e2dfbc1a511a11a94568988898f79cdcbecb9a4d8e104db35a0bea9639b70a325
+  languageName: node
+  linkType: hard
+
+"terser@npm:^5.16.8":
+  version: 5.16.9
+  resolution: "terser@npm:5.16.9"
+  dependencies:
+    "@jridgewell/source-map": ^0.3.2
+    acorn: ^8.5.0
+    commander: ^2.20.0
+    source-map-support: ~0.5.20
+  bin:
+    terser: bin/terser
+  checksum: b373693ee01ce08cc9b9595d57df889acbbc899d929a7fe53662330ce954d53145582f6715c9cc4839d555f5769a28fbeb203155b54e3a9c6c646db292002edd
   languageName: node
   linkType: hard
 

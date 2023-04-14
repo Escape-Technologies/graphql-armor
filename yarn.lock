@@ -2643,12 +2643,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.6.0":
-  version: 17.6.0
-  resolution: "@commitlint/cli@npm:17.6.0"
+"@commitlint/cli@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/cli@npm:17.6.1"
   dependencies:
     "@commitlint/format": ^17.4.4
-    "@commitlint/lint": ^17.6.0
+    "@commitlint/lint": ^17.6.1
     "@commitlint/load": ^17.5.0
     "@commitlint/read": ^17.5.1
     "@commitlint/types": ^17.4.4
@@ -2659,7 +2659,7 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: 3b42aff92bbb882cdff1e54361548fe622ead8eef572d1750fab08e10755b8165dfa79c1e6d71ef2197b9f94223edeee69348bc21a3160d2e18c9ed7dff6e49d
+  checksum: ec559e1f529c8bdc680d71527d2eb591dc7d264fcc8a70cf7ee12d5b833c385374ae41943f7a8e8346423c51f8900dded5041b6e719586295573882e366c41ba
   languageName: node
   linkType: hard
 
@@ -2670,12 +2670,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-angular@npm:17.6.0":
-  version: 17.6.0
-  resolution: "@commitlint/config-angular@npm:17.6.0"
+"@commitlint/config-angular@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/config-angular@npm:17.6.1"
   dependencies:
     "@commitlint/config-angular-type-enum": ^17.4.0
-  checksum: fa69704cb314db44388e864a1f0631b72bc9eadc78033ec802f45c86eeac6e6aa953eb69794ea2b7091d1da1efcea80f546679c5018f573868b42911d963581c
+  checksum: 66d833db2585a788ae9360afb14827b7087891abe8c1a4c8cd95fe6a5b62d0a7743c2bdabaa3c9dfc373f1f3744ed9e3086405f5b7c0a6c1a06206d980ce8b9a
   languageName: node
   linkType: hard
 
@@ -2730,7 +2730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.6.0":
+"@commitlint/lint@npm:^17.6.1":
   version: 17.6.1
   resolution: "@commitlint/lint@npm:17.6.1"
   dependencies:
@@ -3609,8 +3609,8 @@ __metadata:
     "@babel/preset-env": 7.21.4
     "@babel/preset-typescript": 7.21.4
     "@changesets/cli": 2.26.1
-    "@commitlint/cli": 17.6.0
-    "@commitlint/config-angular": 17.6.0
+    "@commitlint/cli": 17.6.1
+    "@commitlint/config-angular": 17.6.1
     "@escape.tech/mookme": 2.3.0
     "@preconstruct/cli": 2.5.0
     "@trivago/prettier-plugin-sort-imports": 4.1.1

@@ -3796,7 +3796,7 @@ __metadata:
     "@commitlint/cli": 17.6.1
     "@commitlint/config-angular": 17.6.1
     "@escape.tech/mookme": 2.4.0
-    "@preconstruct/cli": 2.6.2
+    "@preconstruct/cli": 2.7.0
     "@trivago/prettier-plugin-sort-imports": 4.1.1
     "@types/babel__core": 7.20.0
     "@types/babel__preset-env": 7.9.2
@@ -4917,9 +4917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@preconstruct/cli@npm:2.6.2":
-  version: 2.6.2
-  resolution: "@preconstruct/cli@npm:2.6.2"
+"@preconstruct/cli@npm:2.7.0":
+  version: 2.7.0
+  resolution: "@preconstruct/cli@npm:2.7.0"
   dependencies:
     "@babel/code-frame": ^7.5.5
     "@babel/core": ^7.7.7
@@ -4958,9 +4958,10 @@ __metadata:
     semver: ^7.3.4
     terser: ^5.16.8
     v8-compile-cache: ^2.1.1
+    zod: ^3.21.4
   bin:
     preconstruct: bin.js
-  checksum: ea1459cbc62c0478036c19052f66898201e2408648027260c96cc8b844930bda011ef3bd0439aca586a8ab984d4bf4b4cbc3bf1158856b68c43baa8f9d3ce4b3
+  checksum: b1d63016a8cc6bd8f00d76eab756b2b9680d1bb7773036508ae2469f71293c7c9b9c84e5d459798182165d416905004f26f319ac87dad4e54a5185239f0f5492
   languageName: node
   linkType: hard
 
@@ -18974,6 +18975,13 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.21.4":
+  version: 3.21.4
+  resolution: "zod@npm:3.21.4"
+  checksum: f185ba87342ff16f7a06686767c2b2a7af41110c7edf7c1974095d8db7a73792696bcb4a00853de0d2edeb34a5b2ea6a55871bc864227dace682a0a28de33e1f
   languageName: node
   linkType: hard
 

@@ -1,5 +1,22 @@
 # @escape.tech/graphql-armor
 
+## 2.0.0
+
+### Major Changes
+
+- 0c95d1a: - chore(rep): Drop support for node 14 and require node 16 or higher. [#420](https://github.com/Escape-Technologies/graphql-armor/pull/420)
+  - chore(deps): Update envelop (major) [#418](https://github.com/Escape-Technologies/graphql-armor/pull/418)
+
+### Patch Changes
+
+- Updated dependencies [0c95d1a]
+  - @escape.tech/graphql-armor-block-field-suggestions@2.0.0
+  - @escape.tech/graphql-armor-max-directives@2.0.0
+  - @escape.tech/graphql-armor-max-aliases@2.0.0
+  - @escape.tech/graphql-armor-cost-limit@2.0.0
+  - @escape.tech/graphql-armor-max-tokens@2.0.0
+  - @escape.tech/graphql-armor-max-depth@2.0.0
+
 ## 1.8.2
 
 ### Patch Changes

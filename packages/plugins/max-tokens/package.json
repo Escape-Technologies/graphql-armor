@@ -27,13 +27,13 @@
     "graphql": "^16.0.0"
   },
   "optionalDependencies": {
-    "@envelop/core": "^3.0.0",
+    "@envelop/core": "^4.0.0",
     "@escape.tech/graphql-armor-types": "0.4.1"
   },
   "devDependencies": {
-    "@envelop/core": "3.0.6",
-    "@envelop/testing": "5.0.6",
-    "@envelop/types": "3.0.2",
+    "@envelop/core": "4.0.0",
+    "@envelop/testing": "6.0.0",
+    "@envelop/types": "4.0.0",
     "@escape.tech/graphql-armor-types": "0.4.1",
     "graphql": "16.6.0",
     "typescript": "5.0.4"

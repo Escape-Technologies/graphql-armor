@@ -30,6 +30,9 @@
     "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@escape.tech/graphql-armor-block-field-suggestions": "1.4.1",
     "@escape.tech/graphql-armor-cost-limit": "1.7.3",

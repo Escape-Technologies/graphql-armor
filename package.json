@@ -54,6 +54,9 @@
         "node": "18.16.0",
         "yarn": "1.22.19"
     },
+    "engines": {
+        "node": ">=16.0.0"
+    },
     "packageManager": "yarn@3.5.1",
     "preconstruct": {
         "packages": [

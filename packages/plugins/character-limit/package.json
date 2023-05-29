@@ -23,6 +23,9 @@
     "url": "https://github.com/Escape-Technologies/graphql-armor/issues"
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "graphql": "^16.0.0"
   },

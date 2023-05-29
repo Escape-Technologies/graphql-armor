@@ -9,4 +9,5 @@
 '@escape.tech/graphql-armor': major
 ---
 
-- Drop support for node 14 and require node 16 or higher. 
+- chore(rep): Drop support for node 14 and require node 16 or higher. [#420](https://github.com/Escape-Technologies/graphql-armor/pull/420)
+- chore(deps): Update envelop (major) [#418](https://github.com/Escape-Technologies/graphql-armor/pull/418)

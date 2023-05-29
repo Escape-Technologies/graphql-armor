@@ -10,4 +10,4 @@
 '@escape.tech/graphql-armor-types': minor
 ---
 
-- chore(deps): Update envelop (major) #418
+- chore(deps): Update envelop (major)

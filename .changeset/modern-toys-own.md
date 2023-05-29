@@ -9,4 +9,4 @@
 '@escape.tech/graphql-armor': major
 ---
 
-Drop support for node 14 and require node 16 or higher.
+- Drop support for node 14 and require node 16 or higher. 

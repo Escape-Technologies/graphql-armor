@@ -39,7 +39,7 @@ describe('startup', () => {
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
     expect(body.errors?.map((e) => e.message)).toContain(
-      `Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`,
+      `Syntax Error: Token limit of ${maxTokens} exceeded.`,
     );
   });
 

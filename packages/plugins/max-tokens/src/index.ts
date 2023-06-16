@@ -44,11 +44,7 @@ export class MaxTokensParserWLexer extends Parser {
             }
 
             if (this._tokenCount > this.config.n) {
-              const err = syntaxError(
-                this._lexer.source,
-                token.start,
-                `Token limit of ${this.config.n} exceeded, found ${this._tokenCount}.`,
-              );
+              const err = syntaxError(this._lexer.source, token.start, `Token limit of ${this.config.n} exceeded.`);
 
               for (const handler of this.config.onReject) {
                 handler(null, err);

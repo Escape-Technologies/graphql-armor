@@ -38,9 +38,7 @@ describe('startup', () => {
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain(
-      `Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`,
-    );
+    expect(body.errors?.map((e) => e.message)).toContain(`Syntax Error: Token limit of ${maxTokens} exceeded.`);
   });
 
   it('should have cost limit', async () => {

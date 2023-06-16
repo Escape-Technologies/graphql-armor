@@ -32,7 +32,7 @@ describe('startup', () => {
       });
       expect(false).toBe(true);
     } catch (e) {
-      expect(e.message).toContain(`Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`);
+      expect(e.message).toContain(`Syntax Error: Token limit of ${maxTokens} exceeded.`);
     }
   });
 

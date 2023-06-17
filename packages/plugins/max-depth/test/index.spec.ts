@@ -111,6 +111,54 @@ describe('global', () => {
     ]);
   });
 
+  it('should reject flattened fragment', async () => {
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
+    const result = await testkit.execute(`
+    query {
+      ...BooksFragment
+    }
+
+    fragment BooksFragment on Query {
+      books {
+        title
+        author {
+          name
+        }
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
+    ]);
+  });
+
+  it('should reject flattened inline fragment', async () => {
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
+    const result = await testkit.execute(`
+    query {
+      ...on Query {
+        books {
+          title
+          author {
+            name
+          }
+        }
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
+    ]);
+  });
+
   it('should allow introspection', async () => {
     const testkit = createTestkit([maxDepthPlugin({ n: 2, ignoreIntrospection: true })], schema);
     const result = await testkit.execute(getIntrospectionQuery());
@@ -139,5 +187,24 @@ describe('global', () => {
     expect(result.errors?.map((error) => error.message)).toContain(
       'Syntax Error: Query depth limit of 3 exceeded, found 4.',
     );
+  });
+
+  it('should not crash on flattened recursive fragment', async () => {
+    const testkit = createTestkit([maxDepthPlugin({ n: 3, flattenFragments: true })], schema);
+    const result = await testkit.execute(`query {
+        ...A
+      }
+
+      fragment A on Query {
+        ...B
+      }
+
+      fragment B on Query {
+        ...A
+      }
+    `);
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
   });
 });

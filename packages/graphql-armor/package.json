@@ -43,7 +43,7 @@
     "graphql": "^16.0.0"
   },
   "optionalDependencies": {
-    "@apollo/server": "^4.0.0",
+    "@apollo/server": "^4.7.4",
     "@envelop/core": "^4.0.0",
     "@escape.tech/graphql-armor-types": "0.4.1"
   },

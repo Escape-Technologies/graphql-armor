@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.1.0
+
+### Minor Changes
+
+- 781450a: Remove the found count from the max tokens plugin. [#430](https://github.com/Escape-Technologies/graphql-armor/pull/430)
+
 ## 2.0.0
 
 ### Major Changes

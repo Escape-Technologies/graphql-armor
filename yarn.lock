@@ -10527,7 +10527,7 @@ __metadata:
     apollo-server: 3.12.0
     apollo-server-express: 3.12.0
     express: 4.18.2
-    graphql: 16.6.0
+    graphql: 16.7.1
     nodemon: 2.0.22
     reflect-metadata: 0.1.13
     rxjs: 7.8.0
@@ -10551,7 +10551,7 @@ __metadata:
     "@types/node": 18.15.11
     body-parser: ^1.20.2
     express: 4.18.2
-    graphql: 16.6.0
+    graphql: 16.7.1
     graphql-tag: ^2.12.6
     nodemon: 2.0.22
     reflect-metadata: 0.1.13
@@ -10585,7 +10585,7 @@ __metadata:
     eslint: 8.37.0
     eslint-config-google: 0.14.0
     express: 4.18.2
-    graphql: 16.6.0
+    graphql: 16.7.1
     nodemon: 2.0.22
     prettier: 2.8.7
     reflect-metadata: 0.1.13
@@ -10604,7 +10604,7 @@ __metadata:
     "@graphql-tools/schema": 9.0.17
     "@graphql-yoga/node": 2.13.13
     "@types/node": 18.15.11
-    graphql: 16.6.0
+    graphql: 16.7.1
     supertest: 6.3.3
     ts-node: 10.9.1
     ts-node-dev: 2.0.0
@@ -11644,13 +11644,6 @@ __metadata:
   peerDependencies:
     graphql: ">=0.11 <=16"
   checksum: 75ea80702fa027b8d4ff1faba9824b11184fef0946560c535040b79f0f7f56ac7ce42873ea3b34083373ddf3a439cda1e7b7bfae20939ab739330456f4e7776b
-  languageName: node
-  linkType: hard
-
-"graphql@npm:16.6.0":
-  version: 16.6.0
-  resolution: "graphql@npm:16.6.0"
-  checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
   languageName: node
   linkType: hard
 

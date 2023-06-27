@@ -1,16 +1,18 @@
 import { describe, expect, it } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
+import { createServer } from 'node:http';
 import request from 'supertest';
 
-import { initServer } from '../src/server';
+import { yoga } from '../src/yoga';
 
 describe('startup', () => {
-  const server = initServer();
+  const server = createServer(yoga);
   it('should configure', () => {
     expect(server).toBeDefined();
   });
 
   it('should have no stacktraces', async () => {
+    // Note: when running the test the console.error() used in the `throw` resolver will be printed to the console.
     const response = await request(server)
       .post('/graphql')
       .send({
@@ -22,6 +24,7 @@ describe('startup', () => {
     expect(response.status).toBe(200);
     expect(response.body.errors).toHaveLength(1);
     expect(response.body.errors?.map((e) => e.message)).toContain('Unexpected error.');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     expect(response.body.errors?.map((e) => e.extensions?.exception?.stacktrace)).toEqual([undefined]);
   });
@@ -34,11 +37,13 @@ describe('startup', () => {
         query: `query { ${Array(maxTokens + 1).join('a ')} }`,
       });
 
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(200);
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
-    expect(body.errors?.map((e) => e.message)).toContain(`Syntax Error: Token limit of ${maxTokens} exceeded.`);
+    expect(body.errors?.map((e) => e.message)).toContain(
+      `Syntax Error: Token limit of ${maxTokens} exceeded, found ${maxTokens + 1}.`,
+    );
   });
 
   it('should have cost limit', async () => {
@@ -80,7 +85,7 @@ describe('startup', () => {
       }`,
       });
 
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(200);
     const body = JSON.parse(response.text);
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
@@ -106,8 +111,8 @@ describe('startup', () => {
       });
 
     expect(response.statusCode).toBe(200);
-    const body = JSON.parse(response.text);
-    expect(body.data).toBeDefined();
+    const body = JSON.parse(response.text); // ?
+    expect(body.data).toBeUndefined();
     expect(body.data?.__typename).toBeUndefined();
     expect(body.errors).toBeDefined();
     expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Aliases limit of 1 exceeded, found 2.');
@@ -124,7 +129,7 @@ describe('startup', () => {
 
     expect(response.statusCode).toBe(200);
     const body = JSON.parse(response.text);
-    expect(body.data).toBeDefined();
+    expect(body.data).toBeUndefined();
     expect(body.data?.__typename).toBeUndefined();
     expect(body.errors).toBeDefined();
     expect(body.errors?.map((e) => e.message)).toContain('Syntax Error: Directives limit of 10 exceeded, found 11.');

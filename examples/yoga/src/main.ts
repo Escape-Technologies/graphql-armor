@@ -1,7 +1,8 @@
-import { initServer } from './server';
+import { createServer } from 'node:http';
 
-const server = initServer();
+import { yoga } from './yoga';
 
-(async () => {
-  await server.start();
-})();
+const server = createServer(yoga);
+server.listen(4000, () => {
+  console.log(`Listening on http://localhost:4000${yoga.graphqlEndpoint}`);
+});

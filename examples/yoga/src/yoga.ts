@@ -4,10 +4,13 @@ import { createYoga } from 'graphql-yoga';
 
 import { schema } from './schema';
 
-const logAcceptance = (ctx: ValidationContext | null) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const logAcceptance = (ctx: ValidationContext | null, details: any) => {
   if (ctx) {
     console.debug(`accepted context: ${JSON.stringify(ctx, null, 2)}`);
   }
+
+  console.debug(`accepted details:  ${JSON.stringify(details, null, 2)}}`);
 };
 
 const logRejection = (ctx: ValidationContext | null, error: GraphQLError) => {

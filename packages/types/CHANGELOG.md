@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-types
 
+## 0.5.0
+
+### Minor Changes
+
+- d55e3d4: chore(deps): bump devDependencies to GraphQL 16.7.1
+
 ## 0.4.1
 
 ### Patch Changes

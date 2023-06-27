@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.2.0
+
+### Minor Changes
+
+- d55e3d4: chore(deps): bump devDependencies to GraphQL 16.7.1
+
 ## 2.1.0
 
 ### Minor Changes

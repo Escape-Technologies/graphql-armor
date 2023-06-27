@@ -1,5 +1,21 @@
 # @escape.tech/graphql-armor
 
+## 2.2.0
+
+### Minor Changes
+
+- d55e3d4: chore(deps): bump devDependencies to GraphQL 16.7.1
+
+### Patch Changes
+
+- Updated dependencies [d55e3d4]
+  - @escape.tech/graphql-armor-block-field-suggestions@2.1.0
+  - @escape.tech/graphql-armor-cost-limit@2.1.0
+  - @escape.tech/graphql-armor-max-aliases@2.1.0
+  - @escape.tech/graphql-armor-max-depth@2.2.0
+  - @escape.tech/graphql-armor-max-directives@2.1.0
+  - @escape.tech/graphql-armor-max-tokens@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

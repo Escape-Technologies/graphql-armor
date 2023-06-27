@@ -7,7 +7,7 @@ import { schema } from './schema';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const logAcceptance = (ctx: ValidationContext | null, details: any) => {
   if (ctx) {
-    console.debug(`accepted context: ${JSON.stringify(ctx, null, 2)}`);
+    console.debug(`accepted context`);
   }
 
   console.debug(`accepted details:  ${JSON.stringify(details, null, 2)}}`);
@@ -15,7 +15,7 @@ const logAcceptance = (ctx: ValidationContext | null, details: any) => {
 
 const logRejection = (ctx: ValidationContext | null, error: GraphQLError) => {
   if (ctx) {
-    console.debug(`rejection context: ${JSON.stringify(ctx, null, 2)}`);
+    console.debug(`rejection context`);
   }
   console.debug(`rejected request: ${error}`);
 };

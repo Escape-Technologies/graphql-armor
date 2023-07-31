@@ -82,6 +82,25 @@ describe('global', () => {
     ]);
   });
 
+  it('should not count __typename aliases against limit', async () => {
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);
+    const result = await testkit.execute(/* GraphQL */ `
+      query A {
+        getBook(title: "null") {
+          typenameA: __typename
+          typenameB: __typename
+        }
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      getBook: null,
+    });
+  });
+
   it('should respect fragment aliases', async () => {
     const maxAliases = 1;
     const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);

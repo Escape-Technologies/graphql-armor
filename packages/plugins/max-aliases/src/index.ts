@@ -63,7 +63,7 @@ class MaxAliasesVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   ): number {
     let aliases = 0;
-    if ('alias' in node && node.alias) {
+    if ('alias' in node && node.alias && node.name.value !== '__typename') {
       ++aliases;
     }
     if ('selectionSet' in node && node.selectionSet) {

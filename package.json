@@ -33,7 +33,7 @@
         "@commitlint/config-angular": "17.6.6",
         "@escape.tech/mookme": "2.4.0",
         "@preconstruct/cli": "2.7.0",
-        "@trivago/prettier-plugin-sort-imports": "4.1.1",
+        "@trivago/prettier-plugin-sort-imports": "4.2.0",
         "@types/babel__core": "7.20.1",
         "@types/babel__preset-env": "7.9.2",
         "@typescript-eslint/eslint-plugin": "5.60.1",

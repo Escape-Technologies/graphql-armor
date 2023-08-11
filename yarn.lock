@@ -3865,13 +3865,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.7.0":
-  version: 17.7.0
-  resolution: "@commitlint/cli@npm:17.7.0"
+"@commitlint/cli@npm:17.7.1":
+  version: 17.7.1
+  resolution: "@commitlint/cli@npm:17.7.1"
   dependencies:
     "@commitlint/format": ^17.4.4
     "@commitlint/lint": ^17.7.0
-    "@commitlint/load": ^17.7.0
+    "@commitlint/load": ^17.7.1
     "@commitlint/read": ^17.5.1
     "@commitlint/types": ^17.4.4
     execa: ^5.0.0
@@ -3881,7 +3881,7 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: 2cade70c4cd6205f134c523f7666b5ec16daed89c0a34353b392988115a690b2108b8146e84dfdca725fbea99a2a40f6f49384968aece68da81c6cf7680aeff7
+  checksum: 2500a50514ab0629d3661d74e6f759f0b9b56c1992fbc101bb78a67033c6ed02a6dad3ae728f91f1f9b3034ae17e3808835957f885ab7129a421085d31f6cb23
   languageName: node
   linkType: hard
 
@@ -3964,7 +3964,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/load@npm:^17.7.0":
+"@commitlint/load@npm:^17.7.1":
   version: 17.7.1
   resolution: "@commitlint/load@npm:17.7.1"
   dependencies:
@@ -4782,7 +4782,7 @@ __metadata:
     "@babel/preset-env": 7.22.10
     "@babel/preset-typescript": 7.22.5
     "@changesets/cli": 2.26.2
-    "@commitlint/cli": 17.7.0
+    "@commitlint/cli": 17.7.1
     "@commitlint/config-angular": 17.7.0
     "@escape.tech/mookme": 2.4.0
     "@preconstruct/cli": 2.8.1

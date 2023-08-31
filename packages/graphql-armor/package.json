@@ -42,8 +42,8 @@
     "@escape.tech/graphql-armor-max-tokens": "2.2.0",
     "graphql": "^16.0.0"
   },
-  "optionalDependencies": {
-    "@apollo/server": "^4.9.3",
+  "peerDependencies": {
+    "@apollo/server": "^4.0.0",
     "@envelop/core": "^4.0.0",
     "@escape.tech/graphql-armor-types": "0.5.0"
   },

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 2.3.0
+
+### Minor Changes
+
+- 9d53465: Make Types lib peerDependencies instead of optionalDependencies
+
 ## 2.2.0
 
 ### Minor Changes

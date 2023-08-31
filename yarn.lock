@@ -236,15 +236,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/cache-control-types@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@apollo/cache-control-types@npm:1.0.2"
-  peerDependencies:
-    graphql: 14.x || 15.x || 16.x
-  checksum: 1e00c57b45fbd8656c96cdcd254658f332c1955bd8db9274c665e1c6ef8ac881a6b6a3f953b60638ae5f59fdfce6b005adb9a5b945b694903579a9665499e823
-  languageName: node
-  linkType: hard
-
 "@apollo/cache-control-types@npm:^1.0.3":
   version: 1.0.3
   resolution: "@apollo/cache-control-types@npm:1.0.3"
@@ -424,7 +415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.9.3":
+"@apollo/server@npm:4.9.3, @apollo/server@npm:^4.9.3":
   version: 4.9.3
   resolution: "@apollo/server@npm:4.9.3"
   dependencies:
@@ -457,42 +448,6 @@ __metadata:
   peerDependencies:
     graphql: ^16.6.0
   checksum: 28537d7646669a5dc1302cfd75d8a9bf473459ee585c6b778d174628a2cfb3f89a5ac742eca7de2a779b6c9e3f30da509a8787a71227520d009ac190aa7a9207
-  languageName: node
-  linkType: hard
-
-"@apollo/server@npm:^4.7.4":
-  version: 4.7.4
-  resolution: "@apollo/server@npm:4.7.4"
-  dependencies:
-    "@apollo/cache-control-types": ^1.0.2
-    "@apollo/server-gateway-interface": ^1.1.0
-    "@apollo/usage-reporting-protobuf": ^4.1.0
-    "@apollo/utils.createhash": ^2.0.0
-    "@apollo/utils.fetcher": ^2.0.0
-    "@apollo/utils.isnodelike": ^2.0.0
-    "@apollo/utils.keyvaluecache": ^2.1.0
-    "@apollo/utils.logger": ^2.0.0
-    "@apollo/utils.usagereporting": ^2.1.0
-    "@apollo/utils.withrequired": ^2.0.0
-    "@graphql-tools/schema": ^9.0.0
-    "@josephg/resolvable": ^1.0.0
-    "@types/express": ^4.17.13
-    "@types/express-serve-static-core": ^4.17.30
-    "@types/node-fetch": ^2.6.1
-    async-retry: ^1.2.1
-    body-parser: ^1.20.0
-    cors: ^2.8.5
-    express: ^4.17.1
-    loglevel: ^1.6.8
-    lru-cache: ^7.10.1
-    negotiator: ^0.6.3
-    node-abort-controller: ^3.1.1
-    node-fetch: ^2.6.7
-    uuid: ^9.0.0
-    whatwg-mimetype: ^3.0.0
-  peerDependencies:
-    graphql: ^16.6.0
-  checksum: 8cdde1ead8b0cae3ce6063ae8ca979c0a56c35b474a52a9b76b14eb9f95ecd715d40a760b9c1ec4d3690ea5b6cac71fb4cd990b4b76fbeeed4d62b963d5510eb
   languageName: node
   linkType: hard
 
@@ -11280,7 +11235,7 @@ __metadata:
   resolution: "example-apollo@workspace:examples/apollo"
   dependencies:
     "@apollo/gateway": 2.4.1
-    "@apollo/server": ^4.7.4
+    "@apollo/server": ^4.9.3
     "@escape.tech/graphql-armor": "*"
     "@types/body-parser": ^1
     "@types/express": 4.17.17

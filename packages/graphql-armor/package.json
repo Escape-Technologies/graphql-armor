@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@apollo/server": "4.9.3",
-    "@envelop/core": "4.0.0",
+    "@envelop/core": "4.0.1",
     "@escape.tech/graphql-armor-types": "0.5.0",
     "@types/node": "^18.6.3",
     "graphql": "16.7.1",

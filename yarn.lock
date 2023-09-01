@@ -4814,6 +4814,13 @@ __metadata:
     "@apollo/server": ^4.0.0
     "@envelop/core": ^4.0.0
     "@escape.tech/graphql-armor-types": 0.5.0
+  peerDependenciesMeta:
+    "@apollo/server":
+      optional: true
+    "@envelop/core":
+      optional: true
+    "@escape.tech/graphql-armor-types":
+      optional: true
   languageName: unknown
   linkType: soft
 

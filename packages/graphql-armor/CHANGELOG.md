@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 2.3.1
+
+### Patch Changes
+
+- e812da5: set peerDependencies to optional
+
 ## 2.3.0
 
 ### Minor Changes

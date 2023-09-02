@@ -20,11 +20,14 @@ GraphQLArmor({
     // Toogle the plugin | default: true
     enabled?: boolean,
     
-    // Directives threshold | default: 6
+    // Depth threshold | default: 6
     n?: int,
 
     // Ignore the depth of introspection queries | default: true
     ignoreIntrospection?: boolean,
+
+    // Flatten frament spreads and inline framents for the depth count | default: false
+    flattenFragments?: boolean,
 
     // Callbacks that are ran whenever a Query is accepted
     onAccept?: GraphQLArmorAcceptCallback[],

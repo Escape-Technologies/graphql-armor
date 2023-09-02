@@ -1,4 +1,4 @@
-import { BaseContext, GraphQLRequestContext } from '@apollo/server';
+import type { BaseContext, GraphQLRequestContext } from '@apollo/server';
 import { MaxTokensOptions, MaxTokensParserWLexer, maxTokenDefaultOptions } from '@escape.tech/graphql-armor-max-tokens';
 import { GraphQLError } from 'graphql';
 

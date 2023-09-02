@@ -1,5 +1,17 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 2.2.0
+
+### Minor Changes
+
+- d55e3d4: chore(deps): bump devDependencies to GraphQL 16.7.1
+
+## 2.1.0
+
+### Minor Changes
+
+- f238e37: Add flattenFragments option to max-depth plugin. [#436](https://github.com/Escape-Technologies/graphql-armor/pull/436)
+
 ## 2.0.0
 
 ### Major Changes

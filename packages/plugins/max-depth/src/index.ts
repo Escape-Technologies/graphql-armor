@@ -11,10 +11,15 @@ import {
   ValidationContext,
 } from 'graphql';
 
-export type MaxDepthOptions = { n?: number; ignoreIntrospection?: boolean } & GraphQLArmorCallbackConfiguration;
+export type MaxDepthOptions = {
+  n?: number;
+  ignoreIntrospection?: boolean;
+  flattenFragments?: boolean;
+} & GraphQLArmorCallbackConfiguration;
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   n: 6,
   ignoreIntrospection: true,
+  flattenFragments: false,
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
@@ -71,7 +76,14 @@ class MaxDepthVisitor {
 
     if ('selectionSet' in node && node.selectionSet) {
       for (const child of node.selectionSet.selections) {
-        depth = Math.max(depth, this.countDepth(child, parentDepth + 1));
+        if (
+          this.config.flattenFragments &&
+          (child.kind === Kind.INLINE_FRAGMENT || child.kind === Kind.FRAGMENT_SPREAD)
+        ) {
+          depth = Math.max(depth, this.countDepth(child, parentDepth));
+        } else {
+          depth = Math.max(depth, this.countDepth(child, parentDepth + 1));
+        }
       }
     } else if (node.kind == Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
@@ -81,7 +93,12 @@ class MaxDepthVisitor {
       }
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        const fragmentDepth = this.countDepth(fragment, parentDepth + 1);
+        let fragmentDepth;
+        if (this.config.flattenFragments) {
+          fragmentDepth = this.countDepth(fragment, parentDepth);
+        } else {
+          fragmentDepth = this.countDepth(fragment, parentDepth + 1);
+        }
         depth = Math.max(depth, fragmentDepth);
         if (this.visitedFragments.get(node.name.value) === -1) {
           this.visitedFragments.set(node.name.value, fragmentDepth);

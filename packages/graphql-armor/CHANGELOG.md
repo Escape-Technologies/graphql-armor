@@ -1,5 +1,47 @@
 # @escape.tech/graphql-armor
 
+## 2.3.1
+
+### Patch Changes
+
+- e812da5: set peerDependencies to optional
+
+## 2.3.0
+
+### Minor Changes
+
+- 9d53465: Make Types lib peerDependencies instead of optionalDependencies
+
+## 2.2.0
+
+### Minor Changes
+
+- d55e3d4: chore(deps): bump devDependencies to GraphQL 16.7.1
+
+### Patch Changes
+
+- Updated dependencies [d55e3d4]
+  - @escape.tech/graphql-armor-block-field-suggestions@2.1.0
+  - @escape.tech/graphql-armor-cost-limit@2.1.0
+  - @escape.tech/graphql-armor-max-aliases@2.1.0
+  - @escape.tech/graphql-armor-max-depth@2.2.0
+  - @escape.tech/graphql-armor-max-directives@2.1.0
+  - @escape.tech/graphql-armor-max-tokens@2.2.0
+
+## 2.1.0
+
+### Minor Changes
+
+- f238e37: Add flattenFragments option to max-depth plugin. [#436](https://github.com/Escape-Technologies/graphql-armor/pull/436)
+- 781450a: Remove the found count from the max tokens plugin. [#430](https://github.com/Escape-Technologies/graphql-armor/pull/430)
+
+### Patch Changes
+
+- Updated dependencies [f238e37]
+- Updated dependencies [781450a]
+  - @escape.tech/graphql-armor-max-depth@2.1.0
+  - @escape.tech/graphql-armor-max-tokens@2.1.0
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,8 +1,8 @@
 {
   "name": "@escape.tech/graphql-armor-block-field-suggestions",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Block graphql field suggestion.",
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@3.6.3",
   "main": "dist/graphql-armor-block-field-suggestions.cjs.js",
   "module": "dist/graphql-armor-block-field-suggestions.esm.js",
   "files": [
@@ -33,10 +33,10 @@
     "@envelop/core": "^4.0.0"
   },
   "devDependencies": {
-    "@envelop/core": "4.0.0",
-    "@envelop/testing": "6.0.0",
-    "@envelop/types": "4.0.0",
-    "graphql": "16.6.0",
-    "typescript": "5.0.4"
+    "@envelop/core": "4.0.1",
+    "@envelop/testing": "6.0.1",
+    "@envelop/types": "4.0.1",
+    "graphql": "16.7.1",
+    "typescript": "5.2.2"
   }
 }

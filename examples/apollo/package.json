@@ -27,7 +27,7 @@
     "@escape.tech/graphql-armor": "*",
     "body-parser": "^1.20.2",
     "express": "4.18.2",
-    "graphql": "16.7.1",
+    "graphql": "16.8.1",
     "graphql-tag": "^2.12.6",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.8.0",

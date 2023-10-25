@@ -51,7 +51,7 @@
         "services/*"
     ],
     "volta": {
-        "node": "20.8.1",
+        "node": "20.9.0",
         "yarn": "1.22.19"
     },
     "engines": {

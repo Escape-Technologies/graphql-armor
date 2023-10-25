@@ -34,7 +34,7 @@
         "@escape.tech/mookme": "2.5.0",
         "@preconstruct/cli": "2.8.1",
         "@trivago/prettier-plugin-sort-imports": "4.2.1",
-        "@types/babel__core": "7.20.2",
+        "@types/babel__core": "7.20.3",
         "@types/babel__preset-env": "7.9.4",
         "@typescript-eslint/eslint-plugin": "6.9.0",
         "@typescript-eslint/parser": "6.9.0",

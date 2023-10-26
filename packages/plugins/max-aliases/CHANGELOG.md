@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.2.0
+
+### Minor Changes
+
+- a21f0f4: add allowList
+
 ## 2.1.0
 
 ### Minor Changes

@@ -11,12 +11,13 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxAliasesOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
+type MaxAliasesOptions = { n?: number; allowList: string[] } & GraphQLArmorCallbackConfiguration;
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
+  allowList: [],
 };
 
 class MaxAliasesVisitor {
@@ -63,7 +64,7 @@ class MaxAliasesVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   ): number {
     let aliases = 0;
-    if ('alias' in node && node.alias) {
+    if ('alias' in node && node.alias && !this.config.allowList.includes(node.alias.value)) {
       ++aliases;
     }
     if ('selectionSet' in node && node.selectionSet) {

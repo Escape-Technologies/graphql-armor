@@ -4869,7 +4869,7 @@ __metadata:
     "@preconstruct/cli": "npm:2.8.1"
     "@trivago/prettier-plugin-sort-imports": "npm:4.2.1"
     "@types/babel__core": "npm:7.20.3"
-    "@types/babel__preset-env": "npm:7.9.4"
+    "@types/babel__preset-env": "npm:7.9.5"
     "@typescript-eslint/eslint-plugin": "npm:6.10.0"
     "@typescript-eslint/parser": "npm:6.10.0"
     eslint: "npm:8.53.0"
@@ -6817,10 +6817,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__preset-env@npm:7.9.4":
-  version: 7.9.4
-  resolution: "@types/babel__preset-env@npm:7.9.4"
-  checksum: a4580b541d4fe7bdf9ecb9695cb90827f96c75e5c807e6fcf6cbca3beeb9106019dc322b2d08de03025d57c6f3f1431d80eb3ea6d9416e90bc8ee15460efa27d
+"@types/babel__preset-env@npm:7.9.5":
+  version: 7.9.5
+  resolution: "@types/babel__preset-env@npm:7.9.5"
+  checksum: 9bd303d2665f7c05c147f0b1699c68d080ed1d06bc7b1ff1a26d0b2cb952afdb4d4ef27a9d99d02432c003370b054eadf17fb0034f82f9477be25444b0d5e6ca
   languageName: node
   linkType: hard
 

@@ -57,3 +57,8 @@ bash ./install-dev.sh
 ```
 
 We are using yarn as our package manager and [the workspaces monorepo setup](https://classic.yarnpkg.com/lang/en/docs/workspaces/). Please read the associated documentation and feel free to open issues if you encounter problems when developing on our project!
+
+
+## 🤝 We're hiring!
+
+We believe it’s time to bring more AI-driven innovation to cybersecurity, and we'd love your help in building this dream! Want to join our adventure? Check out our [**Careers**](https://jobs.escape.tech) page!

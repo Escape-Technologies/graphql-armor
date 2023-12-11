@@ -10,6 +10,26 @@ export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   propagateOnRejection: true,
 };
 
+/* CharacterLimitPlugin Supports Apollo Server v3 and ver4 */
+export const ApolloServerCharacterLimitPlugin = function (maxLength: number): any {
+  return {
+    requestDidStart(requestContext: any): Promise<any> | undefined {
+      const { request } = requestContext;
+
+      if (!request?.query) {
+        return;
+      }
+      const queryLength = request.query.length;
+
+      if (queryLength > maxLength) {
+        throw new GraphQLError(`Query exceeds our maximum allowed length`, {
+          extensions: { code: 'BAD_USER_INPUT' },
+        });
+      }
+    },
+  };
+};
+
 export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin => {
   const config = Object.assign(
     {},

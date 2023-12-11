@@ -48,12 +48,12 @@ yarn add @escape.tech/graphql-armor-block-field-suggestions
 
 ```ts
 import { envelop } from '@envelop/core';
-import { blockFieldSuggestions } from '@escape.tech/graphql-armor-block-field-suggestions';
+import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
 
 const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
-    blockFieldSuggestions(),
+    blockFieldSuggestionsPlugin(),
   ]
 });
 ```
@@ -62,12 +62,12 @@ const getEnveloped = envelop({
 
 ```ts
 import { envelop } from '@envelop/core';
-import { blockFieldSuggestions } from '@escape.tech/graphql-armor-block-field-suggestions';
+import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
 
 const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
-    blockFieldSuggestions({
+    blockFieldSuggestionsPlugin({
         mask: '<[REDACTED]>'
     }),
   ]

@@ -141,4 +141,20 @@ describe('global', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
   });
+
+  it('should not reject allowed aliases', async () => {
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, allowList: ['allowed'] })], schema);
+    const result = await testkit.execute(`query {
+      allowed: getBook(title: "null") {
+        allowed: author
+      }
+    }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+    expect(result.data).toEqual({
+      allowed: null,
+    });
+  });
 });

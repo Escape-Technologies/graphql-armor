@@ -1,5 +1,24 @@
 # @escape.tech/graphql-armor
 
+## 2.3.2
+
+### Patch Changes
+
+- Updated dependencies [a21f0f4]
+  - @escape.tech/graphql-armor-max-aliases@2.2.0
+
+## 2.3.1
+
+### Patch Changes
+
+- e812da5: set peerDependencies to optional
+
+## 2.3.0
+
+### Minor Changes
+
+- 9d53465: Make Types lib peerDependencies instead of optionalDependencies
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.3.0
+
+### Minor Changes
+
+- c5d066d: maxAliases: ignore \_\_typename
+
 ## 2.2.0
 
 ### Minor Changes

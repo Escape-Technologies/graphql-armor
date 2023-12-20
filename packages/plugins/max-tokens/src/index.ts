@@ -1,6 +1,6 @@
 import { Plugin } from '@envelop/types';
 import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
-import { Source, TokenKind } from 'graphql';
+import { GraphQLError, Source, TokenKind } from 'graphql';
 import { syntaxError } from 'graphql/error';
 import { ParseOptions, Parser } from 'graphql/language/parser';
 
@@ -44,7 +44,7 @@ export class MaxTokensParserWLexer extends Parser {
             }
 
             if (this._tokenCount > this.config.n) {
-              const err = syntaxError(this._lexer.source, token.start, `Token limit of ${this.config.n} exceeded.`);
+              const err = new GraphQLError(`Syntax Error: Token limit of ${this.config.n} exceeded.`);
 
               for (const handler of this.config.onReject) {
                 handler(null, err);

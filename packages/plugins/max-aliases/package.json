@@ -39,6 +39,6 @@
     "@envelop/types": "5.0.0",
     "@escape.tech/graphql-armor-types": "0.5.0",
     "graphql": "16.8.1",
-    "typescript": "5.3.2"
+    "typescript": "5.3.3"
   }
 }

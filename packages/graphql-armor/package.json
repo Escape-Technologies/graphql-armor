@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@escape.tech/graphql-armor-block-field-suggestions": "2.1.0",

@@ -4805,7 +4805,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-aliases@npm:2.2.0, @escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases":
+"@escape.tech/graphql-armor-max-aliases@npm:2.3.0, @escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
@@ -4859,7 +4859,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-tokens@npm:2.2.0, @escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens":
+"@escape.tech/graphql-armor-max-tokens@npm:2.3.0, @escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
@@ -4922,10 +4922,10 @@ __metadata:
     "@envelop/core": "npm:5.0.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:2.1.0"
     "@escape.tech/graphql-armor-cost-limit": "npm:2.1.0"
-    "@escape.tech/graphql-armor-max-aliases": "npm:2.2.0"
+    "@escape.tech/graphql-armor-max-aliases": "npm:2.3.0"
     "@escape.tech/graphql-armor-max-depth": "npm:2.2.0"
     "@escape.tech/graphql-armor-max-directives": "npm:2.1.0"
-    "@escape.tech/graphql-armor-max-tokens": "npm:2.2.0"
+    "@escape.tech/graphql-armor-max-tokens": "npm:2.3.0"
     "@escape.tech/graphql-armor-types": "npm:0.5.0"
     "@types/node": "npm:^20.0.0"
     graphql: "npm:16.8.1"

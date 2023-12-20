@@ -1,5 +1,18 @@
 # @escape.tech/graphql-armor
 
+## 2.4.0
+
+### Minor Changes
+
+- 2136d91: ci: drop node 16 support
+
+### Patch Changes
+
+- Updated dependencies [c5d066d]
+- Updated dependencies [484a11c]
+  - @escape.tech/graphql-armor-max-aliases@2.3.0
+  - @escape.tech/graphql-armor-max-tokens@2.3.0
+
 ## 2.3.2
 
 ### Patch Changes

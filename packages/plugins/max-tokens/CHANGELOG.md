@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.3.0
+
+### Minor Changes
+
+- 484a11c: fix: Max-Depth now throws a graphql error rather than syntax error issue [#572](https://github.com/Escape-Technologies/graphql-armor/pull/572)
+
 ## 2.2.0
 
 ### Minor Changes

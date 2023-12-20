@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [16, 18, 20]
+        node: [18, 20]
 
     name: Examples Node ${{ matrix.node }}
     steps:
@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: | 
+        run: |
           corepack enable
           yarn install
 

@@ -415,9 +415,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.9.5":
-  version: 4.9.5
-  resolution: "@apollo/server@npm:4.9.5"
+"@apollo/server@npm:4.10.0":
+  version: 4.10.0
+  resolution: "@apollo/server@npm:4.10.0"
   dependencies:
     "@apollo/cache-control-types": "npm:^1.0.3"
     "@apollo/server-gateway-interface": "npm:^1.1.1"
@@ -435,7 +435,6 @@ __metadata:
     "@types/express-serve-static-core": "npm:^4.17.30"
     "@types/node-fetch": "npm:^2.6.1"
     async-retry: "npm:^1.2.1"
-    body-parser: "npm:^1.20.0"
     cors: "npm:^2.8.5"
     express: "npm:^4.17.1"
     loglevel: "npm:^1.6.8"
@@ -447,7 +446,7 @@ __metadata:
     whatwg-mimetype: "npm:^3.0.0"
   peerDependencies:
     graphql: ^16.6.0
-  checksum: 68074b743a26e15bff06903ec0a1b6c0b0536ff69c4949818e8d64b8f027da4053967806076dfe793d8828fdf706b988939d74cade8a551e33d13da1bb29500a
+  checksum: 91c7c5adf56c1edea23a301e290920a4a2e58bad713620908f5e31ef76b439012c7d9628be06c004e04c6b2ec5e575f74e10fe56e2e7adc8c72c44f15610d74b
   languageName: node
   linkType: hard
 
@@ -4916,7 +4915,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@apollo/server": "npm:4.9.5"
+    "@apollo/server": "npm:4.10.0"
     "@envelop/core": "npm:5.0.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:2.1.0"
     "@escape.tech/graphql-armor-cost-limit": "npm:2.1.0"

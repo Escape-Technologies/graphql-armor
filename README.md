@@ -44,6 +44,10 @@ We additionally support the following engines through the [Envelop](https://www.
 
 See [here](https://www.envelop.dev/docs/integrations) for more information about Envelop compatibility.
 
+## GraphQL security for Enterprise
+
+Interested in securing GraphQL APIs on the enterprise level? Visit [Escape’s website](https://escape.tech) to learn more.
+
 ## Contributing
 
 Ensure you have read the [Contributing Guide](https://github.com/Escape-Technologies/graphql-armor/blob/main/CONTRIBUTING.md) before contributing.

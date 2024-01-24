@@ -28,3 +28,14 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+
+#cta-escape-button {
+  text-align: center;
+  margin: 20px auto;
+  @media (min-width: 996px) {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+  }
+}

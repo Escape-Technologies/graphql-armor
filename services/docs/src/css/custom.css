@@ -33,7 +33,10 @@
 #cta-escape-button {
   text-align: center;
   margin: 20px auto;
-  @media (min-width: 996px) {
+}
+
+@media screen and (min-width: 996px) {
+  #cta-escape-button {
     position: absolute;
     bottom: 0;
     left: 30px;

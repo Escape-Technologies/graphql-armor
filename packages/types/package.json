@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "graphql": "16.8.1",
-    "typescript": "5.4.3"
+    "typescript": "5.4.5"
   }
 }

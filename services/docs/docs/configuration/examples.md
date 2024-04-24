@@ -14,7 +14,7 @@ Currently, there is no global parameter but a **per-plugin parameter**.
 Here is an example to set **every plugin** to be **inoffensive**:
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   costLimit: {
     propagateOnRejection: false,
   },
@@ -54,7 +54,7 @@ const logRejection = (ctx: ValidationContext | null, error: GraphQLError) => {
     console.log(`rejected request: ${error}`)
 }
 
-GraphQLArmor({
+GraphQLArmorConfig({
   costLimit: {
     onReject: [logRejection]
   },

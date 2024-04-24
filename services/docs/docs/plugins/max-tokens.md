@@ -17,7 +17,7 @@ The token limit is often limited by the graphql parser, but this is not always t
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   maxTokens: {
     // Toogle the plugin | default: true
     enabled?: boolean,

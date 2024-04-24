@@ -15,7 +15,7 @@ In production, this can lead to Schema leak even if the introspection is disable
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   blockFieldSuggestion: {
     // Toogle the plugin | default: true
     enabled?: boolean,

@@ -11,7 +11,7 @@
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   costLimit: {
     // Toogle the plugin | default: true
     enabled?: boolean,

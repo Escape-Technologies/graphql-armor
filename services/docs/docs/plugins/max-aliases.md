@@ -13,7 +13,7 @@ It is used to prevent **DOS attack** or **heap overflow**.
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   maxAliases: {
     // Toogle the plugin | default: true
     enabled?: boolean,

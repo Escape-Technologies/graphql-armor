@@ -16,7 +16,7 @@ In production, this can lead to Schema leak even if the introspection is disable
 
 ```ts
 GraphQLArmor({
-  blockFieldSuggestions: {
+  blockFieldSuggestion: {
     // Toogle the plugin | default: true
     enabled?: boolean,
     
@@ -31,7 +31,7 @@ GraphQLArmor({
 ### Installation
 
 :::note
-If you want to use the `blockFieldSuggestions` plugin out of GraphQL Armor, you can install it from npm:
+If you want to use the `blockFieldSuggestion` plugin out of GraphQL Armor, you can install it from npm:
 :::
 
 ```bash

@@ -15,7 +15,7 @@ It is used to prevent too large queries that could lead to overfetching or **DOS
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   maxDepth: {
     // Toogle the plugin | default: true
     enabled?: boolean,

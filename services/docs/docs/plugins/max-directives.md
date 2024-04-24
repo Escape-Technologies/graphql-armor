@@ -15,7 +15,7 @@ It is used to prevent **DOS attack**, **heap overflow** or **server overloading*
 ## Configuring for GraphQL Armor
 
 ```ts
-GraphQLArmor({
+GraphQLArmorConfig({
   maxDirectives: {
     // Toogle the plugin | default: true
     enabled?: boolean,

@@ -458,42 +458,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@apollo/server@npm:4.9.3"
-  dependencies:
-    "@apollo/cache-control-types": "npm:^1.0.3"
-    "@apollo/server-gateway-interface": "npm:^1.1.1"
-    "@apollo/usage-reporting-protobuf": "npm:^4.1.1"
-    "@apollo/utils.createhash": "npm:^2.0.0"
-    "@apollo/utils.fetcher": "npm:^2.0.0"
-    "@apollo/utils.isnodelike": "npm:^2.0.0"
-    "@apollo/utils.keyvaluecache": "npm:^2.1.0"
-    "@apollo/utils.logger": "npm:^2.0.0"
-    "@apollo/utils.usagereporting": "npm:^2.1.0"
-    "@apollo/utils.withrequired": "npm:^2.0.0"
-    "@graphql-tools/schema": "npm:^9.0.0"
-    "@josephg/resolvable": "npm:^1.0.0"
-    "@types/express": "npm:^4.17.13"
-    "@types/express-serve-static-core": "npm:^4.17.30"
-    "@types/node-fetch": "npm:^2.6.1"
-    async-retry: "npm:^1.2.1"
-    body-parser: "npm:^1.20.0"
-    cors: "npm:^2.8.5"
-    express: "npm:^4.17.1"
-    loglevel: "npm:^1.6.8"
-    lru-cache: "npm:^7.10.1"
-    negotiator: "npm:^0.6.3"
-    node-abort-controller: "npm:^3.1.1"
-    node-fetch: "npm:^2.6.7"
-    uuid: "npm:^9.0.0"
-    whatwg-mimetype: "npm:^3.0.0"
-  peerDependencies:
-    graphql: ^16.6.0
-  checksum: 10/695efc9099941b2ea2a19c6d51c9d52e9e17bd01840203f9f26cd16aae9093d53ae241e00af6517bca2496eca20dcdaa4908e918c1fe482b3cb4a2348da36642
-  languageName: node
-  linkType: hard
-
 "@apollo/usage-reporting-protobuf@npm:^4.0.0, @apollo/usage-reporting-protobuf@npm:^4.1.0":
   version: 4.1.0
   resolution: "@apollo/usage-reporting-protobuf@npm:4.1.0"
@@ -8485,7 +8449,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"body-parser@npm:1.20.2, body-parser@npm:^1.20.0, body-parser@npm:^1.20.2":
+"body-parser@npm:1.20.2, body-parser@npm:^1.20.2":
   version: 1.20.2
   resolution: "body-parser@npm:1.20.2"
   dependencies:
@@ -11041,7 +11005,7 @@ __metadata:
   resolution: "example-apollo-v3@workspace:examples/apollo-v3"
   dependencies:
     "@apollo/gateway": "npm:2.7.8"
-    "@apollo/server": "npm:4.9.3"
+    "@apollo/server": "npm:4.10.4"
     "@escape.tech/graphql-armor": "npm:*"
     "@types/express": "npm:4.17.21"
     "@types/node": "npm:20.12.12"
@@ -11088,7 +11052,7 @@ __metadata:
   resolution: "example-nestjs@workspace:examples/nestjs"
   dependencies:
     "@apollo/gateway": "npm:2.7.8"
-    "@apollo/server": "npm:4.9.3"
+    "@apollo/server": "npm:4.10.4"
     "@escape.tech/graphql-armor": "npm:*"
     "@nestjs/apollo": "npm:12.1.0"
     "@nestjs/cli": "npm:10.3.2"

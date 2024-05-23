@@ -1,5 +1,14 @@
 # @escape.tech/graphql-armor-types
 
+## 0.6.0
+
+### Minor Changes
+
+- 723f633: chore: dependencies bump
+
+  Envelop is not correctly deployed.
+  Drop apollo v3 example.
+
 ## 0.5.0
 
 ### Minor Changes

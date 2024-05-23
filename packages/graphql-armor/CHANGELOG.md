@@ -1,5 +1,25 @@
 # @escape.tech/graphql-armor
 
+## 3.0.0
+
+### Minor Changes
+
+- 723f633: chore: dependencies bump
+
+  Envelop is not correctly deployed.
+  Drop apollo v3 example.
+
+### Patch Changes
+
+- Updated dependencies [723f633]
+  - @escape.tech/graphql-armor-block-field-suggestions@2.2.0
+  - @escape.tech/graphql-armor-cost-limit@2.2.0
+  - @escape.tech/graphql-armor-max-aliases@2.4.0
+  - @escape.tech/graphql-armor-max-depth@2.3.0
+  - @escape.tech/graphql-armor-max-directives@2.2.0
+  - @escape.tech/graphql-armor-max-tokens@2.4.0
+  - @escape.tech/graphql-armor-types@0.6.0
+
 ## 2.4.0
 
 ### Minor Changes

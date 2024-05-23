@@ -1,5 +1,14 @@
 # @escape.tech/graphql-armor-max-directives
 
+## 2.2.0
+
+### Minor Changes
+
+- 723f633: chore: dependencies bump
+
+  Envelop is not correctly deployed.
+  Drop apollo v3 example.
+
 ## 2.1.0
 
 ### Minor Changes

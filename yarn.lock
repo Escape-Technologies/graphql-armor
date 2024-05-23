@@ -415,9 +415,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.10.2":
-  version: 4.10.2
-  resolution: "@apollo/server@npm:4.10.2"
+"@apollo/server@npm:4.10.4":
+  version: 4.10.4
+  resolution: "@apollo/server@npm:4.10.4"
   dependencies:
     "@apollo/cache-control-types": "npm:^1.0.3"
     "@apollo/server-gateway-interface": "npm:^1.1.1"
@@ -446,7 +446,7 @@ __metadata:
     whatwg-mimetype: "npm:^3.0.0"
   peerDependencies:
     graphql: ^16.6.0
-  checksum: 10/7c1809a33347f34394f0889d9bd89750282569fffd08686122a5082fb8a624957c8cafdb10e9858db1072b448e3d82148df78e8d93dfc366d82c9df88bf793f1
+  checksum: 10/f31ca80225542aad5ce1e39cc56038abc2430502c916e348cf8726569406b0ee9f3d4fa9c3812af786b69ab64bf707e5ccc910dd0b956f5cac8a4bb0d6ac2fea
   languageName: node
   linkType: hard
 
@@ -5005,7 +5005,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
-    "@apollo/server": "npm:4.10.2"
+    "@apollo/server": "npm:4.10.4"
     "@envelop/core": "npm:5.0.1"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:2.1.0"
     "@escape.tech/graphql-armor-cost-limit": "npm:2.1.0"

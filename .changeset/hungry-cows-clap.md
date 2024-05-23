@@ -12,4 +12,5 @@
 
 chore: dependencies bump
 
-Specially update envelop which has not been updated.
+Envelop is not correctly deployed.
+Drop apollo v3 example.

@@ -65,6 +65,6 @@
     "@types/node": "^20.0.0",
     "graphql": "16.8.1",
     "ts-node": "10.9.2",
-    "typescript": "5.4.3"
+    "typescript": "5.4.5"
   }
 }

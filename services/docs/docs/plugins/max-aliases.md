@@ -4,11 +4,12 @@
 
 It is used to prevent **DOS attack** or **heap overflow**.
 
-- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
-- [Standalone usage](#standalone-usage)
-  - [Installation](#installation)
-  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
-  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Max Aliases](#max-aliases)
+  - [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
+  - [Standalone usage](#standalone-usage)
+    - [Installation](#installation)
+    - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
 
 ## Configuring for GraphQL Armor
 
@@ -29,6 +30,9 @@ GraphQLArmorConfig({
 
     // Do you want to propagate the rejection to the client? | default: true
     propagateOnRejection?: boolean,
+
+    // List of queries that are allowed to bypass the plugin
+    allowList?: string[],
   }
 })
 ```

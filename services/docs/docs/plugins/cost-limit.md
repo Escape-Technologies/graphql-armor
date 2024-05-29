@@ -2,11 +2,12 @@
 
 **Limit** the **complexity** of a GraphQL document.
 
-- [Configurating through GraphQL Armor](#configuring-for-graphql-armor)
-- [Standalone usage](#standalone-usage)
-  - [Installation](#installation)
-  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
-  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Cost limit](#cost-limit)
+  - [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
+  - [Standalone usage](#standalone-usage)
+    - [Installation](#installation)
+    - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
 
 ## Configuring for GraphQL Armor
 

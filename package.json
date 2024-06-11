@@ -57,7 +57,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "preconstruct": {
     "packages": [
       "packages/graphql-armor",

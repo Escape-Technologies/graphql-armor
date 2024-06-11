@@ -2,7 +2,7 @@
   "name": "@escape.tech/graphql-armor-character-limit",
   "version": "2.2.0",
   "description": "Limit the number of character allowed in a GraphQL query.",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "main": "dist/graphql-armor-character-limit.cjs.js",
   "module": "dist/graphql-armor-character-limit.esm.js",
   "files": [

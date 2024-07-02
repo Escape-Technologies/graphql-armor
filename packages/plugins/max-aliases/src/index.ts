@@ -11,7 +11,7 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxAliasesOptions = { n?: number; allowList: string[] } & GraphQLArmorCallbackConfiguration;
+type MaxAliasesOptions = { n?: number; allowList?: string[] } & GraphQLArmorCallbackConfiguration;
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
   onAccept: [],

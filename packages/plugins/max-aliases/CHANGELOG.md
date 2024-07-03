@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.5.0
+
+### Minor Changes
+
+- ca9f663: fix: improve MaxAliasesOptions typing, mark allowList property as optional [#685](https://github.com/Escape-Technologies/graphql-armor/pull/685)
+
 ## 2.4.0
 
 ### Minor Changes

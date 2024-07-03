@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [ca9f663]
+  - @escape.tech/graphql-armor-max-aliases@2.5.0
+
 ## 3.0.0
 
 ### Minor Changes

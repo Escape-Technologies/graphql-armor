@@ -1,6 +1,6 @@
 # Types
 
-Import types to configure GraphQL Armor from the `@escape.tech/graphql-armor-types` package or each [plugin](../category/plugins/) individually.
+Import types to configure GraphQL Armor from the `@escape.tech/graphql-armor-types` package or each [plugin](../../category/plugins/) individually.
 
 ## Config
 
@@ -51,7 +51,7 @@ export type GraphQLArmorRejectCallback = (ctx: ValidationContext | null, error: 
 
 ## Plugins
 
-Types to [configure](../category/configuration) each of the plugins are available from their respective packages and are used in `GraphQLArmorConfig`:
+Types to [configure](../../category/configuration) each of the plugins are available from their respective packages and are used in `GraphQLArmorConfig`:
 
 ```ts
 import type { BlockFieldSuggestionsOptions } from '@escape.tech/graphql-armor-block-field-suggestions';

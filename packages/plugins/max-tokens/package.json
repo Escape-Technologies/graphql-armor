@@ -2,7 +2,7 @@
   "name": "@escape.tech/graphql-armor-max-tokens",
   "version": "2.4.0",
   "description": "Limit the number of tokens allowed in a GraphQL document.",
-  "packageManager": "yarn@4.4.0",
+  "packageManager": "yarn@4.5.0",
   "main": "dist/graphql-armor-max-tokens.cjs.js",
   "module": "dist/graphql-armor-max-tokens.esm.js",
   "files": [

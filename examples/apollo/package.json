@@ -26,7 +26,7 @@
     "@apollo/server": "^4.9.3",
     "@escape.tech/graphql-armor": "*",
     "body-parser": "^1.20.2",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "graphql": "16.8.1",
     "graphql-tag": "^2.12.6",
     "reflect-metadata": "0.2.2",

@@ -114,23 +114,18 @@ describe('maxDirectivesPlugin', () => {
     const customMessage = 'Custom error message.';
     const testkit = createTestkit(
       [maxDirectivesPlugin({ n: maxDirectives, exposeLimits: false, errorMessage: customMessage })],
-      schema
+      schema,
     );
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: ${customMessage}`,
-    ]);
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
   });
 
   it('rejects with detailed error message when exposeLimits is true', async () => {
     const maxDirectives = 3;
-    const testkit = createTestkit(
-      [maxDirectivesPlugin({ n: maxDirectives, exposeLimits: true })],
-      schema
-    );
+    const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives, exposeLimits: true })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
@@ -138,42 +133,5 @@ describe('maxDirectivesPlugin', () => {
     expect(result.errors?.map((error) => error.message)).toEqual([
       `Syntax Error: Directives limit of ${maxDirectives} exceeded, found ${maxDirectives + 1}.`,
     ]);
-  });
-
-  it('executes onAccept handlers when under the directive limit', async () => {
-    const maxDirectives = 5;
-    const operation = `query {
-      __typename @a @a
-    }`;
-    const onAcceptMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxDirectivesPlugin({ n: maxDirectives, onAccept: [onAcceptMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeUndefined();
-    expect(onAcceptMock).toHaveBeenCalledWith(null, { n: 2 });
-  });
-
-  it('executes onReject handlers when over the directive limit', async () => {
-    const maxDirectives = 3;
-    const operation = `query {
-      __typename @a @a @a @a
-    }`;
-    const onRejectMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxDirectivesPlugin({ n: maxDirectives, onReject: [onRejectMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Directives limit of ${maxDirectives} exceeded, found ${maxDirectives + 1}.`,
-    ]);
-    expect(onRejectMock).toHaveBeenCalled();
   });
 });

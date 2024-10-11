@@ -1,6 +1,6 @@
 # @escape.tech/graphql-armor
 
-## 4.0.0
+## 3.1.0
 
 ### Minor Changes
 

@@ -15,11 +15,15 @@ export type MaxDepthOptions = {
   n?: number;
   ignoreIntrospection?: boolean;
   flattenFragments?: boolean;
+  exposeLimits?: boolean;
+  errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   n: 6,
   ignoreIntrospection: true,
   flattenFragments: false,
+  exposeLimits: false,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
@@ -49,7 +53,10 @@ class MaxDepthVisitor {
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const depth = this.countDepth(operation);
     if (depth > this.config.n) {
-      const err = new GraphQLError(`Syntax Error: Query depth limit of ${this.config.n} exceeded, found ${depth}.`);
+      const message = this.config.exposeLimits
+        ? `Query depth limit of ${this.config.n} exceeded, found ${depth}.`
+        : this.config.errorMessage;
+      const err = new GraphQLError(`Syntax Error: ${message}`);
 
       for (const handler of this.config.onReject) {
         handler(this.context, err);

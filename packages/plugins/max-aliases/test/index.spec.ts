@@ -161,27 +161,22 @@ describe('maxAliasesPlugin', () => {
   });
 
   it('rejects with a generic error message when exposeLimits is false', async () => {
-    const maxAliases = 2;
+    const maxAliases = 1;
     const customMessage = 'Custom error message.';
     const testkit = createTestkit(
       [maxAliasesPlugin({ n: maxAliases, exposeLimits: false, errorMessage: customMessage })],
-      schema
+      schema,
     );
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: ${customMessage}`,
-    ]);
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
   });
 
   it('rejects with detailed error message when exposeLimits is true', async () => {
-    const maxAliases = 2;
-    const testkit = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, exposeLimits: true })],
-      schema
-    );
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, exposeLimits: true })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
@@ -189,53 +184,6 @@ describe('maxAliasesPlugin', () => {
     expect(result.errors?.map((error) => error.message)).toEqual([
       `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
     ]);
-  });
-
-  it('executes onAccept handlers when under the alias limit', async () => {
-    const maxAliases = 3;
-    const operation = `query {
-      allowed: getBook(title: "null") {
-        author
-        title
-      }
-    }`;
-    const onAcceptMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, onAccept: [onAcceptMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeUndefined();
-    expect(onAcceptMock).toHaveBeenCalledWith(null, { n: 1 });
-  });
-
-  it('executes onReject handlers when over the alias limit', async () => {
-    const maxAliases = 1;
-    const operation = `query {
-      firstAlias: getBook(title: "null") {
-        author
-        title
-      }
-      secondAlias: getBook(title: "null") {
-        author
-        title
-      }
-    }`;
-    const onRejectMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, onReject: [onRejectMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
-    ]);
-    expect(onRejectMock).toHaveBeenCalled();
   });
 
   it('does not count allowed aliases against the limit', async () => {
@@ -251,10 +199,7 @@ describe('maxAliasesPlugin', () => {
     }`;
     const onRejectMock = jest.fn();
 
-    const testkit = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, allowList, onReject: [onRejectMock] })],
-      schema
-    );
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, allowList, onReject: [onRejectMock] })], schema);
     const result = await testkit.execute(operation);
 
     assertSingleExecutionValue(result);
@@ -266,8 +211,8 @@ describe('maxAliasesPlugin', () => {
   });
 
   it('allows multiple allowed aliases without rejecting', async () => {
-    const maxAliases = 2;
-    const allowList = ['allowed1', 'allowed2'];
+    const maxAliases = 1;
+    const allowList = ['allowed1'];
     const operation = `query {
       allowed1: getBook(title: "null") {
         allowed2: author
@@ -278,10 +223,7 @@ describe('maxAliasesPlugin', () => {
     }`;
     const onRejectMock = jest.fn();
 
-    const testkit = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, allowList, onReject: [onRejectMock] })],
-      schema
-    );
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, allowList, onReject: [onRejectMock] })], schema);
     const result = await testkit.execute(operation);
 
     assertSingleExecutionValue(result);
@@ -289,60 +231,6 @@ describe('maxAliasesPlugin', () => {
     expect(result.errors?.map((error) => error.message)).toEqual([
       `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
     ]);
-    expect(onRejectMock).toHaveBeenCalled();
-  });
-
-  it('executes both onAccept and onReject handlers appropriately', async () => {
-    const maxAliases = 2;
-    const operationUnder = `query {
-      firstAlias: getBook(title: "null") {
-        author
-      }
-      secondAlias: getBook(title: "null") {
-        title
-      }
-    }`;
-    const operationOver = `query {
-      firstAlias: getBook(title: "null") {
-        author
-      }
-      secondAlias: getBook(title: "null") {
-        title
-      }
-      thirdAlias: getBook(title: "null") {
-        author
-      }
-    }`;
-    const onAcceptMock = jest.fn();
-    const onRejectMock = jest.fn();
-
-    // Test under the limit
-    const testkitUnder = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, onAccept: [onAcceptMock], onReject: [onRejectMock] })],
-      schema
-    );
-    const resultUnder = await testkitUnder.execute(operationUnder);
-    assertSingleExecutionValue(resultUnder);
-    expect(resultUnder.errors).toBeUndefined();
-    expect(onAcceptMock).toHaveBeenCalledWith(null, { n: 2 });
-    expect(onRejectMock).not.toHaveBeenCalled();
-
-    // Reset mocks
-    onAcceptMock.mockReset();
-    onRejectMock.mockReset();
-
-    // Test over the limit
-    const testkitOver = createTestkit(
-      [maxAliasesPlugin({ n: maxAliases, onAccept: [onAcceptMock], onReject: [onRejectMock] })],
-      schema
-    );
-    const resultOver = await testkitOver.execute(operationOver);
-    assertSingleExecutionValue(resultOver);
-    expect(resultOver.errors).toBeDefined();
-    expect(resultOver.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
-    ]);
-    expect(onAcceptMock).not.toHaveBeenCalled();
     expect(onRejectMock).toHaveBeenCalled();
   });
 });

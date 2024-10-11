@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.5.0
+
+### Minor Changes
+
+- eabdd54: Add exposeLimit [!716](https://github.com/Escape-Technologies/graphql-armor/issues/716)
+
 ## 2.4.0
 
 ### Minor Changes

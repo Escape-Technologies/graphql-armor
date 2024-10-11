@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-types
 
+## 0.7.0
+
+### Minor Changes
+
+- eabdd54: Add exposeLimit [!716](https://github.com/Escape-Technologies/graphql-armor/issues/716)
+
 ## 0.6.0
 
 ### Minor Changes

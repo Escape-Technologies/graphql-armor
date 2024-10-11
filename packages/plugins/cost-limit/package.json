@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-cost-limit",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Limit the cost of a GraphQL Query.",
   "packageManager": "yarn@4.5.0",
   "main": "dist/graphql-armor-cost-limit.cjs.js",
@@ -31,13 +31,13 @@
   },
   "optionalDependencies": {
     "@envelop/core": "^5.0.0",
-    "@escape.tech/graphql-armor-types": "0.6.0"
+    "@escape.tech/graphql-armor-types": "0.7.0"
   },
   "devDependencies": {
     "@envelop/core": "5.0.1",
     "@envelop/testing": "7.0.0",
     "@envelop/types": "5.0.0",
-    "@escape.tech/graphql-armor-types": "0.6.0",
+    "@escape.tech/graphql-armor-types": "0.7.0",
     "graphql": "16.8.1",
     "typescript": "5.4.5"
   }

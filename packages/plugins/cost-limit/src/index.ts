@@ -29,7 +29,7 @@ const costLimitDefaultOptions: Required<CostLimitOptions> = {
   depthCostFactor: 1.5,
   fragmentRecursionCost: 1000,
   ignoreIntrospection: true,
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],

@@ -10,7 +10,7 @@ export type CharacterLimitOptions = {
 
 export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   maxLength: 15000,
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],

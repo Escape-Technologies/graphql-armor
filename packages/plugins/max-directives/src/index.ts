@@ -19,7 +19,7 @@ export type MaxDirectivesOptions = {
 
 export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],

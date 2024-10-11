@@ -22,7 +22,7 @@ const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
   n: 6,
   ignoreIntrospection: true,
   flattenFragments: false,
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],

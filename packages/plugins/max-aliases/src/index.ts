@@ -21,7 +21,7 @@ type MaxAliasesOptions = {
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
   allowList: [],
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],

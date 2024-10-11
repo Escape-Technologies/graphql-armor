@@ -17,7 +17,7 @@ export type MaxTokensOptions = {
 
 export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
   n: 1000,
-  exposeLimits: false,
+  exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
@@ -53,7 +53,7 @@ export class MaxTokensParserWLexer extends Parser {
 
             if (this._tokenCount > this.config.n) {
               const message = this.config.exposeLimits
-                ? `Token limit of ${this.config.n} exceeded, found ${this._tokenCount}.`
+                ? `Token limit of ${this.config.n} exceeded.`
                 : this.config.errorMessage;
               const err = new GraphQLError(`Syntax Error: ${message}`);
 

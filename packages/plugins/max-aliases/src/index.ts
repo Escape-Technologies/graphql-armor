@@ -11,13 +11,21 @@ import {
   ValidationContext,
 } from 'graphql';
 
-type MaxAliasesOptions = { n?: number; allowList?: string[] } & GraphQLArmorCallbackConfiguration;
+type MaxAliasesOptions = {
+  n?: number;
+  allowList?: string[];
+  exposeLimits?: boolean;
+  errorMessage?: string;
+} & GraphQLArmorCallbackConfiguration;
+
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
+  allowList: [],
+  exposeLimits: false,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
-  allowList: [],
 };
 
 class MaxAliasesVisitor {
@@ -37,14 +45,17 @@ class MaxAliasesVisitor {
     this.visitedFragments = new Map();
 
     this.OperationDefinition = {
-      enter: this.onOperationDefinitionEnter,
+      enter: this.onOperationDefinitionEnter.bind(this),
     };
   }
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const aliases = this.countAliases(operation);
     if (aliases > this.config.n) {
-      const err = new GraphQLError(`Syntax Error: Aliases limit of ${this.config.n} exceeded, found ${aliases}.`);
+      const message = this.config.exposeLimits
+        ? `Aliases limit of ${this.config.n} exceeded, found ${aliases}.`
+        : this.config.errorMessage;
+      const err = new GraphQLError(`Syntax Error: ${message}`);
 
       for (const handler of this.config.onReject) {
         handler(this.context, err);

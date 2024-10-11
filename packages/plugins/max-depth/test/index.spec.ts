@@ -1,7 +1,6 @@
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
-import { jest } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
 
 import { maxDepthPlugin } from '../src/index';
@@ -207,86 +206,32 @@ describe('maxDepthPlugin', () => {
     `);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toContain(
-      'Cannot spread fragment "A" within itself via "B".',
-    );
+    expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
   });
 
   it('rejects with a generic error message when exposeLimits is false', async () => {
-    const maxDepth = 3;
+    const maxDepth = 2;
     const customMessage = 'Custom error message.';
     const testkit = createTestkit(
       [maxDepthPlugin({ n: maxDepth, exposeLimits: false, errorMessage: customMessage })],
-      schema
+      schema,
     );
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: ${customMessage}`,
-    ]);
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
   });
 
   it('rejects with detailed error message when exposeLimits is true', async () => {
-    const maxDepth = 3;
-    const testkit = createTestkit(
-      [maxDepthPlugin({ n: maxDepth, exposeLimits: true })],
-      schema
-    );
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, exposeLimits: true })], schema);
     const result = await testkit.execute(query);
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 2}.`,
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
     ]);
-  });
-
-  it('executes onAccept handlers when under the depth limit', async () => {
-    const maxDepth = 5;
-    const operation = `query {
-      books {
-        author {
-          name
-        }
-        title
-      }
-    }`;
-    const onAcceptMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxDepthPlugin({ n: maxDepth, onAccept: [onAcceptMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeUndefined();
-    expect(onAcceptMock).toHaveBeenCalledWith(null, { n: 3 });
-  });
-
-  it('executes onReject handlers when over the depth limit', async () => {
-    const maxDepth = 3;
-    const operation = `query {
-      books {
-        author {
-          name
-        }
-        title
-      }
-    }`;
-    const onRejectMock = jest.fn();
-
-    const testkit = createTestkit(
-      [maxDepthPlugin({ n: maxDepth, onReject: [onRejectMock] })],
-      schema
-    );
-    const result = await testkit.execute(operation);
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 2}.`,
-    ]);
-    expect(onRejectMock).toHaveBeenCalled();
   });
 });

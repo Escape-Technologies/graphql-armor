@@ -1,81 +1,111 @@
-import { Plugin } from '@envelop/types';
+import type { Plugin } from '@envelop/core';
 import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
-import { GraphQLError, Source, TokenKind } from 'graphql';
-import { syntaxError } from 'graphql/error';
-import { ParseOptions, Parser } from 'graphql/language/parser';
+import {
+  FieldNode,
+  FragmentDefinitionNode,
+  FragmentSpreadNode,
+  GraphQLError,
+  InlineFragmentNode,
+  Kind,
+  OperationDefinitionNode,
+  ValidationContext,
+} from 'graphql';
 
-type maxTokensParserWLexerOptions = ParseOptions & {
-  n: number;
+export type MaxDirectivesOptions = {
+  n?: number;
+  exposeLimits?: boolean;
+  errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
-export type MaxTokensOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
-export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
-  n: 1000,
+export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
+  n: 50,
+  exposeLimits: false,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
 };
 
-export class MaxTokensParserWLexer extends Parser {
-  private _tokenCount = 0;
-  private readonly config: Required<MaxTokensOptions>;
+class MaxDirectivesVisitor {
+  public readonly OperationDefinition: Record<string, any>;
 
-  get tokenCount() {
-    return this._tokenCount;
-  }
+  private readonly context: ValidationContext;
+  private readonly config: Required<MaxDirectivesOptions>;
+  private readonly visitedFragments: Map<string, number>;
 
-  constructor(source: string | Source, options?: maxTokensParserWLexerOptions) {
-    super(source, options);
-
+  constructor(context: ValidationContext, options?: MaxDirectivesOptions) {
+    this.context = context;
     this.config = Object.assign(
       {},
-      maxTokenDefaultOptions,
+      maxDirectivesDefaultOptions,
       ...Object.entries(options ?? {}).map(([k, v]) => (v === undefined ? {} : { [k]: v })),
     );
+    this.visitedFragments = new Map();
 
-    const lexer = this._lexer;
-    this._lexer = new Proxy(lexer, {
-      get: (target, prop, receiver) => {
-        if (prop === 'advance') {
-          return () => {
-            const token = target.advance();
-            if (token.kind !== TokenKind.EOF) {
-              this._tokenCount++;
-            }
+    this.OperationDefinition = {
+      enter: this.onOperationDefinitionEnter.bind(this),
+    };
+  }
 
-            if (this._tokenCount > this.config.n) {
-              const err = new GraphQLError(`Syntax Error: Token limit of ${this.config.n} exceeded.`);
+  onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
+    const directives = this.countDirectives(operation);
+    if (directives > this.config.n) {
+      const message = this.config.exposeLimits
+        ? `Directives limit of ${this.config.n} exceeded, found ${directives}.`
+        : this.config.errorMessage;
+      const err = new GraphQLError(`Syntax Error: ${message}`);
 
-              for (const handler of this.config.onReject) {
-                handler(null, err);
-              }
+      for (const handler of this.config.onReject) {
+        handler(this.context, err);
+      }
 
-              if (this.config.propagateOnRejection) {
-                throw err;
-              }
-            }
+      if (this.config.propagateOnRejection) {
+        throw err;
+      }
+    } else {
+      for (const handler of this.config.onAccept) {
+        handler(this.context, { n: directives });
+      }
+    }
+  }
 
-            for (const handler of this.config.onAccept) {
-              handler(null, { n: this._tokenCount });
-            }
-            return token;
-          };
+  private countDirectives(
+    node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
+  ): number {
+    let directives = 0;
+    if (node.directives) {
+      directives += node.directives.length;
+    }
+    if ('selectionSet' in node && node.selectionSet) {
+      for (const child of node.selectionSet.selections) {
+        directives += this.countDirectives(child);
+      }
+    } else if (node.kind === Kind.FRAGMENT_SPREAD) {
+      if (this.visitedFragments.has(node.name.value)) {
+        return this.visitedFragments.get(node.name.value) ?? 0;
+      } else {
+        this.visitedFragments.set(node.name.value, -1);
+      }
+      const fragment = this.context.getFragment(node.name.value);
+      if (fragment) {
+        const additionalDirectives = this.countDirectives(fragment);
+        if (this.visitedFragments.get(node.name.value) === -1) {
+          this.visitedFragments.set(node.name.value, additionalDirectives);
         }
-        return Reflect.get(target, prop, receiver);
-      },
-    });
+        directives += additionalDirectives;
+      }
+    }
+    return directives;
   }
 }
 
-export function maxTokensPlugin(config?: MaxTokensOptions): Plugin {
-  function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
-    // @ts-expect-error TODO(@c3b5aw): address the type issue
-    const parser = new MaxTokensParserWLexer(source, Object.assign({}, options, config));
-    return parser.parseDocument();
-  }
+export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
+  new MaxDirectivesVisitor(context, options);
+
+export const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
   return {
-    onParse({ setParseFn }) {
-      setParseFn(parseWithTokenLimit);
+    onValidate({ addValidationRule }: any) {
+      addValidationRule(maxDirectivesRule(options));
     },
   };
-}
+};

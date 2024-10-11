@@ -16,6 +16,7 @@ const typeDefinitions = `
     getBook(title: String): Book
   }
 `;
+
 const books = [
   {
     title: 'The Awakening',
@@ -30,7 +31,7 @@ const books = [
 const resolvers = {
   Query: {
     books: () => books,
-    getBook: (title: string) => books.find((book) => book.title === title),
+    getBook: (_: any, { title }: { title: string }) => books.find((book) => book.title === title),
   },
 };
 
@@ -39,7 +40,7 @@ export const schema = makeExecutableSchema({
   typeDefs: [typeDefinitions],
 });
 
-describe('global', () => {
+describe('costLimitPlugin', () => {
   it('should be defined', () => {
     expect(costLimitPlugin).toBeDefined();
 
@@ -55,7 +56,7 @@ describe('global', () => {
     }
   }`;
 
-  it('should works for default query', async () => {
+  it('should work for default query', async () => {
     const testkit = createTestkit([], schema);
     const result = await testkit.execute(query);
 
@@ -90,7 +91,7 @@ describe('global', () => {
     const testkit = createTestkit(
       [
         costLimitPlugin({
-          maxCost: 11 - 1,
+          maxCost: 10,
           objectCost: 1,
           scalarCost: 1,
           depthCostFactor: 2,
@@ -168,5 +169,53 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
+  });
+
+  it('rejects with a generic error message when exposeLimits is false', async () => {
+    const maxCost = 10;
+    const customMessage = 'Custom error message.';
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          exposeLimits: false,
+          errorMessage: customMessage,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
+  });
+
+  it('rejects with detailed error message when exposeLimits is true', async () => {
+    const maxCost = 10;
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          exposeLimits: true,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query Cost limit of ${maxCost} exceeded, found 12.`,
+    ]);
   });
 });

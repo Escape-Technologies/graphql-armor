@@ -1,16 +1,24 @@
 import { Plugin } from '@envelop/types';
 import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-armor-types';
 import { GraphQLError, Source, TokenKind } from 'graphql';
-import { syntaxError } from 'graphql/error';
 import { ParseOptions, Parser } from 'graphql/language/parser';
 
 type maxTokensParserWLexerOptions = ParseOptions & {
   n: number;
+  exposeLimits?: boolean;
+  errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
-export type MaxTokensOptions = { n?: number } & GraphQLArmorCallbackConfiguration;
+export type MaxTokensOptions = {
+  n?: number;
+  exposeLimits?: boolean;
+  errorMessage?: string;
+} & GraphQLArmorCallbackConfiguration;
+
 export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
   n: 1000,
+  exposeLimits: true,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
@@ -44,7 +52,10 @@ export class MaxTokensParserWLexer extends Parser {
             }
 
             if (this._tokenCount > this.config.n) {
-              const err = new GraphQLError(`Syntax Error: Token limit of ${this.config.n} exceeded.`);
+              const message = this.config.exposeLimits
+                ? `Token limit of ${this.config.n} exceeded.`
+                : this.config.errorMessage;
+              const err = new GraphQLError(`Syntax Error: ${message}`);
 
               for (const handler of this.config.onReject) {
                 handler(null, err);

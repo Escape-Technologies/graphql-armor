@@ -18,7 +18,10 @@ export type CostLimitOptions = {
   depthCostFactor?: number;
   ignoreIntrospection?: boolean;
   fragmentRecursionCost?: number;
+  exposeLimits?: boolean;
+  errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
+
 const costLimitDefaultOptions: Required<CostLimitOptions> = {
   maxCost: 5000,
   objectCost: 2,
@@ -26,6 +29,8 @@ const costLimitDefaultOptions: Required<CostLimitOptions> = {
   depthCostFactor: 1.5,
   fragmentRecursionCost: 1000,
   ignoreIntrospection: true,
+  exposeLimits: true,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
@@ -48,16 +53,17 @@ class CostLimitVisitor {
     this.visitedFragments = new Map();
 
     this.OperationDefinition = {
-      enter: this.onOperationDefinitionEnter,
+      enter: this.onOperationDefinitionEnter.bind(this),
     };
   }
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
     if (complexity > this.config.maxCost) {
-      const err = new GraphQLError(
-        `Syntax Error: Query Cost limit of ${this.config.maxCost} exceeded, found ${complexity}.`,
-      );
+      const message = this.config.exposeLimits
+        ? `Query Cost limit of ${this.config.maxCost} exceeded, found ${complexity}.`
+        : this.config.errorMessage;
+      const err = new GraphQLError(`Syntax Error: ${message}`);
 
       for (const handler of this.config.onReject) {
         handler(this.context, err);
@@ -81,7 +87,7 @@ class CostLimitVisitor {
       return 0;
     }
 
-    if (node.kind == Kind.OPERATION_DEFINITION) {
+    if (node.kind === Kind.OPERATION_DEFINITION) {
       return node.selectionSet.selections.reduce((v, child) => v + this.computeComplexity(child, depth + 1), 0);
     }
 
@@ -93,7 +99,7 @@ class CostLimitVisitor {
       }
     }
 
-    if (node.kind == Kind.FRAGMENT_SPREAD) {
+    if (node.kind === Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
         const visitCost = this.visitedFragments.get(node.name.value) ?? 0;
         return cost + this.config.depthCostFactor * visitCost;

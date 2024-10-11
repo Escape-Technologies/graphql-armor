@@ -20,6 +20,7 @@ const typeDefinitions = `
     books: [Book]
   }
 `;
+
 const books = [
   {
     title: 'The Awakening',
@@ -36,7 +37,7 @@ const resolvers = {
     books: () => books,
   },
   Author: {
-    books: (author) => books.filter((book) => book.author === author.name),
+    books: (author) => books.filter((book) => book.author.name === author.name),
   },
 };
 
@@ -45,7 +46,7 @@ export const schema = makeExecutableSchema({
   typeDefs: [typeDefinitions],
 });
 
-describe('global', () => {
+describe('maxDepthPlugin', () => {
   it('should be defined', () => {
     expect(maxDepthPlugin).toBeDefined();
 
@@ -63,7 +64,7 @@ describe('global', () => {
     }
   }`;
 
-  it('should works by default', async () => {
+  it('should work by default', async () => {
     const testkit = createTestkit([], schema);
     const result = await testkit.execute(query);
 
@@ -74,7 +75,7 @@ describe('global', () => {
     });
   });
 
-  it('should reject query', async () => {
+  it('rejects query exceeding max depth', async () => {
     const maxDepth = 1;
     const testkit = createTestkit([maxDepthPlugin({ n: maxDepth })], schema);
     const result = await testkit.execute(query);
@@ -86,62 +87,15 @@ describe('global', () => {
     ]);
   });
 
-  it('should reject fragment', async () => {
+  it('rejects fragment exceeding max depth', async () => {
     const maxDepth = 4;
     const testkit = createTestkit([maxDepthPlugin({ n: maxDepth })], schema);
     const result = await testkit.execute(`
-    query {
-      ...BooksFragment
-    }
-
-    fragment BooksFragment on Query {
-      books {
-        title
-        author {
-          name
-        }
+      query {
+        ...BooksFragment
       }
-    }
-    `);
 
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
-    ]);
-  });
-
-  it('should reject flattened fragment', async () => {
-    const maxDepth = 2;
-    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
-    const result = await testkit.execute(`
-    query {
-      ...BooksFragment
-    }
-
-    fragment BooksFragment on Query {
-      books {
-        title
-        author {
-          name
-        }
-      }
-    }
-    `);
-
-    assertSingleExecutionValue(result);
-    expect(result.errors).toBeDefined();
-    expect(result.errors?.map((error) => error.message)).toEqual([
-      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
-    ]);
-  });
-
-  it('should reject flattened inline fragment', async () => {
-    const maxDepth = 2;
-    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
-    const result = await testkit.execute(`
-    query {
-      ...on Query {
+      fragment BooksFragment on Query {
         books {
           title
           author {
@@ -149,7 +103,6 @@ describe('global', () => {
           }
         }
       }
-    }
     `);
 
     assertSingleExecutionValue(result);
@@ -159,7 +112,55 @@ describe('global', () => {
     ]);
   });
 
-  it('should allow introspection', async () => {
+  it('rejects flattened fragment exceeding max depth', async () => {
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
+    const result = await testkit.execute(`
+      query {
+        ...BooksFragment
+      }
+
+      fragment BooksFragment on Query {
+        books {
+          title
+          author {
+            name
+          }
+        }
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
+    ]);
+  });
+
+  it('rejects flattened inline fragment exceeding max depth', async () => {
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, flattenFragments: true })], schema);
+    const result = await testkit.execute(`
+      query {
+        ...on Query {
+          books {
+            title
+            author {
+              name
+            }
+          }
+        }
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
+    ]);
+  });
+
+  it('allows introspection queries when ignoreIntrospection is true', async () => {
     const testkit = createTestkit([maxDepthPlugin({ n: 2, ignoreIntrospection: true })], schema);
     const result = await testkit.execute(getIntrospectionQuery());
 
@@ -168,7 +169,7 @@ describe('global', () => {
     expect(result.data?.__schema).toBeDefined();
   });
 
-  it('should not crash on recursive fragment', async () => {
+  it('rejects recursive fragment exceeding max depth', async () => {
     const testkit = createTestkit([maxDepthPlugin({ n: 3 })], schema);
     const result = await testkit.execute(`query {
         ...A
@@ -189,7 +190,7 @@ describe('global', () => {
     );
   });
 
-  it('should not crash on flattened recursive fragment', async () => {
+  it('rejects flattened recursive fragment exceeding max depth', async () => {
     const testkit = createTestkit([maxDepthPlugin({ n: 3, flattenFragments: true })], schema);
     const result = await testkit.execute(`query {
         ...A
@@ -206,5 +207,31 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
+  });
+
+  it('rejects with a generic error message when exposeLimits is false', async () => {
+    const maxDepth = 2;
+    const customMessage = 'Custom error message.';
+    const testkit = createTestkit(
+      [maxDepthPlugin({ n: maxDepth, exposeLimits: false, errorMessage: customMessage })],
+      schema,
+    );
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
+  });
+
+  it('rejects with detailed error message when exposeLimits is true', async () => {
+    const maxDepth = 2;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, exposeLimits: true })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
+    ]);
   });
 });

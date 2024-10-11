@@ -1,6 +1,7 @@
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
+import { jest } from '@jest/globals';
 
 import { maxDirectivesPlugin } from '../src/index';
 
@@ -36,7 +37,7 @@ export const schema = makeExecutableSchema({
   typeDefs: [typeDefinitions],
 });
 
-describe('global', () => {
+describe('maxDirectivesPlugin', () => {
   it('should be defined', () => {
     expect(maxDirectivesPlugin).toBeDefined();
 
@@ -49,7 +50,7 @@ describe('global', () => {
     __typename @a @a @a @a
   }`;
 
-  it('should works by default', async () => {
+  it('should work by default', async () => {
     const testkit = createTestkit([], schema);
     const result = await testkit.execute(query);
 
@@ -58,7 +59,7 @@ describe('global', () => {
     expect(result.errors?.map((error) => error.message)).toEqual(Array(4).fill('Unknown directive "@a".'));
   });
 
-  it('should reject query', async () => {
+  it('should reject query exceeding max directives', async () => {
     const maxDirectives = 3;
     const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives })], schema);
     const result = await testkit.execute(query);
@@ -70,7 +71,7 @@ describe('global', () => {
     ]);
   });
 
-  it('should works on fragment', async () => {
+  it('should work on fragment', async () => {
     const maxDirectives = 3;
     const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives })], schema);
     const result = await testkit.execute(`query {
@@ -106,5 +107,31 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toContain('Cannot spread fragment "A" within itself via "B".');
+  });
+
+  it('rejects with a generic error message when exposeLimits is false', async () => {
+    const maxDirectives = 3;
+    const customMessage = 'Custom error message.';
+    const testkit = createTestkit(
+      [maxDirectivesPlugin({ n: maxDirectives, exposeLimits: false, errorMessage: customMessage })],
+      schema,
+    );
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([`Syntax Error: ${customMessage}`]);
+  });
+
+  it('rejects with detailed error message when exposeLimits is true', async () => {
+    const maxDirectives = 3;
+    const testkit = createTestkit([maxDirectivesPlugin({ n: maxDirectives, exposeLimits: true })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Directives limit of ${maxDirectives} exceeded, found ${maxDirectives + 1}.`,
+    ]);
   });
 });

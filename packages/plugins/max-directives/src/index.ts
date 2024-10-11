@@ -13,9 +13,14 @@ import {
 
 export type MaxDirectivesOptions = {
   n?: number;
+  exposeLimits?: boolean;
+  errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
+
 export const maxDirectivesDefaultOptions: Required<MaxDirectivesOptions> = {
   n: 50,
+  exposeLimits: true,
+  errorMessage: 'Query validation error.',
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
@@ -38,14 +43,17 @@ class MaxDirectivesVisitor {
     this.visitedFragments = new Map();
 
     this.OperationDefinition = {
-      enter: this.onOperationDefinitionEnter,
+      enter: this.onOperationDefinitionEnter.bind(this),
     };
   }
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const directives = this.countDirectives(operation);
     if (directives > this.config.n) {
-      const err = new GraphQLError(`Syntax Error: Directives limit of ${this.config.n} exceeded, found ${directives}.`);
+      const message = this.config.exposeLimits
+        ? `Directives limit of ${this.config.n} exceeded, found ${directives}.`
+        : this.config.errorMessage;
+      const err = new GraphQLError(`Syntax Error: ${message}`);
 
       for (const handler of this.config.onReject) {
         handler(this.context, err);
@@ -72,7 +80,7 @@ class MaxDirectivesVisitor {
       for (const child of node.selectionSet.selections) {
         directives += this.countDirectives(child);
       }
-    } else if (node.kind == Kind.FRAGMENT_SPREAD) {
+    } else if (node.kind === Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
         return this.visitedFragments.get(node.name.value) ?? 0;
       } else {

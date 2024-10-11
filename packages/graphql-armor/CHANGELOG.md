@@ -1,5 +1,21 @@
 # @escape.tech/graphql-armor
 
+## 4.0.0
+
+### Minor Changes
+
+- eabdd54: Add exposeLimit [!716](https://github.com/Escape-Technologies/graphql-armor/issues/716)
+
+### Patch Changes
+
+- Updated dependencies [eabdd54]
+  - @escape.tech/graphql-armor-max-directives@2.3.0
+  - @escape.tech/graphql-armor-max-aliases@2.6.0
+  - @escape.tech/graphql-armor-cost-limit@2.3.0
+  - @escape.tech/graphql-armor-max-tokens@2.5.0
+  - @escape.tech/graphql-armor-max-depth@2.4.0
+  - @escape.tech/graphql-armor-types@0.7.0
+
 ## 3.0.1
 
 ### Patch Changes

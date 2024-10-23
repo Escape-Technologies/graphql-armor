@@ -29,6 +29,9 @@ GraphQLArmorConfig({
     // Factorial applied to nested operator | default: 1.5
     depthCostFactor?: int,
 
+    // Flatten frament spreads and inline framents for the cost calculation | default: false
+    flattenFragments?: boolean,
+
     // Ignore the cost of introspection queries | default: true
     ignoreIntrospection?: boolean,
 

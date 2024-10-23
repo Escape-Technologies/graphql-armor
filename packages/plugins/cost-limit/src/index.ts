@@ -16,6 +16,7 @@ export type CostLimitOptions = {
   objectCost?: number;
   scalarCost?: number;
   depthCostFactor?: number;
+  flattenFragments?: boolean;
   ignoreIntrospection?: boolean;
   fragmentRecursionCost?: number;
   exposeLimits?: boolean;
@@ -27,6 +28,7 @@ const costLimitDefaultOptions: Required<CostLimitOptions> = {
   objectCost: 2,
   scalarCost: 1,
   depthCostFactor: 1.5,
+  flattenFragments: false,
   fragmentRecursionCost: 1000,
   ignoreIntrospection: true,
   exposeLimits: true,
@@ -95,11 +97,16 @@ class CostLimitVisitor {
     if ('selectionSet' in node && node.selectionSet) {
       cost = this.config.objectCost;
       for (const child of node.selectionSet.selections) {
-        cost += this.config.depthCostFactor * this.computeComplexity(child, depth + 1);
+        if (
+          this.config.flattenFragments &&
+          (child.kind === Kind.INLINE_FRAGMENT || child.kind === Kind.FRAGMENT_SPREAD)
+        ) {
+          cost += this.computeComplexity(child, depth);
+        } else {
+          cost += this.config.depthCostFactor * this.computeComplexity(child, depth + 1);
+        }
       }
-    }
-
-    if (node.kind === Kind.FRAGMENT_SPREAD) {
+    } else if (node.kind === Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
         const visitCost = this.visitedFragments.get(node.name.value) ?? 0;
         return cost + this.config.depthCostFactor * visitCost;
@@ -108,14 +115,19 @@ class CostLimitVisitor {
       }
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        const additionalCost = this.computeComplexity(fragment, depth + 1);
-        if (this.visitedFragments.get(node.name.value) === -1) {
-          this.visitedFragments.set(node.name.value, additionalCost);
+        let fragmentCost;
+        if (this.config.flattenFragments) {
+          fragmentCost = this.computeComplexity(fragment, depth);
+          cost += fragmentCost;
+        } else {
+          fragmentCost = this.computeComplexity(fragment, depth + 1);
+          cost += this.config.depthCostFactor * fragmentCost;
         }
-        cost += this.config.depthCostFactor * additionalCost;
+        if (this.visitedFragments.get(node.name.value) === -1) {
+          this.visitedFragments.set(node.name.value, fragmentCost);
+        }
       }
     }
-
     return cost;
   }
 }

@@ -141,6 +141,73 @@ describe('costLimitPlugin', () => {
     ]);
   });
 
+  it('should flatten fragments', async () => {
+    const maxCost = 57;
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          flattenFragments: true,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query {
+      ...BookFragment
+    }
+
+    fragment BookFragment on Query {
+      books {
+        title
+        author
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+  });
+
+  it('should reject flattened fragments if the maxCost limit is exceeded', async () => {
+    const maxCost = 5;
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          flattenFragments: true,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query {
+      ...BookFragment
+    }
+
+    fragment BookFragment on Query {
+      books {
+        title
+        author
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query Cost limit of ${maxCost} exceeded, found 30.`,
+    ]);
+  });
+
   it('should not crash on recursive fragment', async () => {
     const testkit = createTestkit(
       [

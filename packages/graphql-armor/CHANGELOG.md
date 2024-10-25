@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor
 
+## 3.1.1
+
+### Patch Changes
+
+- bc9e2d0: cost limit: flatten fragment option support
+- Updated dependencies [bc9e2d0]
+  - @escape.tech/graphql-armor-cost-limit@2.4.0
+
 ## 3.1.0
 
 ### Minor Changes

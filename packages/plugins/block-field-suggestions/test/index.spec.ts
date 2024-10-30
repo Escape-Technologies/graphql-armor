@@ -84,7 +84,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
+      'Cannot query field "titlee" on type "Book". [Suggestion hidden]',
     ]);
   });
 
@@ -95,7 +95,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Cannot query field "titlee" on type "Book". <[REDACTED]>?',
+      'Cannot query field "titlee" on type "Book". <[REDACTED]>',
     ]);
   });
 });

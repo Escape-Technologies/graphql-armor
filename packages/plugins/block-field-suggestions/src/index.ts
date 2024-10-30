@@ -8,7 +8,7 @@ const blockFieldSuggestionsDefaultOptions: Required<BlockFieldSuggestionsOptions
 
 const formatter = (error: GraphQLError, mask: string): GraphQLError => {
   if (error instanceof GraphQLError) {
-    error.message = error.message.replace(/Did you mean ".+"/g, mask);
+    error.message = error.message.replace(/Did you mean ".+"\?/g, mask);
   }
   return error as GraphQLError;
 };

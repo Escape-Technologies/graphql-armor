@@ -84,7 +84,7 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
+      'Cannot query field "titlee" on type "Book". [Suggestion hidden]',
     ]);
   });
 
@@ -95,7 +95,16 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
-      'Cannot query field "titlee" on type "Book". <[REDACTED]>?',
+      'Cannot query field "titlee" on type "Book". <[REDACTED]>',
     ]);
+  });
+
+  it('should use remove suggestion completely with emptry string for mask', async () => {
+    const testkit = createTestkit([blockFieldSuggestionsPlugin({ mask: '' })], schema);
+    const result = await testkit.execute(query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual(['Cannot query field "titlee" on type "Book".']);
   });
 });

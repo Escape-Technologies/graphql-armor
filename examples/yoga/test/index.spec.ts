@@ -88,7 +88,7 @@ describe('startup', () => {
     expect(body.data?.books).toBeUndefined();
     expect(body.errors).toBeDefined();
     expect(body.errors?.map((e) => e.message)).toContain(
-      'Cannot query field "titlee" on type "Book". [Suggestion hidden]?',
+      'Cannot query field "titlee" on type "Book". [Suggestion hidden]',
     );
   });
 

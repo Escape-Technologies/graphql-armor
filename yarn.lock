@@ -4702,7 +4702,7 @@ __metadata:
     "@commitlint/cli": "npm:19.5.0"
     "@commitlint/config-angular": "npm:19.5.0"
     "@escape.tech/mookme": "npm:2.5.1"
-    "@preconstruct/cli": "npm:2.8.9"
+    "@preconstruct/cli": "npm:2.8.10"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
     "@types/babel__core": "npm:7.20.5"
     "@types/babel__preset-env": "npm:7.9.6"
@@ -6013,9 +6013,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@preconstruct/cli@npm:2.8.9":
-  version: 2.8.9
-  resolution: "@preconstruct/cli@npm:2.8.9"
+"@preconstruct/cli@npm:2.8.10":
+  version: 2.8.10
+  resolution: "@preconstruct/cli@npm:2.8.10"
   dependencies:
     "@babel/code-frame": "npm:^7.5.5"
     "@babel/core": "npm:^7.7.7"
@@ -6055,7 +6055,7 @@ __metadata:
     zod: "npm:^3.21.4"
   bin:
     preconstruct: bin.js
-  checksum: 10/f48e91b95c28fe4438360d3b5ec657daeb93f04e4b6e26dd5cb126325558936780bbe7a2d9f3f2717df0dde2acc0733006162299dd585ac138f7ed60759c5b75
+  checksum: 10/4466b21d8941fe861fa0d35f304ecb7c11c5d8db6f932654f8fb08ac15f636c87ae9843fbd234c76573991b325360ee2a606fe936d5b537dc92ecdb32a6a89f8
   languageName: node
   linkType: hard
 

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 3.0.0
+
+### Major Changes
+
+- 0a26be4: feat(field-suggestion): remove extra chars
+
 ## 2.2.0
 
 ### Minor Changes

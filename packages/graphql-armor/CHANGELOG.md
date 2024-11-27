@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor
 
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [0a26be4]
+  - @escape.tech/graphql-armor-block-field-suggestions@3.0.0
+
 ## 3.1.1
 
 ### Patch Changes

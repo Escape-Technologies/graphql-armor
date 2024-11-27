@@ -34,7 +34,7 @@
     "@escape.tech/graphql-armor-types": "0.7.0"
   },
   "devDependencies": {
-    "@envelop/core": "5.0.1",
+    "@envelop/core": "5.0.2",
     "@envelop/testing": "7.0.0",
     "@envelop/types": "5.0.0",
     "@escape.tech/graphql-armor-types": "0.7.0",

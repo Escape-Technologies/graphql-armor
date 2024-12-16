@@ -36,7 +36,7 @@
     "@envelop/core": "5.0.2",
     "@envelop/testing": "7.0.0",
     "@envelop/types": "5.0.0",
-    "graphql": "16.8.1",
+    "graphql": "16.10.0",
     "typescript": "5.4.5"
   }
 }

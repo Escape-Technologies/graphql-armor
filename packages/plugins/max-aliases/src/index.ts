@@ -16,6 +16,7 @@ type MaxAliasesOptions = {
   allowList?: string[];
   exposeLimits?: boolean;
   errorMessage?: string;
+  ignoreFields?: string[];
 } & GraphQLArmorCallbackConfiguration;
 
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
@@ -26,6 +27,7 @@ const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   onAccept: [],
   onReject: [],
   propagateOnRejection: true,
+  ignoreFields: ['__typename'],
 };
 
 class MaxAliasesVisitor {
@@ -78,7 +80,7 @@ class MaxAliasesVisitor {
     if (
       'alias' in node &&
       node.alias &&
-      node.name.value !== '__typename' &&
+      !this.config.ignoreFields.includes(node.name.value) &&
       !this.config.allowList.includes(node.alias.value)
     ) {
       ++aliases;

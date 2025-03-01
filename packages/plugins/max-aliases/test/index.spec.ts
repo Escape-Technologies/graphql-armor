@@ -103,6 +103,25 @@ describe('maxAliasesPlugin', () => {
     });
   });
 
+  it('counts __typename aliases against limit when ignoreFields is passed', async () => {
+    const maxAliases = 1;
+    const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases, ignoreFields: [] })], schema);
+    const result = await testkit.execute(/* GraphQL */ `
+      query A {
+        getBook(title: "null") {
+          typenameA: __typename
+          typenameB: __typename
+        }
+      }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Aliases limit of ${maxAliases} exceeded, found ${maxAliases + 1}.`,
+    ]);
+  });
+
   it('respects fragment aliases', async () => {
     const maxAliases = 1;
     const testkit = createTestkit([maxAliasesPlugin({ n: maxAliases })], schema);

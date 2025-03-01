@@ -33,6 +33,9 @@ GraphQLArmorConfig({
 
     // List of queries that are allowed to bypass the plugin
     allowList?: string[],
+
+    // List of fields that can be aliased without counting against the alias threshold | default ['__typename']
+    ignoreFields?: string[],
   }
 })
 ```

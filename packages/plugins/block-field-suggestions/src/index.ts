@@ -27,16 +27,16 @@ const blockFieldSuggestionsPlugin = (options?: BlockFieldSuggestionsOptions): Pl
     onExecute: () => {
       return {
         onExecuteDone({ result, setResult }) {
-          // Ensure that the result object contains an errors property and that it is an array 
+          // Ensure that the result object contains an errors property and that it is an array
           if (result && 'errors' in result && Array.isArray(result.errors)) {
             setResult({
               ...result,
-              errors: result.errors.map((error: GraphQLError) => formatter(error, mask))
+              errors: result.errors.map((error: GraphQLError) => formatter(error, mask)),
             });
           }
-        }
-      }
-    }
+        },
+      };
+    },
   };
 };
 

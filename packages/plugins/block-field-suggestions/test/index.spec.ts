@@ -44,7 +44,7 @@ const resolvers = {
   Query: {
     books: (_, args) => {
       if (args.genre) {
-        return books.filter(book => book.genre === args.genre);
+        return books.filter((book) => book.genre === args.genre);
       }
       return books;
     },
@@ -88,7 +88,8 @@ describe('global', () => {
 
   it('should works on a valid query with a valid enum value', async () => {
     const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
-    const result = await testkit.execute(`
+    const result = await testkit.execute(
+      `
     query GetBooksByGenre($genre: Genre) {
       books(genre: $genre) {
         title
@@ -96,10 +97,10 @@ describe('global', () => {
         author
       }
     }`,
-    {
-      genre: 'FICTION',
-    }
-  );
+      {
+        genre: 'FICTION',
+      },
+    );
 
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();
@@ -116,7 +117,8 @@ describe('global', () => {
 
   it('should enable suggestions for a invalid enum value', async () => {
     const testkit = createTestkit([], schema);
-    const result = await testkit.execute(`
+    const result = await testkit.execute(
+      `
     query GetBooksByGenre($genre: Genre) {
       books(genre: $genre) {
         title
@@ -124,9 +126,10 @@ describe('global', () => {
         author
       }
     }`,
-    {
-      genre: 'FFICTION',
-    });
+      {
+        genre: 'FFICTION',
+      },
+    );
 
     assertSingleExecutionValue(result);
     expect(result.errors?.map((error) => error.message)).toEqual([
@@ -136,16 +139,18 @@ describe('global', () => {
 
   it('should disable suggestions for a invalid genre', async () => {
     const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
-    const result = await testkit.execute(`
+    const result = await testkit.execute(
+      `
     query GetBooksByGenre($genre: Genre) {
       books(genre: $genre) {
         title
         author
       }
     }`,
-    {
-      genre: 'FFICTION',
-    });
+      {
+        genre: 'FFICTION',
+      },
+    );
 
     assertSingleExecutionValue(result);
     expect(result.errors?.map((error) => error.message)).toEqual([

@@ -162,7 +162,7 @@ describe('costLimitPlugin', () => {
       ],
       schema,
     );
-    const x = getIntrospectionQuery()
+    const x = getIntrospectionQuery();
     const result = await testkit.execute(getIntrospectionQuery());
 
     assertSingleExecutionValue(result);

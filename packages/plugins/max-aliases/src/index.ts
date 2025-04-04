@@ -20,7 +20,7 @@ type MaxAliasesOptions = {
 
 const maxAliasesDefaultOptions: Required<MaxAliasesOptions> = {
   n: 15,
-  allowList: [],
+  allowList: ['__typename'],
   exposeLimits: true,
   errorMessage: 'Query validation error.',
   onAccept: [],
@@ -78,8 +78,8 @@ class MaxAliasesVisitor {
     if (
       'alias' in node &&
       node.alias &&
-      node.name.value !== '__typename' &&
-      !this.config.allowList.includes(node.alias.value)
+      !this.config.allowList.includes(node.alias.value) &&
+      !this.config.allowList.includes(node.name.value)
     ) {
       ++aliases;
     }

@@ -85,7 +85,12 @@ class CostLimitVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth = 0,
   ): number {
-    if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+    if (
+      this.config.ignoreIntrospection &&
+      'name' in node &&
+      node.name?.value === '__schema' &&
+      node.kind === Kind.FIELD
+    ) {
       return 0;
     }
 

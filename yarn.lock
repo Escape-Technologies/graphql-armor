@@ -4623,7 +4623,7 @@ __metadata:
     "@envelop/testing": "npm:7.0.0"
     "@envelop/types": "npm:5.0.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4639,7 +4639,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4657,7 +4657,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4675,7 +4675,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4693,7 +4693,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4711,7 +4711,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4729,7 +4729,7 @@ __metadata:
     "@envelop/types": "npm:5.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
       optional: true
@@ -4762,7 +4762,7 @@ __metadata:
     eslint-config-google: "npm:0.14.0"
     jest: "npm:29.7.0"
     prettier: "npm:3.3.0"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   languageName: unknown
   linkType: soft
 
@@ -4771,7 +4771,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-types@workspace:packages/types"
   dependencies:
     graphql: "npm:16.8.1"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   languageName: unknown
   linkType: soft
 
@@ -4791,7 +4791,7 @@ __metadata:
     "@types/node": "npm:^22.0.0"
     graphql: "npm:16.8.1"
     ts-node: "npm:10.9.2"
-    typescript: "npm:5.4.5"
+    typescript: "npm:5.8.3"
   peerDependencies:
     "@apollo/server": ^4.0.0
     "@envelop/core": ^5.0.0
@@ -19137,6 +19137,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:5.8.3":
+  version: 5.8.3
+  resolution: "typescript@npm:5.8.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/65c40944c51b513b0172c6710ee62e951b70af6f75d5a5da745cb7fab132c09ae27ffdf7838996e3ed603bb015dadd099006658046941bd0ba30340cc563ae92
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>":
   version: 5.3.3
   resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
@@ -19154,6 +19164,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/760f7d92fb383dbf7dee2443bf902f4365db2117f96f875cf809167f6103d55064de973db9f78fe8f31ec08fff52b2c969aee0d310939c0a3798ec75d0bca2e1
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>":
+  version: 5.8.3
+  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=8c6c40"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/98470634034ec37fd9ea61cc82dcf9a27950d0117a4646146b767d085a2ec14b137aae9642a83d1c62732d7fdcdac19bb6288b0bb468a72f7a06ae4e1d2c72c9
   languageName: node
   linkType: hard
 

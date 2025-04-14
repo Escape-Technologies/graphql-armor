@@ -5834,16 +5834,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/common@npm:10.3.8":
-  version: 10.3.8
-  resolution: "@nestjs/common@npm:10.3.8"
+"@nestjs/common@npm:10.4.16":
+  version: 10.4.16
+  resolution: "@nestjs/common@npm:10.4.16"
   dependencies:
     iterare: "npm:1.2.1"
-    tslib: "npm:2.6.2"
+    tslib: "npm:2.8.1"
     uid: "npm:2.0.2"
   peerDependencies:
     class-transformer: "*"
     class-validator: "*"
+    file-type: ^20.4.1
     reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
@@ -5851,7 +5852,9 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 10/e13fcfc11d4d0fdf2bf8c7482e7b3d6da2218cfd7f1483973084e49fd5f0ab4e9b4f36ce573a8ec88c32bd04fc792ab8468b377ba1446901fec8f02f2baafa17
+    file-type:
+      optional: true
+  checksum: 10/af0979def8f3fef575c4be02d54ae44066e985b0a90bc82b6431ecc402ef5aa0ad452f3add4c81752d3c8725cc9f4db49a421689fd79b02fa0bbc96b7e9f0625
   languageName: node
   linkType: hard
 
@@ -11067,7 +11070,7 @@ __metadata:
     "@escape.tech/graphql-armor": "npm:*"
     "@nestjs/apollo": "npm:12.1.0"
     "@nestjs/cli": "npm:10.3.2"
-    "@nestjs/common": "npm:10.3.8"
+    "@nestjs/common": "npm:10.4.16"
     "@nestjs/core": "npm:10.3.8"
     "@nestjs/graphql": "npm:12.1.1"
     "@nestjs/platform-express": "npm:10.3.8"
@@ -19037,6 +19040,13 @@ __metadata:
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 10/bd26c22d36736513980091a1e356378e8b662ded04204453d353a7f34a4c21ed0afc59b5f90719d4ba756e581a162ecbf93118dc9c6be5acf70aa309188166ca
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.8.1":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
   languageName: node
   linkType: hard
 

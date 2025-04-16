@@ -4,11 +4,10 @@
 
 This help preventing **DoS attacks** by hard-limiting the size of the query document.
 
-- [Character Limit](#character-limit)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
-  - [Design considerations](#design-considerations)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Design considerations](#design-considerations)
 
 :::caution Out of core
 This plugin is not part of the core package, you need to install it separately.

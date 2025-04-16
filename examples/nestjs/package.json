@@ -32,7 +32,7 @@
     "@nestjs/core": "10.4.17",
     "@nestjs/graphql": "12.2.2",
     "@nestjs/platform-express": "10.4.17",
-    "express": "4.21.2",
+    "express": "5.0.0",
     "graphql": "16.10.0",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",

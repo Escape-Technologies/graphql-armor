@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.6.1
+
+### Patch Changes
+
+- add \_\_typename support
+
 ## 2.6.0
 
 ### Minor Changes

@@ -71,7 +71,7 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     maxTokensPlugin({
-        maxTokenCount: 1000,
+        n: 1000,
     }),
   ]
 });

@@ -4,12 +4,11 @@
 
 It is used to prevent **DOS attack** or **heap overflow**.
 
-- [Max Aliases](#max-aliases)
-  - [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
-  - [Standalone usage](#standalone-usage)
-    - [Installation](#installation)
-    - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
-    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
+- [Standalone usage](#standalone-usage)
+  - [Installation](#installation)
+  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
 
 ## Configuring for GraphQL Armor
 

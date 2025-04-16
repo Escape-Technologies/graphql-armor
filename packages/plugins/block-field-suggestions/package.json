@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@envelop/core": "5.2.3",
-    "@envelop/testing": "7.0.0",
+    "@envelop/testing": "8.1.3",
     "@envelop/types": "5.2.1",
     "graphql": "16.10.0",
     "typescript": "5.8.3"

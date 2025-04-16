@@ -3,8 +3,9 @@
 echo "Installing development tools..."
 yarn
 
-echo "Initializing mookme..."
-yarn dlx @escape.tech/mookme init --only-hook --skip-types-selection
+echo "Initializing gookme..."
+curl https://raw.githubusercontent.com/LMaxence/gookme/refs/heads/main/scripts/install.sh | $(command -v bash || command -v sh || command -v ash)
+gookme init --all
 
 echo "Building GraphQL Armor..."
 yarn build

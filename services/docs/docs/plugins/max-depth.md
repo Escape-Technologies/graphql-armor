@@ -4,13 +4,12 @@
 
 It is used to prevent too large queries that could lead to overfetching or **DOS attack**.
 
-- [Max Depth](#max-depth)
-  - [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
-  - [Standalone usage](#standalone-usage)
-    - [Installation](#installation)
-    - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
-    - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
-  - [References](#references)
+- [Configuring for GraphQL Armor](#configuring-for-graphql-armor)
+- [Standalone usage](#standalone-usage)
+  - [Installation](#installation)
+  - [With `@graphql/graphql-js`](#with-graphqlgraphql-js)
+  - [With `@envelop/core` from `@the-guild-org`](#with-envelopcore-from-the-guild-org)
+- [References](#references)
 
 ## Configuring for GraphQL Armor
 
@@ -81,4 +80,4 @@ const getEnveloped = envelop({
 
 ## References
 
-- https://github.com/advisories/GHSA-mh3m-8c74-74xh
+- [https://github.com/advisories/GHSA-mh3m-8c74-74xh](https://github.com/advisories/GHSA-mh3m-8c74-74xh)

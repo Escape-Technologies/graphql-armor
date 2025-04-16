@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "graphql": "^16.0.0"
+    "graphql": "^16.10.0"
   },
   "devDependencies": {
-    "graphql": "16.8.1",
-    "typescript": "5.4.5"
+    "graphql": "16.10.0",
+    "typescript": "5.8.3"
   }
 }

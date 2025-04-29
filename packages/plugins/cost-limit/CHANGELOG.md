@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 2.5.0
+
+### Minor Changes
+
+- ab680bf: Bump cost-limit to 2.4.1 to fix GHSA-733v-p3h5-qpq7
+
 ## 2.4.1
 
 ### Minor Changes

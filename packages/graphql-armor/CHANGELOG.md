@@ -1,5 +1,14 @@
 # @escape.tech/graphql-armor
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @escape.tech/graphql-armor-cost-limit@2.4.1
+
+- 5a32954: Fix security advisory GHSA-733v-p3h5-qpq7 related to cost-limit bypass.
+
 ## 3.1.3
 
 ### Patch Changes

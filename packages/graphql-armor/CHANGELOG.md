@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor
 
+## 3.1.4
+
+### Patch Changes
+
+- 092dc57: Bump armor and cost-limit for GHSA-733v-p3h5-qpq7
+- Updated dependencies [092dc57]
+  - @escape.tech/graphql-armor-cost-limit@2.4.1
+
 ## 3.1.3
 
 ### Patch Changes

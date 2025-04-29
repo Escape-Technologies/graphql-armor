@@ -1,11 +1,5 @@
 # @escape.tech/graphql-armor-cost-limit
 
-## 2.4.1
-
-### Minor Changes
-
-- 5a32954: Fix security advisory GHSA-733v-p3h5-qpq7 related to cost-limit bypass.
-
 ## 2.4.0
 
 ### Minor Changes

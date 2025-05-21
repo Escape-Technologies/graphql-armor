@@ -109,7 +109,9 @@ class MaxAliasesVisitor {
 const maxAliasesRule = (options?: MaxAliasesOptions) => (context: ValidationContext) =>
   new MaxAliasesVisitor(context, options);
 
-const maxAliasesPlugin = (options?: MaxAliasesOptions): Plugin => {
+const maxAliasesPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: MaxAliasesOptions,
+): Plugin<PluginContext> => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(maxAliasesRule(options));

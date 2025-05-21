@@ -140,7 +140,9 @@ class CostLimitVisitor {
 export const costLimitRule = (options?: CostLimitOptions) => (context: ValidationContext) =>
   new CostLimitVisitor(context, options);
 
-export const costLimitPlugin = (options?: CostLimitOptions): Plugin => {
+export const costLimitPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: CostLimitOptions,
+): Plugin<PluginContext> => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(costLimitRule(options));

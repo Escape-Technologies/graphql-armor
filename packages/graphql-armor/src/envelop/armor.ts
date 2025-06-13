@@ -1,4 +1,4 @@
-import type { OnPluginInitEventPayload, Plugin } from '@envelop/core';
+import type { Plugin } from '@envelop/core';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 
 import { EnvelopProtection } from './protections/base-protection';
@@ -9,12 +9,14 @@ import { EnvelopMaxDepthProtection } from './protections/max-depth';
 import { EnvelopMaxDirectivesProtection } from './protections/max-directives';
 import { EnvelopMaxTokensProtection } from './protections/max-tokens';
 
-export const EnvelopArmorPlugin = (config?: GraphQLArmorConfig): Plugin => {
-  const armor = new EnvelopArmor(config);
+export const EnvelopArmorPlugin = <PluginContext extends Record<string, any> = {}>(
+  config?: GraphQLArmorConfig,
+): Plugin<PluginContext> => {
+  const armor = new EnvelopArmor<PluginContext>(config);
   const enhancements = armor.protect();
 
   return {
-    onPluginInit({ addPlugin }: OnPluginInitEventPayload) {
+    onPluginInit({ addPlugin }) {
       for (const plugin of enhancements.plugins) {
         addPlugin(plugin);
       }
@@ -22,8 +24,8 @@ export const EnvelopArmorPlugin = (config?: GraphQLArmorConfig): Plugin => {
   };
 };
 
-export class EnvelopArmor {
-  private readonly protections: EnvelopProtection[];
+export class EnvelopArmor<PluginContext extends Record<string, any> = {}> {
+  private readonly protections: EnvelopProtection<PluginContext>[];
 
   constructor(config: GraphQLArmorConfig = {}) {
     this.protections = [
@@ -37,9 +39,9 @@ export class EnvelopArmor {
   }
 
   protect(): {
-    plugins: Plugin[];
+    plugins: Plugin<PluginContext>[];
   } {
-    const plugins: Plugin[] = [];
+    const plugins: Plugin<PluginContext>[] = [];
 
     for (const protection of this.protections) {
       if (protection.isEnabled) {

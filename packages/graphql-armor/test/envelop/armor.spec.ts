@@ -1,8 +1,13 @@
+import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 
 import { EnvelopArmor, EnvelopArmorPlugin } from '../../src/envelop/armor';
+
+// test checking if the plugin inherits the context correctly
+const _test_0: Plugin = EnvelopArmorPlugin();
+const _test_1: Plugin<{ my: 'ctx' }> = EnvelopArmorPlugin();
 
 describe('envelopArmor', () => {
   const envelop = new EnvelopArmor();

@@ -13,7 +13,9 @@ const formatter = (error: GraphQLError, mask: string): GraphQLError => {
   return error as GraphQLError;
 };
 
-const blockFieldSuggestionsPlugin = (options?: BlockFieldSuggestionsOptions): Plugin => {
+const blockFieldSuggestionsPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: BlockFieldSuggestionsOptions,
+): Plugin<PluginContext> => {
   const mask = options?.mask ?? blockFieldSuggestionsDefaultOptions.mask;
 
   return {

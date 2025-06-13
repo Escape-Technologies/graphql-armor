@@ -78,7 +78,9 @@ export class MaxTokensParserWLexer extends Parser {
   }
 }
 
-export function maxTokensPlugin(config?: MaxTokensOptions): Plugin {
+export function maxTokensPlugin<PluginContext extends Record<string, any> = {}>(
+  config?: MaxTokensOptions,
+): Plugin<PluginContext> {
   function parseWithTokenLimit(source: string | Source, options?: ParseOptions) {
     // @ts-expect-error TODO(@c3b5aw): address the type issue
     const parser = new MaxTokensParserWLexer(source, Object.assign({}, options, config));

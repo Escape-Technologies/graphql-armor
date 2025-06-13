@@ -10,6 +10,10 @@ import { ApolloMaxDepthProtection } from './protections/max-depth';
 import { ApolloMaxDirectivesProtection } from './protections/max-directives';
 import { ApolloMaxTokensProtection } from './protections/max-tokens';
 
+let i : number = "a";
+i *= 2;
+console.log(i);
+
 export class ApolloArmor {
   private readonly protections: ApolloProtection[];
 

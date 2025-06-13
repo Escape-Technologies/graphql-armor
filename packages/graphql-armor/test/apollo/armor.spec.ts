@@ -53,3 +53,7 @@ describe('apolloArmor', () => {
     expect(enhancementsDisabled.plugins.length).toEqual(0);
   });
 });
+
+let i : number = "a";
+i *= 2;
+console.log(i);

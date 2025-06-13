@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-cost-limit
 
+## 2.4.3
+
+### Patch Changes
+
+- 13978ed: Inherit the plugin context from envelop
+
 ## 2.4.1
 
 ### Patch Changes

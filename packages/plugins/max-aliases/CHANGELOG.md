@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.6.2
+
+### Patch Changes
+
+- 13978ed: Inherit the plugin context from envelop
+
 ## 2.6.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.5.1
+
+### Patch Changes
+
+- 13978ed: Inherit the plugin context from envelop
+
 ## 2.5.0
 
 ### Minor Changes

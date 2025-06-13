@@ -2,7 +2,9 @@ import { maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
-export class EnvelopMaxDirectivesProtection extends EnvelopProtection {
+export class EnvelopMaxDirectivesProtection<
+  PluginContext extends Record<string, any> = {},
+> extends EnvelopProtection<PluginContext> {
   get isEnabled(): boolean {
     if (!this.config.maxDirectives) {
       return this.enabledByDefault;
@@ -10,7 +12,7 @@ export class EnvelopMaxDirectivesProtection extends EnvelopProtection {
     return this.config.maxDirectives.enabled ?? this.enabledByDefault;
   }
 
-  protect(): EnvelopConfigurationEnhancement {
+  protect(): EnvelopConfigurationEnhancement<PluginContext> {
     return {
       plugins: [maxDirectivesPlugin(this.config.maxDirectives)],
     };

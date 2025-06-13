@@ -50,7 +50,9 @@ export const ApolloServerCharacterLimitPlugin = function (options?: CharacterLim
   };
 };
 
-export const characterLimitPlugin = (options?: CharacterLimitOptions): Plugin => {
+export const characterLimitPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: CharacterLimitOptions,
+): Plugin<PluginContext> => {
   const config = Object.assign(
     {},
     characterLimitDefaultOptions,

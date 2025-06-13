@@ -1,11 +1,11 @@
 import type { Plugin as EnvelopPlugin } from '@envelop/core';
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 
-export type EnvelopConfigurationEnhancement = {
-  plugins: EnvelopPlugin[];
+export type EnvelopConfigurationEnhancement<PluginContext extends Record<string, any> = {}> = {
+  plugins: EnvelopPlugin<PluginContext>[];
 };
 
-export abstract class EnvelopProtection {
+export abstract class EnvelopProtection<PluginContext extends Record<string, any> = {}> {
   config: GraphQLArmorConfig;
   enabledByDefault = true;
 
@@ -13,6 +13,6 @@ export abstract class EnvelopProtection {
     this.config = config;
   }
 
-  abstract protect(): EnvelopConfigurationEnhancement;
+  abstract protect(): EnvelopConfigurationEnhancement<PluginContext>;
   abstract get isEnabled(): boolean;
 }

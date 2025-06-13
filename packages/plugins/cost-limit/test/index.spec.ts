@@ -1,9 +1,14 @@
+import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
 
 import { costLimitPlugin } from '../src/index';
+
+// test checking if the plugin inherits the context correctly
+const _test_0: Plugin = costLimitPlugin();
+const _test_1: Plugin<{ my: 'ctx' }> = costLimitPlugin();
 
 const typeDefinitions = `
   type Book {
@@ -87,6 +92,68 @@ describe('costLimitPlugin', () => {
     ]);
   });
 
+  it('should limit cost for query named `__schema`', async () => {
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: 10,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query __schema {
+      books {
+        title
+        author
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query Cost limit of 10 exceeded, found 12.',
+    ]);
+  });
+
+  it('should limit cost for fragment named `__schema`', async () => {
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: 10,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 2,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query  {
+      ...__schema
+    }
+
+    fragment __schema on Query {
+      books {
+        title
+        author
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      'Syntax Error: Query Cost limit of 10 exceeded, found 58.',
+    ]);
+  });
+
   it('should allow introspection', async () => {
     const testkit = createTestkit(
       [
@@ -100,6 +167,7 @@ describe('costLimitPlugin', () => {
       ],
       schema,
     );
+    const x = getIntrospectionQuery();
     const result = await testkit.execute(getIntrospectionQuery());
 
     assertSingleExecutionValue(result);

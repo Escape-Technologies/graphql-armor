@@ -85,7 +85,12 @@ class CostLimitVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     depth = 0,
   ): number {
-    if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+    if (
+      this.config.ignoreIntrospection &&
+      'name' in node &&
+      node.name?.value === '__schema' &&
+      node.kind === Kind.FIELD
+    ) {
       return 0;
     }
 
@@ -135,7 +140,9 @@ class CostLimitVisitor {
 export const costLimitRule = (options?: CostLimitOptions) => (context: ValidationContext) =>
   new CostLimitVisitor(context, options);
 
-export const costLimitPlugin = (options?: CostLimitOptions): Plugin => {
+export const costLimitPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: CostLimitOptions,
+): Plugin<PluginContext> => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(costLimitRule(options));

@@ -1,9 +1,14 @@
+import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
 
 import { costLimitPlugin } from '../src/index';
+
+// test checking if the plugin inherits the context correctly
+const _test_0: Plugin = costLimitPlugin();
+const _test_1: Plugin<{ my: 'ctx' }> = costLimitPlugin();
 
 const typeDefinitions = `
   type Book {

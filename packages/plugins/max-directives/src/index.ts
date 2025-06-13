@@ -102,7 +102,9 @@ class MaxDirectivesVisitor {
 export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
   new MaxDirectivesVisitor(context, options);
 
-export const maxDirectivesPlugin = (options?: MaxDirectivesOptions): Plugin => {
+export const maxDirectivesPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: MaxDirectivesOptions,
+): Plugin<PluginContext> => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(maxDirectivesRule(options));

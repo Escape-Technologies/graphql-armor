@@ -1,5 +1,6 @@
 import { maxAliasesRule } from '@escape.tech/graphql-armor-max-aliases';
 
+import { injectRequestContextRule } from '../context-helper';
 import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
@@ -15,7 +16,7 @@ export class ApolloMaxAliasesProtection extends ApolloProtection {
     this.config.maxAliases = inferApolloPropagator<typeof this.config.maxAliases>(this.config.maxAliases);
 
     return {
-      validationRules: [maxAliasesRule(this.config.maxAliases)],
+      validationRules: [injectRequestContextRule(maxAliasesRule(this.config.maxAliases))],
     };
   }
 }

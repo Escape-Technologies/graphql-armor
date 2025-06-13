@@ -108,7 +108,7 @@ class CostLimitVisitor {
         for (const arg of node.arguments) {
           if (arg.name.value === 'first' || arg.name.value === 'last') {
             if (arg.value.kind === 'IntValue') {
-              setMultiplier = Math.max(parseInt(arg.value.value, 10), setMultiplier);
+              setMultiplier = Math.max(parseInt(arg.value.value, 10) ?? 1, setMultiplier);
             }
             break;
           }

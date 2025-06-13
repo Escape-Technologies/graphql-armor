@@ -103,16 +103,17 @@ class CostLimitVisitor {
     if ('selectionSet' in node && node.selectionSet) {
       cost = this.config.objectCost;
 
-      // Check if the node has first/last arguments and assign value to setMultiplier
-      const setMultiplier =
-        'arguments' in node && node.arguments
-          ? node.arguments.reduce((mult, arg) => {
-              if (arg.name.value === 'first' || arg.name.value === 'last') {
-                return arg.value.kind === 'IntValue' ? parseInt(arg.value.value, 10) : 1;
-              }
-              return mult;
-            }, 1)
-          : 1;
+      let setMultiplier = 1;
+      if ('arguments' in node && node.arguments) {
+        for (const arg of node.arguments) {
+          if (arg.name.value === 'first' || arg.name.value === 'last') {
+            if (arg.value.kind === 'IntValue') {
+              setMultiplier = Math.max(parseInt(arg.value.value, 10), setMultiplier);
+            }
+            break;
+          }
+        }
+      }
 
       for (const child of node.selectionSet.selections) {
         if (

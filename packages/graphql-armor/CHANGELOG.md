@@ -1,5 +1,18 @@
 # @escape.tech/graphql-armor
 
+## 3.1.6
+
+### Patch Changes
+
+- 13978ed: Inherit the plugin context from envelop
+- Updated dependencies [13978ed]
+  - @escape.tech/graphql-armor-block-field-suggestions@3.0.1
+  - @escape.tech/graphql-armor-max-directives@2.3.1
+  - @escape.tech/graphql-armor-max-aliases@2.6.2
+  - @escape.tech/graphql-armor-cost-limit@2.4.3
+  - @escape.tech/graphql-armor-max-tokens@2.5.1
+  - @escape.tech/graphql-armor-max-depth@2.4.1
+
 ## 3.1.4
 
 ### Patch Changes

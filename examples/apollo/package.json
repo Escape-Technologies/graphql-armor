@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for Apollo.",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.9.2",
   "main": "./src/index.ts",
   "scripts": {
     "build": "tsc",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/body-parser": "^1.19.6",
     "@types/express": "5.0.3",
-    "@types/node": "24.0.1",
+    "@types/node": "24.0.3",
     "nodemon": "3.1.10",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",

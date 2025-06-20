@@ -61,6 +61,7 @@ class CostLimitVisitor {
 
   onOperationDefinitionEnter(operation: OperationDefinitionNode): void {
     const complexity = this.computeComplexity(operation);
+
     if (complexity > this.config.maxCost) {
       const message = this.config.exposeLimits
         ? `Query Cost limit of ${this.config.maxCost} exceeded, found ${complexity}.`
@@ -101,6 +102,19 @@ class CostLimitVisitor {
     let cost = this.config.scalarCost;
     if ('selectionSet' in node && node.selectionSet) {
       cost = this.config.objectCost;
+
+      let setMultiplier = 1;
+      if ('arguments' in node && node.arguments) {
+        for (const arg of node.arguments) {
+          if (arg.name.value === 'first' || arg.name.value === 'last') {
+            if (arg.value.kind === 'IntValue') {
+              setMultiplier = Math.max(parseInt(arg.value.value, 10) ?? 1, setMultiplier);
+            }
+            break;
+          }
+        }
+      }
+
       for (const child of node.selectionSet.selections) {
         if (
           this.config.flattenFragments &&
@@ -111,6 +125,8 @@ class CostLimitVisitor {
           cost += this.config.depthCostFactor * this.computeComplexity(child, depth + 1);
         }
       }
+      // Apply setMultiplier to the total cost of current node and its children
+      cost *= setMultiplier;
     } else if (node.kind === Kind.FRAGMENT_SPREAD) {
       if (this.visitedFragments.has(node.name.value)) {
         const visitCost = this.visitedFragments.get(node.name.value) ?? 0;

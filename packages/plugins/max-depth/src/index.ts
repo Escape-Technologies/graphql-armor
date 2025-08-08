@@ -76,7 +76,12 @@ class MaxDepthVisitor {
     node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
     parentDepth = 0,
   ): number {
-    if (this.config.ignoreIntrospection && 'name' in node && node.name?.value === '__schema') {
+    if (
+      this.config.ignoreIntrospection &&
+      'name' in node &&
+      node.name?.value === '__schema' &&
+      node.kind === Kind.FIELD
+    ) {
       return 0;
     }
     let depth = parentDepth;

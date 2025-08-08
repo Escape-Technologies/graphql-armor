@@ -2,7 +2,9 @@ import { maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth';
 
 import { EnvelopConfigurationEnhancement, EnvelopProtection } from './base-protection';
 
-export class EnvelopMaxDepthProtection extends EnvelopProtection {
+export class EnvelopMaxDepthProtection<
+  PluginContext extends Record<string, any> = {},
+> extends EnvelopProtection<PluginContext> {
   get isEnabled(): boolean {
     if (!this.config.maxDepth) {
       return this.enabledByDefault;
@@ -10,7 +12,7 @@ export class EnvelopMaxDepthProtection extends EnvelopProtection {
     return this.config.maxDepth.enabled ?? this.enabledByDefault;
   }
 
-  protect(): EnvelopConfigurationEnhancement {
+  protect(): EnvelopConfigurationEnhancement<PluginContext> {
     return {
       plugins: [maxDepthPlugin(this.config.maxDepth)],
     };

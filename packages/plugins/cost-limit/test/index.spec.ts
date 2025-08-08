@@ -1,9 +1,14 @@
+import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 import { getIntrospectionQuery } from 'graphql';
 
 import { costLimitPlugin } from '../src/index';
+
+// test checking if the plugin inherits the context correctly
+const _test_0: Plugin = costLimitPlugin();
+const _test_1: Plugin<{ my: 'ctx' }> = costLimitPlugin();
 
 const typeDefinitions = `
   type Book {
@@ -12,7 +17,7 @@ const typeDefinitions = `
   }
 
   type Query {
-    books: [Book]
+    books(first: Int, last: Int): [Book]
     getBook(title: String): Book
   }
 `;
@@ -30,7 +35,15 @@ const books = [
 
 const resolvers = {
   Query: {
-    books: () => books,
+    books: (_: any, { first, last }: { first?: number; last?: number }) => {
+      if (first !== undefined) {
+        return books.slice(0, first);
+      }
+      if (last !== undefined) {
+        return books.slice(-last);
+      }
+      return books;
+    },
     getBook: (_: any, { title }: { title: string }) => books.find((book) => book.title === title),
   },
 };
@@ -346,6 +359,76 @@ describe('costLimitPlugin', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual([
       `Syntax Error: Query Cost limit of ${maxCost} exceeded, found 12.`,
+    ]);
+  });
+
+  it('supports pagination using first or last', async () => {
+    const maxCost = 20;
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 1.5,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query {
+      firstBooks: books(first: 1) {
+        title
+        author
+      }
+      
+      lastBooks: books(last: 1) {
+        title
+        author
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+  });
+
+  it('rejects pagination using first or last when cost limit is exceeded', async () => {
+    const maxCost = 57;
+    const testkit = createTestkit(
+      [
+        costLimitPlugin({
+          maxCost: maxCost,
+          objectCost: 4,
+          scalarCost: 2,
+          depthCostFactor: 1.5,
+          ignoreIntrospection: true,
+        }),
+      ],
+      schema,
+    );
+    const result = await testkit.execute(`
+    query {
+      firstBooks: books(first: 2) {
+        title
+        author
+      }
+      ...BookFragmentLast3
+
+      fragment BookFragmentLast3 on Query {
+        books(last: 3) {
+          title
+          author
+        }
+      }
+    }
+    `);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query Cost limit of ${maxCost} exceeded, found 77.`,
     ]);
   });
 });

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 3.0.1
+
+### Patch Changes
+
+- 13978ed: Inherit the plugin context from envelop
+
 ## 3.0.0
 
 ### Major Changes

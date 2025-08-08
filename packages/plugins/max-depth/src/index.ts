@@ -124,7 +124,9 @@ class MaxDepthVisitor {
 export const maxDepthRule = (options?: MaxDepthOptions) => (context: ValidationContext) =>
   new MaxDepthVisitor(context, options);
 
-export const maxDepthPlugin = (options?: MaxDepthOptions): Plugin => {
+export const maxDepthPlugin = <PluginContext extends Record<string, any> = {}>(
+  options?: MaxDepthOptions,
+): Plugin<PluginContext> => {
   return {
     onValidate({ addValidationRule }: any) {
       addValidationRule(maxDepthRule(options));

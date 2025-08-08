@@ -1,9 +1,14 @@
+import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { describe, expect, it } from '@jest/globals';
 import { jest } from '@jest/globals';
 
 import { maxAliasesPlugin } from '../src/index';
+
+// test checking if the plugin inherits the context correctly
+const _test_0: Plugin = maxAliasesPlugin();
+const _test_1: Plugin<{ my: 'ctx' }> = maxAliasesPlugin();
 
 const typeDefinitions = `
   type Book {

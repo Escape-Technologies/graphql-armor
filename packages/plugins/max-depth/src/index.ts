@@ -98,20 +98,20 @@ class MaxDepthVisitor {
         }
       }
     } else if (node.kind == Kind.FRAGMENT_SPREAD) {
+      if (!this.config.flattenFragments) {
+        parentDepth += 1;
+      }
+
       if (this.visitedFragments.has(node.name.value)) {
-        return this.visitedFragments.get(node.name.value) ?? 0;
+        return parentDepth + (this.visitedFragments.get(node.name.value) ?? 0);
       } else {
         this.visitedFragments.set(node.name.value, -1);
       }
       const fragment = this.context.getFragment(node.name.value);
       if (fragment) {
-        let fragmentDepth;
-        if (this.config.flattenFragments) {
-          fragmentDepth = this.countDepth(fragment, parentDepth);
-        } else {
-          fragmentDepth = this.countDepth(fragment, parentDepth + 1);
-        }
-        depth = Math.max(depth, fragmentDepth);
+        let fragmentDepth = this.countDepth(fragment, 0);
+
+        depth = Math.max(depth, parentDepth + fragmentDepth);
         if (this.visitedFragments.get(node.name.value) === -1) {
           this.visitedFragments.set(node.name.value, fragmentDepth);
         }

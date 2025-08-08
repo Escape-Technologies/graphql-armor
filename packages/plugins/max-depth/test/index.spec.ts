@@ -191,7 +191,7 @@ describe('maxDepthPlugin', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toContain(
-      'Syntax Error: Query depth limit of 3 exceeded, found 4.',
+      'Syntax Error: Query depth limit of 3 exceeded, found 5.',
     );
   });
 

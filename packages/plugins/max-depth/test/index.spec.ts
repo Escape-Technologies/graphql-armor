@@ -239,4 +239,34 @@ describe('maxDepthPlugin', () => {
       `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 1}.`,
     ]);
   });
+
+  it('rejects for fragment named `__schema` exceeding max depth', async () => {
+    const bypass_query = `
+      query {
+        books {
+          author {
+            books {
+              author {
+                ...__schema
+              }
+            }
+          }
+        }
+      }
+      fragment __schema on Author {
+        books {
+          title
+        }
+      }
+    `;
+    const maxDepth = 6;
+    const testkit = createTestkit([maxDepthPlugin({ n: maxDepth, exposeLimits: true })], schema);
+    const result = await testkit.execute(bypass_query);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+    expect(result.errors?.map((error) => error.message)).toEqual([
+      `Syntax Error: Query depth limit of ${maxDepth} exceeded, found ${maxDepth + 2}.`,
+    ]);
+  });
 });

@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 2.4.2
+
+### Patch Changes
+
+- 9989861: fix: max-depth bypass using fragment cache
+- 1f923bc: fix: max-depth ignore only Field Node named \_\_schema
+
 ## 2.4.1
 
 ### Patch Changes

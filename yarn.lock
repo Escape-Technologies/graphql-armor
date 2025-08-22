@@ -4712,7 +4712,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@escape.tech/graphql-armor-max-depth@npm:2.4.1, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
+"@escape.tech/graphql-armor-max-depth@npm:2.4.2, @escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth":
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
@@ -4812,7 +4812,7 @@ __metadata:
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
     "@escape.tech/graphql-armor-cost-limit": "npm:2.4.3"
     "@escape.tech/graphql-armor-max-aliases": "npm:2.6.2"
-    "@escape.tech/graphql-armor-max-depth": "npm:2.4.1"
+    "@escape.tech/graphql-armor-max-depth": "npm:2.4.2"
     "@escape.tech/graphql-armor-max-directives": "npm:2.3.1"
     "@escape.tech/graphql-armor-max-tokens": "npm:2.5.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"

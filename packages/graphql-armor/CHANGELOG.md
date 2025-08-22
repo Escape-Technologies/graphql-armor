@@ -1,5 +1,13 @@
 # @escape.tech/graphql-armor
 
+## 3.1.7
+
+### Patch Changes
+
+- Updated dependencies [9989861]
+- Updated dependencies [1f923bc]
+  - @escape.tech/graphql-armor-max-depth@2.4.2
+
 ## 3.1.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor
 
+## 3.2.0
+
+### Minor Changes
+
+- 643537c: Add support for Apollo Server v5
+
 ## 3.1.7
 
 ### Patch Changes

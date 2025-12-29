@@ -1,5 +1,6 @@
 import { maxDirectivesRule } from '@escape.tech/graphql-armor-max-directives';
 
+import { injectRequestContextRule } from '../context-helper';
 import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
@@ -15,7 +16,7 @@ export class ApolloMaxDirectivesProtection extends ApolloProtection {
     this.config.maxDirectives = inferApolloPropagator<typeof this.config.maxDirectives>(this.config.maxDirectives);
 
     return {
-      validationRules: [maxDirectivesRule(this.config.maxDirectives)],
+      validationRules: [injectRequestContextRule(maxDirectivesRule(this.config.maxDirectives))],
     };
   }
 }

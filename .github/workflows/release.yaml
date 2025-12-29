@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -21,7 +25,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Share readme
         run: cp README.md packages/graphql-armor/README.md
@@ -37,7 +42,6 @@ jobs:
         uses: changesets/action@v1
         with:
           version: yarn changeset version
-          publish: yarn release
+          publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

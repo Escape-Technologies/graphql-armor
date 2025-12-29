@@ -12,7 +12,7 @@
     "prettier": "prettier --write '**/*.{ts,js}'",
     "test": "jest",
     "test:ci": "jest --coverage",
-    "release": "changeset publish"
+    "release": "rm -f ~/.npmrc .npmrc \"$NPM_CONFIG_USERCONFIG\" && changeset publish"
   },
   "author": "Escape Technologies SAS",
   "private": true,

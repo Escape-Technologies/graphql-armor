@@ -28,6 +28,9 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@latest
+
       - name: Share readme
         run: cp README.md packages/graphql-armor/README.md
 

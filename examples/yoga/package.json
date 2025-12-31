@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for yoga.",
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.12.0",
   "main": "./src/main.ts",
   "scripts": {
     "build": "tsc",
@@ -23,16 +23,16 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "@escape.tech/graphql-armor": "*",
-    "@graphql-tools/schema": "10.0.23",
-    "graphql": "16.11.0",
-    "graphql-yoga": "5.13.5"
+    "@graphql-tools/schema": "10.0.30",
+    "graphql": "16.12.0",
+    "graphql-yoga": "5.18.0"
   },
   "devDependencies": {
-    "@types/node": "24.0.3",
-    "jest": "30.0.2",
-    "supertest": "7.1.1",
+    "@types/node": "24.10.4",
+    "jest": "30.2.0",
+    "supertest": "7.1.4",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }

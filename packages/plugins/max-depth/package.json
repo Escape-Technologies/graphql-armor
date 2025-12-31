@@ -38,7 +38,7 @@
     "@envelop/testing": "8.1.3",
     "@envelop/types": "5.2.1",
     "@escape.tech/graphql-armor-types": "0.7.0",
-    "graphql": "16.11.0",
+    "graphql": "16.12.0",
     "typescript": "5.8.3"
   }
 }

@@ -27,7 +27,7 @@
     "graphql": "^16.10.0"
   },
   "devDependencies": {
-    "graphql": "16.11.0",
+    "graphql": "16.12.0",
     "typescript": "5.8.3"
   }
 }

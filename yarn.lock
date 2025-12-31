@@ -4670,7 +4670,7 @@ __metadata:
     "@envelop/core": "npm:5.2.3"
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4686,7 +4686,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4704,7 +4704,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4722,7 +4722,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4740,7 +4740,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4758,7 +4758,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4776,7 +4776,7 @@ __metadata:
     "@envelop/testing": "npm:8.1.3"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
     "@envelop/core":
@@ -4818,7 +4818,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-types@workspace:packages/types"
   dependencies:
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     typescript: "npm:5.8.3"
   languageName: unknown
   linkType: soft
@@ -4837,7 +4837,7 @@ __metadata:
     "@escape.tech/graphql-armor-max-tokens": "npm:2.5.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     "@types/node": "npm:^24.0.1"
-    graphql: "npm:16.11.0"
+    graphql: "npm:16.12.0"
     ts-node: "npm:10.9.2"
     typescript: "npm:5.8.3"
   peerDependencies:
@@ -13258,6 +13258,13 @@ __metadata:
   version: 16.11.0
   resolution: "graphql@npm:16.11.0"
   checksum: 10/e3e1633d0b464bbb3fa41283fae938bd3bac801c350555b3f1a129d99fb3cfe157fa69c1389229dba902731942eb08bdea4b29f1271965feee8779576b26ef01
+  languageName: node
+  linkType: hard
+
+"graphql@npm:16.12.0":
+  version: 16.12.0
+  resolution: "graphql@npm:16.12.0"
+  checksum: 10/e299bc97cca178e549c8c1ed4cb164f631f07be987d3657f76cdf18c0250040cc0d456d4b6d41c87b855cac97b15a62ed345557527efcb0546492895a893bb87
   languageName: node
   linkType: hard
 

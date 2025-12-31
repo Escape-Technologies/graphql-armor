@@ -63,7 +63,7 @@
     "@envelop/core": "5.2.3",
     "@escape.tech/graphql-armor-types": "0.7.0",
     "@types/node": "^24.0.1",
-    "graphql": "16.11.0",
+    "graphql": "16.12.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   }

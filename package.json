@@ -52,12 +52,12 @@
   ],
   "volta": {
     "node": "24.2.0",
-    "yarn": "4.9.2"
+    "yarn": "4.12.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.12.0",
   "preconstruct": {
     "packages": [
       "packages/graphql-armor",

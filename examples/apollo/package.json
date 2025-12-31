@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "GraphQL Armor example for Apollo.",
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.12.0",
   "main": "./src/index.ts",
   "scripts": {
     "build": "tsc",
@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@apollo/gateway": "2.11.0",
+    "@apollo/gateway": "2.12.2",
     "@apollo/server": "^5.2.0",
     "@escape.tech/graphql-armor": "*",
     "body-parser": "^2.2.0",
-    "express": "5.1.0",
-    "graphql": "16.11.0",
+    "express": "5.2.1",
+    "graphql": "16.12.0",
     "graphql-tag": "^2.12.6",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
@@ -36,11 +36,11 @@
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.6",
-    "@types/express": "5.0.3",
-    "@types/node": "24.0.3",
-    "nodemon": "3.1.10",
+    "@types/express": "5.0.6",
+    "@types/node": "24.10.4",
+    "nodemon": "3.1.11",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }

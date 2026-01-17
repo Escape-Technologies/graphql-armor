@@ -12,8 +12,22 @@ import {
 } from 'graphql';
 
 export type MaxDirectivesOptions = {
+  /**
+   * Directives threshold.
+   * @default 50
+   */
   n?: number;
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link MaxDirectivesOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link MaxDirectivesOptions.exposeLimits} is set to `true`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
@@ -99,9 +113,23 @@ class MaxDirectivesVisitor {
   }
 }
 
+/**
+ * Limit the number of directives in a GraphQL document.
+ *
+ * It is used to prevent DOS attack, heap overflow or server overloading.
+ *
+ * Use with `@graphql/graphql-js`.
+ */
 export const maxDirectivesRule = (options?: MaxDirectivesOptions) => (context: ValidationContext) =>
   new MaxDirectivesVisitor(context, options);
 
+/**
+ * Limit the number of directives in a GraphQL document.
+ *
+ * It is used to prevent DOS attack, heap overflow or server overloading.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 export const maxDirectivesPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: MaxDirectivesOptions,
 ): Plugin<PluginContext> => {

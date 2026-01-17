@@ -12,14 +12,52 @@ import {
 } from 'graphql';
 
 export type CostLimitOptions = {
+  /**
+   * Cost allowed.
+   * @default 5000
+   */
   maxCost?: number;
+  /**
+   * Static cost of an object.
+   * @default 2
+   */
   objectCost?: number;
+  /**
+   * Static cost of a field.
+   * @default 1
+   */
   scalarCost?: number;
+  /**
+   * Factorial applied to nested operator.
+   * @default 1.5
+   */
   depthCostFactor?: number;
+  /**
+   * Flatten frament spreads and inline framents for the cost calculation.
+   * @default false
+   */
   flattenFragments?: boolean;
+  /**
+   * Ignore the cost of introspection queries.
+   * @default true
+   */
   ignoreIntrospection?: boolean;
+  /**
+   * @deprecated No longer has any effect on the computed cost. Use {@link CostLimitOptions.depthCostFactor} instead.
+   * @default 1000
+   */
   fragmentRecursionCost?: number;
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link CostLimitOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link CostLimitOptions.exposeLimits} is set to `true`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
@@ -153,9 +191,19 @@ class CostLimitVisitor {
   }
 }
 
+/**
+ * Limit the complexity of a GraphQL document.
+ *
+ * Use with `@graphql/graphql-js`.
+ */
 export const costLimitRule = (options?: CostLimitOptions) => (context: ValidationContext) =>
   new CostLimitVisitor(context, options);
 
+/**
+ * Limit the complexity of a GraphQL document.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 export const costLimitPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: CostLimitOptions,
 ): Plugin<PluginContext> => {

@@ -12,10 +12,32 @@ import {
 } from 'graphql';
 
 export type MaxDepthOptions = {
+  /**
+   * Depth threshold.
+   * @default 6
+   */
   n?: number;
+  /**
+   * Ignore the depth of introspection queries.
+   * @default true
+   */
   ignoreIntrospection?: boolean;
+  /**
+   * Flatten frament spreads and inline framents for the depth count.
+   * @default false
+   */
   flattenFragments?: boolean;
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link MaxDepthOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link MaxDepthOptions.exposeLimits} is set to `true`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 const maxDepthDefaultOptions: Required<MaxDepthOptions> = {
@@ -121,9 +143,23 @@ class MaxDepthVisitor {
   }
 }
 
+/**
+ * Limit the depth of a GraphQL document.
+ *
+ * It is used to prevent too large queries that could lead to overfetching or DOS attack.
+ *
+ * Use with `@graphql/graphql-js`.
+ */
 export const maxDepthRule = (options?: MaxDepthOptions) => (context: ValidationContext) =>
   new MaxDepthVisitor(context, options);
 
+/**
+ * Limit the depth of a GraphQL document.
+ *
+ * It is used to prevent too large queries that could lead to overfetching or DOS attack.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 export const maxDepthPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: MaxDepthOptions,
 ): Plugin<PluginContext> => {

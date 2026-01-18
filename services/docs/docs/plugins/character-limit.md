@@ -35,7 +35,9 @@ const getEnveloped = envelop({
   plugins: [
     // ... other plugins ...
     characterLimitPlugin({
-        maxLength: 15000, // Number of characters allowed | Default: 15000
+        maxLength: 15000,                        // Number of characters allowed | Default: 15000
+        exposeLimits: true,                      // Default: true
+        errorMessage: 'Query validation error.', // Default: 'Query validation error.'
     }),
   ]
 });

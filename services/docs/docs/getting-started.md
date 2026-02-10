@@ -69,7 +69,7 @@ const server = new ApolloServer<AppContext>({
   resolvers,
   ...protection,
   plugins: [...protection.plugins, myPlugin1, myPlugin2 ]
-  validationRules: [, ...protection.validationRules, myRule1, myRule2 ]
+  validationRules: [...protection.validationRules, myRule1, myRule2 ]
 });
 ```
 

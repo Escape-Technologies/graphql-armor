@@ -1,6 +1,7 @@
 import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { GraphQLError } from 'graphql';
 import { describe, expect, it } from '@jest/globals';
 
 import { blockFieldSuggestionsPlugin } from '../src/index';
@@ -111,5 +112,31 @@ describe('global', () => {
     assertSingleExecutionValue(result);
     expect(result.errors).toBeDefined();
     expect(result.errors?.map((error) => error.message)).toEqual(['Cannot query field "titlee" on type "Book".']);
+  });
+
+  it('should not crash when error has undefined message', async () => {
+    const testkit = createTestkit([blockFieldSuggestionsPlugin()], schema);
+    const result = await testkit.execute(`query { books { titlee author } }`);
+
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeDefined();
+
+    // Verify the plugin handles errors gracefully even when
+    // message is forcefully set to undefined (e.g. Apollo Server 5.x edge case)
+    const errorWithUndefinedMessage = new GraphQLError(undefined as unknown as string);
+    expect(() => {
+      // Simulate what the onValidate handler does internally
+      const plugin = blockFieldSuggestionsPlugin();
+      const onValidateEnd = (plugin as any).onValidate?.();
+      if (onValidateEnd) {
+        onValidateEnd({
+          valid: false,
+          result: [errorWithUndefinedMessage],
+          setResult: (errors: GraphQLError[]) => {
+            expect(errors[0]).toBe(errorWithUndefinedMessage);
+          },
+        });
+      }
+    }).not.toThrow();
   });
 });

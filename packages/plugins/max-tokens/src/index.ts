@@ -10,8 +10,22 @@ type maxTokensParserWLexerOptions = ParseOptions & {
 } & GraphQLArmorCallbackConfiguration;
 
 export type MaxTokensOptions = {
+  /**
+   * Tokens threshold.
+   * @default 1000
+   */
   n?: number;
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link MaxTokensOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link MaxTokensOptions.exposeLimits} is set to `false`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
@@ -78,6 +92,15 @@ export class MaxTokensParserWLexer extends Parser {
   }
 }
 
+/**
+ * Limit the number of tokens in a GraphQL document.
+ *
+ * It is used to prevent DOS attack, heap overflow or server overloading.
+ *
+ * The token limit is often limited by the graphql parser, but this is not always the case and would lead to a fatal heap overflow.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 export function maxTokensPlugin<PluginContext extends Record<string, any> = {}>(
   config?: MaxTokensOptions,
 ): Plugin<PluginContext> {

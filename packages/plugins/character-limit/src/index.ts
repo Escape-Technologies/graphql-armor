@@ -3,8 +3,22 @@ import type { GraphQLArmorCallbackConfiguration } from '@escape.tech/graphql-arm
 import { GraphQLError } from 'graphql';
 
 export type CharacterLimitOptions = {
+  /**
+   * Number of characters allowed.
+   * @default 15000
+   */
   maxLength?: number;
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link CharacterLimitOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link CharacterLimitOptions.exposeLimits} is set to `false`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
@@ -17,7 +31,13 @@ export const characterLimitDefaultOptions: Required<CharacterLimitOptions> = {
   propagateOnRejection: true,
 };
 
-/* CharacterLimitPlugin Supports Apollo Server v3 and v4 */
+/**
+ * Limit number of characters in a GraphQL query document.
+ *
+ * This help preventing DoS attacks by hard-limiting the size of the query document.
+ *
+ * ApolloServerCharacterLimitPlugin Supports Apollo Server v3 and v4.
+ */
 export const ApolloServerCharacterLimitPlugin = function (options?: CharacterLimitOptions): any {
   const config = Object.assign(
     {},
@@ -50,6 +70,13 @@ export const ApolloServerCharacterLimitPlugin = function (options?: CharacterLim
   };
 };
 
+/**
+ * Limit number of characters in a GraphQL query document.
+ *
+ * This help preventing DoS attacks by hard-limiting the size of the query document.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 export const characterLimitPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: CharacterLimitOptions,
 ): Plugin<PluginContext> => {

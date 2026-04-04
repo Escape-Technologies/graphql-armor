@@ -12,9 +12,27 @@ import {
 } from 'graphql';
 
 type MaxAliasesOptions = {
+  /**
+   * Aliases threshold.
+   * @default 15
+   */
   n?: number;
+  /**
+   * List of queries and alias names that are allowed to bypass the plugin.
+   * @default ['__typename']
+   */
   allowList?: string[];
+  /**
+   * If this is set to `true`, details about the configured limit are included in the GraphQLError message when errors occur.
+   *
+   * When set to `false` {@link MaxAliasesOptions.errorMessage} is used as the GraphQLError message.
+   * @default true
+   */
   exposeLimits?: boolean;
+  /**
+   * The error message used when {@link MaxAliasesOptions.exposeLimits} is set to `false`.
+   * @default 'Query validation error.'
+   */
   errorMessage?: string;
 } & GraphQLArmorCallbackConfiguration;
 
@@ -106,9 +124,23 @@ class MaxAliasesVisitor {
   }
 }
 
+/**
+ * Limit the number of aliases in a GraphQL document.
+ *
+ * It is used to prevent DOS attack or heap overflow.
+ *
+ * Use with `@graphql/graphql-js`.
+ */
 const maxAliasesRule = (options?: MaxAliasesOptions) => (context: ValidationContext) =>
   new MaxAliasesVisitor(context, options);
 
+/**
+ * Limit the number of aliases in a GraphQL document.
+ *
+ * It is used to prevent DOS attack or heap overflow.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 const maxAliasesPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: MaxAliasesOptions,
 ): Plugin<PluginContext> => {

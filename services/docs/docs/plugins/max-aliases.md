@@ -41,7 +41,7 @@ GraphQLArmorConfig({
     // Do you want to propagate the rejection to the client? | default: true
     propagateOnRejection?: boolean,
 
-    // List of queries that are allowed to bypass the plugin | default: ['__typename']
+    // List of queries and alias names that are allowed to bypass the plugin | default: ['__typename']
     allowList?: string[],
   }
 })

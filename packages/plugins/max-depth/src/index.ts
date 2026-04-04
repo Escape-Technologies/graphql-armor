@@ -35,7 +35,7 @@ export type MaxDepthOptions = {
    */
   exposeLimits?: boolean;
   /**
-   * The error message used when {@link MaxDepthOptions.exposeLimits} is set to `true`.
+   * The error message used when {@link MaxDepthOptions.exposeLimits} is set to `false`.
    * @default 'Query validation error.'
    */
   errorMessage?: string;

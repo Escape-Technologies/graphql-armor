@@ -30,7 +30,7 @@ type MaxAliasesOptions = {
    */
   exposeLimits?: boolean;
   /**
-   * The error message used when {@link MaxAliasesOptions.exposeLimits} is set to `true`.
+   * The error message used when {@link MaxAliasesOptions.exposeLimits} is set to `false`.
    * @default 'Query validation error.'
    */
   errorMessage?: string;

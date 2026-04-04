@@ -30,7 +30,7 @@ GraphQLArmorConfig({
     */
     exposeLimits?: boolean,
 
-    // The error message used when exposeLimits is set to true | default: 'Query validation error.'
+    // The error message used when exposeLimits is set to false | default: 'Query validation error.'
     errorMessage?: string,
 
     // Callbacks that are ran whenever a Query is accepted

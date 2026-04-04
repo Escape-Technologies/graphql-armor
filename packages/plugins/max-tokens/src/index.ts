@@ -23,7 +23,7 @@ export type MaxTokensOptions = {
    */
   exposeLimits?: boolean;
   /**
-   * The error message used when {@link MaxTokensOptions.exposeLimits} is set to `true`.
+   * The error message used when {@link MaxTokensOptions.exposeLimits} is set to `false`.
    * @default 'Query validation error.'
    */
   errorMessage?: string;

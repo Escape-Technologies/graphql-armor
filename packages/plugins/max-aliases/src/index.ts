@@ -18,7 +18,7 @@ type MaxAliasesOptions = {
    */
   n?: number;
   /**
-   * List of queries that are allowed to bypass the plugin.
+   * List of queries and alias names that are allowed to bypass the plugin.
    * @default ['__typename']
    */
   allowList?: string[];

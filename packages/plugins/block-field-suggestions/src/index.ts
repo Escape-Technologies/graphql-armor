@@ -13,7 +13,7 @@ const blockFieldSuggestionsDefaultOptions: Required<BlockFieldSuggestionsOptions
 };
 
 const formatter = (error: GraphQLError, mask: string): GraphQLError => {
-  if (error instanceof GraphQLError) {
+  if (error instanceof GraphQLError && typeof error.message === 'string') {
     error.message = error.message.replace(/Did you mean ".+"\?/g, mask).trim();
   }
   return error as GraphQLError;

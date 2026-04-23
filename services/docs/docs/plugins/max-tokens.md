@@ -24,6 +24,17 @@ GraphQLArmorConfig({
     // Tokens threshold | default: 1000
     n?: int,
 
+    /* 
+      If this is set to true, details about the configured limit are included in the GraphQLError message when errors occur.
+      When set to false errorMessage is used as the GraphQLError message.
+
+      default: true
+    */
+    exposeLimits?: boolean,
+
+    // The error message used when exposeLimits is set to false | default: 'Query validation error.'
+    errorMessage?: string,
+
     // Callbacks that are ran whenever a Query is accepted
     onAccept?: GraphQLArmorAcceptCallback[],
 

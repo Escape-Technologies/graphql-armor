@@ -1,7 +1,13 @@
 import type { Plugin } from '@envelop/core';
 import { GraphQLError } from 'graphql';
 
-type BlockFieldSuggestionsOptions = { mask?: string };
+type BlockFieldSuggestionsOptions = {
+  /**
+   * Mask applied to the error message.
+   * @default '[Suggestion hidden]'
+   */
+  mask?: string;
+};
 const blockFieldSuggestionsDefaultOptions: Required<BlockFieldSuggestionsOptions> = {
   mask: '[Suggestion hidden]',
 };
@@ -13,6 +19,13 @@ const formatter = (error: GraphQLError, mask: string): GraphQLError => {
   return error as GraphQLError;
 };
 
+/**
+ * Prevent returning field suggestions and leaking your schema to unauthorized actors.
+ *
+ * In production, this can lead to Schema leak even if the introspection is disabled.
+ *
+ * Use with `@envelop/core` from `@the-guild-org`.
+ */
 const blockFieldSuggestionsPlugin = <PluginContext extends Record<string, any> = {}>(
   options?: BlockFieldSuggestionsOptions,
 ): Plugin<PluginContext> => {

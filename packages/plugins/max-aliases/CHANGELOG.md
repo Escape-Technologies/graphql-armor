@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-aliases
 
+## 2.6.3
+
+### Patch Changes
+
+- c244a24: Documented plugin configuration type with JSDoc
+
 ## 2.6.2
 
 ### Patch Changes

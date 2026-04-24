@@ -1,5 +1,19 @@
 # @escape.tech/graphql-armor
 
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies [c244a24]
+- Updated dependencies [3c5c96f]
+  - @escape.tech/graphql-armor-block-field-suggestions@3.0.2
+  - @escape.tech/graphql-armor-max-directives@2.3.2
+  - @escape.tech/graphql-armor-max-aliases@2.6.3
+  - @escape.tech/graphql-armor-cost-limit@2.4.4
+  - @escape.tech/graphql-armor-max-tokens@2.5.2
+  - @escape.tech/graphql-armor-max-depth@2.4.3
+  - @escape.tech/graphql-armor-types@0.7.1
+
 ## 3.2.0
 
 ### Minor Changes

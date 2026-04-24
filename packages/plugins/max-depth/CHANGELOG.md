@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-depth
 
+## 2.4.3
+
+### Patch Changes
+
+- c244a24: Documented plugin configuration type with JSDoc
+
 ## 2.4.2
 
 ### Patch Changes

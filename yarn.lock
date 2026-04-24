@@ -4648,18 +4648,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:8.1.3":
-  version: 8.1.3
-  resolution: "@envelop/testing@npm:8.1.3"
+"@envelop/testing@npm:10.1.1":
+  version: 10.1.1
+  resolution: "@envelop/testing@npm:10.1.1"
   dependencies:
-    "@graphql-tools/utils": "npm:^10.0.0"
+    "@graphql-tools/utils": "npm:^11.0.0"
     "@whatwg-node/promise-helpers": "npm:^1.2.4"
     tslib: "npm:^2.5.0"
   peerDependencies:
-    "@envelop/core": ^5.2.3
+    "@envelop/core": ^5.5.1
     "@envelop/types": ^5.2.1
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10/bda7f591ebbf24fd5613f35a6528d18558b69800e4574e69dc58a37650f1711d587f2ebe8f23a76f6b2f9fb9c4a5c387506ddcc826db9a98fb1e9c37715bdda5
+  checksum: 10/c2769d2c97b3e8cb46c16c7c44d351de5ff8e8bc5061bb766a1920f8307b3cec5a1163cea1113525ab317cd79e0f69016ec20f245228c7df97e5236ad737d654
   languageName: node
   linkType: hard
 
@@ -4678,7 +4678,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4693,7 +4693,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4711,7 +4711,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4729,7 +4729,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4747,7 +4747,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4765,7 +4765,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4783,7 +4783,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.1.1"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -5161,18 +5161,6 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 10/4cc7577ab85d60908a1d5d448071b318791b798f571cd4b8e4289e0e0eeae9d7183b661a1a7d5da3cedaf5f9b62b936031e3a90d2e17a1c50acbd95d9106ba3c
-  languageName: node
-  linkType: hard
-
-"@graphql-tools/utils@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@graphql-tools/utils@npm:10.0.0"
-  dependencies:
-    "@graphql-typed-document-node/core": "npm:^3.1.1"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10/b35c84125ee5ff6b955f151a3c71182848e295309269e2cfb2490b2d3f94d83578fa574aa9877ddeb0dc56ef7ca01c5560b450fc1c4f1217beda175ddcb8dbb1
   languageName: node
   linkType: hard
 

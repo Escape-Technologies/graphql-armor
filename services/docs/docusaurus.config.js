@@ -107,12 +107,8 @@ const config = {
                 href: 'https://github.com/Escape-Technologies/graphql-armor',
               },
               {
-                label: 'Discord',
-                href: 'https://discord.escape.tech',
-              },
-              {
-                label: 'GraphQL.security',
-                href: 'https://graphql.security/',
+                label: 'Escape Offensive Security Engineering Platform',
+                href: 'https://escape.tech',
               },
             ],
           },

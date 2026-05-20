@@ -1,5 +1,6 @@
 import { maxDepthRule } from '@escape.tech/graphql-armor-max-depth';
 
+import { injectRequestContextRule } from '../context-helper';
 import { inferApolloPropagator } from '../errors';
 import { ApolloProtection, ApolloServerConfigurationEnhancement } from './base-protection';
 
@@ -15,7 +16,7 @@ export class ApolloMaxDepthProtection extends ApolloProtection {
     this.config.maxDepth = inferApolloPropagator<typeof this.config.maxDepth>(this.config.maxDepth);
 
     return {
-      validationRules: [maxDepthRule(this.config.maxDepth)],
+      validationRules: [injectRequestContextRule(maxDepthRule(this.config.maxDepth))],
     };
   }
 }

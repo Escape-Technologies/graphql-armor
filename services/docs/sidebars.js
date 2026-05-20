@@ -19,7 +19,7 @@ const sidebars = {
     {
       type: 'html',
       value:
-        '<a href="https://escape.tech/?utm_source=graphql-armor&utm_medium=referral&utm_campaign=docs"><div id="cta-escape-button"><img src="https://uploads-ssl.webflow.com/653f800ead95abddab588b44/65ae311dfcac549806f5fbdd_graphql-armor-docs-cta.svg" alt="Visit Escape"></div></a>',
+        '<a href="https://escape.tech/"><div id="cta-escape-button"><img src="https://26857953.fs1.hubspotusercontent-eu1.net/hubfs/26857953/cta-graphql-armor.svg" alt="Visit Escape"></div></a>',
       defaultStyle: false,
     },
   ],

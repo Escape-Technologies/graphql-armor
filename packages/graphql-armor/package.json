@@ -40,7 +40,7 @@
     "@escape.tech/graphql-armor-max-depth": "2.4.2",
     "@escape.tech/graphql-armor-max-directives": "2.3.1",
     "@escape.tech/graphql-armor-max-tokens": "2.5.1",
-    "graphql": "^16.10.0"
+    "graphql": "^17.0.0"
   },
   "peerDependencies": {
     "@apollo/server": "^4.0.0 || ^5.0.0",
@@ -63,7 +63,7 @@
     "@envelop/core": "5.2.3",
     "@escape.tech/graphql-armor-types": "0.7.0",
     "@types/node": "^24.0.1",
-    "graphql": "16.11.0",
+    "graphql": "17.0.2",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   }

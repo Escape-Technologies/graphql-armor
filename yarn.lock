@@ -4648,18 +4648,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:8.1.3":
-  version: 8.1.3
-  resolution: "@envelop/testing@npm:8.1.3"
+"@envelop/testing@npm:10.2.0":
+  version: 10.2.0
+  resolution: "@envelop/testing@npm:10.2.0"
   dependencies:
-    "@graphql-tools/utils": "npm:^10.0.0"
+    "@graphql-tools/utils": "npm:^11.2.0"
     "@whatwg-node/promise-helpers": "npm:^1.2.4"
     tslib: "npm:^2.5.0"
   peerDependencies:
-    "@envelop/core": ^5.2.3
+    "@envelop/core": ^5.6.0
     "@envelop/types": ^5.2.1
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10/bda7f591ebbf24fd5613f35a6528d18558b69800e4574e69dc58a37650f1711d587f2ebe8f23a76f6b2f9fb9c4a5c387506ddcc826db9a98fb1e9c37715bdda5
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 10/be38029ab147f3f0c01970c4fb8c0ec33e310d25bd23369592c3577107b7664c92145420dfea39c1ab6612e27725a9815bd6448f48345e50a5ca67b2331c9080
   languageName: node
   linkType: hard
 
@@ -4678,7 +4678,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4693,7 +4693,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4711,7 +4711,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4729,7 +4729,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4747,7 +4747,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4765,7 +4765,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -4783,7 +4783,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
     "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
+    "@envelop/testing": "npm:10.2.0"
     "@envelop/types": "npm:5.2.1"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
@@ -5164,18 +5164,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@graphql-tools/utils@npm:10.0.0"
-  dependencies:
-    "@graphql-typed-document-node/core": "npm:^3.1.1"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10/b35c84125ee5ff6b955f151a3c71182848e295309269e2cfb2490b2d3f94d83578fa574aa9877ddeb0dc56ef7ca01c5560b450fc1c4f1217beda175ddcb8dbb1
-  languageName: node
-  linkType: hard
-
 "@graphql-tools/utils@npm:^10.11.0":
   version: 10.11.0
   resolution: "@graphql-tools/utils@npm:10.11.0"
@@ -5202,6 +5190,20 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 10/98329aef966b489d3674eb086b784f6fb4500afaf9bc46fbe6a14ca32e98fec480c7395d3488c5eb2f450b75a538e98edf0527ed4bf24af352230e850c914389
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/utils@npm:^11.2.0":
+  version: 11.2.2
+  resolution: "@graphql-tools/utils@npm:11.2.2"
+  dependencies:
+    "@graphql-typed-document-node/core": "npm:^3.1.1"
+    "@whatwg-node/promise-helpers": "npm:^1.0.0"
+    cross-inspect: "npm:1.0.1"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 10/b33ddad55bd5a701f0c7554fba4aefc6b12178c8e5f14574f48528eef6dc7174b171f2421aefe9f25faeb7fa543501542bcee08c4ca787cfd0b93f98a329e67a
   languageName: node
   linkType: hard
 

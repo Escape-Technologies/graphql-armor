@@ -60,6 +60,8 @@ const config = {
         logo: {
           alt: 'GraphQL Armor Logo',
           src: 'img/logo.svg',
+          href: 'https://escape.tech/graphql-armor',
+          target: '_self',
         },
         items: [
           {

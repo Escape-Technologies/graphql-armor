@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-max-tokens
 
+## 2.5.2
+
+### Patch Changes
+
+- c244a24: Documented plugin configuration type with JSDoc
+
 ## 2.5.1
 
 ### Patch Changes

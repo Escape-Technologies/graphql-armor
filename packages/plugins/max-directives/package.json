@@ -1,6 +1,6 @@
 {
   "name": "@escape.tech/graphql-armor-max-directives",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Limit the number of directives allowed in a GraphQL query.",
   "packageManager": "yarn@4.9.2",
   "main": "dist/graphql-armor-max-directives.cjs.js",
@@ -31,13 +31,13 @@
   },
   "optionalDependencies": {
     "@envelop/core": "^5.2.3",
-    "@escape.tech/graphql-armor-types": "0.7.0"
+    "@escape.tech/graphql-armor-types": "0.7.1"
   },
   "devDependencies": {
     "@envelop/core": "5.2.3",
     "@envelop/testing": "8.1.3",
     "@envelop/types": "5.2.1",
-    "@escape.tech/graphql-armor-types": "0.7.0",
+    "@escape.tech/graphql-armor-types": "0.7.1",
     "graphql": "16.11.0",
     "typescript": "5.8.3"
   }

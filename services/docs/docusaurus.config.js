@@ -9,7 +9,7 @@ const config = {
   title: 'GraphQL Armor',
   tagline: 'The missing Node GraphQL security security layer',
   url: 'https://escape.tech',
-  baseUrl: '/graphql-armor/',
+  baseUrl: '/graphql-armor',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',

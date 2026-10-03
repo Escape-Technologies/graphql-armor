@@ -2,6 +2,7 @@ import type { ApolloServerOptions, ApolloServerPlugin, BaseContext } from '@apol
 import type { GraphQLArmorConfig } from '@escape.tech/graphql-armor-types';
 import type { ValidationRule } from 'graphql';
 
+import { contextInjectionPlugin } from './context-helper';
 import { ApolloProtection } from './protections/base-protection';
 import { ApolloBlockFieldSuggestionProtection } from './protections/block-field-suggestion';
 import { ApolloCostLimitProtection } from './protections/cost-limit';
@@ -32,6 +33,7 @@ export class ApolloArmor {
   } {
     let plugins: ApolloServerOptions<BaseContext>['plugins'] = [];
     let validationRules: ApolloServerOptions<BaseContext>['validationRules'] = [];
+    plugins.push(contextInjectionPlugin);
 
     for (const protection of this.protections) {
       if (protection.isEnabled) {

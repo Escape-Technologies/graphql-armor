@@ -4626,7 +4626,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:5.2.3, @envelop/core@npm:^5.2.3":
+"@envelop/core@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@envelop/core@npm:6.0.0"
+  dependencies:
+    "@envelop/instrumentation": "npm:^2.0.0"
+    "@envelop/types": "npm:^6.0.0"
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
+    tslib: "npm:^2.5.0"
+  checksum: 10/a000a090c3a5cb32bfa352f64355a9a7471013c30aa5193fb90a93c489676caef5a924811f2efc8d323cefcd94b7e4adf34598994d181eff935f23175d65bddc
+  languageName: node
+  linkType: hard
+
+"@envelop/core@npm:^5.2.3":
   version: 5.2.3
   resolution: "@envelop/core@npm:5.2.3"
   dependencies:
@@ -4648,22 +4660,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/testing@npm:8.1.3":
-  version: 8.1.3
-  resolution: "@envelop/testing@npm:8.1.3"
+"@envelop/instrumentation@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@envelop/instrumentation@npm:2.0.0"
   dependencies:
-    "@graphql-tools/utils": "npm:^10.0.0"
-    "@whatwg-node/promise-helpers": "npm:^1.2.4"
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
     tslib: "npm:^2.5.0"
-  peerDependencies:
-    "@envelop/core": ^5.2.3
-    "@envelop/types": ^5.2.1
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10/bda7f591ebbf24fd5613f35a6528d18558b69800e4574e69dc58a37650f1711d587f2ebe8f23a76f6b2f9fb9c4a5c387506ddcc826db9a98fb1e9c37715bdda5
+  checksum: 10/c4046ddd8a052da039bb37b128097925df0f22fa2c39a2c9dec9437e8a8b4d045b4b920fff0090bd8e5a4409bf0b43da5bbd7f33a9a5ee2a66f4b73bc99746c0
   languageName: node
   linkType: hard
 
-"@envelop/types@npm:5.2.1, @envelop/types@npm:^5.2.1":
+"@envelop/testing@npm:11.0.0":
+  version: 11.0.0
+  resolution: "@envelop/testing@npm:11.0.0"
+  dependencies:
+    "@graphql-tools/utils": "npm:^13.0.0"
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
+    tslib: "npm:^2.5.0"
+  peerDependencies:
+    "@envelop/core": ^6.0.0
+    "@envelop/types": ^6.0.0
+    graphql: ^16.0.0 || ^17.0.0
+  checksum: 10/a0c911b509688591361ad378f4d1f58e2af6a89127e63cb355e051a1e4fe4be61980d16ca83705af18473c412ec7704a0b009a169c1acbfc7b080c4523d9b09e
+  languageName: node
+  linkType: hard
+
+"@envelop/types@npm:6.0.0, @envelop/types@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@envelop/types@npm:6.0.0"
+  dependencies:
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
+    tslib: "npm:^2.5.0"
+  checksum: 10/b08806654e16672b86279d966ecc38821a3350e3f06c78e209daa47b0740840f9c311624c823b5c7e091244cc98ac1e246ea2d3e3560d84fc2fe627e94d5f8c4
+  languageName: node
+  linkType: hard
+
+"@envelop/types@npm:^5.2.1":
   version: 5.2.1
   resolution: "@envelop/types@npm:5.2.1"
   dependencies:
@@ -4677,9 +4709,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-block-field-suggestions@workspace:packages/plugins/block-field-suggestions"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
   dependenciesMeta:
@@ -4692,9 +4724,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-character-limit@workspace:packages/plugins/character-limit"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4710,9 +4742,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-cost-limit@workspace:packages/plugins/cost-limit"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4728,9 +4760,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-aliases@workspace:packages/plugins/max-aliases"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4746,9 +4778,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-depth@workspace:packages/plugins/max-depth"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4764,9 +4796,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-directives@workspace:packages/plugins/max-directives"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4782,9 +4814,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@escape.tech/graphql-armor-max-tokens@workspace:packages/plugins/max-tokens"
   dependencies:
-    "@envelop/core": "npm:5.2.3"
-    "@envelop/testing": "npm:8.1.3"
-    "@envelop/types": "npm:5.2.1"
+    "@envelop/core": "npm:6.0.0"
+    "@envelop/testing": "npm:11.0.0"
+    "@envelop/types": "npm:6.0.0"
     "@escape.tech/graphql-armor-types": "npm:0.7.0"
     graphql: "npm:16.11.0"
     typescript: "npm:5.8.3"
@@ -4838,7 +4870,7 @@ __metadata:
   resolution: "@escape.tech/graphql-armor@workspace:packages/graphql-armor"
   dependencies:
     "@apollo/server": "npm:5.2.0"
-    "@envelop/core": "npm:5.2.3"
+    "@envelop/core": "npm:6.0.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
     "@escape.tech/graphql-armor-cost-limit": "npm:2.4.3"
     "@escape.tech/graphql-armor-max-aliases": "npm:2.6.2"
@@ -4852,7 +4884,7 @@ __metadata:
     typescript: "npm:5.8.3"
   peerDependencies:
     "@apollo/server": ^4.0.0 || ^5.0.0
-    "@envelop/core": ^5.0.0
+    "@envelop/core": ^6.0.0
     "@escape.tech/graphql-armor-types": 0.7.0
   peerDependenciesMeta:
     "@apollo/server":
@@ -5164,18 +5196,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@graphql-tools/utils@npm:10.0.0"
-  dependencies:
-    "@graphql-typed-document-node/core": "npm:^3.1.1"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10/b35c84125ee5ff6b955f151a3c71182848e295309269e2cfb2490b2d3f94d83578fa574aa9877ddeb0dc56ef7ca01c5560b450fc1c4f1217beda175ddcb8dbb1
-  languageName: node
-  linkType: hard
-
 "@graphql-tools/utils@npm:^10.11.0":
   version: 10.11.0
   resolution: "@graphql-tools/utils@npm:10.11.0"
@@ -5202,6 +5222,19 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 10/98329aef966b489d3674eb086b784f6fb4500afaf9bc46fbe6a14ca32e98fec480c7395d3488c5eb2f450b75a538e98edf0527ed4bf24af352230e850c914389
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/utils@npm:^13.0.0":
+  version: 13.2.0
+  resolution: "@graphql-tools/utils@npm:13.2.0"
+  dependencies:
+    "@graphql-typed-document-node/core": "npm:^3.2.0"
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    graphql: ^16.0.0 || ^17.0.0
+  checksum: 10/367bca46c9f0cb4e516d63df62e6ace3fc9d810f66bfbf5e2490d8668671fd997c850acc76beffb9ae0517ba8205b27970929da4e7ea425f80a37394e907cc71
   languageName: node
   linkType: hard
 
@@ -8555,6 +8588,15 @@ __metadata:
   dependencies:
     tslib: "npm:^2.6.3"
   checksum: 10/bb540d33cc6c0186edb3adc4356710e2a4b04c313cf764498d27f50a225085d2569a2dd7e2278985932d096bb1aadfeeb7dc9883a64c7b04d408e1eed36e49df
+  languageName: node
+  linkType: hard
+
+"@whatwg-node/promise-helpers@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "@whatwg-node/promise-helpers@npm:2.0.1"
+  dependencies:
+    tslib: "npm:^2.6.3"
+  checksum: 10/a05c12cd5f028a12c46cb88530211cb6facc356baec978e754f9cbe677e905b8150c07bb1477793f146a5a7f874e88ade6bb867fbc2efe432adad6e97e35cf4d
   languageName: node
   linkType: hard
 

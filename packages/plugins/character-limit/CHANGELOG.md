@@ -1,5 +1,11 @@
 # @escape.tech/graphql-armor-character-limit
 
+## 2.3.2
+
+### Patch Changes
+
+- c244a24: Documented plugin configuration type with JSDoc
+
 ## 2.3.1
 
 ### Patch Changes

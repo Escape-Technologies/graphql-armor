@@ -1,5 +1,12 @@
 # @escape.tech/graphql-armor-block-field-suggestions
 
+## 3.0.2
+
+### Patch Changes
+
+- c244a24: Documented plugin configuration type with JSDoc
+- 3c5c96f: fix: guard against undefined error message in blockFieldSuggestion plugin
+
 ## 3.0.1
 
 ### Patch Changes

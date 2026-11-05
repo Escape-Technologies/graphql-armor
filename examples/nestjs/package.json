@@ -30,7 +30,7 @@
     "@escape.tech/graphql-armor": "*",
     "@nestjs/apollo": "13.2.4",
     "@nestjs/common": "11.1.3",
-    "@nestjs/core": "11.1.3",
+    "@nestjs/core": "11.1.18",
     "@nestjs/graphql": "13.2.4",
     "@nestjs/platform-express": "11.1.3",
     "express": "5.1.0",

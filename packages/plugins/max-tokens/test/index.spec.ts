@@ -1,9 +1,9 @@
 import type { Plugin } from '@envelop/types';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { describe, expect, it, jest } from '@jest/globals';
-import { buildSchema } from 'graphql';
+import { buildSchema, Kind, Source } from 'graphql';
 
-import { maxTokenDefaultOptions, maxTokensPlugin } from '../src/index';
+import { MaxTokensParserWLexer, maxTokenDefaultOptions, maxTokensPlugin } from '../src/index';
 
 // test checking if the plugin inherits the context correctly
 const _test_0: Plugin = maxTokensPlugin();
@@ -90,5 +90,54 @@ describe('maxTokensPlugin', () => {
     expect(result.errors).toBeDefined();
     expect(result.errors).toHaveLength(1);
     expect(result.errors?.[0].message).toEqual(`Syntax Error: Token limit of ${count} exceeded.`);
+  });
+});
+
+describe('MaxTokensParserWLexer callbacks', () => {
+  it('fires onReject once and skips onAccept when the limit is exceeded and propagateOnRejection is false', () => {
+    const accepts: number[] = [];
+    const rejects: string[] = [];
+
+    const document = new MaxTokensParserWLexer(new Source('{ a b c d e f g h }'), {
+      n: 2,
+      propagateOnRejection: false,
+      onAccept: [(_context, details: { n: number }) => accepts.push(details.n)],
+      onReject: [(_context, error) => rejects.push(error.message)],
+    }).parseDocument();
+
+    expect(document.kind).toBe(Kind.DOCUMENT);
+    expect(accepts).toEqual([]);
+    expect(rejects).toEqual(['Syntax Error: Token limit of 2 exceeded.']);
+  });
+
+  it('fires onAccept once with the final token count when the operation is under the limit', () => {
+    const accepts: number[] = [];
+    const rejects: string[] = [];
+
+    const document = new MaxTokensParserWLexer(new Source('{ a b }'), {
+      n: 100,
+      onAccept: [(_context, details: { n: number }) => accepts.push(details.n)],
+      onReject: [(_context, error) => rejects.push(error.message)],
+    }).parseDocument();
+
+    expect(document.kind).toBe(Kind.DOCUMENT);
+    expect(accepts).toEqual([4]);
+    expect(rejects).toEqual([]);
+  });
+
+  it('throws once and does not call onAccept when propagateOnRejection is true', () => {
+    const accepts: number[] = [];
+    const rejects: string[] = [];
+
+    expect(() => {
+      new MaxTokensParserWLexer(new Source('{ a b c d e f g h }'), {
+        n: 2,
+        onAccept: [(_context, details: { n: number }) => accepts.push(details.n)],
+        onReject: [(_context, error) => rejects.push(error.message)],
+      }).parseDocument();
+    }).toThrow('Syntax Error: Token limit of 2 exceeded.');
+
+    expect(accepts).toEqual([]);
+    expect(rejects).toEqual(['Syntax Error: Token limit of 2 exceeded.']);
   });
 });

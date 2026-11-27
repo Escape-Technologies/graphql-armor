@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [18, 20, 22, 24]
+        node: [22, 24]
 
     name: Examples Node ${{ matrix.node }}
     steps:
@@ -34,6 +34,6 @@ jobs:
 
       - name: Upload coverage
         uses: codecov/codecov-action@v5
-        if: matrix.node == '18'
+        if: matrix.node == '22'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

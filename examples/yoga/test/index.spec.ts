@@ -158,9 +158,17 @@ describe('startup', () => {
   });
 
   it('should allow introspection', async () => {
-    const response = await request(server).post('/graphql').send({
-      query: getIntrospectionQuery(),
-    });
+    const response = await request(server)
+      .post('/graphql')
+      .send({
+        // graphql 17 requires `includeDeprecated` on directives, args and input
+        // fields; the default query omits them and would fail against a
+        // graphql 17 schema.
+        query: getIntrospectionQuery({
+          inputValueDeprecation: true,
+          experimentalDirectiveDeprecation: true,
+        }),
+      });
 
     expect(response.statusCode).toBe(200);
     const body = JSON.parse(response.text);

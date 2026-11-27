@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
-    "@apollo/gateway": "2.11.6",
+    "@apollo/gateway": "2.14.5",
     "@apollo/server": "5.2.0",
     "@as-integrations/express5": "1.1.2",
     "@escape.tech/graphql-armor": "*",
@@ -34,7 +34,7 @@
     "@nestjs/graphql": "13.2.4",
     "@nestjs/platform-express": "11.1.3",
     "express": "5.1.0",
-    "graphql": "16.11.0",
+    "graphql": "17.1.0",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
     "source-map-support": "0.5.21"

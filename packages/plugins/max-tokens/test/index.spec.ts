@@ -35,10 +35,15 @@ describe('maxTokensPlugin', () => {
   });
 
   it('does not reject an operation below the max token count', async () => {
-    const operation = `{ ${Array(maxTokenDefaultOptions.n - 2)
+    // graphql 17 aborts validation with `Validation aborted.` on documents
+    // large enough to exhaust its internal overlap-analysis budget, so a
+    // smaller document is used instead: 4 fields plus braces make exactly
+    // `n` tokens.
+    const maxTokens = 6;
+    const operation = `{ ${Array(maxTokens - 2)
       .fill('a')
       .join(' ')} }`;
-    const testkit = createTestkit([maxTokensPlugin()], schema);
+    const testkit = createTestkit([maxTokensPlugin({ n: maxTokens })], schema);
     const result = await testkit.execute(operation);
     assertSingleExecutionValue(result);
     expect(result.errors).toBeUndefined();

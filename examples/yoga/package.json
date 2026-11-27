@@ -23,8 +23,8 @@
   "homepage": "https://github.com/Escape-Technologies/graphql-armor",
   "dependencies": {
     "@escape.tech/graphql-armor": "*",
-    "@graphql-tools/schema": "10.0.23",
-    "graphql": "16.11.0",
+    "@graphql-tools/schema": "11.0.10",
+    "graphql": "17.1.0",
     "graphql-yoga": "5.13.5"
   },
   "devDependencies": {

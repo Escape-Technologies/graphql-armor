@@ -40,6 +40,7 @@ export const maxTokenDefaultOptions: Required<MaxTokensOptions> = {
 
 export class MaxTokensParserWLexer extends Parser {
   private _tokenCount = 0;
+  private _rejected = false;
   private readonly config: Required<MaxTokensOptions>;
 
   get tokenCount() {
@@ -65,7 +66,8 @@ export class MaxTokensParserWLexer extends Parser {
               this._tokenCount++;
             }
 
-            if (this._tokenCount > this.config.n) {
+            if (!this._rejected && this._tokenCount > this.config.n) {
+              this._rejected = true;
               const message = this.config.exposeLimits
                 ? `Token limit of ${this.config.n} exceeded.`
                 : this.config.errorMessage;
@@ -80,15 +82,27 @@ export class MaxTokensParserWLexer extends Parser {
               }
             }
 
-            for (const handler of this.config.onAccept) {
-              handler(null, { n: this._tokenCount });
-            }
             return token;
           };
         }
         return Reflect.get(target, prop, receiver);
       },
     });
+  }
+
+  /**
+   * `advance()` runs once per token. Callbacks are per operation: `onReject` is
+   * latched on the first token past the limit, and `onAccept` runs once after a
+   * successful parse that was not rejected.
+   */
+  parseDocument() {
+    const document = super.parseDocument();
+    if (!this._rejected) {
+      for (const handler of this.config.onAccept) {
+        handler(null, { n: this._tokenCount });
+      }
+    }
+    return document;
   }
 }
 
